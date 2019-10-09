@@ -30,7 +30,7 @@ public class StrengthLogic : MonoBehaviour
         if(timerBeforeDestroy >= 0)
         {
             timerBeforeDestroy -= Time.deltaTime;
-            transform.position = Vector3.Lerp(this.transform.position, playerReference.strengthPosition.transform.position, .45f);
+            transform.position = Vector3.Lerp(this.transform.position, playerReference.strengthPosition.transform.position, .15f);
 
             Debug.Log(timerBeforeDestroy);
         }

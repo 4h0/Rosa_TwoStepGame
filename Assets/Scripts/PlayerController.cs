@@ -223,7 +223,7 @@ public class PlayerController : MonoBehaviour
     {
         yield return new WaitForSeconds(.3f);
 
-        if(strengthWaitingCounter != 0)
+        if (strengthWaitingCounter != 0)
         {
             StrengthRayCast();
         }
@@ -231,7 +231,7 @@ public class PlayerController : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground")
         {
             onGround = true;
             jumpCounter = 0;
