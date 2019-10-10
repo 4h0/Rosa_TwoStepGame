@@ -88,12 +88,12 @@ public class PlayerController : MonoBehaviour
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
             playerRigidBody.velocity = -transform.right * moveSpeed;
-            dashDirection = 2;
+            dashDirection = 3;
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             playerRigidBody.velocity = transform.right * moveSpeed;
-            dashDirection = 3;
+            dashDirection = 2;
         }
         else
         {
@@ -124,22 +124,7 @@ public class PlayerController : MonoBehaviour
         {
             if (Input.GetButtonDown("Dash"))
             {
-                switch (dashDirection)
-                {
-                    case 0:
-                        playerRigidBody.AddForce(transform.forward * dashForce * 1, ForceMode.Impulse);
-                        break;
-                    case 1:
-                        playerRigidBody.AddForce(transform.forward * dashForce * -1, ForceMode.Impulse);
-                        break;
-                    case 2:
-                        playerRigidBody.AddForce(transform.right * dashForce * -1, ForceMode.Impulse);
-                        break;
-                    case 3:
-                        playerRigidBody.AddForce(transform.right * dashForce * 1, ForceMode.Impulse);
-                        break;
-                }
-
+                StartCoroutine(DashLogic());
                 StartCoroutine(CoolingLogic(false, coolingTimer[1], "dash"));
             }
 
@@ -189,23 +174,7 @@ public class PlayerController : MonoBehaviour
 
             }
         }
-    }
-
-    IEnumerator JumpingLogic()
-    {
-        jumping = true;
-        jumpCounter++;
-        /*
-        playerRigidBody.AddForce(new Vector3(0, 0, 0), ForceMode.VelocityChange);
-        playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter, 0), ForceMode.Acceleration);
-        */
-
-        playerRigidBody.velocity = new Vector3(0, jumpForce * jumpCounter, 0);
-
-        yield return new WaitForSeconds(.15f);
-
-        jumping = false;
-    }
+    }             
 
     IEnumerator CoolingLogic(bool waitingForRemoval, float waitingTime, string abilityName)
     {
@@ -218,6 +187,61 @@ public class PlayerController : MonoBehaviour
         strengthWaitingCounter = 0;
 
         Debug.Log("cool done");
+    }
+
+    IEnumerator JumpingLogic()
+    {
+        jumping = true;
+        jumpCounter++;
+        /*
+        playerRigidBody.AddForce(new Vector3(0, 0, 0), ForceMode.VelocityChange);
+        playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter, 0), ForceMode.Acceleration);
+        playerRigidBody.velocity = new Vector3(0, jumpForce * jumpCounter, 0);
+        */
+        for (int counter = 0; counter < 4; counter++)
+        {
+            playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter * counter, 0), ForceMode.Force);
+            yield return new WaitForEndOfFrame();
+        }
+
+        yield return new WaitForSeconds(.1f);
+
+        jumping = false;
+    }
+
+    IEnumerator DashLogic()
+    {
+        switch (dashDirection)
+        {
+            case 0:
+                for (int counter = 0; counter < 4; counter++)
+                {
+                    playerRigidBody.AddForce(transform.forward * dashForce * 1 * counter, ForceMode.Force);
+                    yield return new WaitForEndOfFrame();
+                }
+                break;
+            case 1:
+                for (int counter = 0; counter < 4; counter++)
+                {
+                    playerRigidBody.AddForce(transform.forward * dashForce * -1 * counter, ForceMode.Force);
+                    yield return new WaitForEndOfFrame();
+                }
+                break;
+            case 2:
+                for (int counter = 0; counter < 4; counter++)
+                {
+                    playerRigidBody.AddForce(transform.right * dashForce * 1 * counter, ForceMode.Force);
+                    yield return new WaitForEndOfFrame();
+                }
+                break;
+            case 3:
+                for (int counter = 0; counter < 4; counter++)
+                {
+                    playerRigidBody.AddForce(transform.right * dashForce * -1 * counter, ForceMode.Force);
+                    yield return new WaitForEndOfFrame();
+                }
+                break;
+        }
     }
 
     IEnumerator StrengthRayCooling()
