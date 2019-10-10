@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
+    public GameObject cameraPosition;
     public GameObject strengthPosition;
 
     private Rigidbody playerRigidBody;
@@ -61,10 +62,10 @@ public class PlayerController : MonoBehaviour
 
     private void MovingLogic()
     {
+        /*
         moveHorizontal = Input.GetAxis("MoveHorizontal");
         moveVertical = Input.GetAxis("MoveVertical");
 
-        /*
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             playerRigidBody.velocity = transform.forward * moveHorizontal * moveSpeed;
@@ -107,7 +108,7 @@ public class PlayerController : MonoBehaviour
         {
             playerRigidBody.AddForce(new Vector3(0, gravity * (jumpCounter + 1), 0), ForceMode.Acceleration);
         }
-        //jumping
+        
         if (jumpCounter < 2 && !jumping)
         {
             if (Input.GetKeyDown(KeyCode.Space))

@@ -268,7 +268,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1152960874}
   - component: {fileID: 1152960873}
-  - component: {fileID: 1152960876}
   - component: {fileID: 1152960875}
   - component: {fileID: 1152960872}
   m_Layer: 0
@@ -355,23 +354,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2fec533d62a0c3847a789e594a5118bb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveToPosition: {fileID: 1154780121}
---- !u!54 &1152960876
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1152960871}
-  serializedVersion: 2
-  m_Mass: 0.0000001
-  m_Drag: 0
-  m_AngularDrag: 0
-  m_UseGravity: 0
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 78
-  m_CollisionDetection: 0
+  offsetHeight: {x: 0, y: 0, z: 0}
 --- !u!1 &1154780121
 GameObject:
   m_ObjectHideFlags: 0
@@ -387,7 +370,7 @@ GameObject:
   m_Icon: {fileID: -964228994112308473, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 1
+  m_IsActive: 0
 --- !u!4 &1154780122
 Transform:
   m_ObjectHideFlags: 0
@@ -634,32 +617,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 372c32b5efc067342bc976a66894f5d3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  strengthPosition: {fileID: 425316569}
-  playerRigidBody: {fileID: 0}
-  showPlayer: {fileID: 0}
-  playerCollider: {fileID: 0}
-  facingDirection: {x: 0, y: 0, z: 0, w: 0}
-  strengthAbilityDistance: 12
-  moveSpeed: 15
-  turnSpeed: 1.5
-  gravity: -294.3
-  jumpForce: 150
-  dashForce: 600
-  coolingTimer:
-  - 0
-  - 4
-  - 15
-  clampValue: a6ffffff5a000000f4ffffff0c000000
-  onGround: 0
-  jumping: 0
-  abilityCooling: 0
-  jumpCounter: 0
-  dashDirection: 0
-  strengthWaitingCounter: 0
-  moveHorizontal: 0
-  moveVertical: 0
-  turnHorizontal: 0
-  turnVertical: 0
 --- !u!54 &1622867571
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -747,6 +704,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 64623b49bf12c094eaef8e363210a6e8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  cameraPosition: {fileID: 1154780121}
   strengthPosition: {fileID: 425316569}
   strengthAbilityDistance: 12
   moveSpeed: 15
