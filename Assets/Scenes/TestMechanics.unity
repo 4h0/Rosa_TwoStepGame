@@ -991,8 +991,8 @@ MonoBehaviour:
   moveSpeed: 7.5
   turnSpeed: 0.75
   gravity: -294.3
-  jumpForce: 1800
-  dashForce: 2400
+  jumpForce: 2400
+  dashForce: 1800
   coolingTimer:
   - 0
   - 4

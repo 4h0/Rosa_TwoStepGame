@@ -111,9 +111,16 @@ public class PlayerController : MonoBehaviour
 
     private void GravityCheck()
     {
-        if (!onGround && !jumping)
+        if (!onGround)
         {
-            playerRigidBody.AddForce(new Vector3(0, gravity * (jumpCounter + 1), 0), ForceMode.Acceleration);
+            if (jumping)
+            {
+                playerRigidBody.AddForce(new Vector3(0, gravity * (jumpCounter + 1), 0), ForceMode.Force);
+            } 
+            else
+            {
+                playerRigidBody.AddForce(new Vector3(0, gravity * (jumpCounter + 1), 0), ForceMode.Force);
+            }
         }
         
         if (jumpCounter < 2 && !jumping)
@@ -212,11 +219,9 @@ public class PlayerController : MonoBehaviour
         */
         for (int counter = 0; counter < 4; counter++)
         {
-            playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter * counter, 0), ForceMode.Force);
-            yield return new WaitForEndOfFrame();
+            playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter * counter, 0), ForceMode.Acceleration);
+            yield return new WaitForSeconds(.03f);
         }
-
-        yield return new WaitForSeconds(.1f);
 
         jumping = false;
     }
@@ -229,28 +234,28 @@ public class PlayerController : MonoBehaviour
                 for (int counter = 0; counter < 4; counter++)
                 {
                     playerRigidBody.AddForce(transform.forward * dashForce * 1 * counter, ForceMode.Force);
-                    yield return new WaitForEndOfFrame();
+                    yield return new WaitForSeconds(.03f);
                 }
                 break;
             case 1:
                 for (int counter = 0; counter < 4; counter++)
                 {
                     playerRigidBody.AddForce(transform.forward * dashForce * -1 * counter, ForceMode.Force);
-                    yield return new WaitForEndOfFrame();
+                    yield return new WaitForSeconds(.03f);
                 }
                 break;
             case 2:
                 for (int counter = 0; counter < 4; counter++)
                 {
                     playerRigidBody.AddForce(transform.right * dashForce * 1 * counter, ForceMode.Force);
-                    yield return new WaitForEndOfFrame();
+                    yield return new WaitForSeconds(.03f);
                 }
                 break;
             case 3:
                 for (int counter = 0; counter < 4; counter++)
                 {
                     playerRigidBody.AddForce(transform.right * dashForce * -1 * counter, ForceMode.Force);
-                    yield return new WaitForEndOfFrame();
+                    yield return new WaitForSeconds(.03f);
                 }
                 break;
         }
