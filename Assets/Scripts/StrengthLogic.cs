@@ -21,8 +21,7 @@ public class StrengthLogic : MonoBehaviour
     {
         pickUpRigidbody.useGravity = false;
         pickUpRigidbody.isKinematic = true;
-        changeCubeColor.material.color = Color.blue;
-
+        changeCubeColor.material.color = Color.white;
     }
 
     private void Update()

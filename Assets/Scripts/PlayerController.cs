@@ -7,10 +7,12 @@ public class PlayerController : MonoBehaviour
     public GameObject cameraPosition;
     public GameObject strengthPosition;
 
+    private Camera cameraReference;
     private Rigidbody playerRigidBody;
     private SpriteRenderer showPlayer;
     private CapsuleCollider playerCollider;
-    private Quaternion facingDirection;
+    private Quaternion facingDirection;  
+    private GameObject savedGameObject;
 
     public int strengthAbilityDistance;
     public float moveSpeed, turnSpeed;
@@ -20,21 +22,26 @@ public class PlayerController : MonoBehaviour
     public int[] clampValue;
 
     private bool onGround, jumping;
-    private bool abilityCooling;
-    private int jumpCounter, dashDirection, strengthWaitingCounter;
+    private bool abilityCooling, strengthRayCastStart;
+    private int jumpCounter, dashDirection;
+    private int layerMask;
 
     private float moveHorizontal, moveVertical;
     private float turnHorizontal, turnVertical;
 
     private void Awake()
     {
+        cameraReference = FindObjectOfType<Camera>();
         playerRigidBody = GetComponent<Rigidbody>();
         showPlayer = GetComponent<SpriteRenderer>();
         playerCollider = GetComponent<CapsuleCollider>();
 
         jumping = false;
         abilityCooling = false;
+        strengthRayCastStart = false;
         jumpCounter = 0;
+        dashDirection = 0;
+        layerMask = 1 << 8;
     }
 
     private void Update()
@@ -128,53 +135,53 @@ public class PlayerController : MonoBehaviour
                 StartCoroutine(CoolingLogic(false, coolingTimer[1], "dash"));
             }
 
-            if (Input.GetButton("Strength"))
+            if (Input.GetButton("Strength") && !strengthRayCastStart)
             {
-                StartCoroutine(CoolingLogic(true, coolingTimer[2], "strength"));
                 StrengthRayCast();
+            }
+            if(Input.GetButtonUp("Strength") && savedGameObject != null)
+            {
+                moveSpeed /= 3;
+                turnSpeed /= 3;
+
+                StartCoroutine(CoolingLogic(false, coolingTimer[2], "strength"));
+
+                savedGameObject.AddComponent<StrengthLogic>();                 
+                savedGameObject.GetComponent<StrengthLogic>().timerBeforeDestroy = coolingTimer[2];
             }
         }
     }
 
     private void StrengthRayCast()
     {
-        strengthWaitingCounter++;
+        strengthRayCastStart = true;
 
-        Vector3 rayStartPoint = transform.position;
-        Vector3 rayEndPoint = transform.forward;
-        Ray strengthRay = new Ray(rayStartPoint, rayEndPoint);
-        RaycastHit strengthRayHit;
+        RaycastHit strengthRayHit;                            
+        Debug.DrawLine(transform.position, strengthPosition.transform.forward * strengthAbilityDistance, Color.red, 30f);
+        bool rayHit = Physics.Raycast(transform.position, strengthPosition.transform.forward * strengthAbilityDistance, out strengthRayHit, Mathf.Infinity, layerMask);
 
-        Debug.DrawLine(rayStartPoint, rayEndPoint * strengthAbilityDistance, Color.red, 30f);
-
-        bool rayHit = Physics.Raycast(strengthRay, out strengthRayHit, strengthAbilityDistance);
-
-        if (abilityCooling)
+        if (rayHit)
         {
-            if (rayHit)
+            GameObject hitGameObject = strengthRayHit.transform.gameObject;
+            Debug.Log("target: " + hitGameObject.name);
+
+            if (hitGameObject.transform.tag == "PickUp")
             {
-                GameObject hitGameObject = strengthRayHit.transform.gameObject;
-                Debug.Log("target: " + hitGameObject.name);
-
-                if (hitGameObject.transform.tag == "PickUp")
-                {
-                    hitGameObject.AddComponent<StrengthLogic>();
-                    hitGameObject.GetComponent<StrengthLogic>().timerBeforeDestroy = (float)(coolingTimer[2] - .3 * strengthWaitingCounter);
-                }
-                else
-                {
-                    StartCoroutine(StrengthRayCooling());
-                }
-            }
-            else
+                savedGameObject = hitGameObject;
+                hitGameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+            }  
+        }
+        else
+        {
+            if(savedGameObject != null)
             {
-                StartCoroutine(StrengthRayCooling());
-
-                Debug.Log("nothing hit");
-
+                savedGameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                savedGameObject = null; 
             }
         }
-    }             
+
+        StartCoroutine(StrengthRayCooling());
+    }     
 
     IEnumerator CoolingLogic(bool waitingForRemoval, float waitingTime, string abilityName)
     {
@@ -184,7 +191,12 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(waitingTime);
 
         abilityCooling = false;
-        strengthWaitingCounter = 0;
+
+        if(abilityName == "strength")
+        {
+            moveSpeed *= 3;
+            turnSpeed *= 3;
+        }
 
         Debug.Log("cool done");
     }
@@ -246,12 +258,9 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator StrengthRayCooling()
     {
-        yield return new WaitForSeconds(.3f);
+        yield return new WaitForSeconds(.15f);
 
-        if (strengthWaitingCounter != 0)
-        {
-            StrengthRayCast();
-        }
+        strengthRayCastStart = false;
     }
 
     private void OnCollisionEnter(Collision collision)
