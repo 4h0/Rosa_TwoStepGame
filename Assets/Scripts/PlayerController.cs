@@ -4,10 +4,10 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject cameraPosition;
-    public GameObject strengthPosition;
+    public Transform cameraPosition;
+    public Transform strengthPosition;
 
-    private Camera cameraReference;
+    private CameraController cameraReference;
     private Rigidbody playerRigidBody;
     private SpriteRenderer showPlayer;
     private CapsuleCollider playerCollider;
@@ -31,7 +31,7 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        cameraReference = FindObjectOfType<Camera>();
+        cameraReference = FindObjectOfType<CameraController>();
         playerRigidBody = GetComponent<Rigidbody>();
         showPlayer = GetComponent<SpriteRenderer>();
         playerCollider = GetComponent<CapsuleCollider>();
@@ -118,7 +118,9 @@ public class PlayerController : MonoBehaviour
                 playerRigidBody.AddForce(new Vector3(0, gravity * (jumpCounter + 1), 0), ForceMode.Force);
             } 
             else
-            {
+            {   
+                cameraReference.offsetHeight = new Vector3(0, 1.5f, 0);
+
                 playerRigidBody.AddForce(new Vector3(0, gravity * (jumpCounter + 1), 0), ForceMode.Force);
             }
         }
@@ -152,6 +154,11 @@ public class PlayerController : MonoBehaviour
                 turnSpeed /= 3;
 
                 StartCoroutine(CoolingLogic(false, coolingTimer[2], "strength"));
+
+                if(strengthPosition.position.y < savedGameObject.transform.position.y)
+                {
+                    strengthPosition.transform.Translate(strengthPosition.position.x, savedGameObject.transform.position.y, strengthPosition.position.z);
+                }
 
                 savedGameObject.AddComponent<StrengthLogic>();                 
                 savedGameObject.GetComponent<StrengthLogic>().timerBeforeDestroy = coolingTimer[2];
@@ -212,6 +219,9 @@ public class PlayerController : MonoBehaviour
     {
         jumping = true;
         jumpCounter++;
+
+        cameraReference.offsetHeight = new Vector3(0, 6f, 0);
+        
         /*
         playerRigidBody.AddForce(new Vector3(0, 0, 0), ForceMode.VelocityChange);
         playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter, 0), ForceMode.Acceleration);
@@ -220,7 +230,7 @@ public class PlayerController : MonoBehaviour
         for (int counter = 0; counter < 4; counter++)
         {
             playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter * counter, 0), ForceMode.Acceleration);
-            yield return new WaitForSeconds(.03f);
+            yield return new WaitForEndOfFrame();
         }
 
         jumping = false;
