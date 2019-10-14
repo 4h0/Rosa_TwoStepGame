@@ -226,7 +226,7 @@ public class PlayerController : MonoBehaviour
         for (int counter = 0; counter < 4; counter++)
         {
             playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter * counter, 0), ForceMode.Acceleration);
-            yield return new WaitForSeconds(.03f);
+            yield return new WaitForEndOfFrame();
         }
 
         jumping = false;
