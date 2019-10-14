@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Transform cameraPosition;
-    public Transform strengthPosition;
+    public GameObject cameraPosition;
+    public GameObject strengthPosition;
 
     private CameraController cameraReference;
     private Rigidbody playerRigidBody;
@@ -14,16 +14,16 @@ public class PlayerController : MonoBehaviour
     private Quaternion facingDirection;  
     private GameObject savedGameObject;
 
-    public int strengthAbilityDistance;
+    public bool onGround, jumping;
+    public int jumpCounter;
     public float moveSpeed, turnSpeed;
     public float gravity, jumpForce, dashForce;
 
     public float[] coolingTimer;
     public int[] clampValue;
 
-    private bool onGround, jumping;
     private bool abilityCooling, strengthRayCastStart;
-    private int jumpCounter, dashDirection;
+    private int dashDirection;
     private int layerMask;
 
     private float moveHorizontal, moveVertical;
@@ -41,7 +41,7 @@ public class PlayerController : MonoBehaviour
         strengthRayCastStart = false;
         jumpCounter = 0;
         dashDirection = 0;
-        layerMask = 1 << 8;
+        layerMask = LayerMask.GetMask ("rayCastObject");
     }
 
     private void Update()
@@ -119,8 +119,6 @@ public class PlayerController : MonoBehaviour
             } 
             else
             {   
-                cameraReference.offsetHeight = new Vector3(0, 1.5f, 0);
-
                 playerRigidBody.AddForce(new Vector3(0, gravity * (jumpCounter + 1), 0), ForceMode.Force);
             }
         }
@@ -155,9 +153,9 @@ public class PlayerController : MonoBehaviour
 
                 StartCoroutine(CoolingLogic(false, coolingTimer[2], "strength"));
 
-                if(strengthPosition.position.y < savedGameObject.transform.position.y)
+                if (strengthPosition.transform.position.y < savedGameObject.transform.position.y)
                 {
-                    strengthPosition.transform.Translate(strengthPosition.position.x, savedGameObject.transform.position.y, strengthPosition.position.z);
+                    strengthPosition.transform.position = new Vector3(strengthPosition.transform.position.x, savedGameObject.transform.position.y, strengthPosition.transform.position.z);
                 }
 
                 savedGameObject.AddComponent<StrengthLogic>();                 
@@ -171,18 +169,18 @@ public class PlayerController : MonoBehaviour
         strengthRayCastStart = true;
 
         RaycastHit strengthRayHit;                            
-        Debug.DrawLine(transform.position, strengthPosition.transform.forward * strengthAbilityDistance, Color.red, 30f);
-        bool rayHit = Physics.Raycast(transform.position, strengthPosition.transform.forward * strengthAbilityDistance, out strengthRayHit, Mathf.Infinity, layerMask);
+        Debug.DrawLine(transform.position, strengthPosition.transform.position, Color.red, 30f);
+        bool rayHit = Physics.Raycast(transform.position, strengthPosition.transform.position, out strengthRayHit, Mathf.Infinity, layerMask);
 
         if (rayHit)
         {
             GameObject hitGameObject = strengthRayHit.transform.gameObject;
             Debug.Log("target: " + hitGameObject.name);
 
-            if (hitGameObject.transform.tag == "PickUp")
+            if (hitGameObject.tag == "PickUp")
             {
                 savedGameObject = hitGameObject;
-                hitGameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+                hitGameObject.GetComponent<MeshRenderer>().material.color = Color.blue;     
             }  
         }
         else
@@ -220,8 +218,6 @@ public class PlayerController : MonoBehaviour
         jumping = true;
         jumpCounter++;
 
-        cameraReference.offsetHeight = new Vector3(0, 6f, 0);
-        
         /*
         playerRigidBody.AddForce(new Vector3(0, 0, 0), ForceMode.VelocityChange);
         playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter, 0), ForceMode.Acceleration);
@@ -230,7 +226,7 @@ public class PlayerController : MonoBehaviour
         for (int counter = 0; counter < 4; counter++)
         {
             playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter * counter, 0), ForceMode.Acceleration);
-            yield return new WaitForEndOfFrame();
+            yield return new WaitForSeconds(.03f);
         }
 
         jumping = false;
@@ -273,7 +269,7 @@ public class PlayerController : MonoBehaviour
 
     IEnumerator StrengthRayCooling()
     {
-        yield return new WaitForSeconds(.15f);
+        yield return new WaitForSeconds(.1f);
 
         strengthRayCastStart = false;
     }

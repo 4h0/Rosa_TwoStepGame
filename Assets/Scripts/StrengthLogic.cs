@@ -15,6 +15,8 @@ public class StrengthLogic : MonoBehaviour
         playerReference = FindObjectOfType<PlayerController>();
         pickUpRigidbody = GetComponent<Rigidbody>();
         changeCubeColor = GetComponent<MeshRenderer>();
+                          
+        pickUpRigidbody.constraints = RigidbodyConstraints.None;
     }
 
     private void Start()
@@ -29,9 +31,7 @@ public class StrengthLogic : MonoBehaviour
         if(timerBeforeDestroy >= 0)
         {
             timerBeforeDestroy -= Time.deltaTime;
-            transform.position = Vector3.Lerp(this.transform.position, playerReference.strengthPosition.transform.position, .15f);
-
-            Debug.Log(timerBeforeDestroy);
+            transform.position = Vector3.Lerp(this.transform.position, playerReference.strengthPosition.transform.position, .06f);   
         }
         else
         {
@@ -39,6 +39,8 @@ public class StrengthLogic : MonoBehaviour
 
             pickUpRigidbody.useGravity = true;
             pickUpRigidbody.isKinematic = false;
+
+            pickUpRigidbody.constraints = RigidbodyConstraints.FreezeAll;
 
             Destroy(this);
         }

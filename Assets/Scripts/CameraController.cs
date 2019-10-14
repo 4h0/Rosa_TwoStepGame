@@ -4,15 +4,25 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public Vector3 offsetHeight;
+
     private PlayerController playerReference;
     private SphereCollider cameraTriggerCollider;
-
-    public Vector3 offsetHeight;
+    private GameObject savedGameObject;
+                                  
+    private int cameraObstacle;
 
     private void Awake()
     {
         playerReference = FindObjectOfType<PlayerController>();
         cameraTriggerCollider = GetComponent<SphereCollider>();
+
+        cameraObstacle = LayerMask.GetMask("cameraObstacle");
+    }
+
+    private void Start()
+    {
+        Detection();
     }
 
     private void Update()
@@ -21,16 +31,53 @@ public class CameraController : MonoBehaviour
         {
             FollowPlayer();
         }
-    }
+    }  
 
     private void LateUpdate()
     {
         transform.LookAt(playerReference.transform.position + offsetHeight);
     }
+    private void Detection()
+    {
+        RaycastHit cameraRayHit;
+        Debug.DrawLine(this.transform.position, new Vector3(0,1,0) + playerReference.transform.position, Color.red, 30f);
+        bool rayHit = Physics.Raycast(this.transform.position, new Vector3(0, 1, 0) + playerReference.transform.position, out cameraRayHit, Mathf.Infinity, cameraObstacle);
+
+        if (rayHit)
+        {
+            GameObject hitGameObject = cameraRayHit.transform.gameObject;
+            Debug.Log("target: " + hitGameObject.name);
+
+            savedGameObject = hitGameObject;
+            hitGameObject.GetComponent<MeshRenderer>().enabled = false;
+        }
+        else
+        {
+            if (savedGameObject != null)
+            {
+                savedGameObject.GetComponent<MeshRenderer>().enabled = true;
+                savedGameObject = null;
+            }
+        }
+
+        StartCoroutine(RayCastingWait());
+
+    }
 
     private void FollowPlayer()
-    {  
-        transform.position = Vector3.Lerp(this.transform.position, playerReference.cameraPosition.position, .03f);  
+    {   
+        /*
+        if(playerReference.onGround)
+        {
+            offsetHeight = new Vector3(0, 1.5f, 0);
+        }
+        else
+        {    
+            offsetHeight = new Vector3(0, 3f * playerReference.jumpCounter, 0);
+        } 
+        */
+
+        transform.position = Vector3.Lerp(this.transform.position, playerReference.cameraPosition.transform.position + offsetHeight, .03f);  
 
         /*
         transform.position = Vector3.Lerp(this.transform.position, moveToPosition.transform.position, 1f);
@@ -41,21 +88,10 @@ public class CameraController : MonoBehaviour
         */
     }
 
-    private void OnCollisionEnter(Collision collision)
+    IEnumerator RayCastingWait()
     {
-        if (collision.gameObject.tag == "Ground")
-        {
-            collision.gameObject.GetComponent<MeshRenderer>().enabled = false;
-            cameraTriggerCollider.radius = 3f;
-        }
-    }
+        yield return new WaitForSeconds(.15f);
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.tag == "Ground")
-        {
-            collision.gameObject.GetComponent<MeshRenderer>().enabled = true;
-            cameraTriggerCollider.radius = 1f;
-        }
-    }
+        Detection();
+    }   
 }
