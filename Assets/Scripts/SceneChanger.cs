@@ -20,7 +20,7 @@ public class SceneChanger : MonoBehaviour
     {
         if (other.tag == "Player")
         {
-            SceneManager.LoadScene("Asset Gym");
+            SceneManager.LoadScene("TestMechanics");
         }
     }
 }

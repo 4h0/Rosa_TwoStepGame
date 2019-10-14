@@ -20,7 +20,7 @@ public class Menus : MonoBehaviour
     }
     public void PlayGame()
     {
-        SceneManager.LoadScene("Tech1");
+        SceneManager.LoadScene("WhiteBox Art");
     }
     public void QuitGame()
     {
