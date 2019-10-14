@@ -8,9 +8,9 @@ public class CameraController : MonoBehaviour
 
     private PlayerController playerReference;
     private SphereCollider cameraTriggerCollider;
-    private GameObject savedGameObject;
+    private GameObject invisibleGameObject;
                                   
-    private int cameraObstacle;
+    private int cameraObstacle, listCounter;
 
     private void Awake()
     {
@@ -18,11 +18,12 @@ public class CameraController : MonoBehaviour
         cameraTriggerCollider = GetComponent<SphereCollider>();
 
         cameraObstacle = LayerMask.GetMask("cameraObstacle");
+        listCounter = 0;
     }
 
     private void Start()
     {
-        Detection();
+        //Detection();
     }
 
     private void Update()
@@ -40,23 +41,37 @@ public class CameraController : MonoBehaviour
     private void Detection()
     {
         RaycastHit cameraRayHit;
-        Debug.DrawLine(this.transform.position, new Vector3(0,1,0) + playerReference.transform.position, Color.red, 30f);
-        bool rayHit = Physics.Raycast(this.transform.position, new Vector3(0, 1, 0) + playerReference.transform.position, out cameraRayHit, Mathf.Infinity, cameraObstacle);
+        Debug.DrawLine(this.transform.position, playerReference.backPosition.position, Color.red, 30f);
+
+        bool rayHit = Physics.Raycast(this.transform.position, playerReference.backPosition.position, out cameraRayHit, Mathf.Infinity, cameraObstacle);
 
         if (rayHit)
         {
             GameObject hitGameObject = cameraRayHit.transform.gameObject;
-            Debug.Log("target: " + hitGameObject.name);
+            Debug.Log(cameraRayHit.point);
+            Debug.Log(hitGameObject.transform.position);
+            Debug.Log(playerReference.backPosition.position);
 
-            savedGameObject = hitGameObject;
-            hitGameObject.GetComponent<MeshRenderer>().enabled = false;
+            if (invisibleGameObject != null)
+            {
+                if (hitGameObject != invisibleGameObject)
+                {
+                    invisibleGameObject.GetComponent<MeshRenderer>().enabled = true;
+                    hitGameObject.GetComponent<MeshRenderer>().enabled = false;
+                    invisibleGameObject = hitGameObject;
+                }
+            }
+            else
+            {  
+                hitGameObject.GetComponent<MeshRenderer>().enabled = false;
+                invisibleGameObject = hitGameObject;
+            }
         }
         else
         {
-            if (savedGameObject != null)
+            if (invisibleGameObject != null)
             {
-                savedGameObject.GetComponent<MeshRenderer>().enabled = true;
-                savedGameObject = null;
+                invisibleGameObject.GetComponent<MeshRenderer>().enabled = true;
             }
         }
 

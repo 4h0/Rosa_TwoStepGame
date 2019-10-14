@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public GameObject cameraPosition;
-    public GameObject strengthPosition;
+    public GameObject cameraPosition, strengthPosition;
+    public Transform backPosition;
 
     private CameraController cameraReference;
+    private UIController uiControllerReference;
     private Rigidbody playerRigidBody;
     private SpriteRenderer showPlayer;
     private CapsuleCollider playerCollider;
@@ -19,7 +20,7 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed, turnSpeed;
     public float gravity, jumpForce, dashForce;
 
-    public float[] coolingTimer;
+    public int[] coolingTimer;
     public int[] clampValue;
 
     private bool abilityCooling, strengthRayCastStart;
@@ -32,6 +33,7 @@ public class PlayerController : MonoBehaviour
     private void Awake()
     {
         cameraReference = FindObjectOfType<CameraController>();
+        uiControllerReference = FindObjectOfType<UIController>();
         playerRigidBody = GetComponent<Rigidbody>();
         showPlayer = GetComponent<SpriteRenderer>();
         playerCollider = GetComponent<CapsuleCollider>();
@@ -139,7 +141,9 @@ public class PlayerController : MonoBehaviour
             if (Input.GetButtonDown("Dash"))
             {
                 StartCoroutine(DashLogic());
-                StartCoroutine(CoolingLogic(false, coolingTimer[1], "dash"));
+                CoolingLogic(0, coolingTimer[1]);
+
+                uiControllerReference.StartCoolDown(0);
             }
 
             if (Input.GetButton("Strength") && !strengthRayCastStart)
@@ -151,7 +155,7 @@ public class PlayerController : MonoBehaviour
                 moveSpeed /= 3;
                 turnSpeed /= 3;
 
-                StartCoroutine(CoolingLogic(false, coolingTimer[2], "strength"));
+                CoolingLogic(1, coolingTimer[2]);
 
                 if (strengthPosition.transform.position.y < savedGameObject.transform.position.y)
                 {
@@ -160,6 +164,7 @@ public class PlayerController : MonoBehaviour
 
                 savedGameObject.AddComponent<StrengthLogic>();                 
                 savedGameObject.GetComponent<StrengthLogic>().timerBeforeDestroy = coolingTimer[2];
+                uiControllerReference.StartCoolDown(1);
             }
         }
     }
@@ -195,22 +200,31 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(StrengthRayCooling());
     }     
 
-    IEnumerator CoolingLogic(bool waitingForRemoval, float waitingTime, string abilityName)
+    private void CoolingLogic(int abilityType, int waitingTime)
     {
-        Debug.Log("cooling: " + abilityName);
-        abilityCooling = true;
-
-        yield return new WaitForSeconds(waitingTime);
-
-        abilityCooling = false;
-
-        if(abilityName == "strength")
+        Debug.Log(waitingTime);
+        if(waitingTime != 0)
         {
-            moveSpeed *= 3;
-            turnSpeed *= 3;
-        }
+            uiControllerReference.UpdateTime(abilityType, waitingTime);
 
-        Debug.Log("cool done");
+            abilityCooling = true;
+            waitingTime--;  
+            StartCoroutine(AbilityCooling(abilityType, waitingTime)); 
+        }
+        else
+        {
+            uiControllerReference.StopCooling(abilityType);
+
+            abilityCooling = false;
+
+            Debug.Log("cool done");
+
+            if (abilityType == 1)
+            {
+                moveSpeed *= 3;
+                turnSpeed *= 3;
+            }
+        }
     }
 
     IEnumerator JumpingLogic()
@@ -272,6 +286,12 @@ public class PlayerController : MonoBehaviour
         yield return new WaitForSeconds(.1f);
 
         strengthRayCastStart = false;
+    }
+    IEnumerator AbilityCooling(int abilityType, int waitingTime)
+    {
+        yield return new WaitForSeconds(1f);
+
+        CoolingLogic(abilityType, waitingTime);
     }
 
     private void OnCollisionEnter(Collision collision)

@@ -5,6 +5,7 @@ using UnityEngine.UI;
 
 public class DialogueTrigger : MonoBehaviour
 {
+    public Canvas dialogueCanvas;
     public Text nameText;
     public Text dialogueText;
 
@@ -12,32 +13,67 @@ public class DialogueTrigger : MonoBehaviour
 
     public string[] sentences;
 
+    private bool speaking;
+    private int whichSentence;
+
     void Start()
     {
+        dialogueCanvas.enabled = false;
         nameText.enabled = false;
         dialogueText.enabled = false;
 
-        Debug.Log(sentences.Length);
+        whichSentence = 0;
     }
 
-    IEnumerator StartDialogue()
+    private void StartDialogue()
     {
-        for(int counter = 0; counter < sentences.Length ; counter++)
+        speaking = true;
+
+        dialogueText.text = sentences[whichSentence];
+
+        if (whichSentence < sentences.Length -1)
         {
-            dialogueText.text = sentences[counter];
-            yield return new WaitForSeconds(3f); 
-        }                
+            whichSentence++;
+        }
+        else
+        {
+            whichSentence = 0;
+        }
+
+        StartCoroutine(WaitTimer());
     }
 
-    private void OnTriggerEnter(Collider other)
+    IEnumerator WaitTimer()
+    {
+        yield return new WaitForSeconds(3f);
+
+        speaking = false;
+    }
+
+    private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
             nameText.text = charaName;
+            dialogueCanvas.enabled = true;
             nameText.enabled = true;
             dialogueText.enabled = true;
 
-            StartCoroutine(StartDialogue());
+            if (!speaking)
+            {
+                StartDialogue();
+            }
+        }
+    }
+
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            dialogueCanvas.enabled = false;
+            nameText.enabled = false;
+            dialogueText.enabled = false;
+            whichSentence = 0;
         }
     }
 }
