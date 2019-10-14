@@ -9,7 +9,7 @@ public class PlayerController : MonoBehaviour
 
     private CameraController cameraReference;
     private UIController uiControllerReference;
-    private GameObject originalPosition, savedGameObject;
+    private GameObject savedGameObject;
 
     private Rigidbody playerRigidBody;
     private SpriteRenderer showPlayer;
@@ -48,11 +48,6 @@ public class PlayerController : MonoBehaviour
         layerMask = LayerMask.GetMask ("rayCastObject");
     }
 
-    private void Start()
-    {
-        originalPosition = this.transform.gameObject;
-    }
-
     private void Update()
     {
         TurningLogic();
@@ -72,17 +67,17 @@ public class PlayerController : MonoBehaviour
         //turnHorizontal = Mathf.Clamp(turnHorizontal, clampValue[0], clampValue[1]);
         turnVertical = Mathf.Clamp(turnVertical, clampValue[2], clampValue[3]);
 
-        originalPosition.transform.rotation = Quaternion.Euler(turnVertical, turnHorizontal, 0f);
         facingDirection = Quaternion.Euler(turnVertical, turnHorizontal, 0f);
         this.transform.rotation = facingDirection;
     }
 
     private void MovingLogic()
     {
-        /*
+        
         moveHorizontal = Input.GetAxis("MoveHorizontal");
         moveVertical = Input.GetAxis("MoveVertical");
 
+        /*
         if (Input.GetKey(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.DownArrow))
         {
             playerRigidBody.velocity = transform.forward * moveHorizontal * moveSpeed;
@@ -94,22 +89,22 @@ public class PlayerController : MonoBehaviour
         */
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            playerRigidBody.velocity = originalPosition.transform.forward * moveSpeed;
+            playerRigidBody.velocity = transform.forward * moveSpeed;
             dashDirection = 0;
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            playerRigidBody.velocity = -originalPosition.transform.forward * moveSpeed;
+            playerRigidBody.velocity = -transform.forward * moveSpeed;
             dashDirection = 1;
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            playerRigidBody.velocity = -originalPosition.transform.right * moveSpeed;
+            playerRigidBody.velocity = -transform.right * moveSpeed;
             dashDirection = 3;
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            playerRigidBody.velocity = originalPosition.transform.right * moveSpeed;
+            playerRigidBody.velocity = transform.right * moveSpeed;
             dashDirection = 2;
         }
         else
@@ -123,12 +118,10 @@ public class PlayerController : MonoBehaviour
     {
         if (!onGround)
         {
-            if (jumping)
-            {
-                playerRigidBody.AddForce(new Vector3(0, gravity * (jumpCounter + 1), 0), ForceMode.Force);
-            } 
-            else
-            {   
+            if(!jumping)
+            {    
+                //playerRigidBody.velocity += new Vector3(0, gravity/10, 0);
+
                 playerRigidBody.AddForce(new Vector3(0, gravity * (jumpCounter + 1), 0), ForceMode.Force);
             }
         }
@@ -243,9 +236,11 @@ public class PlayerController : MonoBehaviour
         /*
         playerRigidBody.AddForce(new Vector3(0, 0, 0), ForceMode.VelocityChange);
         playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter, 0), ForceMode.Acceleration);
-        playerRigidBody.velocity = new Vector3(0, jumpForce * jumpCounter, 0);
         */
-        for (int counter = 0; counter < 4; counter++)
+
+        playerRigidBody.velocity = new Vector3(0, 0, 0);
+        
+        for (int counter = 0; counter < 12; counter++)
         {
             playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter * counter, 0), ForceMode.Acceleration);
             yield return new WaitForEndOfFrame();
