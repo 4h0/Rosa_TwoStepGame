@@ -20,7 +20,7 @@ public class PlayerMenuControl : MonoBehaviour
 
     void Pause()
     {
-        if (Input.GetKeyDown(KeyCode.Z)) {
+        if (Input.GetKeyDown(KeyCode.P)) {
              
             if (canvas.gameObject.activeInHierarchy == false) 
             {        

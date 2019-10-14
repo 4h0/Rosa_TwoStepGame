@@ -14,8 +14,8 @@ public class Menus : MonoBehaviour
 
         if (CurrentSceneName != "MainMenu")
         {
-            GameObject player = GameObject.Find("Player");
-            PlayerMenuControl player_menu_control = player.GetComponent<PlayerMenuControl>();
+            GameObject playerfixed = GameObject.Find("PlayerFixed");
+            PlayerMenuControl player_menu_control = playerfixed.GetComponent<PlayerMenuControl>();
         }
     }
     public void PlayGame()
