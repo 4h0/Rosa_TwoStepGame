@@ -5,7 +5,7 @@ using UnityEngine.UI;
 
 public class DialogueTrigger : MonoBehaviour
 {
-    public Canvas dialogueCanvas;
+    public GameObject dialogueCanvas;
     public Text nameText;
     public Text dialogueText;
 
@@ -16,22 +16,35 @@ public class DialogueTrigger : MonoBehaviour
     private bool speaking;
     private int whichSentence;
 
-    void Start()
+    private void Start()
     {
-        dialogueCanvas.enabled = false;
+        dialogueCanvas.SetActive(false);
         nameText.enabled = false;
         dialogueText.enabled = false;
 
+        speaking = false;
         whichSentence = 0;
+    }
+
+    private void Update()
+    {
+        if(speaking)
+        {
+            if (Input.GetKeyDown(KeyCode.V))
+            {
+                StartDialogue();
+            }
+        }
     }
 
     private void StartDialogue()
     {
-        speaking = true;
-
         dialogueText.text = sentences[whichSentence];
+        dialogueCanvas.SetActive(true);
+        nameText.enabled = true;
+        dialogueText.enabled = true;
 
-        if (whichSentence < sentences.Length -1)
+        if (whichSentence < sentences.Length - 1)
         {
             whichSentence++;
         }
@@ -39,30 +52,13 @@ public class DialogueTrigger : MonoBehaviour
         {
             whichSentence = 0;
         }
-
-        StartCoroutine(WaitTimer());
-    }
-
-    IEnumerator WaitTimer()
-    {
-        yield return new WaitForSeconds(3f);
-
-        speaking = false;
     }
 
     private void OnTriggerStay(Collider other)
     {
         if (other.gameObject.tag == "Player")
         {
-            nameText.text = charaName;
-            dialogueCanvas.enabled = true;
-            nameText.enabled = true;
-            dialogueText.enabled = true;
-
-            if (!speaking)
-            {
-                StartDialogue();
-            }
+            speaking = true;
         }
     }
 
@@ -70,9 +66,10 @@ public class DialogueTrigger : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            dialogueCanvas.enabled = false;
+            dialogueCanvas.SetActive(false);
             nameText.enabled = false;
             dialogueText.enabled = false;
+            speaking = false;
             whichSentence = 0;
         }
     }

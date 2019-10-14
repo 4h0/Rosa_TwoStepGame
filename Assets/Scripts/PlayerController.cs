@@ -9,11 +9,12 @@ public class PlayerController : MonoBehaviour
 
     private CameraController cameraReference;
     private UIController uiControllerReference;
+    private GameObject originalPosition, savedGameObject;
+
     private Rigidbody playerRigidBody;
     private SpriteRenderer showPlayer;
     private CapsuleCollider playerCollider;
-    private Quaternion facingDirection;  
-    private GameObject savedGameObject;
+    private Quaternion facingDirection; 
 
     public bool onGround, jumping;
     public int jumpCounter;
@@ -34,6 +35,7 @@ public class PlayerController : MonoBehaviour
     {
         cameraReference = FindObjectOfType<CameraController>();
         uiControllerReference = FindObjectOfType<UIController>();
+
         playerRigidBody = GetComponent<Rigidbody>();
         showPlayer = GetComponent<SpriteRenderer>();
         playerCollider = GetComponent<CapsuleCollider>();
@@ -44,6 +46,11 @@ public class PlayerController : MonoBehaviour
         jumpCounter = 0;
         dashDirection = 0;
         layerMask = LayerMask.GetMask ("rayCastObject");
+    }
+
+    private void Start()
+    {
+        originalPosition = this.transform.gameObject;
     }
 
     private void Update()
@@ -65,8 +72,9 @@ public class PlayerController : MonoBehaviour
         //turnHorizontal = Mathf.Clamp(turnHorizontal, clampValue[0], clampValue[1]);
         turnVertical = Mathf.Clamp(turnVertical, clampValue[2], clampValue[3]);
 
+        originalPosition.transform.rotation = Quaternion.Euler(turnVertical, turnHorizontal, 0f);
         facingDirection = Quaternion.Euler(turnVertical, turnHorizontal, 0f);
-        transform.rotation = facingDirection;
+        this.transform.rotation = facingDirection;
     }
 
     private void MovingLogic()
@@ -86,22 +94,22 @@ public class PlayerController : MonoBehaviour
         */
         if (Input.GetKey(KeyCode.UpArrow))
         {
-            playerRigidBody.velocity = transform.forward * moveSpeed;
+            playerRigidBody.velocity = originalPosition.transform.forward * moveSpeed;
             dashDirection = 0;
         }
         else if (Input.GetKey(KeyCode.DownArrow))
         {
-            playerRigidBody.velocity = -transform.forward * moveSpeed;
+            playerRigidBody.velocity = -originalPosition.transform.forward * moveSpeed;
             dashDirection = 1;
         }
         else if (Input.GetKey(KeyCode.LeftArrow))
         {
-            playerRigidBody.velocity = -transform.right * moveSpeed;
+            playerRigidBody.velocity = -originalPosition.transform.right * moveSpeed;
             dashDirection = 3;
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
-            playerRigidBody.velocity = transform.right * moveSpeed;
+            playerRigidBody.velocity = originalPosition.transform.right * moveSpeed;
             dashDirection = 2;
         }
         else
