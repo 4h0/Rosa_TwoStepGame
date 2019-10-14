@@ -16,7 +16,7 @@ public class PlayerController : MonoBehaviour
     private CapsuleCollider playerCollider;
     private Quaternion facingDirection; 
 
-    public bool onGround, jumping;
+    public bool onGround, jumping, haveFire;
     public int jumpCounter;
     public float moveSpeed, turnSpeed;
     public float gravity, jumpForce, dashForce;
