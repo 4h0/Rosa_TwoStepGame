@@ -15,8 +15,6 @@ public class StrengthLogic : MonoBehaviour
         playerReference = FindObjectOfType<PlayerController>();
         pickUpRigidbody = GetComponent<Rigidbody>();
         changeCubeColor = GetComponent<MeshRenderer>();
-                          
-        pickUpRigidbody.constraints = RigidbodyConstraints.None;
     }
 
     private void Start()
@@ -39,8 +37,6 @@ public class StrengthLogic : MonoBehaviour
 
             pickUpRigidbody.useGravity = true;
             pickUpRigidbody.isKinematic = false;
-
-            pickUpRigidbody.constraints = RigidbodyConstraints.FreezeAll;
 
             Destroy(this);
         }
