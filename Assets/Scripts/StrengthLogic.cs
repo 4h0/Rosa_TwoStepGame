@@ -20,7 +20,6 @@ public class StrengthLogic : MonoBehaviour
     private void Start()
     {
         pickUpRigidbody.useGravity = false;
-        pickUpRigidbody.isKinematic = true;
         changeCubeColor.material.color = Color.white;
     }
 
@@ -36,7 +35,6 @@ public class StrengthLogic : MonoBehaviour
             changeCubeColor.material.color = Color.green;
 
             pickUpRigidbody.useGravity = true;
-            pickUpRigidbody.isKinematic = false;
 
             Destroy(this);
         }
