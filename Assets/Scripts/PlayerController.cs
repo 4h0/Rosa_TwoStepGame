@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
 
     public int[] coolingTimer;
     public int[] clampValue;
-    public int[] elementalList;
+    public float[] elementalList;
 
     private bool abilityCooling, strengthRayCastStart;
     private bool usingStrength;

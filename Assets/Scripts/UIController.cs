@@ -71,7 +71,5 @@ public class UIController : MonoBehaviour
     public void UpdateElement(int whichElement)
     {
         element[whichElement].fillAmount = playerControllerReference.elementalList[whichElement] / 4;
-
-        element[whichElement].enabled = true;
     }
 }
