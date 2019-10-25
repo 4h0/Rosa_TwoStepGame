@@ -6,8 +6,7 @@ TagManager:
   tags:
   - PickUp
   - Ground
-  - GiveFire
-  - TakeFire
+  - Wall
   layers:
   - Default
   - TransparentFX

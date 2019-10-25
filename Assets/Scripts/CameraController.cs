@@ -4,53 +4,49 @@ using UnityEngine;
 
 public class CameraController : MonoBehaviour
 {
+    public LayerMask cameraObstacle;
     public Vector3 offsetHeight;
 
     private PlayerController playerReference;
     private SphereCollider cameraTriggerCollider;
-    private GameObject invisibleGameObject;
-                                  
-    private int cameraObstacle, listCounter;
+    private GameObject invisibleGameObject;                                  
 
     private void Awake()
     {
         playerReference = FindObjectOfType<PlayerController>();
         cameraTriggerCollider = GetComponent<SphereCollider>();
-
-        cameraObstacle = LayerMask.GetMask("cameraObstacle");
-        listCounter = 0;
     }
 
     private void Start()
     {
-        //Detection();
+        Detection();
     }
 
-    private void Update()
+    private void LateUpdate()
     {
         if (Vector3.Distance(this.transform.position, (playerReference.transform.position + offsetHeight)) > 9)
         {
             FollowPlayer();
         }
-    }  
 
-    private void LateUpdate()
-    {
         transform.LookAt(playerReference.transform.position + offsetHeight);
     }
+
     private void Detection()
     {
+        Vector3 castDirection = playerReference.transform.position - transform.position;
+        float rayLength = Vector3.Distance(transform.position, playerReference.transform.position);
+        Ray cameraRay = new Ray(transform.position, castDirection * rayLength);
         RaycastHit cameraRayHit;
-        Debug.DrawLine(this.transform.position, playerReference.backPosition.position, Color.red, 30f);
 
-        bool rayHit = Physics.Raycast(this.transform.position, playerReference.backPosition.position, out cameraRayHit, Mathf.Infinity, cameraObstacle);
-
+        bool rayHit = Physics.Raycast (cameraRay, out cameraRayHit, rayLength, cameraObstacle);
+        
         if (rayHit)
         {
             GameObject hitGameObject = cameraRayHit.transform.gameObject;
-            Debug.Log(cameraRayHit.point);
-            Debug.Log(hitGameObject.transform.position);
-            Debug.Log(playerReference.backPosition.position);
+
+            Debug.DrawLine(cameraRay.origin, cameraRayHit.point, Color.red, 3f);
+            Debug.Log(hitGameObject.name);
 
             if (invisibleGameObject != null)
             {
@@ -69,14 +65,16 @@ public class CameraController : MonoBehaviour
         }
         else
         {
+            Debug.DrawLine(cameraRay.origin, cameraRay.origin + cameraRay.direction * rayLength, Color.green);
+
             if (invisibleGameObject != null)
             {
                 invisibleGameObject.GetComponent<MeshRenderer>().enabled = true;
+                invisibleGameObject = null;
             }
         }
 
-        StartCoroutine(RayCastingWait());
-
+        StartCoroutine(RecastDetection());
     }
 
     private void FollowPlayer()
@@ -103,10 +101,10 @@ public class CameraController : MonoBehaviour
         */
     }
 
-    IEnumerator RayCastingWait()
+    IEnumerator RecastDetection()
     {
         yield return new WaitForSeconds(.15f);
 
         Detection();
-    }   
+    }
 }

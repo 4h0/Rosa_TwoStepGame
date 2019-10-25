@@ -4,22 +4,22 @@ using UnityEngine;
 
 public class ElementalTransfer : MonoBehaviour
 {
-
-    public GameObject nextLevel;
     public ParticleSystem playerParticle;
     public ParticleSystem selfParticle;
 
     private PlayerController playerReference;
+    private UIController uiReference;
 
     public bool isGiving;
     public bool stayInside;
+    public int elementType;
 
     private bool doOnce;
+
     private void Awake()
     {
-        nextLevel.SetActive(false);
-
         playerReference = FindObjectOfType<PlayerController>();
+        uiReference = FindObjectOfType<UIController>();
 
         doOnce = false;
         stayInside = false;
@@ -48,30 +48,39 @@ public class ElementalTransfer : MonoBehaviour
 
     IEnumerator GavePlayer()
     {
-        doOnce = true;
-        isGiving = false;
-        playerReference.haveFire = true;
-        selfParticle.Stop();
-        playerParticle.Play();
+        if(playerReference.elementalList[elementType] < 4)
+        {
+            playerReference.elementalList[elementType]++;
+            uiReference.UpdateElement(elementType);
 
-        yield return new WaitForSeconds(6f);
+            doOnce = true;
+            playerReference.haveFire = true;
+            selfParticle.Stop();
+            playerParticle.Play();
 
-        playerParticle.Stop();
-        doOnce = false;
+            yield return new WaitForSeconds(6f);
+
+            selfParticle.Play();
+            playerParticle.Stop();
+            doOnce = false;
+        }
     }
     IEnumerator PlayerGave()
     {
-        doOnce = true;
-        isGiving = true;
-        playerReference.haveFire = false;
-        selfParticle.Play();
-        playerParticle.Stop();
-        nextLevel.SetActive(true);
+        if (playerReference.elementalList[elementType] > 0)
+        {
+            playerReference.elementalList[elementType]--;
+            uiReference.UpdateElement(elementType);
 
-        yield return new WaitForSeconds(6f);
+            doOnce = true;
+            playerReference.haveFire = false;
+            selfParticle.Play();
+            playerParticle.Stop();
 
-        nextLevel.SetActive(false);
-        doOnce = false;
+            yield return new WaitForSeconds(6f);
+
+            doOnce = false;
+        }
     }
 
     private void OnTriggerStay(Collider other)

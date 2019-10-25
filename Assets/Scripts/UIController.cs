@@ -5,7 +5,9 @@ using UnityEngine.UI;
 
 public class UIController : MonoBehaviour
 {
+    public Image dashMultiplier;
     public Image[] ability;
+    public Image[] element;
     public Text[] coolDown;
 
     private PlayerController playerControllerReference;
@@ -18,8 +20,13 @@ public class UIController : MonoBehaviour
         {
             image.enabled = false;
         }
+        foreach (Image image in element)
+        {
+            image.fillAmount = 0;
+            image.enabled = true;
+        }
 
-        foreach(Text text in coolDown)
+        foreach (Text text in coolDown)
         {
             text.enabled = false;
         }
@@ -45,5 +52,26 @@ public class UIController : MonoBehaviour
         coolDown[whichAbility * 2].enabled = false;
         coolDown[whichAbility * 2 + 1].enabled = false;
 
+    }
+
+    public void DashMultiplierOn()
+    {
+        dashMultiplier.fillAmount = playerControllerReference.dashMultiplier / 9;
+
+        dashMultiplier.enabled = true;
+    }
+
+    public void DashMultiplierOff()
+    {
+        dashMultiplier.fillAmount = 0;
+
+        dashMultiplier.enabled = false;
+    }
+
+    public void UpdateElement(int whichElement)
+    {
+        element[whichElement].fillAmount = playerControllerReference.elementalList[whichElement] / 4;
+
+        element[whichElement].enabled = true;
     }
 }
