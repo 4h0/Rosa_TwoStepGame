@@ -21,8 +21,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed, turnSpeed, dashMultiplier;
     public float gravity, jumpForce, dashForce;
 
-    public int[] coolingTimer;
     public int[] clampValue;
+    public float[] coolingTimer;
     public float[] elementalList;
 
     private bool abilityCooling, strengthRayCastStart;
@@ -271,7 +271,7 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(StrengthRayCooling());
     }
 
-    private void CoolingLogic(int abilityType, int waitingTime)
+    private void CoolingLogic(int abilityType, float waitingTime)
     {
         if (waitingTime != 0)
         {
@@ -326,6 +326,7 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(.03f);
         }
 
+        dashHelperReference.GetComponent<DashHelper>().canStart = false;
         canMove = true;
         dashMultiplier = 3;
     }
@@ -336,7 +337,7 @@ public class PlayerController : MonoBehaviour
 
         strengthRayCastStart = false;
     }
-    IEnumerator AbilityCooling(int abilityType, int waitingTime)
+    IEnumerator AbilityCooling(int abilityType, float waitingTime)
     {
         yield return new WaitForSeconds(1f);
 

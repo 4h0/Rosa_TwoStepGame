@@ -41,9 +41,10 @@ public class UIController : MonoBehaviour
         coolDown[whichAbility * 2 + 1].enabled = true;
     }
 
-    public void UpdateTime(int whichAbility, int timer)
+    public void UpdateTime(int whichAbility, float timer)
     {
         coolDown[whichAbility * 2 + 1].text = timer.ToString();
+        ability[whichAbility].fillAmount = timer / (playerControllerReference.GetComponent<PlayerController>().coolingTimer[whichAbility * 2 + 1]);
     }
 
     public void StopCooling(int whichAbility)
@@ -51,7 +52,6 @@ public class UIController : MonoBehaviour
         ability[whichAbility].enabled = false;
         coolDown[whichAbility * 2].enabled = false;
         coolDown[whichAbility * 2 + 1].enabled = false;
-
     }
 
     public void DashMultiplierOn()

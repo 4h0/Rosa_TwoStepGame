@@ -268,7 +268,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   cameraPosition: {fileID: 8598636234035648890}
   strengthPosition: {fileID: 8598636233187525242}
-  backPosition: {fileID: 466652681}
+  dashHelperReference: {fileID: 0}
+  strengthLayerMask:
+    serializedVersion: 2
+    m_Bits: 256
+  canMove: 0
   onGround: 0
   jumping: 0
   haveFire: 0
@@ -276,11 +280,20 @@ MonoBehaviour:
   glider: 1
   moveSpeed: 7.5
   turnSpeed: 0.75
+  dashMultiplier: 0
   gravity: -294.3
   jumpForce: 240
-  dashForce: 1800
-  coolingTimer: 000000000300000009000000
+  dashForce: 300
   clampValue: a6ffffff5a000000f4ffffff0c000000
+  coolingTimer:
+  - 0
+  - 3
+  - 9
+  elementalList:
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!135 &1037987142
 SphereCollider:
   m_ObjectHideFlags: 0
@@ -344,10 +357,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 8598636233558666450}
     m_Modifications:
-    - target: {fileID: 3860241705059465688, guid: a7e50174fd67748da9f237a9513fa529,
+    - target: {fileID: 3860241705059465689, guid: a7e50174fd67748da9f237a9513fa529,
         type: 3}
-      propertyPath: m_RootOrder
-      value: 4
+      propertyPath: m_Name
+      value: FireUse (1)
       objectReference: {fileID: 0}
     - target: {fileID: 3860241705059465688, guid: a7e50174fd67748da9f237a9513fa529,
         type: 3}
@@ -356,18 +369,13 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3860241705059465688, guid: a7e50174fd67748da9f237a9513fa529,
         type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.52
+      objectReference: {fileID: 0}
+    - target: {fileID: 3860241705059465688, guid: a7e50174fd67748da9f237a9513fa529,
+        type: 3}
       propertyPath: m_LocalPosition.z
       value: -0.53
-      objectReference: {fileID: 0}
-    - target: {fileID: 3860241705059465688, guid: a7e50174fd67748da9f237a9513fa529,
-        type: 3}
-      propertyPath: m_LocalScale.y
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 3860241705059465688, guid: a7e50174fd67748da9f237a9513fa529,
-        type: 3}
-      propertyPath: m_LocalScale.z
-      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3860241705059465688, guid: a7e50174fd67748da9f237a9513fa529,
         type: 3}
@@ -391,8 +399,23 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3860241705059465688, guid: a7e50174fd67748da9f237a9513fa529,
         type: 3}
-      propertyPath: m_LocalPosition.y
-      value: 1.52
+      propertyPath: m_RootOrder
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 3860241705059465688, guid: a7e50174fd67748da9f237a9513fa529,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3860241705059465688, guid: a7e50174fd67748da9f237a9513fa529,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3860241705059465688, guid: a7e50174fd67748da9f237a9513fa529,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 3860241705059465688, guid: a7e50174fd67748da9f237a9513fa529,
         type: 3}
@@ -401,17 +424,12 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3860241705059465688, guid: a7e50174fd67748da9f237a9513fa529,
         type: 3}
-      propertyPath: m_LocalEulerAnglesHint.x
-      value: 0
+      propertyPath: m_LocalScale.y
+      value: 1
       objectReference: {fileID: 0}
-    - target: {fileID: 3860241705059465689, guid: a7e50174fd67748da9f237a9513fa529,
+    - target: {fileID: 3860241705059465688, guid: a7e50174fd67748da9f237a9513fa529,
         type: 3}
-      propertyPath: m_Name
-      value: FireUse (1)
-      objectReference: {fileID: 0}
-    - target: {fileID: 3860241705059465689, guid: a7e50174fd67748da9f237a9513fa529,
-        type: 3}
-      propertyPath: m_IsActive
+      propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3860241704366468716, guid: a7e50174fd67748da9f237a9513fa529,
