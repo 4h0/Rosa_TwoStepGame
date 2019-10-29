@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class DialogueTrigger : MonoBehaviour
+public class DialogueTrigger_Khoa : MonoBehaviour
 {
     public GameObject dialogueCanvas;
     public Text nameText;
