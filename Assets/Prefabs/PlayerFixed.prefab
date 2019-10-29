@@ -30,6 +30,36 @@ Transform:
   m_Father: {fileID: 8598636233558666450}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &5047255059807348333
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 8204284780964577460}
+  m_Layer: 0
+  m_Name: SavedStrengthPosition
+  m_TagString: Untagged
+  m_Icon: {fileID: 2974397684917235467, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &8204284780964577460
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5047255059807348333}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 9}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 8598636233558666450}
+  m_RootOrder: 5
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8598636232990864502
 GameObject:
   m_ObjectHideFlags: 0
@@ -148,10 +178,10 @@ GameObject:
   - component: {fileID: 8598636233558666450}
   - component: {fileID: 8598636233558666453}
   - component: {fileID: 8598636233558666454}
+  - component: {fileID: 1037987142}
   - component: {fileID: 8598636233558666455}
   - component: {fileID: 8598636233558666448}
   - component: {fileID: 8598636233558666452}
-  - component: {fileID: 1037987142}
   - component: {fileID: 1037987143}
   m_Layer: 0
   m_Name: PlayerFixed
@@ -176,6 +206,7 @@ Transform:
   - {fileID: 8598636232990864501}
   - {fileID: 466652681}
   - {fileID: 4811581048203952412}
+  - {fileID: 8204284780964577460}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -224,6 +255,19 @@ MeshRenderer:
   m_SortingLayerID: 0
   m_SortingLayer: 0
   m_SortingOrder: 0
+--- !u!135 &1037987142
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8598636233558666451}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 3
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!136 &8598636233558666455
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -267,46 +311,32 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   cameraPosition: {fileID: 8598636234035648890}
-  strengthPosition: {fileID: 8598636233187525242}
   dashHelperReference: {fileID: 0}
+  strengthPosition: {fileID: 8598636233187525241}
   strengthLayerMask:
     serializedVersion: 2
     m_Bits: 256
   canMove: 0
   onGround: 0
   jumping: 0
-  haveFire: 0
+  strengthEnd: 0
   jumpCounter: 0
+  maxJumpCounter: 1
   glider: 1
   moveSpeed: 7.5
   turnSpeed: 0.75
   dashMultiplier: 0
+  maxDashMultiplier: 6
   gravity: -294.3
   jumpForce: 240
   dashForce: 300
+  maxElementCounter: 12
   clampValue: a6ffffff5a000000f4ffffff0c000000
-  coolingTimer:
-  - 0
-  - 3
-  - 9
   elementalList:
   - 0
+  - 12
   - 0
-  - 0
-  - 0
---- !u!135 &1037987142
-SphereCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8598636233558666451}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Radius: 3
-  m_Center: {x: 0, y: 0, z: 0}
+  - 12
 --- !u!114 &1037987143
 MonoBehaviour:
   m_ObjectHideFlags: 0

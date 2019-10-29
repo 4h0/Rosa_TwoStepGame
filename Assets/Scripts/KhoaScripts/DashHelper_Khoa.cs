@@ -2,15 +2,15 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class DashHelper : MonoBehaviour
+public class DashHelper_Khoa : MonoBehaviour
 {
-    private PlayerController playerReference;
+    private PlayerController_Khoa playerReference;
 
     public bool canStart;
 
     private void Awake()
     {
-        playerReference = FindObjectOfType<PlayerController>();
+        playerReference = FindObjectOfType<PlayerController_Khoa>();
 
         canStart = false;
     }

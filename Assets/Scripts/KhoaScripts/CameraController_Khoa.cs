@@ -2,18 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class CameraController : MonoBehaviour
+public class CameraController_Khoa : MonoBehaviour
 {
     public LayerMask cameraObstacle;
     public Vector3 offsetHeight;
 
-    private PlayerController playerReference;
+    private PlayerController_Khoa playerReference;
     private SphereCollider cameraTriggerCollider;
     private GameObject invisibleGameObject;                                  
 
     private void Awake()
     {
-        playerReference = FindObjectOfType<PlayerController>();
+        playerReference = FindObjectOfType<PlayerController_Khoa>();
         cameraTriggerCollider = GetComponent<SphereCollider>();
     }
 
@@ -106,5 +106,14 @@ public class CameraController : MonoBehaviour
         yield return new WaitForSeconds(.15f);
 
         Detection();
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        other.gameObject.GetComponent<MeshRenderer>().enabled = false;
+    }
+    private void OnTriggerExit(Collider other)
+    {
+        other.gameObject.GetComponent<MeshRenderer>().enabled = true;
     }
 }

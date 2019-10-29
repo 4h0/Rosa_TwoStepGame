@@ -2,13 +2,13 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ElementalTransfer : MonoBehaviour
+public class ElementalTransfer_Khoa : MonoBehaviour
 {
     public ParticleSystem playerParticle;
     public ParticleSystem selfParticle;
 
-    private PlayerController playerReference;
-    private UIController uiReference;
+    private PlayerController_Khoa playerReference;
+    private UIController_Khoa uiReference;
 
     public bool isGiving;
     public bool stayInside;
@@ -18,8 +18,8 @@ public class ElementalTransfer : MonoBehaviour
 
     private void Awake()
     {
-        playerReference = FindObjectOfType<PlayerController>();
-        uiReference = FindObjectOfType<UIController>();
+        playerReference = FindObjectOfType<PlayerController_Khoa>();
+        uiReference = FindObjectOfType<UIController_Khoa>();
 
         doOnce = false;
         stayInside = false;
@@ -37,10 +37,7 @@ public class ElementalTransfer : MonoBehaviour
                 }
                 else
                 {
-                    if (playerReference.haveFire)
-                    {
-                        StartCoroutine(PlayerGave());
-                    }
+                    StartCoroutine(PlayerGave());
                 }
             }
         }
@@ -48,13 +45,12 @@ public class ElementalTransfer : MonoBehaviour
 
     IEnumerator GavePlayer()
     {
-        if(playerReference.elementalList[elementType] < 4)
+        if(playerReference.elementalList[elementType] < playerReference.maxElementCounter)
         {
             playerReference.elementalList[elementType]++;
             uiReference.UpdateElement(elementType);
 
             doOnce = true;
-            playerReference.haveFire = true;
             selfParticle.Stop();
             playerParticle.Play();
 
@@ -73,7 +69,6 @@ public class ElementalTransfer : MonoBehaviour
             uiReference.UpdateElement(elementType);
 
             doOnce = true;
-            playerReference.haveFire = false;
             selfParticle.Play();
             playerParticle.Stop();
 

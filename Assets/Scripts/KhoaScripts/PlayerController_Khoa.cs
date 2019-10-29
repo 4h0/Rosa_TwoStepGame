@@ -2,13 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerController : MonoBehaviour
+public class PlayerController_Khoa : MonoBehaviour
 {
-    public GameObject cameraPosition, strengthPosition, dashHelperReference;
+    public GameObject cameraPosition, dashHelperReference;
+    public Transform strengthPosition;
     public LayerMask strengthLayerMask;
 
-    private CameraController cameraReference;
-    private UIController uiControllerReference;
+    private CameraController_Khoa cameraReference;
+    private UIController_Khoa uiControllerReference;
     private GameObject savedGameObject;
 
     private Rigidbody playerRigidBody;
@@ -16,18 +17,16 @@ public class PlayerController : MonoBehaviour
     private CapsuleCollider playerCollider;
     private Quaternion facingDirection;
 
-    public bool canMove, onGround, jumping, haveFire;
-    public int jumpCounter, glider;
-    public float moveSpeed, turnSpeed, dashMultiplier;
-    public float gravity, jumpForce, dashForce;
+    public bool canMove, onGround, jumping, strengthEnd;
+    public int jumpCounter, maxJumpCounter, glider;
+    public float moveSpeed, turnSpeed, dashMultiplier, maxDashMultiplier;
+    public float gravity, jumpForce, dashForce, maxElementCounter, canGlide;
 
     public int[] clampValue;
-    public float[] coolingTimer;
     public float[] elementalList;
 
-    private bool abilityCooling, strengthRayCastStart;
+    private bool abilityCooling, strengthRayCastStart, gliding;
     private bool usingStrength;
-    private int dashDirection;
     private float savedMoveSpeed, savedTurnSpeed, savedGravity;
 
     private float moveHorizontal, moveVertical;
@@ -35,8 +34,8 @@ public class PlayerController : MonoBehaviour
 
     private void Awake()
     {
-        cameraReference = FindObjectOfType<CameraController>();
-        uiControllerReference = FindObjectOfType<UIController>();
+        cameraReference = FindObjectOfType<CameraController_Khoa>();
+        uiControllerReference = FindObjectOfType<UIController_Khoa>();
 
         playerRigidBody = GetComponent<Rigidbody>();
         showPlayer = GetComponent<SpriteRenderer>();
@@ -46,8 +45,8 @@ public class PlayerController : MonoBehaviour
         jumping = false;
         abilityCooling = false;
         strengthRayCastStart = false;
+        strengthEnd = false;
         jumpCounter = 0;
-        dashDirection = 0;
         dashMultiplier = 3;
         savedMoveSpeed = moveSpeed;
         savedTurnSpeed = turnSpeed;
@@ -63,7 +62,7 @@ public class PlayerController : MonoBehaviour
     private void FixedUpdate()
     {
         MovingLogic();
-        GravityCheck();
+        JumpingCheck();
     }
 
     private void MovingLogic()
@@ -106,43 +105,6 @@ public class PlayerController : MonoBehaviour
         {
             playerRigidBody.velocity = new Vector3(moveHorizontal, 0, moveVertical) * moveSpeed;
         }
-
-        /*
-        if (Input.GetKey(KeyCode.DownArrow) || Input.GetKeyDown(KeyCode.DownArrow))
-        {
-            playerRigidBody.velocity = transform.forward * moveHorizontal * moveSpeed;
-        }
-        if (Input.GetKey(KeyCode.LeftArrow) || Input.GetKey(KeyCode.RightArrow))
-        {
-            playerRigidBody.velocity = transform.right * moveVertical * moveSpeed;
-        }
-
-        if (Input.GetKey(KeyCode.UpArrow))
-        {
-            playerRigidBody.velocity = transform.forward * moveSpeed;
-            dashDirection = 0;
-        }
-        else if (Input.GetKey(KeyCode.DownArrow))
-        {
-            playerRigidBody.velocity = -transform.forward * moveSpeed;
-            dashDirection = 1;
-        }
-        else if (Input.GetKey(KeyCode.LeftArrow))
-        {
-            playerRigidBody.velocity = -transform.right * moveSpeed;
-            dashDirection = 3;
-        }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            playerRigidBody.velocity = transform.right * moveSpeed;
-            dashDirection = 2;
-        }
-        else
-        {
-            playerRigidBody.velocity = new Vector3(0f, 0f, 0f);
-            dashDirection = 0;
-        }
-        */
     }
 
     private void TurningLogic()
@@ -156,13 +118,20 @@ public class PlayerController : MonoBehaviour
         this.transform.rotation = facingDirection;
     }
 
-    private void GravityCheck()
+    private void JumpingCheck()
     {
         if (Input.GetButton("Jump"))
         {
-            glider = 120;
-            moveSpeed = savedMoveSpeed * 3;
-            turnSpeed = savedTurnSpeed / 3;
+            if(!onGround)
+            {
+                canGlide += .1f; Debug.Log(canGlide);
+
+                if (!jumping && !gliding && canGlide > .3f && elementalList[3] > 0)
+                {
+                    StartCoroutine(GlidingLogic());
+                }
+
+            }
         }
         if (Input.GetButtonUp("Jump"))
         {
@@ -173,7 +142,7 @@ public class PlayerController : MonoBehaviour
 
         if (!jumping)
         {
-            if (Input.GetButtonDown("Jump") && jumpCounter < 2)
+            if (Input.GetButtonDown("Jump") && jumpCounter < maxJumpCounter)
             {
                 StartCoroutine(JumpingLogic());
             }
@@ -191,43 +160,47 @@ public class PlayerController : MonoBehaviour
     {
         if (!abilityCooling)
         {
-            if (Input.GetButton("Dash"))
+            if (elementalList[3] > 0)
             {
-                DashMultiplierIncrease();
-            }
-            if(Input.GetButtonUp("Dash"))
-            {
-                StartCoroutine(DashLogic());
-                CoolingLogic(0, coolingTimer[1]);
-
-                uiControllerReference.StartCoolDown(0);
-            }
-
-            if (Input.GetButton("Strength") && !strengthRayCastStart)
-            {
-                StrengthRayCast();
-            }
-            if (Input.GetButtonUp("Strength") && savedGameObject != null)
-            {
-                usingStrength = true;
-
-                CoolingLogic(1, coolingTimer[2]);
-
-                if (strengthPosition.transform.position.y < savedGameObject.transform.position.y)
+                if (Input.GetButton("Dash"))
                 {
-                    strengthPosition.transform.position = new Vector3(strengthPosition.transform.position.x, savedGameObject.transform.position.y, strengthPosition.transform.position.z);
+                    DashMultiplierIncrease();
                 }
+                if (Input.GetButtonUp("Dash"))
+                {
+                    StartCoroutine(DashLogic());
+                    StartCoroutine(AbilityEnd(3));
+                }
+            }
 
-                savedGameObject.AddComponent<StrengthLogic>();
-                savedGameObject.GetComponent<StrengthLogic>().timerBeforeDestroy = coolingTimer[2];
-                uiControllerReference.StartCoolDown(1);
+            if (elementalList[1] > 0)
+            {
+                if (Input.GetButton("Strength") && !strengthRayCastStart)
+                {
+                    StrengthRayCast();
+                }
+                if (Input.GetButtonUp("Strength") && savedGameObject != null)
+                {
+                    usingStrength = true;
+
+                    StartCoroutine(AbilityEnd(1));
+
+                    if (strengthPosition.position.y < savedGameObject.transform.position.y)
+                    {
+                        strengthPosition.position = new Vector3(strengthPosition.position.x, savedGameObject.transform.position.y, strengthPosition.position.z);
+                    }
+
+
+                    savedGameObject.AddComponent<StrengthLogic_Khoa>();
+                    savedGameObject.GetComponent<StrengthLogic_Khoa>().timerBeforeDestroy = 9;
+                }
             }
         }
     }
 
     private void DashMultiplierIncrease()
     {
-        if(dashMultiplier < 9)
+        if(dashMultiplier < maxDashMultiplier)
         {
             dashMultiplier += Time.deltaTime;
         }
@@ -238,7 +211,7 @@ public class PlayerController : MonoBehaviour
     private void StrengthRayCast()
     {
         strengthRayCastStart = true;
-        float strengthRayDistance = Vector3.Distance(transform.position, strengthPosition.transform.position);
+        float strengthRayDistance = Vector3.Distance(transform.position, strengthPosition.position);
         Ray strengthRayCast = new Ray(transform.position, transform.forward * strengthRayDistance);
         RaycastHit strengthRayHit;
 
@@ -271,29 +244,26 @@ public class PlayerController : MonoBehaviour
         StartCoroutine(StrengthRayCooling());
     }
 
-    private void CoolingLogic(int abilityType, float waitingTime)
-    {
-        if (waitingTime != 0)
-        {
-            uiControllerReference.UpdateTime(abilityType, waitingTime);
-
-            abilityCooling = true;
-            waitingTime--;
-            StartCoroutine(AbilityCooling(abilityType, waitingTime));
-        }
-        else
-        {
-            uiControllerReference.StopCooling(abilityType);
-
-            abilityCooling = false;
-            usingStrength = false;
-        }
-    }
-
     IEnumerator JumpingLogic()
     {
         jumping = true;
+        gliding = true;
         jumpCounter++;
+
+        if (elementalList[3] > 0)
+        {
+            maxJumpCounter = 2;
+        }
+        else
+        {
+            maxJumpCounter = 1;
+        }
+
+        if (jumpCounter > 1)
+        {
+            elementalList[3] -= 1;
+        }
+
 
         /*
         playerRigidBody.AddForce(new Vector3(0, 0, 0), ForceMode.VelocityChange);
@@ -309,14 +279,28 @@ public class PlayerController : MonoBehaviour
         }
 
         jumping = false;
+        gliding = false;
+    }
+
+    IEnumerator GlidingLogic()
+    {
+        gliding = true;
+
+        glider = 120;
+        moveSpeed = savedMoveSpeed * 3;
+        turnSpeed = savedTurnSpeed / 3;
+        elementalList[3] -= 1;
+
+        yield return new WaitUntil(() => onGround);
+
+        gliding = false;
     }
 
     IEnumerator DashLogic()
     {
-        Debug.Log(dashMultiplier);
-        dashHelperReference.GetComponent<DashHelper>().StartChecking();
+        dashHelperReference.GetComponent<DashHelper_Khoa>().StartChecking();
 
-        yield return new WaitUntil(() => dashHelperReference.GetComponent<DashHelper>().canStart);
+        yield return new WaitUntil(() => dashHelperReference.GetComponent<DashHelper_Khoa>().canStart);
 
         uiControllerReference.DashMultiplierOff();
 
@@ -326,7 +310,7 @@ public class PlayerController : MonoBehaviour
             yield return new WaitForSeconds(.03f);
         }
 
-        dashHelperReference.GetComponent<DashHelper>().canStart = false;
+        dashHelperReference.GetComponent<DashHelper_Khoa>().canStart = false;
         canMove = true;
         dashMultiplier = 3;
     }
@@ -337,20 +321,40 @@ public class PlayerController : MonoBehaviour
 
         strengthRayCastStart = false;
     }
-    IEnumerator AbilityCooling(int abilityType, float waitingTime)
-    {
-        yield return new WaitForSeconds(1f);
 
-        CoolingLogic(abilityType, waitingTime);
+    IEnumerator AbilityEnd(int abilityType)
+    {
+        abilityCooling = true;
+        elementalList[abilityType] -= 1;
+        uiControllerReference.UpdateElement(abilityType);
+
+        switch(abilityType)
+        {
+            case 3:
+                yield return new WaitForSeconds(.1f);
+                break;
+            case 2:
+                break;
+            case 1:
+                yield return new WaitUntil(() => strengthEnd);
+                break;
+            case 0:
+                break;
+        }
+
+        abilityCooling = false;
+        strengthEnd = false;
+        usingStrength = false;
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground" || collision.gameObject.tag == "Wall")
+        if (collision.gameObject.tag == "Ground")
         {
             onGround = true;
             gravity = 0;
             jumpCounter = 0;
+            canGlide = 0;
         }
     }
     private void OnCollisionExit(Collision collision)
