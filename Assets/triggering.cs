@@ -7,7 +7,7 @@ public class triggering : MonoBehaviour
     public int h=0;
     private GameObject door;
     // Start is called before the first frame update
-    private Vector3 target=new Vector3(1097, 263, -80);
+    private Vector3 target=new Vector3(1097, 263, 50);
     
 
     void OnTriggerEnter(Collider col)
@@ -41,7 +41,7 @@ public class triggering : MonoBehaviour
     {
 if (h==1)
         {
-            float speed = 10;
+            float speed = 40;
             Debug.Log("yellow");
             //door.transform.Translate((Vector3.forward* 9)*(Time.deltaTime));
             door.transform.position = Vector3.MoveTowards(door.transform.position, target, speed * Time.deltaTime);
