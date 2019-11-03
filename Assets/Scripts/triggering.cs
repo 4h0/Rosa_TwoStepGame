@@ -17,9 +17,9 @@ public class triggering : MonoBehaviour
         if (col.gameObject.name=="cube")
         {
 
-            Debug.Log("hello");
+            // Debug.Log("hello");
             h = 1;
-            Debug.Log(h);
+            // Debug.Log(h);
         }
     }
 
@@ -43,21 +43,21 @@ public class triggering : MonoBehaviour
         if (h == 1)
 
         {
-            if (box.transform.position.z <= -38 && box.transform.position.z >= -94)
+            // if (box.transform.position.z <= -38 && box.transform.position.z >= -94)
 
-            {
+            // {
 
-                if (box.transform.position.x >= 273 && box.transform.position.x <= 310)
-                { 
+                // if (box.transform.position.x >= 273 && box.transform.position.x <= 310)
+                // { 
 
-                float speed = 40;
-                Debug.Log("yellow");
+                float speed = 10;
+                // Debug.Log("yellow");
 
-                door.transform.position = Vector3.MoveTowards(door.transform.position, target, speed * Time.deltaTime);
-            }
+                door.transform.Translate(-Vector3.right * speed * Time.deltaTime);
+            // }
         }
 
-        }
+        // }
 
 
     }
