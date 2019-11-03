@@ -5,6 +5,12 @@ TagManager:
   serializedVersion: 2
   tags:
   - box
+  - flowchart
+  - NPC
+  - FireSource
+  - EmptyFireSource
+  - WaterSource
+  - EmptyWaterSource
   layers:
   - Default
   - TransparentFX

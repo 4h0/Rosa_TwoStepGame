@@ -8,11 +8,15 @@ public class PlayerElements : MonoBehaviour
     // this bool indicates if the player has fire//
     public static bool FireElement;
     public static bool WaterElement;
+    public static bool StrengthElement;
+    public static bool AirElement;
     /////////////////////////
     void Start()
     {
         FireElement = false;
         WaterElement = false;
+        StrengthElement = false;
+        AirElement = false;
     }
     void Update()
     {

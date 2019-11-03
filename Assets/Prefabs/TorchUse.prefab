@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 4179209744296639245}
   - component: {fileID: 4179209744296639244}
   - component: {fileID: 4179209744296639247}
-  - component: {fileID: 4179209744296639251}
+  - component: {fileID: 7970408329737065238}
   m_Layer: 0
   m_Name: RadiusUse
   m_TagString: Untagged
@@ -92,7 +92,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &4179209744296639251
+--- !u!114 &7970408329737065238
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,11 +101,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 4179209744296639246}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 10a0a948cc2f947708e1fbbf5cfcef90, type: 3}
+  m_Script: {fileID: 11500000, guid: f2679700055ce477ba5338f062dd4bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  player: {fileID: 0}
   fire: {fileID: 4179209743765048933}
-  FireRing: {fileID: 4179209744529238758}
 --- !u!1 &4179209744548036017
 GameObject:
   m_ObjectHideFlags: 0
@@ -164,7 +164,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 3da47860be58544a3872e530a6e5976c, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -290,7 +290,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 67eec7bb142dc4df5ab0dabfe61bfbb6, type: 2}
+  - {fileID: 0}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -331,6 +331,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4179209744618681499}
     m_Modifications:
+    - target: {fileID: 3860241705059465689, guid: a7e50174fd67748da9f237a9513fa529,
+        type: 3}
+      propertyPath: m_Name
+      value: Fire
+      objectReference: {fileID: 0}
     - target: {fileID: 3860241705059465688, guid: a7e50174fd67748da9f237a9513fa529,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -386,10 +391,15 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 3860241705059465689, guid: a7e50174fd67748da9f237a9513fa529,
+    - target: {fileID: 3860241705059465691, guid: a7e50174fd67748da9f237a9513fa529,
         type: 3}
-      propertyPath: m_Name
-      value: FireUse
+      propertyPath: m_Materials.Array.data[0]
+      value: 
+      objectReference: {fileID: 0}
+    - target: {fileID: 3860241705059465691, guid: a7e50174fd67748da9f237a9513fa529,
+        type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7e50174fd67748da9f237a9513fa529, type: 3}
@@ -412,6 +422,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 4179209744618681499}
     m_Modifications:
+    - target: {fileID: 6364257896470658303, guid: 0499aa7ca6e6c4be0b81390f033e7c9f,
+        type: 3}
+      propertyPath: m_Name
+      value: FireRing
+      objectReference: {fileID: 0}
     - target: {fileID: 6364257896470658296, guid: 0499aa7ca6e6c4be0b81390f033e7c9f,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -467,22 +482,11 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 6364257896470658303, guid: 0499aa7ca6e6c4be0b81390f033e7c9f,
-        type: 3}
-      propertyPath: m_Name
-      value: FireRing
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 0499aa7ca6e6c4be0b81390f033e7c9f, type: 3}
 --- !u!4 &4179209744529238759 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6364257896470658296, guid: 0499aa7ca6e6c4be0b81390f033e7c9f,
-    type: 3}
-  m_PrefabInstance: {fileID: 7038541039604307487}
-  m_PrefabAsset: {fileID: 0}
---- !u!198 &4179209744529238758 stripped
-ParticleSystem:
-  m_CorrespondingSourceObject: {fileID: 6364257896470658297, guid: 0499aa7ca6e6c4be0b81390f033e7c9f,
     type: 3}
   m_PrefabInstance: {fileID: 7038541039604307487}
   m_PrefabAsset: {fileID: 0}

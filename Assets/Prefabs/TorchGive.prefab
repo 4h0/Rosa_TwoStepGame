@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 7636513500234841530}
   - component: {fileID: 7636513500234841531}
   - component: {fileID: 7636513500234841524}
-  - component: {fileID: 7636513500234841528}
+  - component: {fileID: 6046167959103570663}
   m_Layer: 0
   m_Name: RadiusGive
   m_TagString: Untagged
@@ -92,7 +92,7 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
---- !u!114 &7636513500234841528
+--- !u!114 &6046167959103570663
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -101,11 +101,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 7636513500234841525}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b7abbf00eac3748cbae06865f10789ad, type: 3}
+  m_Script: {fileID: 11500000, guid: f2679700055ce477ba5338f062dd4bcf, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  ParticleEffect: {fileID: 0}
   player: {fileID: 0}
+  fire: {fileID: 0}
 --- !u!1 &7636513500370167741
 GameObject:
   m_ObjectHideFlags: 0
@@ -406,6 +406,11 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 7636513501347241890}
     m_Modifications:
+    - target: {fileID: 1746382788249352705, guid: 80fc6611108aa4dc3aeade7b99dc75b1,
+        type: 3}
+      propertyPath: m_Name
+      value: Fire
+      objectReference: {fileID: 0}
     - target: {fileID: 1746382788249352708, guid: 80fc6611108aa4dc3aeade7b99dc75b1,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -460,11 +465,6 @@ PrefabInstance:
         type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
-      objectReference: {fileID: 0}
-    - target: {fileID: 1746382788249352705, guid: 80fc6611108aa4dc3aeade7b99dc75b1,
-        type: 3}
-      propertyPath: m_Name
-      value: Fire
       objectReference: {fileID: 0}
     - target: {fileID: 1746382788249352710, guid: 80fc6611108aa4dc3aeade7b99dc75b1,
         type: 3}
