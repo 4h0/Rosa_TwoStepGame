@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerController_Alex : MonoBehaviour
 {
-    public float walkSpeed = 2;
+    public float walkSpeed = 5;
     public float runSpeed = 6;
 
     public float turnSmoothTime = 0.2f;
