@@ -49,7 +49,7 @@ public class GiveUseElement : MonoBehaviour
         }
         if (this.gameObject.tag == "EmptyFireSource")
         {
-            if (PlayerIsInRadiusCheck == true && Input.GetKeyDown(KeyCode.Q))
+            if (PlayerIsInRadiusCheck == true && Input.GetKeyDown(KeyCode.Q) && PlayerElements.FireElement == true)
             {  
                 TakePlayerFire();
             }
