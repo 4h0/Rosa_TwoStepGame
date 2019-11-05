@@ -28,7 +28,7 @@ public class PlayerController_Alex : MonoBehaviour
     public float[] elementalList;
 
     private bool abilityCooling, strengthRayCastStart;
-    private bool usingStrength;
+    private bool usingStrength, canGlide, gliding;
     private float gravity;
 
     float turnSmoothVelocity;
@@ -39,7 +39,7 @@ public class PlayerController_Alex : MonoBehaviour
     {
         cameraReference = FindObjectOfType<CameraController_Khoa>();
         uiControllerReference = FindObjectOfType<UIController_Khoa>();
-        // animator = GetComponent<Animator>();
+        //animator = GetComponent<Animator>();
         cameraT = Camera.main.transform;
 
         playerRigidBody = GetComponent<Rigidbody>();
@@ -48,6 +48,7 @@ public class PlayerController_Alex : MonoBehaviour
 
         canMove = true;
         jumping = false;
+        canGlide = false;
         abilityCooling = false;
         strengthRayCastStart = false;
         strengthEnd = false;
@@ -85,30 +86,7 @@ public class PlayerController_Alex : MonoBehaviour
     {
         JumpingCheck();
     }
-
-    private void JumpingCheck()
-    {
-        if (!jumping)
-        {
-            if (!onGround)
-            {
-                gravity -= 3.27f;
-
-                playerRigidBody.AddForce(new Vector3(0, gravity, 0), ForceMode.Force);
-            }
-
-            if (Input.GetButtonUp("Jump") && jumpCounter < maxJumpCounter)
-            {
-                StartCoroutine(JumpingLogic());
-            }
-
-            if(Input.GetButtonDown("Jump"))
-            {
-                StartCoroutine(GlidingLogic());
-            }
-        }
-    }
-
+    
     private void InputCheck()
     {
         if (!abilityCooling)
@@ -145,6 +123,43 @@ public class PlayerController_Alex : MonoBehaviour
         }
     }
 
+    private void JumpingCheck()
+    {
+        Debug.Log(gravity);
+
+        if (!jumping)
+        {
+            if (!onGround)
+            {
+                if(!gliding)
+                {
+                    gravity -= 3.27f;
+                }
+                else
+                {
+                    gravity = 0;
+                }
+
+                playerRigidBody.AddForce(new Vector3(0, gravity, 0), ForceMode.Force);
+            }
+
+            if (Input.GetButtonDown("Jump") && jumpCounter < maxJumpCounter)
+            {
+                StartCoroutine(JumpingLogic());
+            }
+
+            if(Input.GetButton("Jump") && canGlide)
+            {
+                StartCoroutine(GlidingLogic());
+            }
+        }
+
+        if(Input.GetButtonUp("Jump"))
+        {
+            canGlide = false;
+        }
+    }
+
     private void DashMultiplierIncrease()
     {
         if (dashMultiplier < maxDashMultiplier)
@@ -175,6 +190,11 @@ public class PlayerController_Alex : MonoBehaviour
 
             if (hitGameObject.tag == "PickUp")
             {
+                if(hitGameObject != savedGameObject && savedGameObject != null)
+                {
+                    savedGameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                }
+
                 savedGameObject = hitGameObject;
                 hitGameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
             }
@@ -220,6 +240,7 @@ public class PlayerController_Alex : MonoBehaviour
     IEnumerator JumpingLogic()
     {
         jumping = true;
+        canGlide = false;
         jumpCounter++;
         gravity = 0;
 
@@ -248,11 +269,18 @@ public class PlayerController_Alex : MonoBehaviour
         }
 
         jumping = false;
+        canGlide = true;
     }
 
     IEnumerator GlidingLogic()
     {
-        yield return new WaitUntil(() => onGround);
+        playerRigidBody.velocity = new Vector3(0, 0, 0);
+
+        gliding = true;
+
+        yield return new WaitUntil(() => !canGlide);
+
+        gliding = false;
     }
 
     IEnumerator AbilityEnd(int abilityType)
@@ -291,6 +319,7 @@ public class PlayerController_Alex : MonoBehaviour
         if (collision.gameObject.tag == "Ground")
         {
             onGround = true;
+            canGlide = false;
             gravity = 0;
             jumpCounter = 0;
         }
