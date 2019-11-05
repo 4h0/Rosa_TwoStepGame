@@ -22,14 +22,14 @@ public class PlayerController_Alex : MonoBehaviour
     public bool canMove, onGround, jumping, strengthEnd;
     public int jumpCounter, maxJumpCounter;
     public float walkSpeed, runSpeed, dashMultiplier, maxDashMultiplier;
-    public float gravity, jumpForce, turnSmoothTime, speedSmoothTime;
+    public float jumpForce, turnSmoothTime, speedSmoothTime;
     public float dashForce, maxElementCounter;
 
     public float[] elementalList;
 
     private bool abilityCooling, strengthRayCastStart;
     private bool usingStrength;
-    private float savedGravity;
+    private float gravity;
 
     float turnSmoothVelocity;
     float speedSmoothVelocity;
@@ -53,7 +53,6 @@ public class PlayerController_Alex : MonoBehaviour
         strengthEnd = false;
         jumpCounter = 0;
         dashMultiplier = 3;
-        savedGravity = gravity;
     }
 
     private void Update()
@@ -89,14 +88,24 @@ public class PlayerController_Alex : MonoBehaviour
 
     private void JumpingCheck()
     {
-        if (!onGround && !jumping)
+        if (!jumping)
         {
-            playerRigidBody.GetComponent<Rigidbody>().useGravity = true;
-        }
+            if (!onGround)
+            {
+                gravity -= 3.27f;
 
-        if (Input.GetButtonDown("Jump") && jumpCounter < maxJumpCounter)
-        {
-            StartCoroutine(JumpingLogic());
+                playerRigidBody.AddForce(new Vector3(0, gravity, 0), ForceMode.Force);
+            }
+
+            if (Input.GetButtonUp("Jump") && jumpCounter < maxJumpCounter)
+            {
+                StartCoroutine(JumpingLogic());
+            }
+
+            if(Input.GetButtonDown("Jump"))
+            {
+                StartCoroutine(GlidingLogic());
+            }
         }
     }
 
@@ -149,8 +158,8 @@ public class PlayerController_Alex : MonoBehaviour
     private void StrengthRayCast()
     {
         strengthRayCastStart = true;
-        float strengthRayDistance = Vector3.Distance(transform.position, strengthRayEndPoint.position);
-        Ray strengthRayCast = new Ray(cameraT.transform.position, transform.forward * strengthRayDistance);
+        float strengthRayDistance = Vector3.Distance(cameraT.transform.position, strengthRayEndPoint.position);
+        Ray strengthRayCast = new Ray(transform.position, transform.forward * strengthRayDistance);
         RaycastHit strengthRayHit;
 
         Debug.DrawLine(strengthRayCast.origin, strengthRayCast.origin + strengthRayCast.direction * strengthRayDistance, Color.green);
@@ -182,10 +191,37 @@ public class PlayerController_Alex : MonoBehaviour
         StartCoroutine(StrengthRayCooling());
     }
 
+    IEnumerator DashLogic()
+    {
+        dashHelperReference.GetComponent<DashHelper_Khoa>().StartChecking();
+
+        yield return new WaitUntil(() => dashHelperReference.GetComponent<DashHelper_Khoa>().canStart);
+
+        uiControllerReference.DashMultiplierOff();
+
+        for (int counter = 0; counter < dashMultiplier; counter++)
+        {
+            playerRigidBody.AddForce(dashHelperReference.transform.forward * dashForce * counter, ForceMode.Force);
+            yield return new WaitForEndOfFrame();
+        }
+
+        canMove = true;
+        dashHelperReference.GetComponent<DashHelper_Khoa>().canStart = false;
+        dashMultiplier = 3;
+    }
+
+    IEnumerator StrengthRayCooling()
+    {
+        yield return new WaitForSeconds(.1f);
+
+        strengthRayCastStart = false;
+    }
+
     IEnumerator JumpingLogic()
     {
         jumping = true;
         jumpCounter++;
+        gravity = 0;
 
         if (elementalList[3] > 0)
         {
@@ -216,35 +252,7 @@ public class PlayerController_Alex : MonoBehaviour
 
     IEnumerator GlidingLogic()
     {
-        elementalList[3] -= 1;
-
         yield return new WaitUntil(() => onGround);
-    }
-
-    IEnumerator DashLogic()
-    {
-        dashHelperReference.GetComponent<DashHelper_Khoa>().StartChecking();
-
-        yield return new WaitUntil(() => dashHelperReference.GetComponent<DashHelper_Khoa>().canStart);
-
-        uiControllerReference.DashMultiplierOff();
-
-        for (int counter = 0; counter < dashMultiplier; counter++)
-        {
-            playerRigidBody.AddForce(dashHelperReference.transform.forward * dashForce * counter, ForceMode.Force);
-            yield return new WaitForEndOfFrame();
-        }
-
-        canMove = true;
-        dashHelperReference.GetComponent<DashHelper_Khoa>().canStart = false;
-        dashMultiplier = 3;
-    }
-
-    IEnumerator StrengthRayCooling()
-    {
-        yield return new WaitForSeconds(.1f);
-
-        strengthRayCastStart = false;
     }
 
     IEnumerator AbilityEnd(int abilityType)
@@ -261,8 +269,14 @@ public class PlayerController_Alex : MonoBehaviour
             case 2:
                 break;
             case 1:
-                yield return new WaitUntil(() => strengthEnd);
-                break;
+                {
+                    walkSpeed /= 3;
+
+                    yield return new WaitUntil(() => strengthEnd);
+
+                    walkSpeed *= 3;
+                    break;
+                }
             case 0:
                 break;
         }

@@ -20,6 +20,7 @@ public class StrengthLogic_Khoa : MonoBehaviour
     private void Start()
     {
         pickUpRigidbody.useGravity = false;
+        pickUpRigidbody.freezeRotation = true;
         changeCubeColor.material.color = Color.white;
     }
 
@@ -36,6 +37,7 @@ public class StrengthLogic_Khoa : MonoBehaviour
 
             changeCubeColor.material.color = Color.green;
             pickUpRigidbody.useGravity = true;
+            pickUpRigidbody.freezeRotation = false;
 
             Destroy(this);
         }
