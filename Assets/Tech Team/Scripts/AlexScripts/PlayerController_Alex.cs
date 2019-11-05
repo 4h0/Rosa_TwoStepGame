@@ -157,7 +157,7 @@ public class PlayerController_Alex : MonoBehaviour
                     StartCoroutine(GlidingLogic());
                 }
             }
-            if (Input.GetButtonUp("Jump"))
+            if (Input.GetButtonUp("Jump") || elementalList[3] <= 0)
             {
                 canGlide = false;
             }
