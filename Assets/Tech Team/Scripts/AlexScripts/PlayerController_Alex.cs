@@ -125,7 +125,8 @@ public class PlayerController_Alex : MonoBehaviour
 
     private void JumpingCheck()
     {
-        Debug.Log(gravity);
+        Debug.Log("can glide: " + canGlide);
+        Debug.Log("gliding: " + gliding);
 
         if (!jumping)
         {
@@ -148,15 +149,14 @@ public class PlayerController_Alex : MonoBehaviour
                 StartCoroutine(JumpingLogic());
             }
 
-            if(Input.GetButton("Jump") && canGlide)
+            if(Input.GetButton("Jump") && canGlide && !gliding)
             {
                 StartCoroutine(GlidingLogic());
             }
-        }
-
-        if(Input.GetButtonUp("Jump"))
-        {
-            canGlide = false;
+            if (Input.GetButtonUp("Jump"))
+            {
+                canGlide = false;
+            }
         }
     }
 
@@ -269,12 +269,17 @@ public class PlayerController_Alex : MonoBehaviour
         }
 
         jumping = false;
+
+        yield return new WaitForSeconds(.3f);
+
         canGlide = true;
     }
 
     IEnumerator GlidingLogic()
     {
         playerRigidBody.velocity = new Vector3(0, 0, 0);
+        elementalList[3] -= 1;
+        uiControllerReference.UpdateElement(3);
 
         gliding = true;
 

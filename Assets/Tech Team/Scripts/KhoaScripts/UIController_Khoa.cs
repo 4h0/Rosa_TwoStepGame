@@ -38,6 +38,5 @@ public class UIController_Khoa : MonoBehaviour
     public void UpdateElement(int whichElement)
     {
         element[whichElement].fillAmount = playerControllerReference.elementalList[whichElement] / playerControllerReference.maxElementCounter;
-        Debug.Log(element[whichElement].fillAmount);
     }
 }
