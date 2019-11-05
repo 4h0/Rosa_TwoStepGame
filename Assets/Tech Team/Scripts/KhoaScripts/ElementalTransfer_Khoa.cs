@@ -7,7 +7,7 @@ public class ElementalTransfer_Khoa : MonoBehaviour
     public ParticleSystem playerParticle;
     public ParticleSystem selfParticle;
 
-    private PlayerController_Khoa playerReference;
+    private PlayerController_Alex playerReference;
     private UIController_Khoa uiReference;
 
     public bool isGiving;
@@ -18,7 +18,7 @@ public class ElementalTransfer_Khoa : MonoBehaviour
 
     private void Awake()
     {
-        playerReference = FindObjectOfType<PlayerController_Khoa>();
+        playerReference = FindObjectOfType<PlayerController_Alex>();
         uiReference = FindObjectOfType<UIController_Khoa>();
 
         doOnce = false;
@@ -29,7 +29,7 @@ public class ElementalTransfer_Khoa : MonoBehaviour
     {
         if (!doOnce)
         {
-            if (stayInside && Input.GetKeyDown(KeyCode.V))
+            if (stayInside && Input.GetKeyDown(KeyCode.Q))
             {
                 if (isGiving)
                 {
@@ -47,7 +47,7 @@ public class ElementalTransfer_Khoa : MonoBehaviour
     {
         if(playerReference.elementalList[elementType] < playerReference.maxElementCounter)
         {
-            playerReference.elementalList[elementType]++;
+            playerReference.elementalList[elementType] = playerReference.maxElementCounter;
             uiReference.UpdateElement(elementType);
 
             doOnce = true;

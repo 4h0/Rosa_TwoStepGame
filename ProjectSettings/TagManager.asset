@@ -11,6 +11,9 @@ TagManager:
   - EmptyFireSource
   - WaterSource
   - EmptyWaterSource
+  - PickUp
+  - Ground
+  - Wall
   layers:
   - Default
   - TransparentFX
@@ -20,7 +23,7 @@ TagManager:
   - UI
   - 
   - 
-  - 
+  - StrengthObject
   - 
   - 
   - 

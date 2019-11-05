@@ -42,13 +42,10 @@ GameObject:
   - component: {fileID: 3216839894643597445}
   - component: {fileID: 3216839894643597446}
   - component: {fileID: 3216839894643597447}
-  - component: {fileID: 3216839894643597443}
   - component: {fileID: 3216839894643597442}
-  - component: {fileID: 3216839894643597440}
-  - component: {fileID: 3216839894643597441}
-  - component: {fileID: 3216839894643597471}
+  - component: {fileID: 3216839894643597443}
   m_Layer: 0
-  m_Name: Player 1
+  m_Name: Player
   m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -129,6 +126,22 @@ CapsuleCollider:
   m_Height: 2
   m_Direction: 1
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!54 &3216839894643597442
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3216839894643597448}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 0
+  m_Interpolate: 0
+  m_Constraints: 80
+  m_CollisionDetection: 0
 --- !u!114 &3216839894643597443
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -141,65 +154,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 539a8dd59744d46059d4a54f0a8aaae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  dashHelperReference: {fileID: 8887377040174582509, guid: 244d441055ce8704a837c87c0aaffa5b,
+    type: 3}
+  strengthHelperReference: {fileID: 5070710549197585644, guid: 32e5f14c0a0b5d54495de9b26ba55b7e,
+    type: 3}
+  strengthRayEndPoint: {fileID: 0}
+  strengthLayerMask:
+    serializedVersion: 2
+    m_Bits: 0
+  canMove: 0
+  onGround: 0
+  jumping: 0
+  strengthEnd: 0
+  jumpCounter: 0
+  maxJumpCounter: 2
+  glider: 0
   walkSpeed: 5
   runSpeed: 6
+  dashMultiplier: 3
+  maxDashMultiplier: 6
+  gravity: -178.2
+  jumpForce: 150
   turnSmoothTime: 0.2
   speedSmoothTime: 0.1
---- !u!54 &3216839894643597442
-Rigidbody:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3216839894643597448}
-  serializedVersion: 2
-  m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
-  m_UseGravity: 1
-  m_IsKinematic: 0
-  m_Interpolate: 0
-  m_Constraints: 80
-  m_CollisionDetection: 0
---- !u!114 &3216839894643597440
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3216839894643597448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba8d188b62bff4bca9a053ad2855fc89, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &3216839894643597441
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3216839894643597448}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: db68f894278b74ad78bab87cb78558bf, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  FireRingParticleEffect: {fileID: 4626645656359640942}
---- !u!114 &3216839894643597471
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3216839894643597448}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: c32f17ca8014742e784194e93220c3f6, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  thrust: 0
-  rb: {fileID: 0}
+  dashForce: 240
+  maxElementCounter: 12
+  canGlide: 0
+  elementalList:
+  - 0
+  - 0
+  - 0
+  - 0
 --- !u!1001 &3216839895258364865
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -269,12 +254,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: f414f62b4e1104620b5e03c7771d97b2, type: 3}
---- !u!1 &4626645656359640942 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 7823218064799196335, guid: f414f62b4e1104620b5e03c7771d97b2,
-    type: 3}
-  m_PrefabInstance: {fileID: 3216839895258364865}
-  m_PrefabAsset: {fileID: 0}
 --- !u!4 &4626645656359640937 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 7823218064799196328, guid: f414f62b4e1104620b5e03c7771d97b2,

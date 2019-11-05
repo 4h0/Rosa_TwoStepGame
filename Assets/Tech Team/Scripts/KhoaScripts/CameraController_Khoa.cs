@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraController_Khoa : MonoBehaviour
 {
+    /*
     public LayerMask cameraObstacle;
     public Vector3 offsetHeight;
 
@@ -79,7 +80,6 @@ public class CameraController_Khoa : MonoBehaviour
 
     private void FollowPlayer()
     {   
-        /*
         if(playerReference.onGround)
         {
             offsetHeight = new Vector3(0, 1.5f, 0);
@@ -88,17 +88,15 @@ public class CameraController_Khoa : MonoBehaviour
         {    
             offsetHeight = new Vector3(0, 3f * playerReference.jumpCounter, 0);
         } 
-        */
 
         transform.position = Vector3.Lerp(this.transform.position, playerReference.cameraPosition.transform.position + offsetHeight, .03f);  
 
-        /*
         transform.position = Vector3.Lerp(this.transform.position, moveToPosition.transform.position, 1f);
         transform.rotation = moveToPosition.transform.rotation;
 
         moveToRotation.SetFromToRotation(this.transform.position, moveToPosition.transform.position);
         transform.rotation = moveToRotation;
-        */
+        
     }
 
     IEnumerator RecastDetection()
@@ -116,4 +114,5 @@ public class CameraController_Khoa : MonoBehaviour
     {
         other.gameObject.GetComponent<MeshRenderer>().enabled = true;
     }
+*/
 }

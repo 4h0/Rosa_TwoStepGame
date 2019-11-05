@@ -8,7 +8,7 @@ public class UIController_Khoa : MonoBehaviour
     public Image dashMultiplier;
     public Image[] element;
 
-    private PlayerController_Khoa playerControllerReference;
+    private PlayerController_Alex playerControllerReference;
 
     private void Awake()
     {
@@ -18,7 +18,7 @@ public class UIController_Khoa : MonoBehaviour
             image.enabled = true;
         }
 
-        playerControllerReference = FindObjectOfType<PlayerController_Khoa>();
+        playerControllerReference = FindObjectOfType<PlayerController_Alex>();
     }    
 
     public void DashMultiplierOn()
@@ -37,6 +37,7 @@ public class UIController_Khoa : MonoBehaviour
 
     public void UpdateElement(int whichElement)
     {
-        element[whichElement].fillAmount = playerControllerReference.elementalList[whichElement] / 4;
+        element[whichElement].fillAmount = playerControllerReference.elementalList[whichElement] / playerControllerReference.maxElementCounter;
+        Debug.Log(element[whichElement].fillAmount);
     }
 }

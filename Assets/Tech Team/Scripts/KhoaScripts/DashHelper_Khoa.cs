@@ -4,13 +4,13 @@ using UnityEngine;
 
 public class DashHelper_Khoa : MonoBehaviour
 {
-    private PlayerController_Khoa playerReference;
+    private PlayerController_Alex playerReference;
 
     public bool canStart;
 
     private void Awake()
     {
-        playerReference = FindObjectOfType<PlayerController_Khoa>();
+        playerReference = FindObjectOfType<PlayerController_Alex>();
 
         canStart = false;
     }

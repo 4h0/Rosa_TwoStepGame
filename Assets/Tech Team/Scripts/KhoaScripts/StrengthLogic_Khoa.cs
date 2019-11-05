@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class StrengthLogic_Khoa : MonoBehaviour
 {
-    private PlayerController_Khoa playerReference;
+    private PlayerController_Alex playerReference;
     private Rigidbody pickUpRigidbody;
     private MeshRenderer changeCubeColor;
 
@@ -12,7 +12,7 @@ public class StrengthLogic_Khoa : MonoBehaviour
 
     private void Awake()
     {
-        playerReference = FindObjectOfType<PlayerController_Khoa>();
+        playerReference = FindObjectOfType<PlayerController_Alex>();
         pickUpRigidbody = GetComponent<Rigidbody>();
         changeCubeColor = GetComponent<MeshRenderer>();
     }
@@ -28,7 +28,7 @@ public class StrengthLogic_Khoa : MonoBehaviour
         if(timerBeforeDestroy > 0)
         {
             timerBeforeDestroy -= Time.deltaTime;
-            transform.position = Vector3.Lerp(this.transform.position, playerReference.strengthPosition.transform.position, .06f);   
+            transform.position = Vector3.Lerp(this.transform.position, playerReference.strengthRayEndPoint.transform.position, .06f);   
         }
         else
         {
