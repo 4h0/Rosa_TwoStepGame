@@ -12,7 +12,7 @@ public class triggering : MonoBehaviour
     private float timer = 6f;
     private float current = 0f;
     
-    private bool yos=false;
+    private bool yos;
     private bool ab;
     void OnTriggerEnter(Collider col)
 
