@@ -28,8 +28,7 @@ public class PlayerController_Alex : MonoBehaviour
     public float[] elementalList;
 
     private bool abilityCooling, strengthRayCastStart;
-    private bool usingStrength, gliding;
-    public bool canGlide;
+    private bool usingStrength, canGlide, gliding;
     public float gravity;
 
     float turnSmoothVelocity;
@@ -90,6 +89,16 @@ public class PlayerController_Alex : MonoBehaviour
     
     private void InputCheck()
     {
+        if(Input.GetKeyDown(KeyCode.R))
+        {
+            Time.timeScale = 0f;
+        }
+        if(Input.GetKeyDown(KeyCode.E))
+        {
+            Time.timeScale = 1f;
+        }
+
+
         if (!abilityCooling)
         {
             if (elementalList[3] > 0)
