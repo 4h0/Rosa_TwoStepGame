@@ -9,10 +9,10 @@ public class triggering : MonoBehaviour
     // Start is called before the first frame update
     private Vector3 target=new Vector3(1097, 263, 50);
     private GameObject box;
-    private float timer = 120f;
+    private float timer = 6f;
     private float current = 0f;
     
-    private bool yos=false;
+    private bool yos;
     private bool ab;
     void OnTriggerEnter(Collider col)
 
@@ -29,7 +29,7 @@ public class triggering : MonoBehaviour
         else if (col.gameObject.name == "position1")
         { 
         ab = true;
-        Debug.Log("yellow");
+        Debug.Log("Okay, you have 10 seconds to reach the other position.");
         }
         else if (col.gameObject.name == "position2")
             yos= true;
@@ -73,7 +73,7 @@ public class triggering : MonoBehaviour
         {
 
             current -= 1 * Time.deltaTime;
-
+            Debug.Log(current);
             if (current <= 0)
             {
                 current = 0;
@@ -96,7 +96,7 @@ public class triggering : MonoBehaviour
             Debug.Log("you win");
 
         else 
-            Debug.Log("yes");
+            Debug.Log("Sorry, you lose half of your elemetal gauge.");
 
     }
 
