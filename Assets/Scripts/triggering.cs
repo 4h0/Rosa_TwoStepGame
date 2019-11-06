@@ -9,18 +9,30 @@ public class triggering : MonoBehaviour
     // Start is called before the first frame update
     private Vector3 target=new Vector3(1097, 263, 50);
     private GameObject box;
-
+    private float timer = 120f;
+    private float current = 0f;
+    
+    private bool yos=false;
+    private bool ab;
     void OnTriggerEnter(Collider col)
 
 
     {
-        if (col.gameObject.name=="cube")
+        if (col.gameObject.name == "cube")
         {
 
-            // Debug.Log("hello");
+           Debug.Log("hello");
             h = 1;
             // Debug.Log(h);
         }
+
+        else if (col.gameObject.name == "position1")
+        { 
+        ab = true;
+        Debug.Log("yellow");
+        }
+        else if (col.gameObject.name == "position2")
+            yos= true;
     }
 
     void Start()
@@ -29,7 +41,7 @@ public class triggering : MonoBehaviour
         door = GameObject.Find("door");
         box = GameObject.Find("box");
 
-
+        current = timer;
 
 
 
@@ -57,8 +69,34 @@ public class triggering : MonoBehaviour
             // }
         }
 
-        // }
+        if (ab)
+        {
 
+            current -= 1 * Time.deltaTime;
+
+            if (current <= 0)
+            {
+                current = 0;
+                Timer();
+
+            }
+
+        }
+
+
+    }
+
+
+
+    void Timer()
+    {
+        
+
+        if (yos == true && current != 0)
+            Debug.Log("you win");
+
+        else 
+            Debug.Log("yes");
 
     }
 
