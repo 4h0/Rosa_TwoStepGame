@@ -28,8 +28,9 @@ public class PlayerController_Alex : MonoBehaviour
     public float[] elementalList;
 
     private bool abilityCooling, strengthRayCastStart;
-    private bool usingStrength, canGlide, gliding;
-    private float gravity;
+    private bool usingStrength, gliding;
+    public bool canGlide;
+    public float gravity;
 
     float turnSmoothVelocity;
     float speedSmoothVelocity;
@@ -131,7 +132,7 @@ public class PlayerController_Alex : MonoBehaviour
             {
                 if(!gliding)
                 {
-                    gravity -= 3.27f;
+                    StartCoroutine(IncreaseGravity());
                 }
                 else
                 {
@@ -141,12 +142,17 @@ public class PlayerController_Alex : MonoBehaviour
                 playerRigidBody.AddForce(new Vector3(0, gravity, 0), ForceMode.Force);
             }
 
+            if (Input.GetButtonUp("Jump") || elementalList[3] <= 0)
+            {
+                canGlide = false;
+            }
+
             if (Input.GetButtonDown("Jump") && jumpCounter < maxJumpCounter)
             {
                 StartCoroutine(JumpingLogic());
             }
 
-            if(Input.GetButton("Jump") && canGlide && elementalList[3] > 0)
+            if (Input.GetButton("Jump") && canGlide && elementalList[3] > 0)
             {
 
                 elementalList[3] -= Time.deltaTime;
@@ -156,10 +162,6 @@ public class PlayerController_Alex : MonoBehaviour
                 {
                     StartCoroutine(GlidingLogic());
                 }
-            }
-            if (Input.GetButtonUp("Jump") || elementalList[3] <= 0)
-            {
-                canGlide = false;
             }
         }
     }
@@ -239,6 +241,13 @@ public class PlayerController_Alex : MonoBehaviour
         yield return new WaitForSeconds(.1f);
 
         strengthRayCastStart = false;
+    }
+
+    IEnumerator IncreaseGravity()
+    {
+        gravity -= 3.27f;
+
+        yield return new WaitForSeconds(.06f);
     }
 
     IEnumerator JumpingLogic()
