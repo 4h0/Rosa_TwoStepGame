@@ -96,7 +96,7 @@ public class triggering : MonoBehaviour
             Debug.Log("you win");
 
         else 
-            Debug.Log("yes");
+            Debug.Log("Sorry, you lose half of your elemetal gauge.");
 
     }
 
