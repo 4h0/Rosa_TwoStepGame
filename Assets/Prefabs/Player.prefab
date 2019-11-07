@@ -236,14 +236,16 @@ MonoBehaviour:
   dashHelperReference: {fileID: 0}
   strengthHelperReference: {fileID: 0}
   strengthRayEndPoint: {fileID: 0}
-  strengthLayerMask:
-    serializedVersion: 2
+  rayCastLayerMask:
+  - serializedVersion: 2
     m_Bits: 256
+  - serializedVersion: 2
+    m_Bits: 512
   canMove: 0
   onGround: 0
   jumping: 0
   strengthEnd: 0
-  jumpCounter: 0
+  jumpCounter: 1
   maxJumpCounter: 2
   walkSpeed: 5
   runSpeed: 6

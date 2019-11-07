@@ -6,7 +6,7 @@ public class PlayerController_Alex : MonoBehaviour
 {
     public GameObject dashHelperReference, strengthHelperReference;
     public Transform strengthRayEndPoint;
-    public LayerMask strengthLayerMask;
+    public LayerMask[] rayCastLayerMask;
 
     private CameraController_Khoa cameraReference;
     private UIController_Khoa uiControllerReference;
@@ -52,7 +52,7 @@ public class PlayerController_Alex : MonoBehaviour
         abilityCooling = false;
         strengthRayCastStart = false;
         strengthEnd = false;
-        jumpCounter = 0;
+        jumpCounter = 1;
         dashMultiplier = 3;
     }
 
@@ -91,16 +91,19 @@ public class PlayerController_Alex : MonoBehaviour
     {
         if (!abilityCooling)
         {
-            if (elementalList[3] > 0)
+            if (elementalList[0] > 0)
             {
-                if (Input.GetButton("Dash"))
-                {
-                    DashMultiplierIncrease();
-                }
                 if (Input.GetButtonUp("Dash"))
                 {
                     StartCoroutine(DashLogic());
-                    StartCoroutine(AbilityEnd(3));
+                    StartCoroutine(AbilityEnd(0));
+                }
+                if(elementalList[0] > 1)
+                {
+                    if (Input.GetButton("Dash"))
+                    {
+                        DashMultiplierIncrease();
+                    }
                 }
             }
 
@@ -131,7 +134,19 @@ public class PlayerController_Alex : MonoBehaviour
             {
                 if(!gliding)
                 {
-                    gravity -= 3.27f;
+                    Ray gravityRayCast = new Ray(transform.position, transform.up * -1);
+                    RaycastHit gravityRayHit;
+                    
+                    bool rayHit = Physics.Raycast(gravityRayCast, out gravityRayHit, Mathf.Infinity, rayCastLayerMask[0]);
+
+                    if (rayHit)
+                    {
+                        gravity = (-98.1f) * jumpCounter * jumpCounter / (Vector3.Distance(this.transform.position, gravityRayHit.point));
+                    }
+                    else
+                    {
+                        gravity = -98.1f;
+                    }
                 }
                 else
                 {
@@ -141,12 +156,17 @@ public class PlayerController_Alex : MonoBehaviour
                 playerRigidBody.AddForce(new Vector3(0, gravity, 0), ForceMode.Force);
             }
 
+            if (Input.GetButtonUp("Jump") || elementalList[3] <= 0)
+            {
+                canGlide = false;
+            }
+
             if (Input.GetButtonDown("Jump") && jumpCounter < maxJumpCounter)
             {
                 StartCoroutine(JumpingLogic());
             }
 
-            if(Input.GetButton("Jump") && canGlide && elementalList[3] > 0)
+            if (Input.GetButton("Jump") && canGlide && elementalList[3] > 0)
             {
 
                 elementalList[3] -= Time.deltaTime;
@@ -157,10 +177,6 @@ public class PlayerController_Alex : MonoBehaviour
                     StartCoroutine(GlidingLogic());
                 }
             }
-            if (Input.GetButtonUp("Jump") || elementalList[3] <= 0)
-            {
-                canGlide = false;
-            }
         }
     }
 
@@ -169,9 +185,11 @@ public class PlayerController_Alex : MonoBehaviour
         if (dashMultiplier < maxDashMultiplier)
         {
             dashMultiplier += Time.deltaTime;
+            elementalList[0] -= Time.deltaTime;
         }
 
         uiControllerReference.DashMultiplierOn();
+        uiControllerReference.UpdateElement(0);
     }
 
     private void StrengthRayCast()
@@ -183,7 +201,7 @@ public class PlayerController_Alex : MonoBehaviour
 
         Debug.DrawLine(strengthRayCast.origin, strengthRayCast.origin + strengthRayCast.direction * strengthRayDistance, Color.green);
 
-        bool rayHit = Physics.Raycast(strengthRayCast, out strengthRayHit, strengthRayDistance, strengthLayerMask);
+        bool rayHit = Physics.Raycast(strengthRayCast, out strengthRayHit, strengthRayDistance, rayCastLayerMask[1]);
 
         if (rayHit)
         {
@@ -217,20 +235,22 @@ public class PlayerController_Alex : MonoBehaviour
 
     IEnumerator DashLogic()
     {
+        /*
         dashHelperReference.GetComponent<DashHelper_Khoa>().StartChecking();
 
         yield return new WaitUntil(() => dashHelperReference.GetComponent<DashHelper_Khoa>().canStart);
-
+        */
+        canMove = false;
         uiControllerReference.DashMultiplierOff();
 
         for (int counter = 0; counter < dashMultiplier; counter++)
         {
-            playerRigidBody.AddForce(dashHelperReference.transform.forward * dashForce * counter, ForceMode.Force);
+            playerRigidBody.AddForce(this.transform.forward * dashForce * counter, ForceMode.Force);
             yield return new WaitForEndOfFrame();
         }
 
         canMove = true;
-        dashHelperReference.GetComponent<DashHelper_Khoa>().canStart = false;
+        //dashHelperReference.GetComponent<DashHelper_Khoa>().canStart = false;
         dashMultiplier = 3;
     }
 
@@ -302,6 +322,7 @@ public class PlayerController_Alex : MonoBehaviour
                 yield return new WaitForSeconds(.1f);
                 break;
             case 2:
+                yield return new WaitForSeconds(.1f);
                 break;
             case 1:
                 {
@@ -313,6 +334,7 @@ public class PlayerController_Alex : MonoBehaviour
                     break;
                 }
             case 0:
+                yield return new WaitForSeconds(.1f);
                 break;
         }
 
