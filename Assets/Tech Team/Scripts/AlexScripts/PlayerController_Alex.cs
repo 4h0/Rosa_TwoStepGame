@@ -6,7 +6,7 @@ public class PlayerController_Alex : MonoBehaviour
 {
     public GameObject dashHelperReference, strengthHelperReference;
     public Transform strengthRayEndPoint;
-    public LayerMask strengthLayerMask;
+    public LayerMask[] rayCastLayerMask;
 
     private CameraController_Khoa cameraReference;
     private UIController_Khoa uiControllerReference;
@@ -29,7 +29,7 @@ public class PlayerController_Alex : MonoBehaviour
 
     private bool abilityCooling, strengthRayCastStart;
     private bool usingStrength, canGlide, gliding;
-    public float gravity;
+    private float gravity;
 
     float turnSmoothVelocity;
     float speedSmoothVelocity;
@@ -52,7 +52,7 @@ public class PlayerController_Alex : MonoBehaviour
         abilityCooling = false;
         strengthRayCastStart = false;
         strengthEnd = false;
-        jumpCounter = 0;
+        jumpCounter = 1;
         dashMultiplier = 3;
     }
 
@@ -89,28 +89,21 @@ public class PlayerController_Alex : MonoBehaviour
     
     private void InputCheck()
     {
-        if(Input.GetKeyDown(KeyCode.R))
-        {
-            Time.timeScale = 0f;
-        }
-        if(Input.GetKeyDown(KeyCode.E))
-        {
-            Time.timeScale = 1f;
-        }
-
-
         if (!abilityCooling)
         {
-            if (elementalList[3] > 0)
+            if (elementalList[0] > 0)
             {
-                if (Input.GetButton("Dash"))
-                {
-                    DashMultiplierIncrease();
-                }
                 if (Input.GetButtonUp("Dash"))
                 {
                     StartCoroutine(DashLogic());
-                    StartCoroutine(AbilityEnd(3));
+                    StartCoroutine(AbilityEnd(0));
+                }
+                if(elementalList[0] > 1)
+                {
+                    if (Input.GetButton("Dash"))
+                    {
+                        DashMultiplierIncrease();
+                    }
                 }
             }
 
@@ -141,7 +134,19 @@ public class PlayerController_Alex : MonoBehaviour
             {
                 if(!gliding)
                 {
-                    StartCoroutine(IncreaseGravity());
+                    Ray gravityRayCast = new Ray(transform.position, transform.up * -1);
+                    RaycastHit gravityRayHit;
+                    
+                    bool rayHit = Physics.Raycast(gravityRayCast, out gravityRayHit, Mathf.Infinity, rayCastLayerMask[0]);
+
+                    if (rayHit)
+                    {
+                        gravity = (-98.1f) * jumpCounter * jumpCounter / (Vector3.Distance(this.transform.position, gravityRayHit.point));
+                    }
+                    else
+                    {
+                        gravity = -98.1f;
+                    }
                 }
                 else
                 {
@@ -180,9 +185,11 @@ public class PlayerController_Alex : MonoBehaviour
         if (dashMultiplier < maxDashMultiplier)
         {
             dashMultiplier += Time.deltaTime;
+            elementalList[0] -= Time.deltaTime;
         }
 
         uiControllerReference.DashMultiplierOn();
+        uiControllerReference.UpdateElement(0);
     }
 
     private void StrengthRayCast()
@@ -194,7 +201,7 @@ public class PlayerController_Alex : MonoBehaviour
 
         Debug.DrawLine(strengthRayCast.origin, strengthRayCast.origin + strengthRayCast.direction * strengthRayDistance, Color.green);
 
-        bool rayHit = Physics.Raycast(strengthRayCast, out strengthRayHit, strengthRayDistance, strengthLayerMask);
+        bool rayHit = Physics.Raycast(strengthRayCast, out strengthRayHit, strengthRayDistance, rayCastLayerMask[1]);
 
         if (rayHit)
         {
@@ -252,13 +259,6 @@ public class PlayerController_Alex : MonoBehaviour
         yield return new WaitForSeconds(.1f);
 
         strengthRayCastStart = false;
-    }
-
-    IEnumerator IncreaseGravity()
-    {
-        gravity -= 3.27f;
-
-        yield return new WaitForSeconds(.06f);
     }
 
     IEnumerator JumpingLogic()
@@ -322,6 +322,7 @@ public class PlayerController_Alex : MonoBehaviour
                 yield return new WaitForSeconds(.1f);
                 break;
             case 2:
+                yield return new WaitForSeconds(.1f);
                 break;
             case 1:
                 {
@@ -333,6 +334,7 @@ public class PlayerController_Alex : MonoBehaviour
                     break;
                 }
             case 0:
+                yield return new WaitForSeconds(.1f);
                 break;
         }
 
