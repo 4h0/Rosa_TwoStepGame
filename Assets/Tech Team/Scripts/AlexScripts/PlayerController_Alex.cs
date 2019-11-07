@@ -228,20 +228,22 @@ public class PlayerController_Alex : MonoBehaviour
 
     IEnumerator DashLogic()
     {
+        /*
         dashHelperReference.GetComponent<DashHelper_Khoa>().StartChecking();
 
         yield return new WaitUntil(() => dashHelperReference.GetComponent<DashHelper_Khoa>().canStart);
-
+        */
+        canMove = false;
         uiControllerReference.DashMultiplierOff();
 
         for (int counter = 0; counter < dashMultiplier; counter++)
         {
-            playerRigidBody.AddForce(dashHelperReference.transform.forward * dashForce * counter, ForceMode.Force);
+            playerRigidBody.AddForce(this.transform.forward * dashForce * counter, ForceMode.Force);
             yield return new WaitForEndOfFrame();
         }
 
         canMove = true;
-        dashHelperReference.GetComponent<DashHelper_Khoa>().canStart = false;
+        //dashHelperReference.GetComponent<DashHelper_Khoa>().canStart = false;
         dashMultiplier = 3;
     }
 
