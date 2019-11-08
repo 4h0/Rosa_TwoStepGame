@@ -4,11 +4,10 @@ using UnityEngine;
 
 public class PlayerController_Alex : MonoBehaviour
 {
-    public GameObject dashHelperReference, strengthHelperReference;
+    //public GameObject dashHelperReference, strengthHelperReference;
     public Transform strengthRayEndPoint;
     public LayerMask[] rayCastLayerMask;
 
-    private CameraController_Khoa cameraReference;
     private UIController_Khoa uiControllerReference;
     private Animator animator;
     private Transform cameraT;
@@ -17,7 +16,6 @@ public class PlayerController_Alex : MonoBehaviour
     private Rigidbody playerRigidBody;
     private SpriteRenderer showPlayer;
     private CapsuleCollider playerCollider;
-    private Quaternion facingDirection;
 
     public bool canMove, onGround, jumping, strengthEnd;
     public int jumpCounter, maxJumpCounter;
@@ -37,7 +35,6 @@ public class PlayerController_Alex : MonoBehaviour
 
     private void Awake()
     {
-        cameraReference = FindObjectOfType<CameraController_Khoa>();
         uiControllerReference = FindObjectOfType<UIController_Khoa>();
         //animator = GetComponent<Animator>();
         cameraT = Camera.main.transform;

@@ -260,12 +260,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &139994817 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5070710549197585644, guid: 32e5f14c0a0b5d54495de9b26ba55b7e,
-    type: 3}
-  m_PrefabInstance: {fileID: 3166261305677360708}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &151783993
 GameObject:
   m_ObjectHideFlags: 0
@@ -1999,16 +1993,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3216839894643597443, guid: 26473db84e6034998b09645f74991945,
         type: 3}
-      propertyPath: dashHelperReference
-      value: 
-      objectReference: {fileID: 1799034779}
-    - target: {fileID: 3216839894643597443, guid: 26473db84e6034998b09645f74991945,
-        type: 3}
-      propertyPath: strengthHelperReference
-      value: 
-      objectReference: {fileID: 139994817}
-    - target: {fileID: 3216839894643597443, guid: 26473db84e6034998b09645f74991945,
-        type: 3}
       propertyPath: strengthRayEndPoint
       value: 
       objectReference: {fileID: 5047615829300488137}
@@ -3539,12 +3523,6 @@ ParticleSystem:
   m_CorrespondingSourceObject: {fileID: 1746382788249352711, guid: 80fc6611108aa4dc3aeade7b99dc75b1,
     type: 3}
   m_PrefabInstance: {fileID: 917790704}
-  m_PrefabAsset: {fileID: 0}
---- !u!1 &1799034779 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 8887377040174582509, guid: 244d441055ce8704a837c87c0aaffa5b,
-    type: 3}
-  m_PrefabInstance: {fileID: 459903804}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1836093239
 PrefabInstance:

@@ -233,8 +233,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 539a8dd59744d46059d4a54f0a8aaae9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  dashHelperReference: {fileID: 0}
-  strengthHelperReference: {fileID: 0}
   strengthRayEndPoint: {fileID: 0}
   rayCastLayerMask:
   - serializedVersion: 2
@@ -254,7 +252,7 @@ MonoBehaviour:
   jumpForce: 60
   turnSmoothTime: 0.2
   speedSmoothTime: 0.1
-  dashForce: 60
+  dashForce: 90
   maxElementCounter: 12
   elementalList:
   - 12
