@@ -24,15 +24,10 @@ public class dialogueTrigger : MonoBehaviour
             if (collision.gameObject.CompareTag("NPC")) // checking to see if the GameObject is tagged as an NPC && the Q key is being pressed.
             {
                 triggerStay = true;
-                flowchart.ExecuteBlock("NPC Dialogue"); // executes the NPC Dialogue box within the flowchart.
+                // flowchart.ExecuteBlock("NPC Dialogue"); // executes the NPC Dialogue box within the flowchart.
                 Debug.Log("Collision & Button press detected."); //Debug to check for collision.
                  
                 
-            }
-
-            else
-            {
-                Debug.Log("Dialogue not present."); // Debug to see if there's no collision.
             }
         }
 
