@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 705507994}
-  m_IndirectSpecularColor: {r: 0.44657898, g: 0.4964133, b: 0.5748178, a: 1}
+  m_IndirectSpecularColor: {r: 0.44657898, g: 0.49641287, b: 0.5748173, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -138,7 +138,10 @@ GameObject:
   - component: {fileID: 313227711}
   - component: {fileID: 313227712}
   - component: {fileID: 313227713}
+<<<<<<< HEAD
   - component: {fileID: 313227714}
+=======
+>>>>>>> 8b565138bf5a13d4513b30a7e5e369f92d946a8e
   - component: {fileID: 313227707}
   m_Layer: 0
   m_Name: flowchart
@@ -160,11 +163,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 39.186974, y: 13.6369705}
+  scrollPos: {x: -275.0286, y: 203.5}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.9100001
+  zoom: 1
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -230,14 +233,14 @@ MonoBehaviour:
     serializedVersion: 2
     x: 375
     y: 51
-    width: 132.41757
+    width: 122
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 0
   blockName: NPC Dialogue
   description: We're entering the conversation!
-  eventHandler: {fileID: 0}
+  eventHandler: {fileID: 313227707}
   commandList:
   - {fileID: 313227704}
   - {fileID: 313227709}
@@ -265,6 +268,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 313227702}
   m_Enabled: 1
   m_EditorHideFlags: 0
+<<<<<<< HEAD
   m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
@@ -283,6 +287,14 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
+=======
+  m_Script: {fileID: 11500000, guid: 000864f8e9e1748a39807861d0e60e29, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  parentBlock: {fileID: 313227705}
+  keyPressType: 0
+  keyCode: 107
+>>>>>>> 8b565138bf5a13d4513b30a7e5e369f92d946a8e
 --- !u!114 &313227708
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1995,8 +2007,12 @@ GameObject:
   - component: {fileID: 1894386962}
   - component: {fileID: 1894386961}
   - component: {fileID: 1894386965}
+<<<<<<< HEAD
   - component: {fileID: 1894386964}
   - component: {fileID: 1894386960}
+=======
+  - component: {fileID: 1894386966}
+>>>>>>> 8b565138bf5a13d4513b30a7e5e369f92d946a8e
   m_Layer: 0
   m_Name: Toon
   m_TagString: NPC
@@ -2107,6 +2123,20 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
+--- !u!114 &1894386966
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1894386959}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8c05f5581ef6aae4bb4a8ba17e8e4d48, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  flowchart: {fileID: 313227703}
+  NPC: {fileID: 1894386959}
 --- !u!1 &1924281700
 GameObject:
   m_ObjectHideFlags: 0
