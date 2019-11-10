@@ -10,7 +10,7 @@ public class triggering : MonoBehaviour
     // Start is called before the first frame update
     private Vector3 target=new Vector3(1097, 263, 50);
     private GameObject box;
-    private float timer = 6f;
+    private float timer = 10f;
     private float current = 0f;
     
 
@@ -140,6 +140,38 @@ public class triggering : MonoBehaviour
 
     void Update()
     {
+
+        if (ab)
+        {
+
+            if (current != 0)
+            {
+                current -= 1 * Time.deltaTime;
+                Debug.Log("You have " + current + " seconds left");
+                if (current <= 0)
+                {
+                    current = 0;
+                    Timer();
+                }
+
+            }
+
+        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         if (h == 1)
 
         {
@@ -157,19 +189,6 @@ public class triggering : MonoBehaviour
             // }
         }
 
-        if (ab)
-        {
-
-            current -= 1 * Time.deltaTime;
-            Debug.Log("You have " +current+" seconds left");
-            if (current <= 0)
-            {
-                current = 0;
-                Timer();
-
-            }
-
-        }
         
 
 
