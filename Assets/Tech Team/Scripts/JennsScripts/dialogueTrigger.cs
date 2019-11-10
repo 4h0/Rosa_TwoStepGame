@@ -13,7 +13,7 @@ public class dialogueTrigger : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.K) && triggerStay)
         {
-            //
+          //
         }
     }
 
