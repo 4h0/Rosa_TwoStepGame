@@ -564,6 +564,180 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 829257679}
   m_CullTransparentMesh: 0
+<<<<<<< HEAD
+=======
+--- !u!1001 &958374223
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 3216839894643597448, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_Name
+      value: Player
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216839894643597444, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 1.512372
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216839894643597444, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 1.38
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216839894643597444, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_LocalPosition.z
+      value: 2.5818815
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216839894643597444, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216839894643597444, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216839894643597444, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216839894643597444, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216839894643597444, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216839894643597444, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216839894643597444, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216839894643597444, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216839894643597440, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 3216839894643597441, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5642438452983755800, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 4626645656359640942, guid: 26473db84e6034998b09645f74991945,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    m_RemovedComponents:
+    - {fileID: 3216839894643597471, guid: 26473db84e6034998b09645f74991945, type: 3}
+  m_SourcePrefab: {fileID: 100100000, guid: 26473db84e6034998b09645f74991945, type: 3}
+--- !u!1 &958374224 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3216839894643597448, guid: 26473db84e6034998b09645f74991945,
+    type: 3}
+  m_PrefabInstance: {fileID: 958374223}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &958374225 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 3216839893843181200, guid: 26473db84e6034998b09645f74991945,
+    type: 3}
+  m_PrefabInstance: {fileID: 958374223}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &958374226
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958374224}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 539a8dd59744d46059d4a54f0a8aaae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  strengthRayEndPoint: {fileID: 0}
+  rayCastLayerMask: []
+  canMove: 0
+  onGround: 0
+  jumping: 0
+  strengthEnd: 0
+  jumpCounter: 0
+  maxJumpCounter: 0
+  walkSpeed: 5
+  runSpeed: 6
+  dashMultiplier: 0
+  maxDashMultiplier: 0
+  jumpForce: 0
+  turnSmoothTime: 0.2
+  speedSmoothTime: 0.1
+  dashForce: 0
+  maxElementCounter: 0
+  elementalList: []
+--- !u!114 &958374227
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958374224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fc0e3829a32a40479a0e319db9765ca, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  canvas: {fileID: 729378331}
+--- !u!114 &958374228
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958374224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba8d188b62bff4bca9a053ad2855fc89, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &958374229
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 958374224}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: db68f894278b74ad78bab87cb78558bf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  FireRingParticleEffect: {fileID: 118166766}
+  WaterRingParticleEffect: {fileID: 0}
+>>>>>>> parent of 6880c2e... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
 --- !u!1 &1886080041
 GameObject:
   m_ObjectHideFlags: 0
@@ -749,7 +923,7 @@ GameObject:
   - component: {fileID: 2139101642}
   m_Layer: 0
   m_Name: Ground
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -826,6 +1000,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+<<<<<<< HEAD
 --- !u!1001 &163427134408364778
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -905,6 +1080,8 @@ PrefabInstance:
       objectReference: {fileID: 729378331}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 421fd87dc58024ce4883a24e6278d349, type: 3}
+=======
+>>>>>>> parent of 6880c2e... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
 --- !u!1001 &339093304314422680
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -976,7 +1153,11 @@ PrefabInstance:
         type: 3}
       propertyPath: target
       value: 
+<<<<<<< HEAD
       objectReference: {fileID: 1938988425}
+=======
+      objectReference: {fileID: 958374225}
+>>>>>>> parent of 6880c2e... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 1ac846862f105864ba9985b6bf96c09e, type: 3}
 --- !u!1001 &1761957401161026837
