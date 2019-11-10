@@ -426,7 +426,7 @@ RectTransform:
   - {fileID: 2116356495}
   - {fileID: 648961682}
   m_Father: {fileID: 0}
-  m_RootOrder: 20
+  m_RootOrder: 19
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -2563,6 +2563,7 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 20
 =======
       value: 21
@@ -2579,6 +2580,9 @@ PrefabInstance:
 =======
       value: 21
 >>>>>>> parent of 54ee2ee... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
+=======
+      value: 20
+>>>>>>> parent of 6fcd213... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
       objectReference: {fileID: 0}
     - target: {fileID: 3216839894643597444, guid: 26473db84e6034998b09645f74991945,
         type: 3}
@@ -5349,6 +5353,7 @@ Transform:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
   m_RootOrder: 21
 =======
   m_RootOrder: 22
@@ -5365,6 +5370,9 @@ Transform:
 =======
   m_RootOrder: 22
 >>>>>>> parent of 54ee2ee... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
+=======
+  m_RootOrder: 21
+>>>>>>> parent of 6fcd213... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1844841930
 GameObject:
@@ -5993,6 +6001,7 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
+<<<<<<< HEAD
       value: 18
 =======
       value: 19
@@ -6009,6 +6018,9 @@ PrefabInstance:
 =======
       value: 19
 >>>>>>> parent of 54ee2ee... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
+=======
+      value: 18
+>>>>>>> parent of 6fcd213... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
       objectReference: {fileID: 0}
     - target: {fileID: 6614975168809975061, guid: 244d441055ce8704a837c87c0aaffa5b,
         type: 3}
