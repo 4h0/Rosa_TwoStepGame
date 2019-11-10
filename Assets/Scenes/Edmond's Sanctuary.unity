@@ -324,6 +324,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   h: 0
+  material: []
 --- !u!4 &365647729 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3216839893843181200, guid: 26473db84e6034998b09645f74991945,
@@ -847,6 +848,7 @@ MeshRenderer:
   m_RendererPriority: 0
   m_Materials:
   - {fileID: 2100000, guid: 3ccf74e6c291af84da623bd35b4df0e6, type: 2}
+  - {fileID: 2100000, guid: b2f7512f63e76e4479e29882101c887a, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
