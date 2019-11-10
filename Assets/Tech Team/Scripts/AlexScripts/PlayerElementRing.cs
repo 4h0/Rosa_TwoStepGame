@@ -23,7 +23,7 @@ public class PlayerElementRing : MonoBehaviour
 
     void Checker()
     {
-        if (PlayerElements.FireElement)
+        if (PlayerElements.FireElement.fillAmount >= .5f)
         {
             StartCoroutine(PlayFireRing());
         }
