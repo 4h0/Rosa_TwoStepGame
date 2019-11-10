@@ -14,6 +14,12 @@ public class triggering : MonoBehaviour
     private float current = 0f;
     private bool times = true;
 
+
+    //For the colors
+    private GameObject color1;
+    private GameObject color2;
+    private GameObject color3;
+
     //this block is for checking if the simon says puzzle3
     private bool check1;
     private bool check2;
@@ -130,7 +136,7 @@ public class triggering : MonoBehaviour
         box = GameObject.Find("box");
 
         current = timer;
-        
+        color1
 
 
     }
