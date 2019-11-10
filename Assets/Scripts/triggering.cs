@@ -97,7 +97,7 @@ public class triggering : MonoBehaviour
             // Debug.Log(orderings[el]);
             // for (int a = 0; a < 3; a++)
             // {
-
+            check1 = check2 = check3 = false;
             // }
             for (int al = 0; al < 3; al++)
             {
