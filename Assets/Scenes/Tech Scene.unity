@@ -1277,11 +1277,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lockCursor: 0
-  mouseSensitivity: 4
+  mouseSensitivity: 8
   target: {fileID: 446718919}
   dstFromTarget: 5
   pitchMinMax: {x: -20, y: 65}
-  rotationSmoothTime: 1.2
+  rotationSmoothTime: 0.2
 --- !u!81 &335284304
 AudioListener:
   m_ObjectHideFlags: 0
