@@ -197,7 +197,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   strengthRayEndPoint: {fileID: 0}
-  rayCastLayerMask: []
+  rayCastLayerMask:
+  - serializedVersion: 2
+    m_Bits: 256
+  - serializedVersion: 2
+    m_Bits: 512
   canMove: 0
   onGround: 0
   jumping: 0
