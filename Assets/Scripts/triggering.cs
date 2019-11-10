@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using System.Linq;
 
 public class triggering : MonoBehaviour
 {
@@ -11,16 +12,17 @@ public class triggering : MonoBehaviour
     private GameObject box;
     private float timer = 6f;
     private float current = 0f;
-    private float order;
+    
 
     //this block is for checking if the simon says puzzle3
     private bool check1;
     private bool check2;
     private bool check3;
     //checks arraylist
-    int[] correct =new int[3] { 3, 1, 2 };
-    int[] orderings = new int[3];
-    private int abc;
+    private List<int> orderings = new List<int>();
+    private List<int> correctorder = new List<int>() {1, 2, 3};
+   
+    private bool check=true;
 
 
 
@@ -33,6 +35,15 @@ public class triggering : MonoBehaviour
 
 
     {
+
+
+
+
+
+
+
+
+
         if (col.gameObject.name == "cube")
         {
 
@@ -41,7 +52,7 @@ public class triggering : MonoBehaviour
             // Debug.Log(h);
         }
 
-        else if (col.gameObject.CompareTag("start"))
+        else if (col.gameObject.name=="position1")
         {
             ab = true;
             Debug.Log("Okay, you have 10 seconds to reach the other position.");
@@ -53,28 +64,63 @@ public class triggering : MonoBehaviour
         { 
         Debug.Log("Light");
         check1 = true;
-            orderings[2] = 3;
-            Debug.Log(orderings[2]);
+            orderings.Add(3);   
             check1 = true;
+            Debug.Log("You chose 3");
         }
 
 
         //check another object
         else if (col.gameObject.name == "simonsays2")
         {
-            orderings[1] = 2;
+            orderings.Add(1);
             check2 = true;
-            Debug.Log(orderings[1]);
+            Debug.Log("You chose 1");
+            
         }
         //checked if the other box has bee lifted.
 
         else if (col.gameObject.name == "simonsays3")
         {
-            orderings[0] = 1;
+            orderings.Add(2);
             check3 = true;
-            Debug.Log(orderings[0]);
+            Debug.Log("You chose 2");
 
         }
+
+
+
+        //checks if the user checks all values;
+        if (check1 == true && check2 == true && check3 == true)
+        {
+            // foreach (int el in orderings)
+            // Debug.Log(orderings[el]);
+            // for (int a = 0; a < 3; a++)
+            // {
+
+            // }
+            for (int al = 0; al < 3; al++)
+            {
+                if (orderings[al] != correctorder[al])
+                {
+
+                    check = false;
+                }
+
+                //Debug.Log("Correct "+correctorder[al]+ "userinput: "+orderings[al]);
+                // yes++;
+            }
+
+
+            if (check == false)
+
+                Debug.Log("no");
+
+            else
+                Debug.Log("yes");
+        }
+
+
     }
 
     void Start()
@@ -84,7 +130,7 @@ public class triggering : MonoBehaviour
         box = GameObject.Find("box");
 
         current = timer;
-
+        
 
 
     }
@@ -115,7 +161,7 @@ public class triggering : MonoBehaviour
         {
 
             current -= 1 * Time.deltaTime;
-            Debug.Log(current);
+            Debug.Log("You have " +current+" seconds left");
             if (current <= 0)
             {
                 current = 0;
@@ -124,35 +170,18 @@ public class triggering : MonoBehaviour
             }
 
         }
-        //checks if the user checks all values;
-        if (check1==true && check2==true && check3==true)
-        {
-            check1 = check2 = check3 = false;
+        
 
-            for (int a = 0; a < 3; a++)
-            {
-                int b=0;
-                b++;
-                if (correct[a] == orderings[a])
-                {
-                    abc++;
-                Debug.Log(abc);
-                }
 
-            }
-        if (abc == 3)
-                Debug.Log("Congrulations, you win the game");
 
-         else
-            Debug.Log("You didn't put in the correct order");
-            Debug.Log(abc+" is the number of times you answered the correct answer");
 
-        }
+        
+    }
 
 
        
 
-    }
+    
 
 
 
