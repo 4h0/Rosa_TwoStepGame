@@ -10,9 +10,9 @@ public class triggering : MonoBehaviour
     // Start is called before the first frame update
     private Vector3 target=new Vector3(1097, 263, 50);
     private GameObject box;
-    private float timer = 10f;
+    private float timer = 12f;
     private float current = 0f;
-    
+    private bool times = true;
 
     //this block is for checking if the simon says puzzle3
     private bool check1;
@@ -55,7 +55,7 @@ public class triggering : MonoBehaviour
         else if (col.gameObject.name=="position1")
         {
             ab = true;
-            Debug.Log("Okay, you have 10 seconds to reach the other position.");
+            Debug.Log("Okay, you have 12 seconds to reach the other position.");
         }
         else if (col.gameObject.name == "position2")
             yos = true;
@@ -143,20 +143,32 @@ public class triggering : MonoBehaviour
 
         if (ab)
         {
+            
 
-            if (current != 0)
+            if (times == true && current >= 0.0f)
             {
-                current -= 1 * Time.deltaTime;
+
+                current -= 1*Time.deltaTime;
                 Debug.Log("You have " + current + " seconds left");
-                if (current <= 0)
-                {
-                    current = 0;
-                    Timer();
-                }
+
+
+
 
             }
 
+            else if (current <= 0)
+            { 
+            times = false;
+            
+            Debug.Log("You have 0 seconds left");
+                Timer();
+
+            }
+
+
         }
+
+       
 
 
 
@@ -233,3 +245,4 @@ public class triggering : MonoBehaviour
     // }
 
 }
+
