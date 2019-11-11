@@ -39,6 +39,8 @@ public class triggering : MonoBehaviour
     //this is material
 
 
+    private bool yes1;
+
     //For the colors
     private GameObject color1;
 
@@ -191,7 +193,7 @@ public class triggering : MonoBehaviour
         {
 
 
-            if (times == true && current >= 0.0f)
+            if (times == true && yos!=true)
             {
                 doner.enabled = true;
                 current -= 1 * Time.deltaTime;
@@ -203,11 +205,11 @@ public class triggering : MonoBehaviour
 
             }
 
-            else if (current <= 0)
+            if (current <= 0|| yos==true)
             {
                 times = false;
-
-                Debug.Log("You have 0 seconds left");
+                
+                yes1=true;
                 Timer();
 
             }
@@ -279,7 +281,7 @@ void reset()
     {
 
 
-        if (yos == true && current != 0)
+        if (yos == true && current >= 0)
         {
             Debug.Log("you win");
             Invoke("alert", 3f);
@@ -290,6 +292,7 @@ void reset()
        else
         {
             yos = false;
+            current = 0;
             Invoke("lose", 1f);
         }
             
