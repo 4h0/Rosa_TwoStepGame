@@ -7,27 +7,16 @@ public class StoneLogic : MonoBehaviour
     private Rigidbody stoneRigidBody;
     private Puzzle1_Khoa puzzle1Reference;
 
-    private bool doOnce;
+    private bool puzzle1DoOnce;
 
     private void Awake()
     {       
         stoneRigidBody = GetComponent<Rigidbody>();
         puzzle1Reference = FindObjectOfType<Puzzle1_Khoa>();
 
-        doOnce = false;
+        puzzle1DoOnce = false;
     }
 
-    private void Update()
-    {
-        Debug.Log(doOnce);
-    }
-
-    private void Puzzle1Start()
-    {
-        doOnce = true;
-        puzzle1Reference.ChangeDirection();
-    }
-    
     private void OnCollisionEnter(Collision collision)
     {
         if(collision.gameObject.tag == "Player")
@@ -46,16 +35,18 @@ public class StoneLogic : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "Puzzle1Trigger" && !doOnce)
+        if (other.gameObject.tag == "Puzzle1Trigger" && !puzzle1DoOnce)
         {
-            Puzzle1Start();
+            puzzle1DoOnce = true;
+            puzzle1Reference.ChangeDirection();
         }
     }
     private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Puzzle1Trigger")
+        if (other.gameObject.tag == "Puzzle1Trigger" && puzzle1DoOnce)
         {
-            doOnce = false;
+            puzzle1DoOnce = false;
+            puzzle1Reference.ChangeDirection();
         }
     }
 }

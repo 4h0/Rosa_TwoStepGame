@@ -4,59 +4,41 @@ using UnityEngine;
 
 public class Puzzle1_Khoa : MonoBehaviour
 {
-    public Transform destination;
+    public Transform startPoint, endPoint;
 
-    private Rigidbody doorRigidbody;
-    private Transform originalPosition;
-    private Transform movetoDestination;
+    private Transform moveToDestination;
 
-    private bool canChange;
     private int turnBack;
-    private int multiplier;
 
     private void Awake()
     {
-        doorRigidbody = GetComponent<Rigidbody>();
-
-        originalPosition = this.transform;
-        movetoDestination = originalPosition;
+        moveToDestination = new GameObject().transform;
+        moveToDestination.position = startPoint.position;
 
         turnBack = 0;
+        StartCoroutine(MoveDoor());
     }
 
-    private void FixedUpdate()
+    IEnumerator MoveDoor()
     {
-        if(canChange)
-        {
-            doorRigidbody.AddForce(transform.right * multiplier * Time.deltaTime * 300, ForceMode.Acceleration); 
-        }
-        else
-        {
-            doorRigidbody.velocity = new Vector3(0, 0, 0);
-        }
-    }
+        this.transform.position = Vector3.Lerp(transform.position, moveToDestination.position, .03f);
 
-    IEnumerator CanMove()
-    {
-        canChange = true;
+        yield return new WaitForEndOfFrame();
 
-        yield return new WaitForSeconds(3f);
-
-        canChange = false;
+        StartCoroutine(MoveDoor());
     }
 
     public void ChangeDirection()
     {
         turnBack++;
-        StartCoroutine(CanMove());
 
         if (turnBack % 2 == 0)
         {
-            multiplier = -1;
+            moveToDestination.position = startPoint.position;
         }
         else
         {
-            multiplier = 1;
+            moveToDestination.position = endPoint.position;
         }
     }
 }
