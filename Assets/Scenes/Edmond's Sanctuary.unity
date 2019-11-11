@@ -482,6 +482,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doner: {fileID: 0}
+  red: {fileID: 0}
+  blue: {fileID: 0}
   wincondition: {fileID: 0}
   h: 0
   counter: 0
@@ -1063,6 +1065,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doner: {fileID: 217050549}
+  red: {fileID: 0}
+  blue: {fileID: 0}
   wincondition: {fileID: 153050242}
   h: 0
   counter: 0
@@ -1440,7 +1444,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1986049680}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -1122, y: 245, z: 490}
+  m_LocalPosition: {x: -1118, y: 245, z: 490}
   m_LocalScale: {x: 205.74803, y: 205.74803, z: 205.74803}
   m_Children: []
   m_Father: {fileID: 0}
