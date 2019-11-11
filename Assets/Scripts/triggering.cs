@@ -15,6 +15,11 @@ public class triggering : MonoBehaviour
 
     private GameObject pos2;
 
+    public Material red;
+    public Material blue;
+
+
+
 
     public Text wincondition;
 
@@ -27,7 +32,7 @@ public class triggering : MonoBehaviour
     private float timer = 12f;
     private float current = 0f;
     private bool times = true;
-    private GameObject[] samian;
+    private GameObject[] samian=new GameObject[3];
 
     public int counter;
 
@@ -62,11 +67,13 @@ public class triggering : MonoBehaviour
 
     {
 
+        if (col.gameObject.name=="Player")
+        {
+            samian[0].GetComponent<Renderer>().material = red;
 
 
 
-
-
+        }
 
 
 
@@ -94,7 +101,8 @@ public class triggering : MonoBehaviour
             orderings.Add(3);
             check1 = true;
             Debug.Log("You chose 3");
-            //GameObject.Find("simonsays1").GetComponent<Renderer>().material = blue;
+          
+            
         }
 
 
@@ -104,7 +112,7 @@ public class triggering : MonoBehaviour
             orderings.Add(1);
             check2 = true;
             Debug.Log("You chose 1");
-
+          
 
         }
         //checked if the other box has bee lifted.
@@ -167,7 +175,7 @@ public class triggering : MonoBehaviour
         samian = GameObject.FindGameObjectsWithTag("race");
         for (int abd = 0; abd < 3; abd++)
         {
-
+            samian[abd].GetComponent<Renderer>().material = blue;
 
 
         }
@@ -282,7 +290,7 @@ void reset()
        else
         {
             yos = false;
-            Invoke("lose", 4f);
+            Invoke("lose", 1f);
         }
             
 
@@ -293,7 +301,7 @@ void reset()
     {
         wincondition.text = "You lost";
         wincondition.enabled = true;
-        Invoke("hey", 1f);
+        
 
 
     }
