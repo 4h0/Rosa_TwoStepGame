@@ -279,10 +279,32 @@ void reset()
 
         }
 
-        else
-            Debug.Log("Sorry, you lose half of your elemetal gauge.");
+       else
+        {
+            yos = false;
+            Invoke("lose", 4f);
+        }
+            
 
     }
+
+    //conditon to lose
+    void lose()
+    {
+        wincondition.text = "You lost";
+        wincondition.enabled = true;
+        Invoke("hey", 1f);
+
+
+    }
+
+    void hey ()
+    {
+        wincondition.enabled = false;
+
+    }
+
+   
 
 
 
