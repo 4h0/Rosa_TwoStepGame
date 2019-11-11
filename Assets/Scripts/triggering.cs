@@ -10,8 +10,11 @@ public class triggering : MonoBehaviour
 
     //own materials
 
-    public Material red;
-    public Material blue;
+   // public Material red;
+   // public Material blue;
+
+    private GameObject pos2;
+
 
     public Text wincondition;
 
@@ -153,7 +156,7 @@ public class triggering : MonoBehaviour
 
     void Start()
     {
-
+        pos2 = GameObject.Find("position2");
         door = GameObject.Find("door");
         box = GameObject.Find("box");
         current = timer;

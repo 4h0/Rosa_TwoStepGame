@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class Colors : MonoBehaviour
+public class colored : MonoBehaviour
 {
     public Material red;
     public Material blue;

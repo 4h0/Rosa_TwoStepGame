@@ -482,8 +482,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doner: {fileID: 0}
-  red: {fileID: 0}
-  blue: {fileID: 0}
   wincondition: {fileID: 0}
   h: 0
   counter: 0
@@ -844,7 +842,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 822026879}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d52260f26ebe45448b9577473d57f108, type: 3}
+  m_Script: {fileID: 11500000, guid: 016969d93e28ecf46aeff3fb38fe8788, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   red: {fileID: 2100000, guid: 649d6437c6f0dfa4ea145d3f5c052c6b, type: 2}
@@ -1065,8 +1063,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   doner: {fileID: 217050549}
-  red: {fileID: 0}
-  blue: {fileID: 0}
   wincondition: {fileID: 153050242}
   h: 0
   counter: 0
@@ -1174,6 +1170,7 @@ GameObject:
   - component: {fileID: 1296735770}
   - component: {fileID: 1296735769}
   - component: {fileID: 1296735768}
+  - component: {fileID: 1296735772}
   m_Layer: 0
   m_Name: position2
   m_TagString: done
@@ -1253,6 +1250,20 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 7
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1296735772
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1296735767}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 016969d93e28ecf46aeff3fb38fe8788, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  red: {fileID: 2100000, guid: 649d6437c6f0dfa4ea145d3f5c052c6b, type: 2}
+  blue: {fileID: 2100000, guid: 3ccf74e6c291af84da623bd35b4df0e6, type: 2}
 --- !u!1 &1506199748
 GameObject:
   m_ObjectHideFlags: 0
