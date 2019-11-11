@@ -4,14 +4,17 @@ using UnityEngine;
 
 public class Puzzle1_Khoa : MonoBehaviour
 {
-    public Transform startPoint, endPoint;
+    public Transform endPoint;
 
-    private Transform moveToDestination;
+    private Transform startPoint, moveToDestination;
 
     private int turnBack;
 
     private void Awake()
     {
+        startPoint = new GameObject().transform;
+        startPoint.position = this.transform.position;
+
         moveToDestination = new GameObject().transform;
         moveToDestination.position = startPoint.position;
 
@@ -23,7 +26,7 @@ public class Puzzle1_Khoa : MonoBehaviour
     {
         this.transform.position = Vector3.Lerp(transform.position, moveToDestination.position, .03f);
 
-        yield return new WaitForEndOfFrame();
+        yield return new WaitForSeconds(.06f);
 
         StartCoroutine(MoveDoor());
     }
