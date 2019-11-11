@@ -14,6 +14,7 @@ TagManager:
   - PickUp
   - Ground
   - Wall
+  - Puzzle1Trigger
   layers:
   - Default
   - TransparentFX
