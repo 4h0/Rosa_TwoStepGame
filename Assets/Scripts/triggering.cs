@@ -5,10 +5,6 @@ using System.Linq;
 
 public class triggering : MonoBehaviour
 {
-    //sets the color
-    
-
-
     public int h=0;
     private GameObject door;
     // Start is called before the first frame update
@@ -17,11 +13,8 @@ public class triggering : MonoBehaviour
     private float timer = 12f;
     private float current = 0f;
     private bool times = true;
-    
+    private Renderer read;
 
-    //this is material
-    public Material[] material;
-    Renderer read;
     //For the colors
     private GameObject color1;
     private GameObject color2;
@@ -69,7 +62,6 @@ public class triggering : MonoBehaviour
         {
             ab = true;
             Debug.Log("Okay, you have 12 seconds to reach the other position.");
-           
         }
         else if (col.gameObject.name == "position2")
             yos = true;
@@ -104,7 +96,7 @@ public class triggering : MonoBehaviour
 
         else if(col.gameObject.name=="position1")
         {
-            read.sharedMaterial = material[1];
+
           
 
 
@@ -147,13 +139,12 @@ public class triggering : MonoBehaviour
 
     void Start()
     {
-        color1 = GameObject.Find("position1");
+
         door = GameObject.Find("door");
         box = GameObject.Find("box");
 
-        read = color1.GetComponent<Renderer>();
-        read.sharedMaterial = material[0];
-       
+        color1 = GameObject.Find("position1");
+        
 
 
     }
