@@ -36,14 +36,20 @@ public class Puzzle2_Khoa : MonoBehaviour
         if(other.gameObject.tag == "Player" && !doOnce && UIReference.puzzle2CanStart)
         {
             StartCoroutine(TakingTimeOff());
+
             this.GetComponent<MeshRenderer>().material.color = Color.blue;
         }
     }    private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player" && UIReference.puzzle2CanStart)
+        if (other.gameObject.tag == "Player")
         {
-            StartCoroutine(UIReference.Puzzle2End());
-            this.GetComponent<MeshRenderer>().material.color = Color.red;
+            if (UIReference.puzzle2CanStart)
+            {
+                StartCoroutine(UIReference.Puzzle2End());
+
+                currentTime = maxTime; Debug.Log(maxTime);
+                this.GetComponent<MeshRenderer>().material.color = Color.red;
+            }
         }
     }
 }

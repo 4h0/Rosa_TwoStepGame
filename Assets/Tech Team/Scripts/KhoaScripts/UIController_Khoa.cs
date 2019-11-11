@@ -43,6 +43,11 @@ public class UIController_Khoa : MonoBehaviour
         {
             timerText.text = "You Fail";
 
+            int randomDeduction = Random.Range(0, 3);
+            playerControllerReference.maxElementCounter[randomDeduction] /= 2;
+            playerControllerReference.elementalList[randomDeduction] = playerControllerReference.maxElementCounter[randomDeduction];
+            UpdateElement(randomDeduction);
+
             StartCoroutine(Puzzle2End());
         }
     }
@@ -50,12 +55,7 @@ public class UIController_Khoa : MonoBehaviour
     public IEnumerator Puzzle2End()
     {
         puzzle2CanStart = false;
-
-        int randomDeduction = Random.Range(0, 3);
-        playerControllerReference.maxElementCounter[randomDeduction] /= 2;
-        playerControllerReference.elementalList[randomDeduction] = playerControllerReference.maxElementCounter[randomDeduction];
-        UpdateElement(randomDeduction);
-
+        
         yield return new WaitForSeconds(3f);
 
         timerText.enabled = false;
