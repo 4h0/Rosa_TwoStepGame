@@ -21,9 +21,10 @@ public class PlayerController_Alex : MonoBehaviour
     public int jumpCounter, maxJumpCounter;
     public float walkSpeed, runSpeed, dashMultiplier, maxDashMultiplier;
     public float jumpForce, turnSmoothTime, speedSmoothTime;
-    public float dashForce, maxElementCounter;
+    public float dashForce;
 
     public float[] elementalList;
+    public float[] maxElementCounter;
 
     private bool abilityCooling, strengthRayCastStart;
     private bool usingStrength, canGlide, gliding;

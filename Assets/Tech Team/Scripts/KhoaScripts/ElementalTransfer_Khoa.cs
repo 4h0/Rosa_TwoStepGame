@@ -45,9 +45,9 @@ public class ElementalTransfer_Khoa : MonoBehaviour
 
     IEnumerator GavePlayer()
     {
-        if(playerReference.elementalList[elementType] < playerReference.maxElementCounter)
+        if(playerReference.elementalList[elementType] < playerReference.maxElementCounter[elementType])
         {
-            playerReference.elementalList[elementType] = playerReference.maxElementCounter;
+            playerReference.elementalList[elementType] = playerReference.maxElementCounter[elementType];
             uiReference.UpdateElement(elementType);
 
             doOnce = true;

@@ -5,10 +5,14 @@ using UnityEngine.UI;
 
 public class UIController_Khoa : MonoBehaviour
 {
+    public Text timerText;
+    public Text[] elementalText;
     public Image dashMultiplier;
     public Image[] element;
 
     private PlayerController_Alex playerControllerReference;
+
+    public bool puzzle2CanStart;
 
     private void Awake()
     {
@@ -17,9 +21,47 @@ public class UIController_Khoa : MonoBehaviour
             image.fillAmount = 0;
             image.enabled = true;
         }
+        foreach (Text text in elementalText)
+        {
+            text.enabled = false;
+        }
 
         playerControllerReference = FindObjectOfType<PlayerController_Alex>();
-    }    
+
+        timerText.enabled = false;
+        puzzle2CanStart = true;
+    }
+
+    public void Puzzle2Start(int timer)
+    {
+        timerText.enabled = true;
+        if (timer > 0)
+        {
+            timerText.text = (timer / 60).ToString() + " : " + (timer % 60).ToString();
+        }
+        else
+        {
+            timerText.text = "You Fail";
+
+            StartCoroutine(Puzzle2End());
+        }
+    }
+
+    public IEnumerator Puzzle2End()
+    {
+        puzzle2CanStart = false;
+
+        int randomDeduction = Random.Range(0, 3);
+        playerControllerReference.maxElementCounter[randomDeduction] /= 2;
+        playerControllerReference.elementalList[randomDeduction] = playerControllerReference.maxElementCounter[randomDeduction];
+        UpdateElement(randomDeduction);
+
+        yield return new WaitForSeconds(3f);
+
+        timerText.enabled = false;
+
+        puzzle2CanStart = true;
+    }
 
     public void DashMultiplierOn()
     {
@@ -37,6 +79,9 @@ public class UIController_Khoa : MonoBehaviour
 
     public void UpdateElement(int whichElement)
     {
-        element[whichElement].fillAmount = playerControllerReference.elementalList[whichElement] / playerControllerReference.maxElementCounter;
+        element[whichElement].fillAmount = playerControllerReference.elementalList[whichElement] / playerControllerReference.maxElementCounter[whichElement];
+
+        elementalText[whichElement].text = (playerControllerReference.maxElementCounter[whichElement]).ToString();
+        elementalText[whichElement].enabled = true;
     }
 }
