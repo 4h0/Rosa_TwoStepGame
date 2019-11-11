@@ -13,7 +13,7 @@ public class triggering : MonoBehaviour
     private float timer = 12f;
     private float current = 0f;
     private bool times = true;
-    private Renderer read;
+
 
     //For the colors
     private GameObject color1;
@@ -94,14 +94,6 @@ public class triggering : MonoBehaviour
 
         }
 
-        else if(col.gameObject.name=="position1")
-        {
-
-          
-
-
-        }
-
 
 
         //checks if the user checks all values;
@@ -143,8 +135,8 @@ public class triggering : MonoBehaviour
         door = GameObject.Find("door");
         box = GameObject.Find("box");
 
-        color1 = GameObject.Find("position1");
-        
+        current = timer;
+        color1
 
 
     }
