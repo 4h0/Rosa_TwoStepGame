@@ -13,7 +13,7 @@ public class triggering : MonoBehaviour
     public Material red;
     public Material blue;
 
-
+    public Text wincondition;
 
     Material material;
     public int h = 0;
@@ -158,8 +158,9 @@ public class triggering : MonoBehaviour
         box = GameObject.Find("box");
         current = timer;
         doner = GameObject.Find("countdown").GetComponent<Text>();
-
+        wincondition = GameObject.Find("Winner").GetComponent<Text>();
         doner.enabled = false;
+        wincondition.enabled = false;
         samian = GameObject.FindGameObjectsWithTag("race");
         for (int abd = 0; abd < 3; abd++)
         {
@@ -244,8 +245,20 @@ public class triggering : MonoBehaviour
 
     }
 
+    void alert()
+    {
+
+        wincondition.enabled = true;
+        Invoke("reset", 4f);
+
+    }
+void reset()
+    {
+        wincondition.enabled = false;
 
 
+
+    }
 
 
 
@@ -256,7 +269,12 @@ public class triggering : MonoBehaviour
 
 
         if (yos == true && current != 0)
+        {
             Debug.Log("you win");
+            Invoke("alert", 3f);
+
+
+        }
 
         else
             Debug.Log("Sorry, you lose half of your elemetal gauge.");
