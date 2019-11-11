@@ -2967,6 +2967,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StrengthTest (3)
       objectReference: {fileID: 0}
+    - target: {fileID: 1465601000159795215, guid: 8996c4043e514de47a5dc7cb30dd2deb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1465601000159795211, guid: 8996c4043e514de47a5dc7cb30dd2deb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -3531,6 +3536,11 @@ PrefabInstance:
       propertyPath: m_Name
       value: StrengthTest (2)
       objectReference: {fileID: 0}
+    - target: {fileID: 1465601000159795215, guid: 8996c4043e514de47a5dc7cb30dd2deb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
+      objectReference: {fileID: 0}
     - target: {fileID: 1465601000159795211, guid: 8996c4043e514de47a5dc7cb30dd2deb,
         type: 3}
       propertyPath: m_LocalPosition.x
@@ -4009,7 +4019,7 @@ GameObject:
   - component: {fileID: 2115552923}
   - component: {fileID: 2115552922}
   - component: {fileID: 2115552921}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Ground
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4099,6 +4109,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: StrengthTest (1)
+      objectReference: {fileID: 0}
+    - target: {fileID: 1465601000159795215, guid: 8996c4043e514de47a5dc7cb30dd2deb,
+        type: 3}
+      propertyPath: m_Layer
+      value: 9
       objectReference: {fileID: 0}
     - target: {fileID: 1465601000159795211, guid: 8996c4043e514de47a5dc7cb30dd2deb,
         type: 3}
