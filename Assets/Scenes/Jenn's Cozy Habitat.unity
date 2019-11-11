@@ -141,15 +141,12 @@ GameObject:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
   - component: {fileID: 313227714}
 =======
 >>>>>>> 8b565138bf5a13d4513b30a7e5e369f92d946a8e
 =======
 >>>>>>> parent of 6880c2e... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
   - component: {fileID: 313227707}
-=======
->>>>>>> parent of 30f118c... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
 =======
 >>>>>>> parent of 30f118c... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
   m_Layer: 0
@@ -269,7 +266,6 @@ Transform:
   m_RootOrder: 5
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 <<<<<<< HEAD
-<<<<<<< HEAD
 --- !u!114 &313227707
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -291,8 +287,6 @@ MonoBehaviour:
 >>>>>>> parent of 30f118c... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
 =======
 >>>>>>> parent of 6880c2e... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
-=======
->>>>>>> parent of 30f118c... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
 --- !u!114 &313227708
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -1884,7 +1878,6 @@ GameObject:
   - component: {fileID: 1894386960}
   - component: {fileID: 1894386964}
   - component: {fileID: 1894386965}
-<<<<<<< HEAD
   - component: {fileID: 1894386966}
 <<<<<<< HEAD
 >>>>>>> 8b565138bf5a13d4513b30a7e5e369f92d946a8e
@@ -1892,8 +1885,6 @@ GameObject:
 >>>>>>> parent of 30f118c... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
 =======
 >>>>>>> parent of 6880c2e... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
-=======
->>>>>>> parent of 30f118c... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
   m_Layer: 0
   m_Name: Toon
   m_TagString: NPC
