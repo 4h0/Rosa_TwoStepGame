@@ -16,6 +16,7 @@ TagManager:
   - Wall
   - done
   - start
+  - race
   layers:
   - Default
   - TransparentFX
