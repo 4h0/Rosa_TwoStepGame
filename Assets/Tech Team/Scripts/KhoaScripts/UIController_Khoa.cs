@@ -34,7 +34,6 @@ public class UIController_Khoa : MonoBehaviour
 
     public void Puzzle2Start(int timer)
     {
-        timerText.enabled = true;
         if (timer > 0)
         {
             timerText.text = (timer / 60).ToString() + " : " + (timer % 60).ToString();
@@ -44,12 +43,20 @@ public class UIController_Khoa : MonoBehaviour
             timerText.text = "You Fail";
 
             int randomDeduction = Random.Range(0, 3);
+
             playerControllerReference.maxElementCounter[randomDeduction] /= 2;
             playerControllerReference.elementalList[randomDeduction] = playerControllerReference.maxElementCounter[randomDeduction];
             UpdateElement(randomDeduction);
 
             StartCoroutine(Puzzle2End());
         }
+
+        timerText.enabled = true;
+    }
+
+    public void WinTextUpdate()
+    {
+        timerText.text = "You Win";
     }
 
     public IEnumerator Puzzle2End()

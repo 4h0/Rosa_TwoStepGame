@@ -45,9 +45,14 @@ public class Puzzle2_Khoa : MonoBehaviour
         {
             if (UIReference.puzzle2CanStart)
             {
+                if(currentTime > 0)
+                {
+                    UIReference.WinTextUpdate();
+                }
+
                 StartCoroutine(UIReference.Puzzle2End());
 
-                currentTime = maxTime; Debug.Log(maxTime);
+                currentTime = maxTime;
                 this.GetComponent<MeshRenderer>().material.color = Color.red;
             }
         }
