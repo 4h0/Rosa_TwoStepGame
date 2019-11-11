@@ -2468,7 +2468,6 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
       value: 20
 =======
       value: 21
@@ -2488,9 +2487,6 @@ PrefabInstance:
 =======
       value: 20
 >>>>>>> parent of 6fcd213... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
-=======
-      value: 20
->>>>>>> parent of 5372ced... Update Tech Scene.unity
 =======
       value: 20
 >>>>>>> parent of 5372ced... Update Tech Scene.unity
@@ -5067,7 +5063,6 @@ Transform:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
   m_RootOrder: 21
 =======
   m_RootOrder: 22
@@ -5087,9 +5082,6 @@ Transform:
 =======
   m_RootOrder: 21
 >>>>>>> parent of 6fcd213... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
-=======
-  m_RootOrder: 21
->>>>>>> parent of 5372ced... Update Tech Scene.unity
 =======
   m_RootOrder: 21
 >>>>>>> parent of 5372ced... Update Tech Scene.unity
@@ -5734,7 +5726,6 @@ PrefabInstance:
 <<<<<<< HEAD
 <<<<<<< HEAD
 <<<<<<< HEAD
-<<<<<<< HEAD
       value: 18
 =======
       value: 19
@@ -5754,9 +5745,6 @@ PrefabInstance:
 =======
       value: 18
 >>>>>>> parent of 6fcd213... Merge branch 'Tech-Branch' of https://github.com/4h0/Rosa_TwoStepGame into Tech-Branch
-=======
-      value: 18
->>>>>>> parent of 5372ced... Update Tech Scene.unity
 =======
       value: 18
 >>>>>>> parent of 5372ced... Update Tech Scene.unity
