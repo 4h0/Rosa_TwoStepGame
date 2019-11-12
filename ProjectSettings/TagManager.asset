@@ -14,9 +14,7 @@ TagManager:
   - PickUp
   - Ground
   - Wall
-  - done
-  - start
-  - race
+  - Puzzle1Trigger
   layers:
   - Default
   - TransparentFX
