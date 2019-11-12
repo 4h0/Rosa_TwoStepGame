@@ -5,38 +5,32 @@ using Fungus; // must be used. This allows the script to access the fungus scrip
 
 public class dialogueTrigger : MonoBehaviour
 {
-    public Flowchart flowchart; // grants access/calls the flowchart I'm putting the dialogue boxes/info in.
-    public GameObject NPC;
-
+    public Flowchart flowchart; // calls the flowchart.
+    private bool hasPlayer; // is the player in a collider? yes or no
 
     private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.K) && triggerStay)
+        if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {
-          //
+            flowchart.ExecuteBlock("Testing1"); // we execute the named block within the flowchart.
         }
     }
 
-    bool triggerStay = false;
 
-    void OnTriggerStay(Collider collision) 
-        {
-            if (collision.gameObject.CompareTag("NPC")) // checking to see if the GameObject is tagged as an NPC && the Q key is being pressed.
-            {
-                triggerStay = true;
-                // flowchart.ExecuteBlock("NPC Dialogue"); // executes the NPC Dialogue box within the flowchart.
-                Debug.Log("Collision & Button press detected."); //Debug to check for collision.
-                 
-                
-            }
-        }
-
-    void OnTriggerExit(Collider collision)
+    void OnTriggerEnter(Collider other) // collider stuff
     {
-        Debug.Log("Exited");
-        if (collision.gameObject.CompareTag("NPC"))
+        Debug.Log("Entered"); // testing to see if entered
+        if (other.CompareTag("Player")) //if the player is colliding with trigger
         {
-            triggerStay = false;
+            hasPlayer = true; // set hasPlayer to true!
+        }
+    }
+
+    private void OnTriggerExit(Collider other) //when leaving the trigger
+    {
+        if (other.CompareTag("Player")) // checks for the player tag
+        {
+            hasPlayer = false; // sets hasPlayer to be false so dialogue won't play.
         }
     }
 }
