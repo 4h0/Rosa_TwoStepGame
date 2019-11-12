@@ -1729,49 +1729,9 @@ PrefabInstance:
       objectReference: {fileID: 2060618953}
     - target: {fileID: 6995596867070928717, guid: 421fd87dc58024ce4883a24e6278d349,
         type: 3}
-      propertyPath: rayCastLayerMask.Array.size
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 6995596867070928717, guid: 421fd87dc58024ce4883a24e6278d349,
-        type: 3}
-      propertyPath: maxElementCounter.Array.size
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6995596867070928717, guid: 421fd87dc58024ce4883a24e6278d349,
-        type: 3}
       propertyPath: strengthRayEndPoint
       value: 
       objectReference: {fileID: 413000689}
-    - target: {fileID: 6995596867070928717, guid: 421fd87dc58024ce4883a24e6278d349,
-        type: 3}
-      propertyPath: rayCastLayerMask.Array.data[0].m_Bits
-      value: 256
-      objectReference: {fileID: 0}
-    - target: {fileID: 6995596867070928717, guid: 421fd87dc58024ce4883a24e6278d349,
-        type: 3}
-      propertyPath: rayCastLayerMask.Array.data[1].m_Bits
-      value: 512
-      objectReference: {fileID: 0}
-    - target: {fileID: 6995596867070928717, guid: 421fd87dc58024ce4883a24e6278d349,
-        type: 3}
-      propertyPath: maxElementCounter.Array.data[0]
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6995596867070928717, guid: 421fd87dc58024ce4883a24e6278d349,
-        type: 3}
-      propertyPath: maxElementCounter.Array.data[1]
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6995596867070928717, guid: 421fd87dc58024ce4883a24e6278d349,
-        type: 3}
-      propertyPath: maxElementCounter.Array.data[2]
-      value: 12
-      objectReference: {fileID: 0}
-    - target: {fileID: 6995596867070928717, guid: 421fd87dc58024ce4883a24e6278d349,
-        type: 3}
-      propertyPath: maxElementCounter.Array.data[3]
-      value: 12
-      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 421fd87dc58024ce4883a24e6278d349, type: 3}
 --- !u!4 &446718919 stripped
@@ -4867,7 +4827,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1350466fe3f07c74d9a6c15f702ace0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPoint: {fileID: 2091677167}
   endPoint: {fileID: 1724954965}
 --- !u!1 &1415568707 stripped
 GameObject:
