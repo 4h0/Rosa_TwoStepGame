@@ -22,7 +22,7 @@ public class colored : MonoBehaviour
         if (call.gameObject.name == "Player")
         {
             GetComponent<Renderer>().material = red;
-            Debug.Log("yos");
+            
         }
 
     }

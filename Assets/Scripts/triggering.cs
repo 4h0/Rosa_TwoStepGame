@@ -32,7 +32,7 @@ public class triggering : MonoBehaviour
     private float timer = 12f;
     private float current = 0f;
     private bool times = true;
-    private GameObject[] samian=new GameObject[3];
+    private GameObject[] samian= new GameObject[3];
 
     public int counter;
 
@@ -69,13 +69,7 @@ public class triggering : MonoBehaviour
 
     {
 
-        if (col.gameObject.name=="Player")
-        {
-            samian[0].GetComponent<Renderer>().material = red;
-
-
-
-        }
+       
 
 
 
@@ -98,13 +92,15 @@ public class triggering : MonoBehaviour
 
         else if (col.gameObject.name == "simonsays1")
         {
-            Debug.Log("Light");
+            
             check1 = true;
             orderings.Add(3);
             check1 = true;
             Debug.Log("You chose 3");
-          
             
+            
+
+
         }
 
 
@@ -154,8 +150,19 @@ public class triggering : MonoBehaviour
 
 
             if (check == false)
+            {
 
-                Debug.Log("no");
+                for (int hey = 0; hey < 3; hey++)
+                {
+                    samian[hey].GetComponent<Renderer>().material = blue;
+                    Debug.Log("incorrect");
+
+                }
+
+
+
+
+            }
 
             else
                 Debug.Log("yes");
