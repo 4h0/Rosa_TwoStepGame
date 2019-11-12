@@ -5,10 +5,10 @@ using UnityEngine;
 public class Puzzle2_Khoa : MonoBehaviour
 {
     private UIController_Khoa UIReference;
-
+    
     public int maxTime;
 
-    private bool doOnce;
+    private bool doOnce, puzzle2CanStart;
     private int currentTime;
 
     private void Awake()
@@ -17,44 +17,63 @@ public class Puzzle2_Khoa : MonoBehaviour
         this.GetComponent<MeshRenderer>().material.color = Color.red;
 
         doOnce = false;
+        puzzle2CanStart = true;
         currentTime = maxTime;
     }
 
     IEnumerator TakingTimeOff()
     {
-        UIReference.Puzzle2Start(currentTime);
         doOnce = true;
         currentTime--;
+        if(currentTime > 0)
+        {
+            UIReference.Puzzle2TextUpdate(0, currentTime);
+        }
+        else
+        {
+            UIReference.Puzzle2TextUpdate(2, currentTime);
+
+            StartCoroutine(Puzzle2End());
+        }
 
         yield return new WaitForSeconds(.1f);
 
         doOnce = false;
     }
 
+    public IEnumerator Puzzle2End()
+    {
+        puzzle2CanStart = false;
+
+        yield return new WaitForSeconds(3f);
+
+        UIReference.TurnOffTimerText();
+
+        currentTime = maxTime;
+        this.GetComponent<MeshRenderer>().material.color = Color.red;
+        puzzle2CanStart = true;
+    }
+
     private void OnTriggerStay(Collider other)
     {
-        if(other.gameObject.tag == "Player" && !doOnce && UIReference.puzzle2CanStart)
+        if(other.gameObject.tag == "Player" && !doOnce && puzzle2CanStart)
         {
             StartCoroutine(TakingTimeOff());
 
             this.GetComponent<MeshRenderer>().material.color = Color.blue;
         }
-    }    private void OnTriggerExit(Collider other)
+    }  
+    
+    private void OnTriggerExit(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.tag == "Player" && puzzle2CanStart)
         {
-            if (UIReference.puzzle2CanStart)
+            if (currentTime > 0)
             {
-                if(currentTime > 0)
-                {
-                    UIReference.WinTextUpdate();
-                }
-
-                StartCoroutine(UIReference.Puzzle2End());
-
-                currentTime = maxTime;
-                this.GetComponent<MeshRenderer>().material.color = Color.red;
+                UIReference.Puzzle2TextUpdate(1, currentTime);
             }
+
+            StartCoroutine(Puzzle2End());
         }
     }
 }

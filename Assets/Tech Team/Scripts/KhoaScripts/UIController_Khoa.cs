@@ -12,8 +12,6 @@ public class UIController_Khoa : MonoBehaviour
 
     private PlayerController_Alex playerControllerReference;
 
-    public bool puzzle2CanStart;
-
     private void Awake()
     {
         foreach (Image image in element)
@@ -29,45 +27,39 @@ public class UIController_Khoa : MonoBehaviour
         playerControllerReference = FindObjectOfType<PlayerController_Alex>();
 
         timerText.enabled = false;
-        puzzle2CanStart = true;
     }
-
-    public void Puzzle2Start(int timer)
+    public void Puzzle2TextUpdate(int caseType, int timer)
     {
-        if (timer > 0)
+        switch (caseType)
         {
-            timerText.text = (timer / 60).ToString() + " : " + (timer % 60).ToString();
-        }
-        else
-        {
-            timerText.text = "You Fail";
+            case 0:
+                {
+                    timerText.text = (timer / 60).ToString() + " : " + (timer % 60).ToString();
+                    break;
+                }
+            case 1:
+                {
+                    timerText.text = "You Win";
+                    break;
+                }
+            case 2:
+                {
+                    timerText.text = "You Fail";
 
-            int randomDeduction = Random.Range(0, 3);
+                    int randomDeduction = Random.Range(0, 3);
 
-            playerControllerReference.maxElementCounter[randomDeduction] /= 2;
-            playerControllerReference.elementalList[randomDeduction] = playerControllerReference.maxElementCounter[randomDeduction];
-            UpdateElement(randomDeduction);
-
-            StartCoroutine(Puzzle2End());
+                    playerControllerReference.maxElementCounter[randomDeduction] /= 2;
+                    playerControllerReference.elementalList[randomDeduction] = playerControllerReference.maxElementCounter[randomDeduction];
+                    UpdateElement(randomDeduction);
+                    break;
+                }
         }
 
         timerText.enabled = true;
     }
-
-    public void WinTextUpdate()
+    public void TurnOffTimerText()
     {
-        timerText.text = "You Win";
-    }
-
-    public IEnumerator Puzzle2End()
-    {
-        puzzle2CanStart = false;
-        
-        yield return new WaitForSeconds(3f);
-
         timerText.enabled = false;
-
-        puzzle2CanStart = true;
     }
 
     public void DashMultiplierOn()
@@ -76,7 +68,6 @@ public class UIController_Khoa : MonoBehaviour
 
         dashMultiplier.enabled = true;
     }
-
     public void DashMultiplierOff()
     {
         dashMultiplier.fillAmount = 0;
