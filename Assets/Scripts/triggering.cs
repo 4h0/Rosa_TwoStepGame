@@ -15,12 +15,12 @@ public class triggering : MonoBehaviour
 
     private GameObject pos2;
 
-    public Material red;
-    public Material blue;
+    public Material Yellow;
+    public Material black;
 
 
 
-
+   
     public Text wincondition;
 
     Material material;
@@ -32,7 +32,11 @@ public class triggering : MonoBehaviour
     private float timer = 12f;
     private float current = 0f;
     private bool times = true;
-    private GameObject[] samian= new GameObject[3];
+
+
+    private GameObject box1;
+    private GameObject box2;
+    private GameObject box3;
 
     public int counter;
 
@@ -42,7 +46,8 @@ public class triggering : MonoBehaviour
     private bool yes1;
 
     //For the colors
-    private GameObject color1;
+    
+    
 
     //for renderer
     public Renderer rend;
@@ -57,7 +62,7 @@ public class triggering : MonoBehaviour
 
     private bool check = true;
 
-
+    
 
 
     //
@@ -97,8 +102,8 @@ public class triggering : MonoBehaviour
             orderings.Add(3);
             check1 = true;
             Debug.Log("You chose 3");
-            
-            
+            box1.GetComponent<Renderer>().material = Yellow;
+
 
 
         }
@@ -110,7 +115,7 @@ public class triggering : MonoBehaviour
             orderings.Add(1);
             check2 = true;
             Debug.Log("You chose 1");
-          
+            box2.GetComponent<Renderer>().material = Yellow;
 
         }
         //checked if the other box has bee lifted.
@@ -120,7 +125,7 @@ public class triggering : MonoBehaviour
             orderings.Add(2);
             check3 = true;
             Debug.Log("You chose 2");
-
+            box3.GetComponent<Renderer>().material = Yellow;
         }
 
 
@@ -154,13 +159,13 @@ public class triggering : MonoBehaviour
 
                 for (int hey = 0; hey < 3; hey++)
                 {
-                    samian[hey].GetComponent<Renderer>().material = blue;
-                    Debug.Log("incorrect");
+                   // samian[hey].GetComponent<Renderer>().material = red;
+                    
 
                 }
 
-
-
+                Debug.Log("incorrect");
+                //this.GetComponent<Renderer>().material = blue;
 
             }
 
@@ -181,13 +186,13 @@ public class triggering : MonoBehaviour
         wincondition = GameObject.Find("Winner").GetComponent<Text>();
         doner.enabled = false;
         wincondition.enabled = false;
-        samian = GameObject.FindGameObjectsWithTag("race");
-        for (int abd = 0; abd < 3; abd++)
-        {
-            samian[abd].GetComponent<Renderer>().material = blue;
+        box1 = GameObject.Find("simonsays1");
+        box2 = GameObject.Find("simonsays2");
+        box3 = GameObject.Find("simonsays3");
 
+       
+       
 
-        }
     }
 
 
