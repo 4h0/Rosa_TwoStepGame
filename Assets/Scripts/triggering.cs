@@ -5,6 +5,12 @@ using System.Linq;
 using UnityEngine.UI;
 public class triggering : MonoBehaviour
 {
+    // BE SURE THAT YOU ARE MAKING COMMENTS THROUGHOUT YOUR SCRIPTS SO THAT YOU AND EVERYONE UNDERSTANDS WHAT FUNCTIONS/BLOCKS OF CODE PERFORM WHICH ACTIONS
+
+    //PLACE THIS INSIDE PUZZLE 2 SCRIPT (BEAT THE CLOCK)
+    //
+    //
+    //
     //sets the color
     public Text doner;
 
@@ -24,16 +30,23 @@ public class triggering : MonoBehaviour
     public Text wincondition;
 
     Material material;
-    public int h = 0;
-    private GameObject door;
+    public int h = 0; //PUZZLE 1
+    private GameObject door; // SEND TO PUZZLE 1 SCRIPT
     // Start is called before the first frame update
     private Vector3 target = new Vector3(1097, 263, 50);
-    private GameObject box;
-    private float timer = 12f;
+    private GameObject box; //PUZZLE 3
+    private float timer = 12f; //PUZZLE 2
     private float current = 0f;
     private bool times = true;
 
+    // - QUIRA
+    // ==============================================================================================================
 
+
+    //PLACE THIS INSIDE PUZZLE 3 SCRIPT (SIMON SAYS)
+    //
+    //
+    //
     private GameObject box1;
     private GameObject box2;
     private GameObject box3;
@@ -52,6 +65,8 @@ public class triggering : MonoBehaviour
     //for renderer
     public Renderer rend;
 
+
+    
     //this block is for checking if the simon says puzzle3
     private bool check1;
     private bool check2;
@@ -62,21 +77,22 @@ public class triggering : MonoBehaviour
 
     private bool check = true;
 
-    
+    // - QUIRA
 
 
+    // ========================================================================================================
+
+
+    //PLACE THIS INSIDE PUZZLE 2 SCRIPT (BEAT THE CLOCK)
     //
-
+    //
+    //
     private bool yos;
     private bool ab;
     void OnTriggerEnter(Collider col)
 
 
     {
-
-       
-
-
 
         if (col.gameObject.name == "cube")
         {
@@ -95,6 +111,10 @@ public class triggering : MonoBehaviour
         else if (col.gameObject.name == "position2")
             yos = true;
 
+
+        // ==================================================================================================
+
+        // FIGURE OUT HOW TO PUT THIS INTO SCRIPT 3 PUZZLE INSTEAD (SIMON SAYS)
         else if (col.gameObject.name == "simonsays1")
         {
             
@@ -172,10 +192,15 @@ public class triggering : MonoBehaviour
             else
                 Debug.Log("yes");
         }
-
+// QUIRA
+// =============================================================================================================
 
     }
-
+    // =========================================================================================================
+    //PLACE THIS INSIDE PUZZLE 3 SCRIPT (SIMON SAYS)
+    //
+    //
+    //
     void Start()
     {
         pos2 = GameObject.Find("position2");
@@ -194,9 +219,17 @@ public class triggering : MonoBehaviour
        
 
     }
+   
+    //
+    //
+    // - QUIRA
 
+        // ==================================================================================================
 
-
+        //PLACE THIS INSIDE PUZZLE 2 SCRIPT (BEAT THE CLOCK)
+        //
+        //
+        //
 
     void Update()
     {
@@ -229,6 +262,10 @@ public class triggering : MonoBehaviour
 
         }
 
+        //
+        //
+        // - QUIRA
+        // =========================================================================================
 
 
 
@@ -242,8 +279,7 @@ public class triggering : MonoBehaviour
 
 
 
-
-
+// PLACE THIS INSIDE PUZZLE 1 SCRIPT (BLOCK PUZZLE)
 
         if (h == 1)
 
@@ -288,7 +324,7 @@ void reset()
 
 
 
-
+    // PLACE THIS INSIDE PUZZLE 2 SCRIPT (BEAT THE CLOCK)
     void Timer()
     {
 
@@ -327,7 +363,8 @@ void reset()
 
     }
 
-   
+    // - QUIRA
+   // ====================================================================================================================
 
 
 
