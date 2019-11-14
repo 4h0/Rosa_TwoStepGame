@@ -30,7 +30,7 @@ public class DialogueTrigger_Khoa : MonoBehaviour
     {
         if(speaking)
         {
-            if (Input.GetKeyDown(KeyCode.V))
+            if (Input.GetButtonDown("Interact"))
             {
                 StartDialogue();
             }
@@ -39,6 +39,7 @@ public class DialogueTrigger_Khoa : MonoBehaviour
 
     private void StartDialogue()
     {
+        nameText.text = charaName;
         dialogueText.text = sentences[whichSentence];
         dialogueCanvas.SetActive(true);
         nameText.enabled = true;

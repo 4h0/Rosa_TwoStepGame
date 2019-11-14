@@ -6,8 +6,9 @@ using UnityEngine.UI;
 public class UIController_Khoa : MonoBehaviour
 {
     public Text timerText;
-    public Text[] elementalText;
     public Image dashMultiplier;
+
+    public Text[] elementalText;
     public Image[] element;
 
     private PlayerController_Alex playerControllerReference;

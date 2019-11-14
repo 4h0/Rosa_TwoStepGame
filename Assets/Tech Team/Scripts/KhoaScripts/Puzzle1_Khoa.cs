@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class Puzzle1_Khoa : MonoBehaviour
 {
-    public Transform endPoint;
+    public Transform parenting, endPoint;
 
     private Transform startPoint, moveToDestination;
 
@@ -13,9 +13,11 @@ public class Puzzle1_Khoa : MonoBehaviour
     private void Awake()
     {
         startPoint = new GameObject().transform;
+        startPoint.SetParent(parenting, true);
         startPoint.position = this.transform.position;
 
         moveToDestination = new GameObject().transform;
+        moveToDestination.SetParent(parenting, true);
         moveToDestination.position = startPoint.position;
 
         turnBack = 0;
