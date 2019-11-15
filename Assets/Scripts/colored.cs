@@ -7,7 +7,7 @@ public class colored : MonoBehaviour
     public Material red;
     public Material blue;
 
-
+    private bool check1;
 
     // Start is called before the first frame update
     void Start()
@@ -29,6 +29,7 @@ public class colored : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
 
     }
 }
