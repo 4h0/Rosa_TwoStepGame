@@ -4,6 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
+  - box
+  - flowchart
+  - NPC
+  - FireSource
+  - EmptyFireSource
+  - WaterSource
+  - EmptyWaterSource
   - PickUp
   - Ground
   - Wall
@@ -16,8 +23,8 @@ TagManager:
   - UI
   - 
   - 
-  - rayCastObject
-  - cameraObstacle
+  - StrengthObject
+  - 
   - 
   - 
   - 
