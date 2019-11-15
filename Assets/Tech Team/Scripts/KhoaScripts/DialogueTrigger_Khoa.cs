@@ -37,7 +37,7 @@ public class DialogueTrigger_Khoa : MonoBehaviour
 
     private void Update()
     {
-        if (!choosing)
+        if (!choosing && !pauseMenuReference.pauseMenuOn)
         {
             if (speaking)
             {
@@ -167,6 +167,11 @@ public class DialogueTrigger_Khoa : MonoBehaviour
         choosing = false;
 
         yesNoPanel.SetActive(false);
+
+        foreach (Image image in noYesOption)
+        {
+            image.color = Color.white;
+        }
     }
 
     private void OptionChoice()
