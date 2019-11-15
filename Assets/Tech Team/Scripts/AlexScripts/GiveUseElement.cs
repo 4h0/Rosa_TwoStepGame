@@ -67,7 +67,7 @@ public class GiveUseElement : MonoBehaviour
         }
         if (this.gameObject.tag == "EmptyWaterSource")
         {
-            if (PlayerIsInRadiusCheck == true && Input.GetKeyDown(KeyCode.Q))
+            if (PlayerIsInRadiusCheck == true && Input.GetKeyDown(KeyCode.Q) && PlayerElements.WaterElement.fillAmount >= .5f)
             {  
                 TakePlayerWater();
             }
@@ -95,13 +95,13 @@ public class GiveUseElement : MonoBehaviour
     void GivePlayerWater()
     {
         // points to PlayerElement script and is changing the bool value //
-        PlayerElements.WaterElement = true;
+        PlayerElements.WaterElement.fillAmount =+ .5f;
         // Shoot particles at player - not using but may revisit//
         // ParticleEffect.transform.position = player.transform.position;
     }
     void TakePlayerWater()
     {
-        PlayerElements.WaterElement = false;
+        PlayerElements.WaterElement.fillAmount =- .5f;
 
         Debug.Log("Took water from player");
 

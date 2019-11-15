@@ -8,17 +8,22 @@ public class PlayerElements : MonoBehaviour
     ///////// SETUP /////////
     // this bool indicates if the player has fire//
     public static Image FireElement;
-    public Image FireEl;
-    public static bool WaterElement;
+    public Image FireBar;
+    public static Image WaterElement;
+    public Image WaterBar;
     public static bool StrengthElement;
     public static bool AirElement;
     /////////////////////////
     void Start()
     {
-        FireElement = FireEl;
+        FireElement = FireBar;
         FireElement.fillAmount = 0f;
-        WaterElement = false;
+
+        WaterElement = WaterBar;
+        WaterElement.fillAmount = 0f;
+
         StrengthElement = false;
+
         AirElement = false;
     }
     void Update()
