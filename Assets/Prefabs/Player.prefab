@@ -253,8 +253,12 @@ MonoBehaviour:
   turnSmoothTime: 0.2
   speedSmoothTime: 0.1
   dashForce: 90
-  maxElementCounter: 12
   elementalList:
+  - 12
+  - 12
+  - 12
+  - 12
+  maxElementCounter:
   - 12
   - 12
   - 12

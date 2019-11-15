@@ -75,14 +75,17 @@ public class PlayerController_Alex : MonoBehaviour
 
             // float animationSpeedPercent = ((running)? 1:.5f) * inputDir.magnitude;
             // animator.SetFloat("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
-        }
 
-        InputCheck();
+            InputCheck();
+        }
     }
 
     private void FixedUpdate()
     {
-        JumpingCheck();
+        if (canMove)
+        {
+            JumpingCheck();
+        }
     }
     
     private void InputCheck()

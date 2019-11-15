@@ -81,19 +81,16 @@ public class ElementalTransfer_Khoa : MonoBehaviour
 
     IEnumerator GavePlayer()
     {
-        if(playerReference.elementalList[elementType] < playerReference.maxElementCounter[elementType])
-        {
-            playerReference.elementalList[elementType] = playerReference.maxElementCounter[elementType];
-            uiReference.UpdateElement(elementType);
+        playerReference.elementalList[elementType] = playerReference.maxElementCounter[elementType];
+        uiReference.UpdateElement(elementType);
 
-            this.GetComponent<MeshRenderer>().material.color = Color.white;
-            doOnce = true;
+        this.GetComponent<MeshRenderer>().material.color = Color.white;
+        doOnce = true;
 
-            yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(6f);
 
-            ChangeColor();
-            doOnce = false;
-        }
+        ChangeColor();
+        doOnce = false;
     }
     IEnumerator PlayerGave()
     {
@@ -107,6 +104,7 @@ public class ElementalTransfer_Khoa : MonoBehaviour
 
             yield return new WaitForSeconds(6f);
 
+            this.GetComponent<MeshRenderer>().material.color = Color.white;
             doOnce = false;
         }
     }
