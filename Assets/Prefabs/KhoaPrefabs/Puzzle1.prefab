@@ -74,6 +74,7 @@ GameObject:
   - component: {fileID: 5202070238236620801}
   - component: {fileID: 5202070238236620800}
   - component: {fileID: 5202070238236620863}
+  - component: {fileID: 485073376677684349}
   - component: {fileID: 5202070238236620803}
   m_Layer: 0
   m_Name: Puzzle1Door
@@ -90,7 +91,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5202070238236620862}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 7, y: 6, z: 22}
+  m_LocalPosition: {x: 7, y: 7.22, z: 22}
   m_LocalScale: {x: 9, y: 12, z: 0.6}
   m_Children:
   - {fileID: 5202070237385829340}
@@ -155,6 +156,19 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
+--- !u!135 &485073376677684349
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5202070238236620862}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: 0.5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &5202070238236620803
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -196,9 +210,9 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5202070238312679400}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 7.25, y: 0.47, z: 14.16}
-  m_LocalScale: {x: 6, y: 0.1, z: 6}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalPosition: {x: 7.25, y: 0.4699993, z: 14.16}
+  m_LocalScale: {x: 6, y: 0.10000001, z: 6}
   m_Children: []
   m_Father: {fileID: 5202070236909166039}
   m_RootOrder: 1

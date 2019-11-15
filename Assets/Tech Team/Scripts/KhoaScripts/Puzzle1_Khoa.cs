@@ -7,11 +7,14 @@ public class Puzzle1_Khoa : MonoBehaviour
     public Transform parenting, endPoint;
 
     private Transform startPoint, moveToDestination;
+    private SphereCollider sphereCollider;
 
     private int turnBack;
 
     private void Awake()
     {
+        sphereCollider = GetComponent<SphereCollider>();
+
         startPoint = new GameObject().transform;
         startPoint.SetParent(parenting, true);
         startPoint.position = this.transform.position;

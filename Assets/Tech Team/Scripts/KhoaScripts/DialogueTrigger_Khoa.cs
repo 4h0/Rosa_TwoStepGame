@@ -6,14 +6,13 @@ using UnityEngine.UI;
 public class DialogueTrigger_Khoa : MonoBehaviour
 {
     public GameObject dialoguePanel, yesNoPanel;
-    public Text nameText, dialogueText;
+    public Text nameText, dialogueText, taskComplete;
 
-    public Transform[] taskSpawnPlace;
+    public GameObject[] taskRelatedGameObject;
     public Image[] noYesOption;
 
     private PlayerController_Alex playerReference;
     private PauseMenuController_Khoa pauseMenuReference;
-    private List<GameObject> taskRelatedGameObject;
 
     public string charaName;
     public int questType;
@@ -32,64 +31,7 @@ public class DialogueTrigger_Khoa : MonoBehaviour
 
         DeactivateDialogue();
         DeactivateYesNoPanel();
-    }
-
-    private void Start()
-    {
-        taskRelatedGameObject = new List<GameObject>();
-
-
-        switch (questType)
-        {
-            case 0:
-                {
-                    taskRelatedGameObject.Add(pauseMenuReference.taskGameObjectsList[0]);
-                    taskRelatedGameObject.Add(pauseMenuReference.taskGameObjectsList[1]);
-
-                    break;
-                }
-            case 1:
-                {
-                    taskRelatedGameObject.Add(pauseMenuReference.taskGameObjectsList[2]);
-                    taskRelatedGameObject.Add(pauseMenuReference.taskGameObjectsList[3]);
-
-                    break;
-                }
-            case 2:
-                {
-                    taskRelatedGameObject.Add(pauseMenuReference.taskGameObjectsList[4]);
-                    taskRelatedGameObject.Add(pauseMenuReference.taskGameObjectsList[5]);
-
-                    break;
-                }
-            case 3:
-                {
-                    taskRelatedGameObject.Add(pauseMenuReference.taskGameObjectsList[6]);
-                    taskRelatedGameObject.Add(pauseMenuReference.taskGameObjectsList[7]);
-
-                    break;
-                }
-            case 4:
-                {
-                    taskRelatedGameObject.Add(pauseMenuReference.taskGameObjectsList[8]);
-                    taskRelatedGameObject.Add(pauseMenuReference.taskGameObjectsList[9]);
-
-                    break;
-                }
-            case 5:
-                {
-                    taskRelatedGameObject.Add(pauseMenuReference.taskGameObjectsList[10]);
-
-                    break;
-                }
-        }
-
-        for (int counter = 0; counter < taskRelatedGameObject.Count; counter++)
-        {
-            taskRelatedGameObject[counter].transform.position = taskSpawnPlace[counter].position;
-            taskRelatedGameObject[counter].transform.rotation = taskSpawnPlace[counter].rotation;
-        }
-
+        AssignTaskObjectParent();
         TurnOffTaskObjects();
     }
 
@@ -116,18 +58,39 @@ public class DialogueTrigger_Khoa : MonoBehaviour
         }
     }
 
+    public void DeleteLater()
+    {
+        StartCoroutine(UpdateTaskCompletion());
+    }
+    IEnumerator UpdateTaskCompletion()
+    {
+        taskComplete.text = description[questType] + " completed";
+        taskComplete.enabled = true;
+        TurnOffTaskObjects();
+
+        yield return new WaitForSeconds(3f);
+
+        taskComplete.enabled = false;
+    }
+
+    private void AssignTaskObjectParent()
+    {
+        foreach (GameObject taskObject in taskRelatedGameObject)
+        {
+            taskObject.transform.SetParent(this.gameObject.transform);
+        }
+    }
+
     private void TurnOnTaskObjects()
     {
-        for (int counter = 0; counter < taskRelatedGameObject.Count; counter++)
+        for (int counter = 0; counter < taskRelatedGameObject.Length; counter++)
         {
             taskRelatedGameObject[counter].SetActive(true);
         }
-
-        pauseMenuReference.alreadyHadThisTask[questType] = true;
     }
-    private void TurnOffTaskObjects()
+    public void TurnOffTaskObjects()
     {
-        for (int counter = 0; counter < taskRelatedGameObject.Count; counter++)
+        for (int counter = 0; counter < taskRelatedGameObject.Length; counter++)
         {
             taskRelatedGameObject[counter].SetActive(false);
         }

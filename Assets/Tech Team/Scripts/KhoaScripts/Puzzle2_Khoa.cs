@@ -49,9 +49,11 @@ public class Puzzle2_Khoa : MonoBehaviour
 
         UIReference.TurnOffTimerText();
 
-        currentTime = maxTime;
-        this.GetComponent<MeshRenderer>().material.color = Color.red;
         puzzle2CanStart = true;
+        currentTime = maxTime;
+
+        this.GetComponent<MeshRenderer>().material.color = Color.red;
+        this.transform.parent.GetComponent<DialogueTrigger_Khoa>().DeleteLater();
     }
 
     private void OnTriggerStay(Collider other)

@@ -43,17 +43,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd2aad464c92b54faec663374b5d42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  taskGameObjectsList:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   alreadyHadThisTask: 000000000000
-  taskNPCReference: {fileID: 0}
