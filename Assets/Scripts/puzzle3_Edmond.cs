@@ -68,14 +68,14 @@ public class puzzle3_Edmond : MonoBehaviour
             {
                 //for (int a = 0; a < 3; a++)
                 //{ 
-                if (distance1[0] <= 102)
+                if (distance1[0] <= 1)
                 {
                     values.Add(1);
                     check1 = true;
                     box1.GetComponent<Renderer>().material = blue;
                 }
 
-                else if (distance1[1] <= 102)
+                else if (distance1[1] <= 1)
                 {
 
                     values.Add(3);
@@ -83,7 +83,7 @@ public class puzzle3_Edmond : MonoBehaviour
                     box2.GetComponent<Renderer>().material = blue;
 
                 }
-                else if (distance1[2] <= 102)
+                else if (distance1[2] <= 1)
                 {
 
                     values.Add(2);
