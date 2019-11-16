@@ -97,7 +97,7 @@ public class puzzle2_Edmond : MonoBehaviour
     void Winner()
     {
         wincondition.enabled = true;
-
+        Invoke("Turnoff", 3f);
 
 
     }
@@ -106,6 +106,14 @@ public class puzzle2_Edmond : MonoBehaviour
     {
         wincondition.text = "You lost";
         wincondition.enabled = true;
+
+
+    }
+
+    void Turnoff()
+    {
+
+        wincondition.enabled = false;
 
 
     }
