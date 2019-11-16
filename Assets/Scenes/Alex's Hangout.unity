@@ -1404,6 +1404,11 @@ PrefabInstance:
       propertyPath: WaterBar
       value: 
       objectReference: {fileID: 1331723256}
+    - target: {fileID: 7986354924907320106, guid: 421fd87dc58024ce4883a24e6278d349,
+        type: 3}
+      propertyPath: m_SortMode
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 421fd87dc58024ce4883a24e6278d349, type: 3}
 --- !u!4 &1938988425 stripped
