@@ -1904,6 +1904,11 @@ PrefabInstance:
       propertyPath: m_RenderAlignment
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6995596867070928706, guid: 421fd87dc58024ce4883a24e6278d349,
+        type: 3}
+      propertyPath: m_Drag
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 421fd87dc58024ce4883a24e6278d349, type: 3}
 --- !u!4 &446718919 stripped
@@ -1937,7 +1942,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 446718920}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f0e98cc59e8d3a43a90579615f9e488, type: 3}
   m_Name: 
@@ -2248,6 +2253,11 @@ PrefabInstance:
         type: 3}
       propertyPath: m_Name
       value: Canvas (2)
+      objectReference: {fileID: 0}
+    - target: {fileID: 9141146879596216850, guid: fb69051cab3b62746a02eebc362032ff,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 9141146879596216851, guid: fb69051cab3b62746a02eebc362032ff,
         type: 3}
@@ -3943,7 +3953,7 @@ PrefabInstance:
     - target: {fileID: 4164804114459706291, guid: e59ad4fb02447be4aaf709664f202a18,
         type: 3}
       propertyPath: m_IsActive
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4164804114459706293, guid: e59ad4fb02447be4aaf709664f202a18,
         type: 3}
@@ -4007,6 +4017,30 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 7933593878920439997, guid: e59ad4fb02447be4aaf709664f202a18,
         type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 665560246408049421, guid: e59ad4fb02447be4aaf709664f202a18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 5122769676582790928, guid: e59ad4fb02447be4aaf709664f202a18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2954881435508370966, guid: e59ad4fb02447be4aaf709664f202a18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6330435608169263642, guid: e59ad4fb02447be4aaf709664f202a18,
+        type: 3}
+      propertyPath: m_IsActive
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 106302018, guid: e59ad4fb02447be4aaf709664f202a18, type: 3}
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
