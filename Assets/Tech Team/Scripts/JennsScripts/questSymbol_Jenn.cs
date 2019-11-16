@@ -18,6 +18,7 @@ public class questSymbol_Jenn : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (Input.GetKeyDown("k") && hasPlayer)
         {
             rend.enabled = false;
