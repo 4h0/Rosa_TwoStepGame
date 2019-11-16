@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class movement : MonoBehaviour
+public class indicatorMovement_jenn : MonoBehaviour
 {
 
     //adjust this to change speed

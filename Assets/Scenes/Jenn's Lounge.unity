@@ -206,8 +206,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 1
   indentLevel: 0
-  storyText: "\u201C...You should be working. Stop trying to talk to me and get back
-    to your duties!\u201D"
+  storyText: "\u201CGoing against the currents are we? You should be swimming back
+    to work right about now!\u201D"
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -270,8 +270,10 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
-  selectedCommands: []
+  selectedBlocks:
+  - {fileID: 246389198}
+  selectedCommands:
+  - {fileID: 246389196}
   variables: []
   description: 
   stepPause: 0
@@ -414,7 +416,7 @@ MonoBehaviour:
   itemId: 3
   indentLevel: 0
   storyText: '"I see you''re in need for something to do...Say, can you run and fetch
-    me a flower from the market place?"'
+    me a piece of coral from the market place?"'
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -713,8 +715,8 @@ GameObject:
   - component: {fileID: 1084148306}
   - component: {fileID: 1084148307}
   m_Layer: 0
-  m_Name: Cube
-  m_TagString: Untagged
+  m_Name: NPCRadius
+  m_TagString: npcRadius
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1078,7 +1080,7 @@ GameObject:
   - component: {fileID: 1416997079}
   - component: {fileID: 1416997080}
   m_Layer: 0
-  m_Name: Cube (1)
+  m_Name: NPCRadius2
   m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1198,6 +1200,7 @@ GameObject:
   - component: {fileID: 1507145433}
   - component: {fileID: 1507145432}
   - component: {fileID: 1507145431}
+  - component: {fileID: 1507145436}
   m_Layer: 0
   m_Name: Quest Symbol
   m_TagString: Untagged
@@ -1218,6 +1221,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rend: {fileID: 1507145433}
+  npcRadius: {fileID: 1084148301}
 --- !u!65 &1507145432
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -1290,6 +1294,18 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 10
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1507145436
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1507145430}
+  m_Enabled: 0
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ad0a6f9fbc170344599c67db2c90a1d1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1535354413
 GameObject:
   m_ObjectHideFlags: 0
