@@ -6,12 +6,15 @@ public class questSymbol_Jenn : MonoBehaviour
 {
 
     private bool hasPlayer; // is the player in a collider? yes or no
-    public Renderer rend; // calls to the mesh renderer.
-    public GameObject npcRadius; // making a reference to the game object whose collision it'll be entering
+    Renderer rend; // calls to the mesh renderer.
+    // public GameObject npcRadius; // making a reference to the game object whose collision it'll be entering
+    public GameObject QuestSymbol; 
 
     void Start()
     {
-        rend = GetComponent<Renderer>(); // gets the renderer and labels it true, so the item is rendered in the scene.
+        
+        // rend = GetComponent<Renderer>(); // gets the renderer and labels it true, so the item is rendered in the scene.
+        rend = QuestSymbol.GetComponent<Renderer>();
         rend.enabled = true;
     }
 
@@ -29,7 +32,7 @@ public class questSymbol_Jenn : MonoBehaviour
     void OnTriggerEnter(Collider other) // collider stuff
     {
         Debug.Log("Entered"); // testing to see if entered
-        if (other.CompareTag("Player") && (other.gameObject.name == "npcRadius")) //if the player is colliding with trigger
+        if (other.CompareTag("Player")) //&& (other.gameObject.name == "npcRadius")) //if the player is colliding with trigger
         {
             hasPlayer = true; // set hasPlayer to true!
            
