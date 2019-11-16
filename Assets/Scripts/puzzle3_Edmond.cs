@@ -64,6 +64,7 @@ public class puzzle3_Edmond : MonoBehaviour
             distance1[1] = Vector3.Distance(box2.transform.position, Player.transform.position);
             distance1[2] = Vector3.Distance(box3.transform.position, Player.transform.position);
 
+            Debug.Log(distance1[0]);
             if (Input.GetKeyDown("r"))
             {
                 //for (int a = 0; a < 3; a++)
