@@ -4,6 +4,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Linq;
 
+
 public class puzzle3_Edmond : MonoBehaviour
 { //variables
     private GameObject box1;
@@ -18,15 +19,23 @@ public class puzzle3_Edmond : MonoBehaviour
     private bool check2;
     private bool check3;
     //checks arraylist
-    private List<int> orderings = new List<int>(3);
-    private List<int> correctorder = new List<int>() { 1, 2, 3 };
-    private bool start=true;
+    private List<int> values;
+    private bool one;
+    private bool two;
+    private bool three;
+    private bool abc;
+    private int collector=0;
+   // private int[] correct = new int[] { 1, 2, 3 };
+    private bool start = true;
+    private List<int> corrected = new List<int> { 1, 2, 3 };
+    private int[] ordered = new int[3];
 
 
-   
+
 
     //checks distance between two objects.
-    public float[] distances = new float[3];
+    private float[] distance1=new float[3];
+  
 
 
 
@@ -39,7 +48,10 @@ public class puzzle3_Edmond : MonoBehaviour
         box2 = GameObject.Find("simonsays2");
         box3 = GameObject.Find("simonsays3");
         Player = GameObject.Find("Player");
+        values = new List<int>();
     }
+
+
 
     // Update is called once per frame
     void Update()
@@ -48,19 +60,63 @@ public class puzzle3_Edmond : MonoBehaviour
         {
 
             //updates if players touches a cube
-            distances[0] = Vector3.Distance(box1.transform.position, Player.transform.position);
-            distances[1] = Vector3.Distance(box2.transform.position, Player.transform.position);
-            distances[2] = Vector3.Distance(box3.transform.position, Player.transform.position);
+            distance1[0] = Vector3.Distance(box1.transform.position, Player.transform.position);
+            distance1[1] = Vector3.Distance(box2.transform.position, Player.transform.position);
+            distance1[2] = Vector3.Distance(box3.transform.position, Player.transform.position);
 
-            if (Input.GetKey("r"))
-
-                once();
-
-            if (check1==true && check2==true && check3==true)
+            if (Input.GetKeyDown("r"))
             {
-                bool abc = correctorder.SequenceEqual(orderings);
-                //Debug.Log(orderings.ElementAt(2));
-                if (abc==true)
+                //for (int a = 0; a < 3; a++)
+                //{ 
+                if (distance1[0] <= 102)
+                {
+                    values.Add(1);
+                    check1 = true;
+                    box1.GetComponent<Renderer>().material = blue;
+                }
+
+                else if (distance1[1] <= 102)
+                {
+
+                    values.Add(3);
+                    check2 = true;
+                    box2.GetComponent<Renderer>().material = blue;
+
+                }
+                else if (distance1[2] <= 102)
+                {
+
+                    values.Add(2);
+                    check3 = true;
+                    box3.GetComponent<Renderer>().material = blue;
+
+                }
+
+                // }
+
+
+
+
+            }
+            if (check1 == true && check2 == true && check3 == true)
+            {
+                
+               
+                //  for (int c=0; c<3; c++)
+                // {
+                // if (ordered[c]==correct[c])
+                // {
+
+                //collector+=1;
+                // }
+                abc = values.SequenceEqual(corrected);
+
+               // }
+
+
+                
+
+                if (abc)
                 {
                     box1.GetComponent<Renderer>().material = red;
                     box2.GetComponent<Renderer>().material = red;
@@ -72,27 +128,31 @@ public class puzzle3_Edmond : MonoBehaviour
 
                 else
                     Invoke("wrong", 1f);
-                Debug.Log(" " + orderings.Count);
-
 
             }
-
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+    
+
+
+
+
+
 
 
 
@@ -109,7 +169,7 @@ public class puzzle3_Edmond : MonoBehaviour
 
 
     //wrong invoke function
-   public  void wrong()
+    void wrong()
     {
         check1 = false;
         check2 = false;
@@ -120,39 +180,20 @@ public class puzzle3_Edmond : MonoBehaviour
         box1.GetComponent<Renderer>().material = original;
         box2.GetComponent<Renderer>().material = original;
         box3.GetComponent<Renderer>().material = original;
-        orderings.Clear();
+        values.Clear();
 
 
 
     }
 
 
-    void once()
+   void once()
     {
-        {
+        
 
-            if (distances[0] <= 102)
-            {
 
-                orderings.Add(1);
-                box1.GetComponent<Renderer>().material = blue;
-                check1 = true;
+        
 
-            }
-
-            if (distances[1] <= 102)
-            {
-                orderings.Add(2);
-                box2.GetComponent<Renderer>().material = blue;
-                check2 = true;
-            }
-            if (distances[2] <= 102)
-            {
-                orderings.Add(3);
-                box3.GetComponent<Renderer>().material = blue;
-                check3 = true;
-            }
-        }
 
 
 
@@ -161,8 +202,16 @@ public class puzzle3_Edmond : MonoBehaviour
 
 
     }
+
+
+
+
+
+
 
 }
+
+
 
 
   

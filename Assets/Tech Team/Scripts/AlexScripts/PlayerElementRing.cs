@@ -6,7 +6,7 @@ public class PlayerElementRing : MonoBehaviour
 {
     ///////// SETUP /////////
     public GameObject FireRingParticleEffect;
-    public GameObject WaterRingParticleEffect;
+    // public GameObject WaterRingParticleEffect;
     // public GameObject StrengthRingParticleEffect;
     // public GameObject AirRingParticleEffect;
     /////////////////////////
@@ -27,10 +27,10 @@ public class PlayerElementRing : MonoBehaviour
         {
             StartCoroutine(PlayFireRing());
         }
-        if (PlayerElements.WaterElement)
-        {
-            StartCoroutine(PlayWaterRing());
-        }
+        // if (PlayerElements.WaterElement)
+        // {
+            // StartCoroutine(PlayWaterRing());
+        // }
         // if (PlayerElements.StrengthElement)
         // {
         //     StartCoroutine(PlayStrengthRing());
@@ -50,15 +50,15 @@ public class PlayerElementRing : MonoBehaviour
         FireRingParticleEffect.SetActive (false);
     }
 
-    IEnumerator PlayWaterRing()
-    {
-        WaterRingParticleEffect.SetActive (true);
-
-        //Wait for 3 seconds
-        yield return new WaitForSeconds(2);
-
-        WaterRingParticleEffect.SetActive (false);
-    }
+    // IEnumerator PlayWaterRing()
+    // {
+        // WaterRingParticleEffect.SetActive (true);
+// 
+        // Wait for 3 seconds
+        // yield return new WaitForSeconds(2);
+// 
+        // WaterRingParticleEffect.SetActive (false);
+    // }
 
     //     IEnumerator PlayStrengthRing()
     // {

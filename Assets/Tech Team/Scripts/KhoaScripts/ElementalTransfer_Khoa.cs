@@ -4,9 +4,6 @@ using UnityEngine;
 
 public class ElementalTransfer_Khoa : MonoBehaviour
 {
-    public ParticleSystem playerParticle;
-    public ParticleSystem selfParticle;
-
     private PlayerController_Alex playerReference;
     private UIController_Khoa uiReference;
 
@@ -25,11 +22,23 @@ public class ElementalTransfer_Khoa : MonoBehaviour
         stayInside = false;
     }
 
+    private void Start()
+    {
+        if (isGiving)
+        {
+            ChangeColor();
+        }
+        else
+        {
+            this.GetComponent<MeshRenderer>().material.color = Color.white;
+        }
+    }
+
     private void Update()
     {
         if (!doOnce)
         {
-            if (stayInside && Input.GetKeyDown(KeyCode.Q))
+            if (stayInside && Input.GetButtonDown("Interact"))
             {
                 if (isGiving)
                 {
@@ -43,23 +52,45 @@ public class ElementalTransfer_Khoa : MonoBehaviour
         }
     }
 
+    private void ChangeColor()
+    {
+        switch (elementType)
+        {
+            case 0:
+                {
+                    this.GetComponent<MeshRenderer>().material.color = Color.red;
+                    break;
+                }
+            case 1:
+                {
+                    this.GetComponent<MeshRenderer>().material.color = Color.yellow;
+                    break;
+                }
+            case 2:
+                {
+                    this.GetComponent<MeshRenderer>().material.color = Color.blue;
+                    break;
+                }
+            case 3:
+                {
+                    this.GetComponent<MeshRenderer>().material.color = Color.green;
+                    break;
+                }
+        }
+    }
+
     IEnumerator GavePlayer()
     {
-        if(playerReference.elementalList[elementType] < playerReference.maxElementCounter[elementType])
-        {
-            playerReference.elementalList[elementType] = playerReference.maxElementCounter[elementType];
-            uiReference.UpdateElement(elementType);
+        playerReference.elementalList[elementType] = playerReference.maxElementCounter[elementType];
+        uiReference.UpdateElement(elementType);
 
-            doOnce = true;
-            selfParticle.Stop();
-            playerParticle.Play();
+        this.GetComponent<MeshRenderer>().material.color = Color.white;
+        doOnce = true;
 
-            yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(6f);
 
-            selfParticle.Play();
-            playerParticle.Stop();
-            doOnce = false;
-        }
+        ChangeColor();
+        doOnce = false;
     }
     IEnumerator PlayerGave()
     {
@@ -67,13 +98,14 @@ public class ElementalTransfer_Khoa : MonoBehaviour
         {
             playerReference.elementalList[elementType]--;
             uiReference.UpdateElement(elementType);
+            this.transform.parent.GetComponent<DialogueTrigger_Khoa>().DeleteLater();
 
+            ChangeColor();
             doOnce = true;
-            selfParticle.Play();
-            playerParticle.Stop();
 
             yield return new WaitForSeconds(6f);
 
+            this.GetComponent<MeshRenderer>().material.color = Color.white;
             doOnce = false;
         }
     }
