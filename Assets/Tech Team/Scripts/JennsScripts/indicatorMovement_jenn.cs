@@ -26,6 +26,6 @@ public class indicatorMovement_jenn : MonoBehaviour
         //calculate what the new Y position will be
         float newY = Mathf.Sin(Time.time * speed) * height + pos.y;
         //set the object's Y to the new calculated Y
-        transform.position = new Vector3(pos.x, newY, pos.z) * height;
+        transform.position = new Vector3(pos.x, newY + pos.y, pos.z) * height;
     }
 }

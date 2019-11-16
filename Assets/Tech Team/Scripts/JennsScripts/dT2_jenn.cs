@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Fungus; // must be used. This allows the script to access the fungus scripts.
 
-public class dialogueTrigger : MonoBehaviour
+public class dT2_jenn : MonoBehaviour
 {
     public Flowchart flowchart; // calls the flowchart.
     private bool hasPlayer; // is the player in a collider? yes or no
@@ -12,7 +12,7 @@ public class dialogueTrigger : MonoBehaviour
     {
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {
-            flowchart.ExecuteBlock("Quest Dialogue"); // we execute the named block within the flowchart.
+            flowchart.ExecuteBlock("Testing1"); // we execute the named block within the flowchart.
         }
     }
 
@@ -34,3 +34,4 @@ public class dialogueTrigger : MonoBehaviour
         }
     }
 }
+
