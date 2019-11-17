@@ -30,6 +30,8 @@ public class puzzle3_Edmond : MonoBehaviour
     private List<int> corrected = new List<int> { 1, 2, 3 };
     private int[] ordered = new int[3];
 
+    public int DistanceFromCubes; //this is indicating how far the player has to be from each cube
+
 
 
 
@@ -64,19 +66,19 @@ public class puzzle3_Edmond : MonoBehaviour
             distance1[1] = Vector3.Distance(box2.transform.position, Player.transform.position);
             distance1[2] = Vector3.Distance(box3.transform.position, Player.transform.position);
 
-            Debug.Log(distance1[0]);
+            // Debug.Log(distance1[0]);
             if (Input.GetKeyDown("r"))
             {
                 //for (int a = 0; a < 3; a++)
                 //{ 
-                if (distance1[0] <= 1)
+                if (distance1[0] <= DistanceFromCubes)
                 {
                     values.Add(1);
                     check1 = true;
                     box1.GetComponent<Renderer>().material = blue;
                 }
 
-                else if (distance1[1] <= 1)
+                else if (distance1[1] <= DistanceFromCubes)
                 {
 
                     values.Add(3);
@@ -84,7 +86,7 @@ public class puzzle3_Edmond : MonoBehaviour
                     box2.GetComponent<Renderer>().material = blue;
 
                 }
-                else if (distance1[2] <= 1)
+                else if (distance1[2] <= DistanceFromCubes)
                 {
 
                     values.Add(2);
