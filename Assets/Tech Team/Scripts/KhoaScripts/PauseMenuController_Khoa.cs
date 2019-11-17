@@ -277,29 +277,31 @@ public class PauseMenuController_Khoa : MonoBehaviour
 
     private void OngoingListUIUpdate()
     {
-        for(int counter = 0; counter < onGoingTasks.Length; counter++)
+        if (onGoingList.Count != 0)
         {
-            Debug.Log("counter " + counter + "currentVerticalUIScrolling" + currentVerticalUIScrolling[1]);
-            if(counter > maxVerticalUIScrolling[1])
+            for (int counter = 0; counter < onGoingTasks.Length; counter++)
             {
-                break;
-            }
+                if (counter > maxVerticalUIScrolling[1])
+                {
+                    break;
+                }
 
-            if (currentVerticalUIScrolling[1] < 4)
-            {
-                onGoingTasks[currentVerticalUIScrolling[1]].color = Color.red;
-                onGoingTasks[counter].sprite = taskIcon[onGoingList[counter]];
-                onGoingTaskDescription[counter].text = taskDescription[onGoingList[counter]];
-            }
-            else
-            {
-                onGoingTasks[3].color = Color.red;
-                onGoingTasks[counter].sprite = taskIcon[onGoingList[counter + currentVerticalUIScrolling[1] - 3]];
-                onGoingTaskDescription[counter].text = taskDescription[onGoingList[counter + currentVerticalUIScrolling[1] - 3]];
-            }
+                if (currentVerticalUIScrolling[1] < 4)
+                {
+                    onGoingTasks[currentVerticalUIScrolling[1]].color = Color.red;
+                    onGoingTasks[counter].sprite = taskIcon[onGoingList[counter]];
+                    onGoingTaskDescription[counter].text = taskDescription[onGoingList[counter]];
+                }
+                else
+                {
+                    onGoingTasks[3].color = Color.red;
+                    onGoingTasks[counter].sprite = taskIcon[onGoingList[counter + currentVerticalUIScrolling[1] - 3]];
+                    onGoingTaskDescription[counter].text = taskDescription[onGoingList[counter + currentVerticalUIScrolling[1] - 3]];
+                }
 
-            onGoingTasks[counter].enabled = true;
-            onGoingTaskDescription[counter].enabled = true;
+                onGoingTasks[counter].enabled = true;
+                onGoingTaskDescription[counter].enabled = true;
+            }
         }
     }
     private void CompletedUIUpdate()
