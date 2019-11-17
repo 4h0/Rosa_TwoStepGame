@@ -43,4 +43,57 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: abd2aad464c92b54faec663374b5d42e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  alreadyHadThisTask: 000000000000
+  taskIcon:
+  - {fileID: 21300000, guid: b4a45510d412da54d8e0af5817c8cf0f, type: 3}
+  - {fileID: 21300000, guid: 8761862cf1f27554c80eafb0c2da9f79, type: 3}
+  - {fileID: 21300000, guid: 489db7e26b51d8b4e94a634b521bb38d, type: 3}
+  - {fileID: 21300000, guid: ab9a85bb36ab3384782ea3762ad99967, type: 3}
+  - {fileID: 21300000, guid: 0163562e3d0257f4bad8306cd7796dff, type: 3}
+  - {fileID: 21300000, guid: e672eefaa3a0ae04e86efdfd55a3c024, type: 3}
+  - {fileID: 21300000, guid: cdefdb6e30067544590bdd63b152c20b, type: 3}
+  rightSide:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  taskList:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  leftSide:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  completedCountPanel:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  onGoingTasks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  completedTasks:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  onGoingTaskDescription:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  pauseMenu: {fileID: 0}
+  taskDescription:
+  - Fire Elemental Transfer Task
+  - Earth Elemental Transfer Task
+  - Water Elemental Transfer Task
+  - Wind Elemental Transfer Task
+  - Puzzle 1 Task
+  - Puzzle 2 Task
+  - Puzzle 3 Task
+  - Already Took This Task
+  alreadyHadThisTask: 
+  completedCount: 
+  pauseMenuOn: 0
+  inputTaken: 0

@@ -122,7 +122,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: 903a06fe6e6fd45d4909d0098ca9065b, type: 2}
+  - {fileID: 2100000, guid: f7066f308ea937444bdbf8f73fdfa399, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -188,21 +188,13 @@ MonoBehaviour:
   taskComplete: {fileID: 0}
   taskRelatedGameObject:
   - {fileID: 0}
+  - {fileID: 0}
   noYesOption:
   - {fileID: 0}
   - {fileID: 0}
   charaName: Anya
-  questType: 5
+  questType: 1
   sentences:
   - '...'
   - '>.<'
   - take the task
-  description:
-  - Fire Elemental Transfer Task
-  - Earth Elemental Transfer Task
-  - Water Elemental Transfer Task
-  - Wind Elemental Transfer Task
-  - Puzzle 1 Task
-  - Puzzle 2 Task
-  - Puzzle 3 Task
-  - Already Took This Task

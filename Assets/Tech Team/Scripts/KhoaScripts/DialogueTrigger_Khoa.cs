@@ -17,7 +17,7 @@ public class DialogueTrigger_Khoa : MonoBehaviour
     public string charaName;
     public int questType;
 
-    public string[] sentences, description;
+    public string[] sentences;
 
     private bool speaking, choosing;
     private int whichSentence, whichOption;
@@ -37,40 +37,28 @@ public class DialogueTrigger_Khoa : MonoBehaviour
 
     private void Update()
     {
-        if (!choosing && !pauseMenuReference.pauseMenuOn)
+        if (!pauseMenuReference.pauseMenuOn)
         {
-            if (speaking)
+            if (!choosing)
             {
+                if (speaking)
+                {
+                    if (Input.GetButtonDown("Interact"))
+                    {
+                        DialogueCheck();
+                    }
+                }
+            }
+            else
+            {
+                YesNoOptionCheck();
+
                 if (Input.GetButtonDown("Interact"))
                 {
-                    DialogueCheck();
+                    OptionChoice();
                 }
             }
         }
-        else
-        {
-            YesNoOptionCheck();
-
-            if (Input.GetButtonDown("Interact"))
-            {
-                OptionChoice();
-            }
-        }
-    }
-
-    public void DeleteLater()
-    {
-        StartCoroutine(UpdateTaskCompletion());
-    }
-    IEnumerator UpdateTaskCompletion()
-    {
-        taskComplete.text = description[questType] + " completed";
-        taskComplete.enabled = true;
-        TurnOffTaskObjects();
-
-        yield return new WaitForSeconds(3f);
-
-        taskComplete.enabled = false;
     }
 
     private void AssignTaskObjectParent()
@@ -96,6 +84,18 @@ public class DialogueTrigger_Khoa : MonoBehaviour
         }
     }
 
+    private void UpdateDialogueText()
+    {
+        dialogueText.text = sentences[whichSentence];
+    }
+    private void ResetYesNoUI()
+    {
+        foreach (Image image in noYesOption)
+        {
+            image.color = Color.white;
+        }
+    }
+
     private void DialogueCheck()
     {
         if (whichSentence < sentences.Length - 1)
@@ -112,6 +112,8 @@ public class DialogueTrigger_Khoa : MonoBehaviour
     }
     private void YesNoOptionCheck()
     {
+        ResetYesNoUI();
+
         noYesOption[whichOption].color = Color.white;
 
         if (Input.GetKeyDown(KeyCode.D) || Input.GetKeyDown(KeyCode.S))
@@ -134,10 +136,6 @@ public class DialogueTrigger_Khoa : MonoBehaviour
 
         noYesOption[whichOption].color = Color.black;
     }
-    private void UpdateDialogueText()
-    {
-        dialogueText.text = sentences[whichSentence];
-    }
 
     private void ActivateDialogue()
     {
@@ -155,11 +153,11 @@ public class DialogueTrigger_Khoa : MonoBehaviour
     private void ActivateYesNoPanel()
     {
         playerReference.canMove = false;
+        choosing = true;
 
         yesNoPanel.SetActive(true);
 
-        choosing = true;
-        dialogueText.text = description[questType];
+        dialogueText.text = pauseMenuReference.taskDescription[questType];
     }
     private void DeactivateYesNoPanel()
     {
@@ -168,10 +166,7 @@ public class DialogueTrigger_Khoa : MonoBehaviour
 
         yesNoPanel.SetActive(false);
 
-        foreach (Image image in noYesOption)
-        {
-            image.color = Color.white;
-        }
+        ResetYesNoUI();
     }
 
     private void OptionChoice()
@@ -197,8 +192,13 @@ public class DialogueTrigger_Khoa : MonoBehaviour
         DeactivateYesNoPanel();
         TurnOnTaskObjects();
 
-        pauseMenuReference.alreadyHadThisTask[questType] = true;
-        dialogueText.text = description[description.Length - 1];
+        pauseMenuReference.AddToOngoingList(questType);
+    }
+    public void TaskCompleted()
+    {
+        TurnOffTaskObjects();
+
+        pauseMenuReference.AddToCompletedList(questType);
     }
 
     private void OnTriggerEnter(Collider other)
@@ -208,6 +208,10 @@ public class DialogueTrigger_Khoa : MonoBehaviour
             if (!pauseMenuReference.alreadyHadThisTask[questType])
             {
                 UpdateDialogueText();
+            }
+            else
+            {
+                dialogueText.text = pauseMenuReference.taskDescription[pauseMenuReference.taskDescription.Length - 1];
             }
 
             ActivateDialogue();

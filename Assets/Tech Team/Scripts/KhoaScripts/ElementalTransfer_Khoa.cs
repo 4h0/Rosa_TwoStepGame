@@ -98,7 +98,7 @@ public class ElementalTransfer_Khoa : MonoBehaviour
         {
             playerReference.elementalList[elementType]--;
             uiReference.UpdateElement(elementType);
-            this.transform.parent.GetComponent<DialogueTrigger_Khoa>().DeleteLater();
+            this.transform.parent.GetComponent<DialogueTrigger_Khoa>().TaskCompleted();
 
             ChangeColor();
             doOnce = true;

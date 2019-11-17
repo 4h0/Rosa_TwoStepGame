@@ -36,11 +36,13 @@ public class UIController_Khoa : MonoBehaviour
             case 0:
                 {
                     timerText.text = (timer / 60).ToString() + " : " + (timer % 60).ToString();
+
                     break;
                 }
             case 1:
                 {
-                    timerText.text = "You Win";
+                    timerText.text = "You Completed Puzzle 2 Task";
+
                     break;
                 }
             case 2:
@@ -52,6 +54,7 @@ public class UIController_Khoa : MonoBehaviour
                     playerControllerReference.maxElementCounter[randomDeduction] /= 2;
                     playerControllerReference.elementalList[randomDeduction] = playerControllerReference.maxElementCounter[randomDeduction];
                     UpdateElement(randomDeduction);
+
                     break;
                 }
         }

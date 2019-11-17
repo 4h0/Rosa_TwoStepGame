@@ -53,7 +53,6 @@ public class Puzzle2_Khoa : MonoBehaviour
         currentTime = maxTime;
 
         this.GetComponent<MeshRenderer>().material.color = Color.red;
-        this.transform.parent.GetComponent<DialogueTrigger_Khoa>().DeleteLater();
     }
 
     private void OnTriggerStay(Collider other)
@@ -73,6 +72,7 @@ public class Puzzle2_Khoa : MonoBehaviour
             if (currentTime > 0)
             {
                 UIReference.Puzzle2TextUpdate(1, currentTime);
+                this.transform.parent.GetComponent<DialogueTrigger_Khoa>().TaskCompleted();
             }
 
             StartCoroutine(Puzzle2End());
