@@ -1942,7 +1942,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 446718920}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 3f0e98cc59e8d3a43a90579615f9e488, type: 3}
   m_Name: 
@@ -1950,6 +1950,7 @@ MonoBehaviour:
   red: {fileID: 2100000, guid: 649d6437c6f0dfa4ea145d3f5c052c6b, type: 2}
   blue: {fileID: 2100000, guid: 3ccf74e6c291af84da623bd35b4df0e6, type: 2}
   original: {fileID: 0}
+  DistanceFromCubes: 4
 --- !u!114 &446718923
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2297,7 +2298,7 @@ PrefabInstance:
     - target: {fileID: 9141146879596216851, guid: fb69051cab3b62746a02eebc362032ff,
         type: 3}
       propertyPath: m_RootOrder
-      value: 25
+      value: 26
       objectReference: {fileID: 0}
     - target: {fileID: 9141146879596216851, guid: fb69051cab3b62746a02eebc362032ff,
         type: 3}
@@ -3993,7 +3994,7 @@ PrefabInstance:
     - target: {fileID: 4164804114459706293, guid: e59ad4fb02447be4aaf709664f202a18,
         type: 3}
       propertyPath: m_RootOrder
-      value: 26
+      value: 25
       objectReference: {fileID: 0}
     - target: {fileID: 4164804114459706293, guid: e59ad4fb02447be4aaf709664f202a18,
         type: 3}
