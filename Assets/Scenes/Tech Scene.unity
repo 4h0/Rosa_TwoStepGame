@@ -7650,7 +7650,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1350466fe3f07c74d9a6c15f702ace0d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  parenting: {fileID: 0}
+  parenting: {fileID: 160738981}
   endPoint: {fileID: 1724954965}
 --- !u!1 &1415568707 stripped
 GameObject:
@@ -8304,7 +8304,6 @@ MonoBehaviour:
   charaName: 
   questType: 0
   sentences: []
-  description: []
 --- !u!1 &1642442514
 GameObject:
   m_ObjectHideFlags: 0
