@@ -12,8 +12,40 @@ public class dialogueTrigger : MonoBehaviour
     {
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {
-            flowchart.ExecuteBlock("Quest Dialogue"); // we execute the named block within the flowchart.
+
+            if (this.gameObject.tag == "NPC")
+            {
+                Debug.Log("NPC1");
+                flowchart.ExecuteBlock("Quest Dialogue"); // we execute the named block within the flowchart.
+            }
+
+            else if (this.gameObject.tag == "NPC2")
+            {
+                Debug.Log("Npc2");
+                flowchart.ExecuteBlock("Testing1"); // we execute the named block within the flowchart.
+            }
+
+            else if (this.gameObject.tag == "NPC3")
+            {
+                Debug.Log("Npc2");
+                flowchart.ExecuteBlock("FlavorHW"); // we execute the named block within the flowchart.
+            }
+
+
+            else if (this.gameObject.tag == "NPC4")
+            {
+                Debug.Log("Npc2");
+                flowchart.ExecuteBlock("FlavorC"); // we execute the named block within the flowchart.
+            }
+
+            else if (this.gameObject.tag == "NPC5")
+            {
+                Debug.Log("Npc2");
+                flowchart.ExecuteBlock("FlavorG"); // we execute the named block within the flowchart.
+            }
+
         }
+
     }
 
 

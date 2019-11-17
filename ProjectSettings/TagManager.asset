@@ -16,6 +16,10 @@ TagManager:
   - Wall
   - Puzzle1Trigger
   - npcRadius
+  - NPC2
+  - NPC3
+  - NPC4
+  - NPC5
   layers:
   - Default
   - TransparentFX

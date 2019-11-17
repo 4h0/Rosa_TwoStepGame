@@ -177,7 +177,6 @@ GameObject:
   - component: {fileID: 246389189}
   - component: {fileID: 246389188}
   - component: {fileID: 246389198}
-  - component: {fileID: 246389197}
   - component: {fileID: 246389196}
   - component: {fileID: 246389195}
   - component: {fileID: 246389194}
@@ -280,9 +279,8 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 246389207}
-  selectedCommands:
-  - {fileID: 246389206}
+  - {fileID: 246389198}
+  selectedCommands: []
   variables: []
   description: 
   stepPause: 0
@@ -438,21 +436,6 @@ MonoBehaviour:
   stopVoiceover: 1
   waitForVO: 0
   setSayDialog: {fileID: 0}
---- !u!114 &246389197
-MonoBehaviour:
-  m_ObjectHideFlags: 2
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 246389187}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 000864f8e9e1748a39807861d0e60e29, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  parentBlock: {fileID: 246389198}
-  keyPressType: 0
-  keyCode: 113
 --- !u!114 &246389198
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -476,7 +459,7 @@ MonoBehaviour:
   itemId: 2
   blockName: Quest Dialogue
   description: 
-  eventHandler: {fileID: 246389197}
+  eventHandler: {fileID: 0}
   commandList:
   - {fileID: 246389196}
   - {fileID: 246389193}
@@ -671,7 +654,7 @@ MonoBehaviour:
   - {fileID: 246389203}
 --- !u!114 &246389206
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -726,7 +709,7 @@ MonoBehaviour:
   - {fileID: 246389206}
 --- !u!114 &246389208
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -754,7 +737,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &246389209
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -1060,8 +1043,8 @@ GameObject:
   - component: {fileID: 586404464}
   - component: {fileID: 586404463}
   m_Layer: 0
-  m_Name: NPCRadius5
-  m_TagString: NPC
+  m_Name: NPCRadius4
+  m_TagString: NPC4
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1075,7 +1058,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 586404462}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fbd4316d38d7400409375df3dd04eca9, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c05f5581ef6aae4bb4a8ba17e8e4d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   flowchart: {fileID: 246389190}
@@ -1277,7 +1260,7 @@ GameObject:
   - component: {fileID: 1084148308}
   m_Layer: 0
   m_Name: NPCRadius
-  m_TagString: npcRadius
+  m_TagString: NPC
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1502,7 +1485,7 @@ GameObject:
   - component: {fileID: 1196630545}
   m_Layer: 0
   m_Name: FriendlyGrandma
-  m_TagString: Untagged
+  m_TagString: NPC5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1668,7 +1651,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1279096957}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.82, y: 0.86, z: -14.93}
+  m_LocalPosition: {x: 8.82, y: 1.7, z: -14.93}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 414662310}
@@ -1746,8 +1729,8 @@ GameObject:
   - component: {fileID: 1360423992}
   - component: {fileID: 1360423991}
   m_Layer: 0
-  m_Name: NPCRadius4
-  m_TagString: NPC
+  m_Name: NPCRadius5
+  m_TagString: NPC5
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1761,7 +1744,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1360423990}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d9f1fa61a9a2f774481fbd22f2030008, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c05f5581ef6aae4bb4a8ba17e8e4d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   flowchart: {fileID: 246389190}
@@ -1869,7 +1852,7 @@ GameObject:
   - component: {fileID: 1416997080}
   m_Layer: 0
   m_Name: NPCRadius2
-  m_TagString: NPC
+  m_TagString: NPC2
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -1971,7 +1954,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1416997074}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 5ad39c85316bc294c873b94dcd644917, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c05f5581ef6aae4bb4a8ba17e8e4d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   flowchart: {fileID: 246389190}
@@ -2282,7 +2265,7 @@ GameObject:
   - component: {fileID: 1643501207}
   m_Layer: 0
   m_Name: NPCRadius3
-  m_TagString: NPC
+  m_TagString: NPC3
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -2296,7 +2279,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 1643501206}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 52b179c1d6cf89b42aa67ff1d13528db, type: 3}
+  m_Script: {fileID: 11500000, guid: 8c05f5581ef6aae4bb4a8ba17e8e4d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   flowchart: {fileID: 246389190}
