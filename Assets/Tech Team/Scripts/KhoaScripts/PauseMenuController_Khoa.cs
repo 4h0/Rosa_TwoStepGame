@@ -279,28 +279,36 @@ public class PauseMenuController_Khoa : MonoBehaviour
     {
         if (onGoingList.Count != 0)
         {
-            for (int counter = 0; counter < onGoingTasks.Length; counter++)
+            Debug.Log(onGoingList.Count);
+            if (currentVerticalUIScrolling[1] < 4)
             {
-                if (counter > maxVerticalUIScrolling[1])
+                for (int counter = 0; counter < onGoingTasks.Length; counter++)
                 {
-                    break;
-                }
+                    if (counter > maxVerticalUIScrolling[1])
+                    {
+                        break;
+                    }
 
-                if (currentVerticalUIScrolling[1] < 4)
-                {
-                    onGoingTasks[currentVerticalUIScrolling[1]].color = Color.red;
                     onGoingTasks[counter].sprite = taskIcon[onGoingList[counter]];
                     onGoingTaskDescription[counter].text = taskDescription[onGoingList[counter]];
                 }
-                else
-                {
-                    onGoingTasks[3].color = Color.red;
-                    onGoingTasks[counter].sprite = taskIcon[onGoingList[counter + currentVerticalUIScrolling[1] - 3]];
-                    onGoingTaskDescription[counter].text = taskDescription[onGoingList[counter + currentVerticalUIScrolling[1] - 3]];
-                }
 
-                onGoingTasks[counter].enabled = true;
-                onGoingTaskDescription[counter].enabled = true;
+                onGoingTasks[currentVerticalUIScrolling[1]].color = Color.red;
+            }
+            else
+            {
+                onGoingTasks[3].color = Color.red;
+
+                for (int counterSecond = 0; counterSecond < onGoingTasks.Length; counterSecond++)
+                {
+                    if (counterSecond > maxVerticalUIScrolling[1])
+                    {
+                        break;
+                    }
+
+                    onGoingTasks[counterSecond].sprite = taskIcon[onGoingList[counterSecond]];
+                    onGoingTaskDescription[counterSecond].text = taskDescription[onGoingList[counterSecond]];
+                }
             }
         }
     }
