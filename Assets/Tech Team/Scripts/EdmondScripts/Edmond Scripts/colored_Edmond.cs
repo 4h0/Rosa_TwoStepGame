@@ -2,7 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-public class Colored : MonoBehaviour
+public class Colored_Edmond : MonoBehaviour
 {
    public Material red;
    public Material blue;
