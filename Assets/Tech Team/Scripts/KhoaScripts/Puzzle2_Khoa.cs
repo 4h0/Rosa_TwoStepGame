@@ -74,8 +74,6 @@ public class Puzzle2_Khoa : MonoBehaviour
                 UIReference.Puzzle2TextUpdate(1, currentTime);
                 this.transform.parent.GetComponent<DialogueTrigger_Khoa>().TaskCompleted();
             }
-
-            StartCoroutine(Puzzle2End());
         }
     }
 }

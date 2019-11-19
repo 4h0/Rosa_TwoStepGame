@@ -6,7 +6,7 @@ using UnityEngine.UI;
 public class DialogueTrigger_Khoa : MonoBehaviour
 {
     public GameObject dialoguePanel, yesNoPanel;
-    public Text nameText, dialogueText, taskComplete;
+    public Text nameText, dialogueText;
 
     public GameObject[] taskRelatedGameObject;
     public Image[] noYesOption;
@@ -186,6 +186,7 @@ public class DialogueTrigger_Khoa : MonoBehaviour
                 }
         }
     }
+
     private void TaskAgree()
     {
         DeactivateDialogue();

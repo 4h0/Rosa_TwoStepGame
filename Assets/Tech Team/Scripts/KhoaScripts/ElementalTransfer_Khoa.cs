@@ -96,16 +96,18 @@ public class ElementalTransfer_Khoa : MonoBehaviour
     {
         if (playerReference.elementalList[elementType] > 0)
         {
+            playerReference.canMove = false;
             playerReference.elementalList[elementType]--;
             uiReference.UpdateElement(elementType);
-            this.transform.parent.GetComponent<DialogueTrigger_Khoa>().TaskCompleted();
 
             ChangeColor();
             doOnce = true;
 
-            yield return new WaitForSeconds(6f);
+            yield return new WaitForSeconds(.3f);
 
+            this.transform.parent.GetComponent<DialogueTrigger_Khoa>().TaskCompleted();
             this.GetComponent<MeshRenderer>().material.color = Color.white;
+            playerReference.canMove = true;
             doOnce = false;
         }
     }

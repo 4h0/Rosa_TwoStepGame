@@ -10,9 +10,7 @@ public class PauseMenuController_Khoa : MonoBehaviour
     public GameObject[] rightSide, taskList;
     public Image[] leftSide;
 
-    public GameObject[] completedCountPanel;
     public Image[] onGoingTasks, completedTasks;
-    public Text[] onGoingTaskDescription;
 
     public GameObject pauseMenu;
 
@@ -24,8 +22,9 @@ public class PauseMenuController_Khoa : MonoBehaviour
 
     private int[] currentVerticalUIScrolling, maxVerticalUIScrolling;
 
-    public bool pauseMenuOn, inputTaken;
+    public bool pauseMenuOn;
 
+    private bool inputTaken, completedListCheck;
     private int pauseMenuOnandOff, currentHorizontalScrolling, maxHorizontalUIScrolling;
     private float upDownTimer, leftRightTimer;
 
@@ -218,23 +217,27 @@ public class PauseMenuController_Khoa : MonoBehaviour
                 tempGameObject.GetComponent<Image>().color = tempColor;
             }
 
-            foreach (Image tempImage1 in onGoingTasks)
+            if (currentHorizontalScrolling == 1)
             {
-                tempImage1.color = Color.white;
-                tempImage1.enabled = false;
+                foreach (Image tempImage1 in onGoingTasks)
+                {
+                    tempImage1.enabled = false;
+                    tempImage1.transform.GetChild(0).GetComponent<Image>().enabled = false;
+                    tempImage1.transform.GetChild(0).GetChild(0).GetComponent<Text>().enabled = false;
+                }
+
+                OngoingListUIUpdate();
             }
-            foreach(Text tempText1 in onGoingTaskDescription)
+            if(currentHorizontalScrolling == 2)
             {
-                tempText1.enabled = false;
-            }
-            foreach (Image tempImage2 in completedTasks)
-            {
-                tempImage2.color = Color.white;
-                tempImage2.enabled = false;
-            }
-            foreach (GameObject tempGameObject2 in completedCountPanel)
-            {
-                tempGameObject2.SetActive(false);
+                foreach (Image tempImage2 in completedTasks)
+                {
+                    tempImage2.enabled = false;
+                    tempImage2.transform.GetChild(0).GetComponent<Image>().enabled = false;
+                    tempImage2.transform.GetChild(0).GetChild(0).GetComponent<Text>().enabled = false;
+                }
+
+                CompletedListUIUpdate();
             }
         }
 
@@ -270,50 +273,130 @@ public class PauseMenuController_Khoa : MonoBehaviour
             }
             if(currentHorizontalScrolling == 2)
             {
-                CompletedUIUpdate();
+                CompletedListUIUpdate();
             }
         }
     }
 
     private void OngoingListUIUpdate()
     {
-        if (onGoingList.Count != 0)
-        {
-            Debug.Log(onGoingList.Count);
-            if (currentVerticalUIScrolling[1] < 4)
-            {
-                for (int counter = 0; counter < onGoingTasks.Length; counter++)
-                {
-                    if (counter > maxVerticalUIScrolling[1])
-                    {
-                        break;
-                    }
+        int tempCounter;
 
-                    onGoingTasks[counter].sprite = taskIcon[onGoingList[counter]];
-                    onGoingTaskDescription[counter].text = taskDescription[onGoingList[counter]];
+        if (onGoingList.Count > 0)
+        {
+            for (int counter = 0; counter < onGoingTasks.Length; counter++)
+            {
+                if (counter > maxVerticalUIScrolling[1])
+                {
+                    break;
                 }
 
-                onGoingTasks[currentVerticalUIScrolling[1]].color = Color.red;
+                if (currentVerticalUIScrolling[1] < 4)
+                {
+                    tempCounter = counter;
+                }
+                else
+                {
+                    tempCounter = counter + currentVerticalUIScrolling[1] - 3;
+                }
+
+                onGoingTasks[counter].enabled = false;
+                onGoingTasks[counter].transform.GetChild(0).GetComponent<Image>().enabled = false;
+                onGoingTasks[counter].transform.GetChild(0).GetChild(0).GetComponent<Text>().enabled = false;
+
+                onGoingTasks[counter].sprite = taskIcon[onGoingList[tempCounter]];
+
+                onGoingTasks[counter].transform.GetChild(0).GetComponent<Image>().color = Color.black;
+                onGoingTasks[counter].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = taskDescription[onGoingList[tempCounter]];
+
+                onGoingTasks[counter].transform.GetChild(0).GetComponent<Image>().enabled = true;
+                onGoingTasks[counter].transform.GetChild(0).GetChild(0).GetComponent<Text>().enabled = true;
+                onGoingTasks[counter].enabled = true;
+            }
+
+            if (currentVerticalUIScrolling[1] < 4)
+            {
+                onGoingTasks[currentVerticalUIScrolling[1]].transform.GetChild(0).GetComponent<Image>().color = Color.red;
             }
             else
             {
-                onGoingTasks[3].color = Color.red;
-
-                for (int counterSecond = 0; counterSecond < onGoingTasks.Length; counterSecond++)
-                {
-                    if (counterSecond > maxVerticalUIScrolling[1])
-                    {
-                        break;
-                    }
-
-                    onGoingTasks[counterSecond].sprite = taskIcon[onGoingList[counterSecond]];
-                    onGoingTaskDescription[counterSecond].text = taskDescription[onGoingList[counterSecond]];
-                }
+                onGoingTasks[3].transform.GetChild(0).GetComponent<Image>().color = Color.red;
             }
         }
     }
-    private void CompletedUIUpdate()
+    private void CompletedListUIUpdate()
     {
+        int tempCounter2;
+
+        if (completedList.Count > 0)
+        {
+            for (int counterSecond = 0; counterSecond < completedTasks.Length; counterSecond++)
+            {
+                if (counterSecond > maxVerticalUIScrolling[2])
+                {
+                    break;
+                }
+
+                if (currentVerticalUIScrolling[2] < 4)
+                {
+                    tempCounter2 = counterSecond;
+                }
+                else
+                {
+                    tempCounter2 = counterSecond + currentVerticalUIScrolling[1] - 3;
+                }
+
+                completedTasks[counterSecond].enabled = false;
+                completedTasks[counterSecond].transform.GetChild(0).GetComponent<Image>().enabled = false;
+                completedTasks[counterSecond].transform.GetChild(0).GetChild(0).GetComponent<Text>().enabled = false;
+
+                completedTasks[counterSecond].sprite = taskIcon[completedList[tempCounter2]];
+
+                switch (completedCount[completedList[counterSecond]])
+                {
+                    case 0:
+                        {
+                            break;
+                        }
+                    case 1:
+                        {
+                            completedTasks[counterSecond].GetComponent<Image>().color = Color.grey;
+                            break;
+                        }
+                    case 2:
+                        {
+                            completedTasks[counterSecond].GetComponent<Image>().color = Color.green;
+                            break;
+                        }
+                    case 3:
+                        {
+                            completedTasks[counterSecond].GetComponent<Image>().color = Color.blue;
+                            break;
+                        }
+                    case 4:
+                        {
+                            completedTasks[counterSecond].GetComponent<Image>().color = Color.yellow;
+                            break;
+                        }
+                }
+
+                completedTasks[counterSecond].transform.GetChild(0).GetComponent<Image>().color = Color.black;
+                completedTasks[counterSecond].transform.GetChild(0).GetChild(0).GetComponent<Text>().text = taskDescription[completedList[tempCounter2]] + " (" + completedCount[completedList[counterSecond]] + ")";
+
+                completedTasks[counterSecond].transform.GetChild(0).GetComponent<Image>().enabled = true;
+                completedTasks[counterSecond].transform.GetChild(0).GetChild(0).GetComponent<Text>().enabled = true;
+                completedTasks[counterSecond].enabled = true;
+            }
+
+            if (currentVerticalUIScrolling[1] < 4)
+            {
+                completedTasks[currentVerticalUIScrolling[2]].transform.GetChild(0).GetComponent<Image>().color = Color.red;
+            }
+            else
+            {
+                completedTasks[3].transform.GetChild(0).GetComponent<Image>().color = Color.red;
+            }
+        }
     }
 
     public void AddToOngoingList(int questType)
@@ -328,31 +411,54 @@ public class PauseMenuController_Khoa : MonoBehaviour
     }
     public void AddToCompletedList(int questType)
     {
-        alreadyHadThisTask[questType] = false;
+        completedListCheck = false;
 
-        if (completedList.Count > 1)
+        if (completedList.Count > 0)
         {
-            completedCount[questType]++;
+            for (int counter2 = 0; counter2 < completedList.Count; counter2++)
+            {
+                if (completedList[counter2] != questType)
+                {
+                    completedListCheck = true;
+                }
+            }
+
+            if(completedListCheck)
+            {
+                completedList.Add(questType);
+                maxVerticalUIScrolling[2]++;
+            }
+        }
+        else
+        {
+            completedList.Add(questType);
         }
 
         for(int counter = 0; counter < onGoingList.Count; counter++)
         {
             if(onGoingList[counter] == questType)
             {
+                if (onGoingList.Count > 1)
+                {
+                    maxVerticalUIScrolling[1]--;
+                }
+
                 onGoingList.Remove(onGoingList[counter]);
-                maxVerticalUIScrolling[1]--;
 
                 break;
             }
         }
 
-        for(int counter2 = 0; counter2 < completedList.Count; counter2++)
+        if (completedCount[questType] < 4)
         {
-            if(completedList[counter2] != questType)
-            {
-                completedList.Add(questType);
-                maxVerticalUIScrolling[2]++;
-            }
+            completedCount[questType]++;
         }
+
+        alreadyHadThisTask[questType] = false;
+
+        Debug.Log("current ongoing list counter: " + onGoingList.Count);
+        Debug.Log("current ongoing max: " + maxVerticalUIScrolling[1]);
+        Debug.Log("current completed list counter: " + completedList.Count);
+        Debug.Log("current completed max: " + maxVerticalUIScrolling[2]);
     }
 }
