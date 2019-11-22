@@ -293,9 +293,8 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 246389194}
-  selectedCommands:
-  - {fileID: 246389221}
+  - {fileID: 246389219}
+  selectedCommands: []
   variables:
   - {fileID: 246389197}
   - {fileID: 246389220}
@@ -468,7 +467,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scope: 2
-  key: fireHelp
+  key: waterHelp
   value: 0
 --- !u!114 &246389198
 MonoBehaviour:
@@ -1020,7 +1019,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 1077
+    x: 1076
     y: 172
     width: 120
     height: 40
@@ -1133,7 +1132,7 @@ MonoBehaviour:
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 19
-  blockName: fireQuest
+  blockName: waterQuest
   description: 
   eventHandler: {fileID: 0}
   commandList:
