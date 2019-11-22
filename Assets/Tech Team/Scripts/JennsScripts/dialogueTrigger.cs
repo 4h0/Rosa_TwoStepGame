@@ -13,13 +13,13 @@ public class dialogueTrigger : MonoBehaviour
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {
 
-            if (this.gameObject.tag == "NPC")
+            if (this.gameObject.tag == "NPC") // checks to see if the radius is tagged with the NPC tag.
             {
                 Debug.Log("NPC1");
                 flowchart.ExecuteBlock("Quest Dialogue"); // we execute the named block within the flowchart.
             }
 
-            else if (this.gameObject.tag == "NPC2")
+            else if (this.gameObject.tag == "NPC2") // checks tag.
             {
                 Debug.Log("Npc2");
                 flowchart.ExecuteBlock("Testing1"); // we execute the named block within the flowchart.
@@ -27,21 +27,27 @@ public class dialogueTrigger : MonoBehaviour
 
             else if (this.gameObject.tag == "NPC3")
             {
-                Debug.Log("Npc2");
+                Debug.Log("Npc3");
                 flowchart.ExecuteBlock("FlavorHW"); // we execute the named block within the flowchart.
             }
 
 
             else if (this.gameObject.tag == "NPC4")
             {
-                Debug.Log("Npc2");
+                Debug.Log("Npc4");
                 flowchart.ExecuteBlock("FlavorC"); // we execute the named block within the flowchart.
             }
 
             else if (this.gameObject.tag == "NPC5")
             {
-                Debug.Log("Npc2");
+                Debug.Log("Npc5");
                 flowchart.ExecuteBlock("FlavorG"); // we execute the named block within the flowchart.
+            }
+
+            else if (this.gameObject.tag == "NPC6")
+            {
+                Debug.Log("NPC6");
+                flowchart.ExecuteBlock("fireQuest"); // executing the fire quest chain.
             }
 
         }
