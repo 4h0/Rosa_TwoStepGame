@@ -293,8 +293,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 246389219}
-  selectedCommands: []
+  - {fileID: 246389215}
+  selectedCommands:
+  - {fileID: 246389213}
   variables:
   - {fileID: 246389197}
   - {fileID: 246389220}
@@ -467,7 +468,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   scope: 2
-  key: waterHelp
+  key: fireHelp
   value: 0
 --- !u!114 &246389198
 MonoBehaviour:
@@ -928,7 +929,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 28
   indentLevel: 0
-  storyText: 
+  storyText: '"But someone has to help!"'
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -1132,7 +1133,7 @@ MonoBehaviour:
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
   itemId: 19
-  blockName: waterQuest
+  blockName: fireQuest
   description: 
   eventHandler: {fileID: 0}
   commandList:

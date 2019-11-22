@@ -47,7 +47,7 @@ public class dialogueTrigger : MonoBehaviour
             else if (this.gameObject.tag == "NPC6")
             {
                 Debug.Log("NPC6");
-                flowchart.ExecuteBlock("waterQuest"); // executing the fire quest chain.
+                flowchart.ExecuteBlock("fireQuest"); // executing the fire quest chain.
             }
 
         }
