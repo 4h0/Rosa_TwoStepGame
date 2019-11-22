@@ -71,4 +71,8 @@ public class dialogueTrigger : MonoBehaviour
             hasPlayer = false; // sets hasPlayer to be false so dialogue won't play.
         }
     }
+    public void test()
+    {
+        Debug.Log("this workedddd");
+    }
 }
