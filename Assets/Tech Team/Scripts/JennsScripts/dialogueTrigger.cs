@@ -7,7 +7,13 @@ public class dialogueTrigger : MonoBehaviour
 {
     public Flowchart flowchart; // calls the flowchart.
     private bool hasPlayer; // is the player in a collider? yes or no
-
+    private PauseMenuController_Khoa pauseMenuReference;
+    public int questType;
+    public GameObject[] taskRelatedGameObject;
+    private void Awake()
+    {
+        pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
+    }
     private void Update()
     {
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
@@ -71,8 +77,18 @@ public class dialogueTrigger : MonoBehaviour
             hasPlayer = false; // sets hasPlayer to be false so dialogue won't play.
         }
     }
-    public void test()
+    private void TaskAgree()
     {
-        Debug.Log("this workedddd");
+        TurnOnTaskObjects();
+
+        pauseMenuReference.AddToOngoingList(questType);
+    }
+
+        private void TurnOnTaskObjects()
+    {
+        for (int counter = 0; counter < taskRelatedGameObject.Length; counter++)
+        {
+            taskRelatedGameObject[counter].SetActive(true);
+        }
     }
 }

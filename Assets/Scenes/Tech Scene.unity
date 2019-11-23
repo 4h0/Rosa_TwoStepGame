@@ -500,6 +500,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1382456034}
+  questType: 0
+  taskRelatedGameObject: []
 --- !u!54 &45358942
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -725,6 +727,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1382456034}
+  questType: 0
+  taskRelatedGameObject: []
 --- !u!54 &71721554
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2496,6 +2500,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1382456034}
+  questType: 0
+  taskRelatedGameObject: []
 --- !u!54 &313703994
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3161,6 +3167,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1382456034}
+  questType: 0
+  taskRelatedGameObject: []
 --- !u!136 &433830384
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -3459,6 +3467,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1382456034}
+  questType: 0
+  taskRelatedGameObject: []
 --- !u!54 &467552954
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5402,6 +5412,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowchart: {fileID: 0}
+  questType: 0
+  taskRelatedGameObject: []
 --- !u!136 &874993348
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -7014,6 +7026,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1382456034}
+  questType: 0
+  taskRelatedGameObject: []
 --- !u!54 &1258195160
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7472,6 +7486,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1382456034}
+  questType: 0
+  taskRelatedGameObject: []
 --- !u!54 &1336044743
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -7895,8 +7911,7 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1382456044}
-  selectedCommands:
-  - {fileID: 1382456071}
+  selectedCommands: []
   variables:
   - {fileID: 1382456036}
   - {fileID: 1382456035}
@@ -8971,7 +8986,7 @@ MonoBehaviour:
   itemId: 32
   indentLevel: 0
   targetObject: {fileID: 45358938}
-  methodName: test
+  methodName: TaskAgree
   delay: 0
 --- !u!114 &1382456071
 MonoBehaviour:
@@ -9270,6 +9285,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1455840234}
+  questType: 0
+  taskRelatedGameObject: []
 --- !u!54 &1419277035
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -9839,6 +9856,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   flowchart: {fileID: 0}
+  questType: 0
+  taskRelatedGameObject: []
 --- !u!136 &1533939814
 CapsuleCollider:
   m_ObjectHideFlags: 0
