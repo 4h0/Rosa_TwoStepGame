@@ -7,7 +7,7 @@ public class dialogueTrigger : MonoBehaviour
 {
     public Flowchart flowchart; // calls the flowchart.
     private bool hasPlayer; // is the player in a collider? yes or no
-    private PauseMenuController_Khoa pauseMenuReference;
+    public PauseMenuController_Khoa pauseMenuReference;
     public int questType;
     public GameObject[] taskRelatedGameObject;
     private void Awake()
