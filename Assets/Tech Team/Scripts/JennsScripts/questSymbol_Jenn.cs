@@ -31,7 +31,7 @@ public class questSymbol_Jenn : MonoBehaviour
 
     void OnTriggerEnter(Collider other) // collider stuff
     {
-        Debug.Log("Entered"); // testing to see if entered
+        // Debug.Log("Entered"); // testing to see if entered
         if (other.CompareTag("Player")) //&& (other.gameObject.name == "npcRadius")) //if the player is colliding with trigger
         {
             hasPlayer = true; // set hasPlayer to true!
