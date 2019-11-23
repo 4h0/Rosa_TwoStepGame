@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+ using UnityEngine.UI;
 
 public class ThirdPersonCamera : MonoBehaviour
 {
     public bool lockCursor;
-    public float mouseSensitivity = 10;
+    public Slider sensitivitySlider;
+    public float mouseSensitivity;
     public Transform target;
     public float dstFromTarget = 2;
     public Vector2 pitchMinMax = new Vector2(-40, 85);
@@ -51,5 +53,10 @@ public class ThirdPersonCamera : MonoBehaviour
             Cursor.lockState = CursorLockMode.Locked;
             Cursor.visible = false;
         }
+    }
+
+    public void SetSensitivity()
+    {
+        mouseSensitivity = sensitivitySlider.value;
     }
 }
