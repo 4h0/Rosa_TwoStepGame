@@ -13,6 +13,7 @@ public class dialogueTrigger : MonoBehaviour
     private void Awake()
     {
         pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
+        questType = flowchart.GetIntegerVariable("questType");
     }
     private void Update()
     {

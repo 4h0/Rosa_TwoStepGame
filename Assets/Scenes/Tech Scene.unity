@@ -187,8 +187,19 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1415889228491054758, guid: be7b5e42579ad4de3925949cf3c5e4d9,
+        type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: be7b5e42579ad4de3925949cf3c5e4d9, type: 3}
+--- !u!1 &1862859 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4687741038358736017, guid: be7b5e42579ad4de3925949cf3c5e4d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1862858}
+  m_PrefabAsset: {fileID: 0}
 --- !u!4 &12368410 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4179209744618681499, guid: 54f9d6ff3f5b0aa46885b94b054ae17d,
@@ -2359,6 +2370,56 @@ PrefabInstance:
       propertyPath: m_Pivot.y
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
+        type: 3}
+      propertyPath: m_WholeNumbers
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
+        type: 3}
+      propertyPath: m_MinValue
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
+        type: 3}
+      propertyPath: m_MaxValue
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
+        type: 3}
+      propertyPath: m_Value
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
+      value: 
+      objectReference: {fileID: 335284303}
+    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
+      value: SetSensitivity
+      objectReference: {fileID: 0}
+    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
+        type: 3}
+      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 52509892718016841, guid: 2690f533c5ada4880b77f05599eaead3,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
@@ -2415,56 +2476,6 @@ PrefabInstance:
       value: SetSensitivity
       objectReference: {fileID: 0}
     - target: {fileID: 52509892718016841, guid: 2690f533c5ada4880b77f05599eaead3,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
-      value: UnityEngine.Object, UnityEngine
-      objectReference: {fileID: 0}
-    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
-        type: 3}
-      propertyPath: m_WholeNumbers
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
-        type: 3}
-      propertyPath: m_MinValue
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
-        type: 3}
-      propertyPath: m_MaxValue
-      value: 20
-      objectReference: {fileID: 0}
-    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
-        type: 3}
-      propertyPath: m_Value
-      value: 10
-      objectReference: {fileID: 0}
-    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Mode
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_CallState
-      value: 2
-      objectReference: {fileID: 0}
-    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Target
-      value: 
-      objectReference: {fileID: 335284303}
-    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
-        type: 3}
-      propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
-      value: SetSensitivity
-      objectReference: {fileID: 0}
-    - target: {fileID: 52509892924382472, guid: 2690f533c5ada4880b77f05599eaead3,
         type: 3}
       propertyPath: m_OnValueChanged.m_PersistentCalls.m_Calls.Array.data[0].m_Arguments.m_ObjectArgumentAssemblyTypeName
       value: UnityEngine.Object, UnityEngine
@@ -3688,7 +3699,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1382456034}
   questType: 0
-  taskRelatedGameObject: []
+  taskRelatedGameObject:
+  - {fileID: 1862859}
 --- !u!54 &467552954
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -5602,7 +5614,6 @@ GameObject:
   - component: {fileID: 874993350}
   - component: {fileID: 874993349}
   - component: {fileID: 874993348}
-  - component: {fileID: 874993347}
   m_Layer: 0
   m_Name: Titania
   m_TagString: NPC
@@ -5625,21 +5636,6 @@ Transform:
   m_Father: {fileID: 1455763498}
   m_RootOrder: 6
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &874993347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 874993345}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8c05f5581ef6aae4bb4a8ba17e8e4d48, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  flowchart: {fileID: 0}
-  questType: 0
-  taskRelatedGameObject: []
 --- !u!136 &874993348
 CapsuleCollider:
   m_ObjectHideFlags: 0
