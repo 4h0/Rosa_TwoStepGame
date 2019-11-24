@@ -200,6 +200,64 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 1862858}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &1862860 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 8842195457757005848, guid: be7b5e42579ad4de3925949cf3c5e4d9,
+    type: 3}
+  m_PrefabInstance: {fileID: 1862858}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1862861
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862860}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 57ead4a92c6edd740bd3bdcd465eb965, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  isGiving: 1
+  stayInside: 0
+  elementType: 0
+--- !u!23 &1862862
+MeshRenderer:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1862860}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_DynamicOccludee: 1
+  m_MotionVectors: 1
+  m_LightProbeUsage: 1
+  m_ReflectionProbeUsage: 1
+  m_RenderingLayerMask: 1
+  m_RendererPriority: 0
+  m_Materials:
+  - {fileID: 0}
+  m_StaticBatchInfo:
+    firstSubMesh: 0
+    subMeshCount: 0
+  m_StaticBatchRoot: {fileID: 0}
+  m_ProbeAnchor: {fileID: 0}
+  m_LightProbeVolumeOverride: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_PreserveUVs: 0
+  m_IgnoreNormalsForChartDetection: 0
+  m_ImportantGI: 0
+  m_StitchLightmapSeams: 1
+  m_SelectedEditorRenderState: 3
+  m_MinimumChartSize: 4
+  m_AutoUVMaxDistance: 0.5
+  m_AutoUVMaxAngle: 89
+  m_LightmapParameters: {fileID: 0}
+  m_SortingLayerID: 0
+  m_SortingLayer: 0
+  m_SortingOrder: 0
 --- !u!4 &12368410 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 4179209744618681499, guid: 54f9d6ff3f5b0aa46885b94b054ae17d,
@@ -8437,6 +8495,7 @@ GameObject:
   - component: {fileID: 1382456069}
   - component: {fileID: 1382456071}
   - component: {fileID: 1382456070}
+  - component: {fileID: 1382456072}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -8470,7 +8529,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1382456044}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 1382456072}
   variables:
   - {fileID: 1382456036}
   - {fileID: 1382456035}
@@ -8882,6 +8942,7 @@ MonoBehaviour:
   - {fileID: 1382456041}
   - {fileID: 1382456071}
   - {fileID: 1382456070}
+  - {fileID: 1382456072}
 --- !u!114 &1382456045
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -9611,6 +9672,23 @@ MonoBehaviour:
   vector3Data:
     vector3Ref: {fileID: 0}
     vector3Val: {x: 0, y: 0, z: 0}
+--- !u!114 &1382456072
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1382456033}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 33
+  indentLevel: 0
+  targetObject: {fileID: 446718920}
+  methodName: Distance
+  delay: 0
 --- !u!1 &1387677667
 GameObject:
   m_ObjectHideFlags: 0
