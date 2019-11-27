@@ -1120,6 +1120,18 @@ PrefabInstance:
       propertyPath: pauseMenu
       value: 
       objectReference: {fileID: 1026010207}
+    - target: {fileID: 1119773845, guid: 5e0fa5ee13285a84f9f499273478f380, type: 3}
+      propertyPath: puzzleList.Array.data[0]
+      value: 
+      objectReference: {fileID: 406570831}
+    - target: {fileID: 1119773845, guid: 5e0fa5ee13285a84f9f499273478f380, type: 3}
+      propertyPath: puzzleList.Array.data[1]
+      value: 
+      objectReference: {fileID: 234734745}
+    - target: {fileID: 1119773845, guid: 5e0fa5ee13285a84f9f499273478f380, type: 3}
+      propertyPath: puzzleList.Array.data[2]
+      value: 
+      objectReference: {fileID: 853608114}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 5e0fa5ee13285a84f9f499273478f380, type: 3}
 --- !u!1 &278014989
