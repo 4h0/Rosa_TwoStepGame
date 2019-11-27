@@ -29,42 +29,6 @@ public class UIController_Khoa : MonoBehaviour
 
         timerText.enabled = false;
     }
-    public void Puzzle2TextUpdate(int caseType, int timer)
-    {
-        switch (caseType)
-        {
-            case 0:
-                {
-                    timerText.text = (timer / 60).ToString() + " : " + (timer % 60).ToString();
-
-                    break;
-                }
-            case 1:
-                {
-                    timerText.text = "You Completed Puzzle 2 Task";
-
-                    break;
-                }
-            case 2:
-                {
-                    timerText.text = "You Fail";
-
-                    int randomDeduction = Random.Range(0, 3);
-
-                    playerControllerReference.maxElementCounter[randomDeduction] /= 2;
-                    playerControllerReference.elementalList[randomDeduction] = playerControllerReference.maxElementCounter[randomDeduction];
-                    UpdateElement(randomDeduction);
-
-                    break;
-                }
-        }
-
-        timerText.enabled = true;
-    }
-    public void TurnOffTimerText()
-    {
-        timerText.enabled = false;
-    }
 
     public void DashMultiplierOn()
     {

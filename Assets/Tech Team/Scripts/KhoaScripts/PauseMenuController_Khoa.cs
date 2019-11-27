@@ -15,6 +15,7 @@ public class PauseMenuController_Khoa : MonoBehaviour
     public GameObject pauseMenu;
 
     private PlayerController_Alex playerReference;
+    private PuzzleActivateCondition_Khoa puzzleActivateConditionRerference;
 
     public string[] taskDescription;
     public bool[] alreadyHadThisTask;
@@ -33,6 +34,7 @@ public class PauseMenuController_Khoa : MonoBehaviour
     private void Awake()
     {
         playerReference = FindObjectOfType<PlayerController_Alex>();
+        puzzleActivateConditionRerference = FindObjectOfType<PuzzleActivateCondition_Khoa>();
 
         onGoingList = new List<int>();
         completedList = new List<int>();
@@ -84,6 +86,8 @@ public class PauseMenuController_Khoa : MonoBehaviour
         playerReference.canMove = false;
         pauseMenuOn = true;
 
+        Time.timeScale = 0f;
+
         UpdateUI();
     }
     private void TurnOffPauseMenu()
@@ -95,6 +99,8 @@ public class PauseMenuController_Khoa : MonoBehaviour
 
         playerReference.canMove = true;
         pauseMenuOn = false;
+
+        Time.timeScale = 1f;
 
         ResetUI();
     }
@@ -248,7 +254,6 @@ public class PauseMenuController_Khoa : MonoBehaviour
 
         UpdateUI();
     }
-
     private void UpdateUI()
     {
         if (currentHorizontalScrolling == 0)
@@ -409,6 +414,25 @@ public class PauseMenuController_Khoa : MonoBehaviour
             maxVerticalUIScrolling[1]++;
         }
     }
+    public void RemoveFromOngoingList(int questType)
+    {
+        alreadyHadThisTask[questType] = false;
+
+        for (int counter = 0; counter < onGoingList.Count; counter++)
+        {
+            if (onGoingList[counter] == questType)
+            {
+                if (onGoingList.Count > 1)
+                {
+                    maxVerticalUIScrolling[1]--;
+                }
+
+                onGoingList.Remove(onGoingList[counter]);
+
+                break;
+            }
+        }
+    }
     public void AddToCompletedList(int questType)
     {
         completedListCheck = false;
@@ -434,20 +458,7 @@ public class PauseMenuController_Khoa : MonoBehaviour
             completedList.Add(questType);
         }
 
-        for(int counter = 0; counter < onGoingList.Count; counter++)
-        {
-            if(onGoingList[counter] == questType)
-            {
-                if (onGoingList.Count > 1)
-                {
-                    maxVerticalUIScrolling[1]--;
-                }
-
-                onGoingList.Remove(onGoingList[counter]);
-
-                break;
-            }
-        }
+        RemoveFromOngoingList(questType);
 
         if (completedCount[questType] < 4)
         {
@@ -455,10 +466,5 @@ public class PauseMenuController_Khoa : MonoBehaviour
         }
 
         alreadyHadThisTask[questType] = false;
-
-        Debug.Log("current ongoing list counter: " + onGoingList.Count);
-        Debug.Log("current ongoing max: " + maxVerticalUIScrolling[1]);
-        Debug.Log("current completed list counter: " + completedList.Count);
-        Debug.Log("current completed max: " + maxVerticalUIScrolling[2]);
     }
 }

@@ -63,16 +63,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  completedCountPanel:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  onGoingTaskDescription:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   onGoingTasks:
   - {fileID: 0}
   - {fileID: 0}
@@ -96,4 +86,3 @@ MonoBehaviour:
   alreadyHadThisTask: 
   completedCount: 
   pauseMenuOn: 0
-  inputTaken: 0

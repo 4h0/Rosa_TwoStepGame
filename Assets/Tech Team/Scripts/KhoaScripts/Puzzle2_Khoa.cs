@@ -19,7 +19,7 @@ public class Puzzle2_Khoa : MonoBehaviour
         doOnce = false;
         puzzle2CanStart = true;
         currentTime = maxTime;
-    }
+    }/*
 
     IEnumerator TakingTimeOff()
     {
@@ -76,4 +76,5 @@ public class Puzzle2_Khoa : MonoBehaviour
             }
         }
     }
+    */
 }

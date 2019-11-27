@@ -7,6 +7,7 @@ public class PlayerController_Alex : MonoBehaviour
     //public GameObject dashHelperReference, strengthHelperReference;
     public Transform strengthRayEndPoint;
     public LayerMask[] rayCastLayerMask;
+    public ParticleSystem playerParticle;
 
     private UIController_Khoa uiControllerReference;
     private Animator animator;
@@ -36,6 +37,8 @@ public class PlayerController_Alex : MonoBehaviour
 
     private void Awake()
     {
+        playerParticle.Stop();
+
         uiControllerReference = FindObjectOfType<UIController_Khoa>();
         //animator = GetComponent<Animator>();
         cameraT = Camera.main.transform;

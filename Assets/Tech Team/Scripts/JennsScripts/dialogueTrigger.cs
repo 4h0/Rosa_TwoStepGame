@@ -1,20 +1,42 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 using Fungus; // must be used. This allows the script to access the fungus scripts.
 
 public class dialogueTrigger : MonoBehaviour
 {
+    public Text timerText;
+
+    public GameObject[] taskRelatedGameObjects;
     public Flowchart flowchart; // calls the flowchart.
-    private bool hasPlayer; // is the player in a collider? yes or no
-    public PauseMenuController_Khoa pauseMenuReference;
-    public int questType;
-    public GameObject[] taskRelatedGameObject;
+
+    private PlayerController_Alex playerReference;
+    private PauseMenuController_Khoa pauseMenuReference;
+    private UIController_Khoa uiControllerReference;
+
+    public int questType, maxTimer, currentTimer, objectsNumber;
+
+    private bool hasPlayer, finishedTask; // is the player in a collider? yes or no
+
     private void Awake()
     {
-        pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
+        timerText.enabled = false;
         questType = flowchart.GetIntegerVariable("questType");
+
+        playerReference = FindObjectOfType<PlayerController_Alex>();
+        pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
+        uiControllerReference = FindObjectOfType<UIController_Khoa>();
+
+        foreach (GameObject tempGameObjects in taskRelatedGameObjects)
+        {
+            tempGameObjects.SetActive(false);
+            tempGameObjects.transform.SetParent(this.transform, true);
+        }
+
+        objectsNumber = taskRelatedGameObjects.Length;
     }
+
     private void Update()
     {
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
@@ -80,16 +102,80 @@ public class dialogueTrigger : MonoBehaviour
     }
     private void TaskAgree()
     {
-        TurnOnTaskObjects();
+        StartSideQuest();
 
         pauseMenuReference.AddToOngoingList(questType);
     }
 
-        private void TurnOnTaskObjects()
+    public void QuestConditionCheck()
     {
-        for (int counter = 0; counter < taskRelatedGameObject.Length; counter++)
+        objectsNumber--;
+
+        if (objectsNumber <= 0)
         {
-            taskRelatedGameObject[counter].SetActive(true);
+            finishedTask = true;
+
+            pauseMenuReference.AddToCompletedList(questType);
+            StopSideQuest();
         }
+    }
+
+    private void UpdateTimerText()
+    {
+        currentTimer--;
+        timerText.text = currentTimer / 60 + " : " + currentTimer % 60;
+        timerText.enabled = true;
+
+        StartCoroutine(TimerCountDown());
+    }
+
+    IEnumerator TimerCountDown()
+    {
+        yield return new WaitForSeconds(.1f);
+
+        if (finishedTask)
+        {
+            yield break;
+        }
+        else
+        {
+            if (currentTimer > 0)
+            {
+                UpdateTimerText();
+            }
+            else
+            {
+                playerReference.maxElementCounter[questType] /= 2;
+                playerReference.elementalList[questType] = playerReference.maxElementCounter[questType];
+
+                uiControllerReference.UpdateElement(questType);
+                StopSideQuest();
+            }
+        }
+    }
+
+    public void StartSideQuest()
+    {
+        currentTimer = maxTimer;
+
+        if (!pauseMenuReference.alreadyHadThisTask[questType])
+        {
+            foreach (GameObject tempGameObjects in taskRelatedGameObjects)
+            {
+                tempGameObjects.SetActive(true);
+            }
+
+            UpdateTimerText();
+        }
+    }
+    private void StopSideQuest()
+    {
+        timerText.enabled = false;
+        foreach (GameObject tempGameObjects in taskRelatedGameObjects)
+        {
+            tempGameObjects.SetActive(false);
+        }
+
+        pauseMenuReference.RemoveFromOngoingList(questType);
     }
 }
