@@ -107,19 +107,6 @@ public class dialogueTrigger : MonoBehaviour
         pauseMenuReference.AddToOngoingList(questType);
     }
 
-    public void QuestConditionCheck()
-    {
-        objectsNumber--;
-
-        if (objectsNumber <= 0)
-        {
-            finishedTask = true;
-
-            pauseMenuReference.AddToCompletedList(questType);
-            StopSideQuest();
-        }
-    }
-
     private void UpdateTimerText()
     {
         currentTimer--;
@@ -149,7 +136,7 @@ public class dialogueTrigger : MonoBehaviour
                 playerReference.elementalList[questType] = playerReference.maxElementCounter[questType];
 
                 uiControllerReference.UpdateElement(questType);
-                StopSideQuest();
+                StartCoroutine(StopSideQuest());
             }
         }
     }
@@ -168,14 +155,30 @@ public class dialogueTrigger : MonoBehaviour
             UpdateTimerText();
         }
     }
-    private void StopSideQuest()
+    public void QuestConditionCheck()
+    {
+        objectsNumber--;
+
+        if (objectsNumber <= 0)
+        {
+            finishedTask = true;
+
+            pauseMenuReference.AddToCompletedList(questType);
+            StartCoroutine(StopSideQuest());
+        }
+    }
+
+    IEnumerator StopSideQuest()
     {
         timerText.enabled = false;
+
+        pauseMenuReference.RemoveFromOngoingList(questType);
+
+        yield return new WaitForSeconds(3f);
+
         foreach (GameObject tempGameObjects in taskRelatedGameObjects)
         {
             tempGameObjects.SetActive(false);
         }
-
-        pauseMenuReference.RemoveFromOngoingList(questType);
     }
 }

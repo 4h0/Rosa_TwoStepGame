@@ -80,7 +80,7 @@ public class ElementalTransfer_Khoa : MonoBehaviour
 
         doOnce = true;
 
-        yield return new WaitForSeconds(6f);
+        yield return new WaitForSeconds(1.5f);
 
         playerReference.GetComponent<PlayerController_Alex>().playerParticle.Stop();
         doOnce = false;
