@@ -436,6 +436,7 @@ public class PauseMenuController_Khoa : MonoBehaviour
     public void AddToCompletedList(int questType)
     {
         completedListCheck = false;
+        puzzleActivateConditionRerference.PuzzleActivationCheck();
 
         if (completedList.Count > 0)
         {
