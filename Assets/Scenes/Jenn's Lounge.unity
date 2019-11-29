@@ -207,6 +207,10 @@ GameObject:
   - component: {fileID: 246389220}
   - component: {fileID: 246389222}
   - component: {fileID: 246389221}
+  - component: {fileID: 246389226}
+  - component: {fileID: 246389225}
+  - component: {fileID: 246389223}
+  - component: {fileID: 246389224}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -281,11 +285,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 29, y: -41}
+  scrollPos: {x: 21.452503, y: -94.28003}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 1
+  zoom: 0.8200002
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -293,9 +297,8 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 246389215}
-  selectedCommands:
-  - {fileID: 246389213}
+  - {fileID: 246389223}
+  selectedCommands: []
   variables:
   - {fileID: 246389197}
   - {fileID: 246389220}
@@ -457,7 +460,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &246389197
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -486,7 +489,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 177
     y: 91
-    width: 137
+    width: 145.12193
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -853,7 +856,7 @@ MonoBehaviour:
   - {fileID: 246389212}
 --- !u!114 &246389212
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -917,7 +920,7 @@ MonoBehaviour:
     vector3Val: {x: 0, y: 0, z: 0}
 --- !u!114 &246389213
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -944,7 +947,7 @@ MonoBehaviour:
   setSayDialog: {fileID: 0}
 --- !u!114 &246389214
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -1142,7 +1145,7 @@ MonoBehaviour:
   - {fileID: 246389216}
 --- !u!114 &246389220
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -1157,7 +1160,7 @@ MonoBehaviour:
   value: 0
 --- !u!114 &246389221
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -1221,7 +1224,7 @@ MonoBehaviour:
     vector3Val: {x: 0, y: 0, z: 0}
 --- !u!114 &246389222
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -1283,6 +1286,112 @@ MonoBehaviour:
   vector3Data:
     vector3Ref: {fileID: 0}
     vector3Val: {x: 0, y: 0, z: 0}
+--- !u!114 &246389223
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246389187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: 829.7678
+    y: 330.86533
+    width: 120
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 33
+  blockName: fFire
+  description: When you've completed the fire Quest.
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 246389224}
+--- !u!114 &246389224
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246389187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 34
+  indentLevel: 0
+  storyText: '"Oh! You''re back! Did you....You did! Oh thank you! Thank you so much."'
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &246389225
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246389187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 32
+  indentLevel: 0
+  storyText: '"What''re you doing?! The building is still burning!'
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &246389226
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246389187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: 829.7684
+    y: 246.71896
+    width: 120
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 31
+  blockName: IPfire
+  description: When you've accepted the quest but haven't completed it.
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 246389225}
 --- !u!1 &282312667
 GameObject:
   m_ObjectHideFlags: 0
@@ -1582,7 +1691,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c05f5581ef6aae4bb4a8ba17e8e4d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 0}
+  taskRelatedGameObjects: []
   flowchart: {fileID: 246389190}
+  questType: 0
+  maxTimer: 0
+  currentTimer: 0
+  objectsNumber: 0
 --- !u!54 &586404464
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1886,7 +2001,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c05f5581ef6aae4bb4a8ba17e8e4d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 0}
+  taskRelatedGameObjects: []
   flowchart: {fileID: 246389190}
+  questType: 0
+  maxTimer: 0
+  currentTimer: 0
+  objectsNumber: 0
 --- !u!114 &1084148308
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2268,7 +2389,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c05f5581ef6aae4bb4a8ba17e8e4d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 0}
+  taskRelatedGameObjects: []
   flowchart: {fileID: 246389190}
+  questType: 0
+  maxTimer: 0
+  currentTimer: 0
+  objectsNumber: 0
 --- !u!54 &1360423992
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -2478,7 +2605,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c05f5581ef6aae4bb4a8ba17e8e4d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 0}
+  taskRelatedGameObjects: []
   flowchart: {fileID: 246389190}
+  questType: 0
+  maxTimer: 0
+  currentTimer: 0
+  objectsNumber: 0
 --- !u!1 &1455976368
 GameObject:
   m_ObjectHideFlags: 0
@@ -2802,7 +2935,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c05f5581ef6aae4bb4a8ba17e8e4d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 0}
+  taskRelatedGameObjects: []
   flowchart: {fileID: 246389190}
+  questType: 0
+  maxTimer: 0
+  currentTimer: 0
+  objectsNumber: 0
 --- !u!136 &1629533635
 CapsuleCollider:
   m_ObjectHideFlags: 0
@@ -2909,7 +3048,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c05f5581ef6aae4bb4a8ba17e8e4d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 0}
+  taskRelatedGameObjects: []
   flowchart: {fileID: 246389190}
+  questType: 0
+  maxTimer: 0
+  currentTimer: 0
+  objectsNumber: 0
 --- !u!54 &1643501208
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3229,7 +3374,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c05f5581ef6aae4bb4a8ba17e8e4d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 0}
+  taskRelatedGameObjects: []
   flowchart: {fileID: 246389190}
+  questType: 0
+  maxTimer: 0
+  currentTimer: 0
+  objectsNumber: 0
 --- !u!54 &1753490398
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -3350,7 +3501,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8c05f5581ef6aae4bb4a8ba17e8e4d48, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  timerText: {fileID: 0}
+  taskRelatedGameObjects: []
   flowchart: {fileID: 246389190}
+  questType: 0
+  maxTimer: 0
+  currentTimer: 0
+  objectsNumber: 0
 --- !u!136 &1763137152
 CapsuleCollider:
   m_ObjectHideFlags: 0
