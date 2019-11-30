@@ -8,6 +8,7 @@ public class PlayerController_Alex : MonoBehaviour
     public Transform strengthRayEndPoint;
     public LayerMask[] rayCastLayerMask;
     public ParticleSystem playerParticle;
+    public AudioSource walkingSound;
 
     private UIController_Khoa uiControllerReference;
     private Animator animator;
@@ -74,11 +75,18 @@ public class PlayerController_Alex : MonoBehaviour
             float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
             currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
 
-            transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
-
-            // float animationSpeedPercent = ((running)? 1:.5f) * inputDir.magnitude;
-            // animator.SetFloat("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
-
+            if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+            {
+                transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
+                if (!walkingSound.isPlaying && onGround)
+                {
+                    walkingSound.Play();
+                }
+            }
+            else
+            {
+                walkingSound.Pause();
+            }
             InputCheck();
         }
     }
