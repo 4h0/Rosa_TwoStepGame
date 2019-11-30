@@ -81,7 +81,7 @@ public class dialogueTrigger : MonoBehaviour
 
         }
 
-        else if (hasPlayer && Input.GetKeyDown("k") && finishedTask == false) //checks to see if quest is in progress
+        if (hasPlayer && Input.GetKeyDown("k") && finishedTask == false) //checks to see if quest is in progress
         {
             if (this.gameObject.tag == "NPC6") //checks npc tag
             {
@@ -90,9 +90,9 @@ public class dialogueTrigger : MonoBehaviour
             }
         }
 
-        else if (hasPlayer && Input.GetKeyDown("k") && finishedTask) // check to see if quest has been completed
+        if (hasPlayer && Input.GetKeyDown("k") && finishedTask) // check to see if quest has been completed
         {
-            if (this.gameObect.tag == "NPC6")
+            if (this.gameObject.tag == "NPC6")
             {
                 Debug.Log("Quest complete.");
                 flowchart.ExecuteBlock("fFire");
