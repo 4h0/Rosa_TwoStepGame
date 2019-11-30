@@ -21,6 +21,9 @@ TagManager:
   - NPC4
   - NPC5
   - NPC6
+  - NPC7
+  - NPC8
+  - NPC9
   layers:
   - Default
   - TransparentFX

@@ -79,6 +79,24 @@ public class dialogueTrigger : MonoBehaviour
                 flowchart.ExecuteBlock("fireQuest"); // executing the fire quest chain.
             }
 
+            else if (this.gameObject.tag == "NPC7")
+            {
+                Debug.Log("NPC7");
+                flowchart.ExecuteBlock("strengthQuest");
+            }
+
+            else if (this.gameObject.tag == "NPC8")
+            {
+                Debug.Log("NPC8");
+                flowchart.ExecuteBlock("fetchQuest");
+            }
+
+            else if (this.gameObject.tag == "NPC9")
+            {
+                Debug.Log("NPC9");
+                flowchart.ExecuteBlock("fetchSecondary");
+            }            
+
         }
 
         if (hasPlayer && Input.GetKeyDown("k") && finishedTask == false) //checks to see if quest is in progress
@@ -88,7 +106,19 @@ public class dialogueTrigger : MonoBehaviour
                 Debug.Log("Quest not done yet.");
                 flowchart.ExecuteBlock("IPfire"); // you know what this does by now :D
             }
-        }
+
+            else if (this.gameObject.tag == "NPC7")
+            {
+                Debug.Log("Strength Quest not done yet.");
+                flowchart.ExecuteBlock("IPstrength");
+            }
+
+            else if (this.gameObject.tag == "NPC8")
+            {
+                Debug.Log("In progress NPC8");
+                flowchart.ExecuteBlock("IPfetch");
+            } 
+        } 
 
         if (hasPlayer && Input.GetKeyDown("k") && finishedTask) // check to see if quest has been completed
         {
@@ -97,6 +127,18 @@ public class dialogueTrigger : MonoBehaviour
                 Debug.Log("Quest complete.");
                 flowchart.ExecuteBlock("fFire");
             }
+
+            else if(this.gameObject.tag == "NPC7")
+            {
+                Debug.Log("Strength Quest Complete");
+                flowchart.ExecuteBlock("fStrength");
+            }
+
+            else if(this.gameObject.tag == "NPC8")
+            {
+                Debug.Log("Quest NPC8 is done.");
+                flowchart.ExecuteBlock("fFetch");
+            } 
 
         }
 
