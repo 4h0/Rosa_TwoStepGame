@@ -1982,8 +1982,8 @@ GameObject:
   - component: {fileID: 465841180}
   - component: {fileID: 465841179}
   m_Layer: 0
-  m_Name: NPCRadius (1)
-  m_TagString: NPC
+  m_Name: NPCRadius6
+  m_TagString: NPC6
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -4229,19 +4229,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: -795.31104, y: 149.24472}
+  scrollPos: {x: 231.7119, y: 61.310387}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.9099996
+  zoom: 0.68095136
   scrollViewRect:
     serializedVersion: 2
     x: -343
     y: -340
     width: 1114
     height: 859
-  selectedBlocks:
-  - {fileID: 1382456048}
+  selectedBlocks: []
   selectedCommands: []
   variables:
   - {fileID: 1382456036}
@@ -5209,7 +5208,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 178
     y: 91
-    width: 144.50552
+    width: 130.76935
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -5404,7 +5403,7 @@ MonoBehaviour:
   delay: 0
 --- !u!114 &1382456073
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
