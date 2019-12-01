@@ -6088,6 +6088,9 @@ GameObject:
   - component: {fileID: 1869327839}
   - component: {fileID: 1869327838}
   - component: {fileID: 1869327900}
+  - component: {fileID: 1869327903}
+  - component: {fileID: 1869327902}
+  - component: {fileID: 1869327901}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -6121,7 +6124,8 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1869327875}
-  selectedCommands: []
+  selectedCommands:
+  - {fileID: 1869327901}
   variables:
   - {fileID: 1869327835}
   - {fileID: 1869327834}
@@ -7383,6 +7387,9 @@ MonoBehaviour:
   commandList:
   - {fileID: 1869327874}
   - {fileID: 1869327872}
+  - {fileID: 1869327903}
+  - {fileID: 1869327902}
+  - {fileID: 1869327901}
 --- !u!114 &1869327876
 MonoBehaviour:
   m_ObjectHideFlags: 2
@@ -8031,6 +8038,104 @@ MonoBehaviour:
   scope: 2
   key: questType
   value: 0
+--- !u!114 &1869327901
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869327832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 65
+  indentLevel: 0
+  targetObject: {fileID: 446718920}
+  methodName: Distance
+  delay: 0
+--- !u!114 &1869327902
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869327832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 17a200dbd67304446a3019434503338a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 64
+  indentLevel: 0
+  targetObject: {fileID: 465841177}
+  methodName: TaskAgree
+  delay: 0
+--- !u!114 &1869327903
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1869327832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fb77d0ce495044f6e9feb91b31798e8c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 63
+  indentLevel: 0
+  variable: {fileID: 1869327900}
+  setOperator: 0
+  booleanData:
+    booleanRef: {fileID: 0}
+    booleanVal: 0
+  integerData:
+    integerRef: {fileID: 0}
+    integerVal: 0
+  floatData:
+    floatRef: {fileID: 0}
+    floatVal: 0
+  stringData:
+    stringRef: {fileID: 0}
+    stringVal: 
+  animatorData:
+    animatorRef: {fileID: 0}
+    animatorVal: {fileID: 0}
+  audioSourceData:
+    audioSourceRef: {fileID: 0}
+    audioSourceVal: {fileID: 0}
+  colorData:
+    colorRef: {fileID: 0}
+    colorVal: {r: 0, g: 0, b: 0, a: 0}
+  gameObjectData:
+    gameObjectRef: {fileID: 0}
+    gameObjectVal: {fileID: 0}
+  materialData:
+    materialRef: {fileID: 0}
+    materialVal: {fileID: 0}
+  objectData:
+    objectRef: {fileID: 0}
+    objectVal: {fileID: 0}
+  rigidbody2DData:
+    rigidbody2DRef: {fileID: 0}
+    rigidbody2DVal: {fileID: 0}
+  spriteData:
+    spriteRef: {fileID: 0}
+    spriteVal: {fileID: 0}
+  textureData:
+    textureRef: {fileID: 0}
+    textureVal: {fileID: 0}
+  transformData:
+    transformRef: {fileID: 0}
+    transformVal: {fileID: 0}
+  vector2Data:
+    vector2Ref: {fileID: 0}
+    vector2Val: {x: 0, y: 0}
+  vector3Data:
+    vector3Ref: {fileID: 0}
+    vector3Val: {x: 0, y: 0, z: 0}
 --- !u!1 &1894841532
 GameObject:
   m_ObjectHideFlags: 0
