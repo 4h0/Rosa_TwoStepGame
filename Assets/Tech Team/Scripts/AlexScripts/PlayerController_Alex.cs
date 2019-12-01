@@ -8,7 +8,8 @@ public class PlayerController_Alex : MonoBehaviour
     public Transform strengthRayEndPoint;
     public LayerMask[] rayCastLayerMask;
     public ParticleSystem playerParticle;
-    public AudioSource walkingSound;
+    public AudioSource walkingSound; //This is the sound for walking
+    public Animator anim;
 
     private UIController_Khoa uiControllerReference;
     private Animator animator;
@@ -301,6 +302,7 @@ public class PlayerController_Alex : MonoBehaviour
         for (int counter = 0; counter < 6; counter++)
         {
             playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter * counter, 0), ForceMode.Acceleration);
+            anim.SetBool("isGrounded", jumping); // This is turning on the Jump animation
             yield return new WaitForEndOfFrame();
         }
 
