@@ -176,7 +176,7 @@ public class PlayerController_Alex : MonoBehaviour
 
             if (Input.GetButtonDown("Jump") && jumpCounter < maxJumpCounter)
             {
-                StartCoroutine(JumpingLogic());
+                StartCoroutine(JumpingLogic());                
             }
 
             if (Input.GetButton("Jump") && canGlide && elementalList[3] > 0)
@@ -302,7 +302,7 @@ public class PlayerController_Alex : MonoBehaviour
         for (int counter = 0; counter < 6; counter++)
         {
             playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter * counter, 0), ForceMode.Acceleration);
-            anim.SetBool("isGrounded", jumping); // This is turning on the Jump animation
+
             yield return new WaitForEndOfFrame();
         }
 
