@@ -22,7 +22,6 @@ public class dialogueTrigger : MonoBehaviour
     private void Awake()
     {
         hasTalked = false;
-        finishedTask = false;
         timerText.enabled = false;
         questType = flowchart.GetIntegerVariable("questType");
 
