@@ -83,6 +83,7 @@ public class dialogueTrigger : MonoBehaviour
             {
                 Debug.Log("NPC7");
                 flowchart.ExecuteBlock("strengthQuest");
+                hasTalked = true;
             }
 
             else if (this.gameObject.tag == "NPC8")
