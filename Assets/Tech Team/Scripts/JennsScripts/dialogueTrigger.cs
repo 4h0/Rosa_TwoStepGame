@@ -119,6 +119,12 @@ public class dialogueTrigger : MonoBehaviour
                     Debug.Log("In progress NPC8");
                     flowchart.ExecuteBlock("IPfetch");
                 }
+
+                else if (this.gameObject.tag == "NPC9")
+                {
+                    Debug.Log("In progress NPC9");
+                    flowchart.ExecuteBlock("preFetch");
+                }
             }
 
             if (finishedTask && hasTalked) // checks if task is COMPLETED!!!!!!
@@ -146,6 +152,7 @@ public class dialogueTrigger : MonoBehaviour
                     Debug.Log("Quest NPC9 is done.");
                     flowchart.ExecuteBlock("fetchSecondary");
                 }
+                
             }
 
         }
