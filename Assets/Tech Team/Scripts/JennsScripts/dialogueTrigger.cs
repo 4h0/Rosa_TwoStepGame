@@ -87,6 +87,7 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("NPC6");
                     flowchart.ExecuteBlock("fireQuest"); // executing the fire quest chain.
+                    hasTalked = true;
                 }
             }
             else if (!finishedTask && hasTalked) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
@@ -134,9 +135,10 @@ public class dialogueTrigger : MonoBehaviour
                 }
                 else if (this.gameObject.tag == "NPC9")
                 {
+                    hasTalked = true;
                     Debug.Log("In progress NPC9");
                     flowchart.ExecuteBlock("fetchSecondary");
-                    finishedTask = true;
+                    
                 }
             }
             else if (finishedTask && hasTalked) // checks if task is COMPLETED!!!!!!
