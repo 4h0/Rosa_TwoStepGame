@@ -41,7 +41,6 @@ public class Animations : MonoBehaviour
             anim.SetBool("isGliding", false);
         } 
 
-
     }
     void LateUpdate()
     {
@@ -49,9 +48,13 @@ public class Animations : MonoBehaviour
     }
     void PlayerMoving()
     {
-        if(PlayerRb.velocity.magnitude > 0)
+        if((Input.GetButton("Horizontal") || Input.GetButton("Vertical") && onGround))
         {
-            playerMoving = true;
+            anim.SetFloat("Speed", 1);
+        }
+        else
+        {
+            anim.SetFloat("Speed", 0);
         }
     }
     private void OnCollisionEnter(Collision collision)
