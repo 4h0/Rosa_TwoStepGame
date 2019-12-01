@@ -521,7 +521,6 @@ GameObject:
   - component: {fileID: 91641387}
   - component: {fileID: 91641386}
   - component: {fileID: 91641385}
-  - component: {fileID: 91641384}
   m_Layer: 0
   m_Name: NPCRadius7
   m_TagString: NPC7
@@ -543,19 +542,6 @@ Transform:
   m_Father: {fileID: 1846090441}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &91641384
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 91641382}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: daa8b2bfeddaa074cbab70900bc2e4eb, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  QuestSymbol: {fileID: 0}
 --- !u!114 &91641385
 MonoBehaviour:
   m_ObjectHideFlags: 0

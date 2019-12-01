@@ -99,7 +99,7 @@ public class dialogueTrigger : MonoBehaviour
                 flowchart.ExecuteBlock("preFetch");
             }
             
-            else if (!finishedTask && hasTalked) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            if (!finishedTask && hasTalked) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             {
                 if (this.gameObject.tag == "NPC6") //checks npc tag
                 {
@@ -121,7 +121,7 @@ public class dialogueTrigger : MonoBehaviour
                 }
             }
 
-            else if (finishedTask && hasTalked) // checks if task is COMPLETED!!!!!!
+            if (finishedTask && hasTalked) // checks if task is COMPLETED!!!!!!
             {
                 if (this.gameObject.tag == "NPC6")
                 {
