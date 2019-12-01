@@ -95,50 +95,49 @@ public class dialogueTrigger : MonoBehaviour
             {
                 Debug.Log("NPC9");
                 flowchart.ExecuteBlock("fetchSecondary");
-            }            
-
-        }
-
-        if (hasPlayer && Input.GetKeyDown("k") && finishedTask == false) //checks to see if quest is in progress
-        {
-            if (this.gameObject.tag == "NPC6") //checks npc tag
+            }
+            
+            else if (!finishedTask) // checks to see if quest is in progress
             {
-                Debug.Log("Quest not done yet.");
-                flowchart.ExecuteBlock("IPfire"); // you know what this does by now :D
+                if (this.gameObject.tag == "NPC6") //checks npc tag
+                {
+                    Debug.Log("Quest not done yet.");
+                    flowchart.ExecuteBlock("IPfire"); // you know what this does by now :D
+                }
+
+                else if (this.gameObject.tag == "NPC7")
+                {
+                    Debug.Log("Strength Quest not done yet.");
+                    flowchart.ExecuteBlock("IPstrength");
+                }
+
+                else if (this.gameObject.tag == "NPC8")
+                {
+                    Debug.Log("In progress NPC8");
+                    flowchart.ExecuteBlock("IPfetch");
+                }
             }
 
-            else if (this.gameObject.tag == "NPC7")
+            else if (finishedTask) // checks if task is completed.
             {
-                Debug.Log("Strength Quest not done yet.");
-                flowchart.ExecuteBlock("IPstrength");
+                if (this.gameObject.tag == "NPC6")
+                {
+                    Debug.Log("Quest complete.");
+                    flowchart.ExecuteBlock("fFire");
+                }
+
+                else if (this.gameObject.tag == "NPC7")
+                {
+                    Debug.Log("Strength Quest Complete");
+                    flowchart.ExecuteBlock("fStrength");
+                }
+
+                else if (this.gameObject.tag == "NPC8")
+                {
+                    Debug.Log("Quest NPC8 is done.");
+                    flowchart.ExecuteBlock("fFetch");
+                }
             }
-
-            else if (this.gameObject.tag == "NPC8")
-            {
-                Debug.Log("In progress NPC8");
-                flowchart.ExecuteBlock("IPfetch");
-            } 
-        } 
-
-        if (hasPlayer && Input.GetKeyDown("k") && finishedTask) // check to see if quest has been completed
-        {
-            if (this.gameObject.tag == "NPC6")
-            {
-                Debug.Log("Quest complete.");
-                flowchart.ExecuteBlock("fFire");
-            }
-
-            else if(this.gameObject.tag == "NPC7")
-            {
-                Debug.Log("Strength Quest Complete");
-                flowchart.ExecuteBlock("fStrength");
-            }
-
-            else if(this.gameObject.tag == "NPC8")
-            {
-                Debug.Log("Quest NPC8 is done.");
-                flowchart.ExecuteBlock("fFetch");
-            } 
 
         }
 
