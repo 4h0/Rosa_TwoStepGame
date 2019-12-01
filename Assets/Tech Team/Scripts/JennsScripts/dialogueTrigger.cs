@@ -21,6 +21,8 @@ public class dialogueTrigger : MonoBehaviour
 
     private void Awake()
     {
+        hasTalked = false;
+        finishedTask = false;
         timerText.enabled = false;
         questType = flowchart.GetIntegerVariable("questType");
 
@@ -39,127 +41,151 @@ public class dialogueTrigger : MonoBehaviour
 
     private void Update()
     {
+        Random_Dialogue();
+        Quest1_Dialogue();
+        Quest2_Dialogue();
+        Quest3_Dialogue();
+
+    }
+    void Random_Dialogue()
+    {
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {
-
             if (this.gameObject.tag == "NPC") // checks to see if the radius is tagged with the NPC tag.
             {
                 Debug.Log("NPC1");
                 flowchart.ExecuteBlock("Quest Dialogue"); // we execute the named block within the flowchart.
             }
-
             else if (this.gameObject.tag == "NPC2") // checks tag.
             {
                 Debug.Log("Npc2");
                 flowchart.ExecuteBlock("Testing1"); // we execute the named block within the flowchart.
             }
-
             else if (this.gameObject.tag == "NPC3")
             {
                 Debug.Log("Npc3");
                 flowchart.ExecuteBlock("FlavorHW"); // we execute the named block within the flowchart.
             }
-
-
             else if (this.gameObject.tag == "NPC4")
             {
                 Debug.Log("Npc4");
                 flowchart.ExecuteBlock("FlavorC"); // we execute the named block within the flowchart.
             }
-
             else if (this.gameObject.tag == "NPC5")
             {
                 Debug.Log("Npc5");
                 flowchart.ExecuteBlock("FlavorG"); // we execute the named block within the flowchart.
             }
-
-            else if (this.gameObject.tag == "NPC6")
+        }
+    }
+    void Quest1_Dialogue()
+    {
+        if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
+        {
+            if (!hasTalked)
             {
-                Debug.Log("NPC6");
-                flowchart.ExecuteBlock("fireQuest"); // executing the fire quest chain.
+                if (this.gameObject.tag == "NPC6")
+                {
+                    Debug.Log("NPC6");
+                    flowchart.ExecuteBlock("fireQuest"); // executing the fire quest chain.
+                }
             }
-
-            else if (this.gameObject.tag == "NPC7")
-            {
-                Debug.Log("NPC7");
-                flowchart.ExecuteBlock("strengthQuest");
-                hasTalked = true;
-            }
-
-            else if (this.gameObject.tag == "NPC8")
-            {
-                Debug.Log("NPC8");
-                flowchart.ExecuteBlock("fetchQuest");
-                hasTalked = true;
-            }
-
-            else if (this.gameObject.tag == "NPC9")
-            {
-                Debug.Log("NPC9");
-                flowchart.ExecuteBlock("preFetch");
-            }
-            
-            if (!finishedTask && hasTalked) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            else if (!finishedTask && hasTalked) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             {
                 if (this.gameObject.tag == "NPC6") //checks npc tag
                 {
                     Debug.Log("Quest not done yet.");
                     flowchart.ExecuteBlock("IPfire"); // you know what this does by now :D
                 }
-
-                else if (this.gameObject.tag == "NPC7")
-                {
-                    Debug.Log("Strength Quest not done yet.");
-                    flowchart.ExecuteBlock("IPstrength");
-                   
-                }
-
-                else if (this.gameObject.tag == "NPC8")
-                {
-                    Debug.Log("In progress NPC8");
-                    flowchart.ExecuteBlock("IPfetch");
-                }
-
-                else if (this.gameObject.tag == "NPC9")
-                {
-                    Debug.Log("In progress NPC9");
-                    flowchart.ExecuteBlock("preFetch");
-                }
             }
-
-            if (finishedTask && hasTalked) // checks if task is COMPLETED!!!!!!
+            else if (finishedTask && hasTalked) // checks if task is COMPLETED!!!!!!
             {
                 if (this.gameObject.tag == "NPC6")
                 {
                     Debug.Log("Quest complete.");
                     flowchart.ExecuteBlock("fFire");
                 }
-
-                else if (this.gameObject.tag == "NPC7")
+            }
+        }
+    }
+    void Quest2_Dialogue()
+    {
+        if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
+        {
+            if (!hasTalked)
+            {
+                if (this.gameObject.tag == "NPC8")
                 {
-                    Debug.Log("Strength Quest Complete");
-                    flowchart.ExecuteBlock("fStrength");
+                    Debug.Log("NPC8");
+                    flowchart.ExecuteBlock("fetchQuest");
+                    hasTalked = true;
                 }
-
-                else if (this.gameObject.tag == "NPC8")
+                else if (this.gameObject.tag == "NPC9")
+                {
+                    Debug.Log("NPC9");
+                    flowchart.ExecuteBlock("preFetch");
+                }
+            }
+            else if (!finishedTask && hasTalked) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            {
+                if (this.gameObject.tag == "NPC8")
+                {
+                    Debug.Log("In progress NPC8");
+                    flowchart.ExecuteBlock("IPfetch");
+                }
+                else if (this.gameObject.tag == "NPC9")
+                {
+                    Debug.Log("In progress NPC9");
+                    flowchart.ExecuteBlock("fetchSecondary");
+                    finishedTask = true;
+                }
+            }
+            else if (finishedTask && hasTalked) // checks if task is COMPLETED!!!!!!
+            {
+                if (this.gameObject.tag == "NPC8")
                 {
                     Debug.Log("Quest NPC8 is done.");
                     flowchart.ExecuteBlock("fFetch");
                 }
-
                 else if (this.gameObject.tag == "NPC9")
                 {
                     Debug.Log("Quest NPC9 is done.");
                     flowchart.ExecuteBlock("fetchSecondary");
                 }
-                
             }
-
         }
-
     }
-
-
+    void Quest3_Dialogue()
+    {
+        if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
+        {
+            if (!hasTalked)
+            {
+                if (this.gameObject.tag == "NPC7")
+                {
+                    Debug.Log("NPC7");
+                    flowchart.ExecuteBlock("strengthQuest");
+                    hasTalked = true;
+                }
+            }
+            else if (!finishedTask && hasTalked) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            {
+                if (this.gameObject.tag == "NPC7")
+                {
+                    Debug.Log("Strength Quest not done yet.");
+                    flowchart.ExecuteBlock("IPstrength");
+                }
+            }
+            else if (finishedTask && hasTalked) // checks if task is COMPLETED!!!!!!
+            {
+                if (this.gameObject.tag == "NPC7")
+                {
+                    Debug.Log("Strength Quest Complete");
+                    flowchart.ExecuteBlock("fStrength");
+                }
+            }
+        }
+    }
     void OnTriggerEnter(Collider other) // collider stuff
     {
         // Debug.Log("Entered"); // testing to see if entered
