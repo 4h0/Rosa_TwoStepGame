@@ -24,6 +24,12 @@ TagManager:
   - NPC7
   - NPC8
   - NPC9
+  - done
+  - Fire3
+  - Fire1
+  - Fire2
+  - Fire4
+  - DeliverableItem
   layers:
   - Default
   - TransparentFX

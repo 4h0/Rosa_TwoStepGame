@@ -7,7 +7,7 @@ using Fungus; // must be used. This allows the script to access the fungus scrip
 public class dialogueTrigger : MonoBehaviour
 {
     public Text timerText;
-
+    private Quest2 Quest2Script;
     public GameObject[] taskRelatedGameObjects;
     public Flowchart flowchart; // calls the flowchart.
 
@@ -21,6 +21,7 @@ public class dialogueTrigger : MonoBehaviour
 
     private void Awake()
     {
+        Quest2Script = FindObjectOfType<Quest2>();
         hasTalked = false;
         timerText.enabled = false;
         questType = flowchart.GetIntegerVariable("questType");
@@ -138,6 +139,7 @@ public class dialogueTrigger : MonoBehaviour
                     hasTalked = true;
                     Debug.Log("In progress NPC9");
                     flowchart.ExecuteBlock("fetchSecondary");
+                    Quest2Script.Delivered();
                     
                 }
             }
