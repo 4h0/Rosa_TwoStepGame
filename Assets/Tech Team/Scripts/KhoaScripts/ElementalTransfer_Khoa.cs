@@ -5,6 +5,7 @@ using UnityEngine;
 public class ElementalTransfer_Khoa : MonoBehaviour
 {
     public ParticleSystem[] particleList;
+    public AudioSource absorbSound;
 
     private PlayerController_Alex playerReference;
     private UIController_Khoa uiReference;
@@ -19,6 +20,7 @@ public class ElementalTransfer_Khoa : MonoBehaviour
     {
         playerReference = FindObjectOfType<PlayerController_Alex>();
         uiReference = FindObjectOfType<UIController_Khoa>();
+        absorbSound = GetComponent<AudioSource>();
 
         doOnce = false;
         stayInside = false;
@@ -71,6 +73,15 @@ public class ElementalTransfer_Khoa : MonoBehaviour
 
     IEnumerator GavePlayer()
     {
+        if (!absorbSound.isPlaying)
+        {
+            absorbSound.Play();
+        }
+        else
+        {
+            absorbSound.Pause();
+        }
+
         playerReference.elementalList[elementType] = playerReference.maxElementCounter[elementType];
         uiReference.UpdateElement(elementType);
         transform.parent.GetComponent<dialogueTrigger>().QuestConditionCheck();
@@ -83,6 +94,7 @@ public class ElementalTransfer_Khoa : MonoBehaviour
         yield return new WaitForSeconds(1.5f);
 
         playerReference.GetComponent<PlayerController_Alex>().playerParticle.Stop();
+
         doOnce = false;
     }
     IEnumerator PlayerGave()
