@@ -111,13 +111,13 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("Strength Quest not done yet.");
                     flowchart.ExecuteBlock("IPstrength");
+                   
                 }
 
                 else if (this.gameObject.tag == "NPC8")
                 {
                     Debug.Log("In progress NPC8");
                     flowchart.ExecuteBlock("IPfetch");
-                    hasTalked = true;
                 }
             }
 
