@@ -379,6 +379,8 @@ GameObject:
   - component: {fileID: 246389241}
   - component: {fileID: 246389240}
   - component: {fileID: 246389239}
+  - component: {fileID: 246389254}
+  - component: {fileID: 246389253}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -453,18 +455,19 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 962.5995, y: -171.95694}
+  scrollPos: {x: 890.3295, y: -185.45987}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.70000005
+  zoom: 0.73
   scrollViewRect:
     serializedVersion: 2
     x: -343
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
+  selectedBlocks:
+  - {fileID: 246389240}
   selectedCommands: []
   variables:
   - {fileID: 246389197}
@@ -656,7 +659,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 177
     y: 91
-    width: 137.14285
+    width: 133.56165
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1759,7 +1762,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 186.43544
     y: 236.34796
-    width: 130
+    width: 126.712326
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -1880,7 +1883,7 @@ MonoBehaviour:
   - {fileID: 246389237}
 --- !u!114 &246389239
 MonoBehaviour:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 2
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
@@ -1921,9 +1924,9 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -101.40767
-    y: 353.73276
-    width: 138.57141
+    x: -97.29807
+    y: 431.81525
+    width: 134.9315
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -2251,6 +2254,60 @@ MonoBehaviour:
   - {fileID: 246389251}
   - {fileID: 246389250}
   - {fileID: 246389249}
+--- !u!114 &246389253
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246389187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 62
+  indentLevel: 0
+  storyText: '"Have you seen Morgan around? I''m beginning to worry about her...Then
+    again she''s always tinkering with making jewelry...I''m sure she''s fine."'
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &246389254
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 246389187}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d3d73aef2cfc4f51abf34ac00241f60, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  nodeRect:
+    serializedVersion: 2
+    x: -88.959755
+    y: 353.95294
+    width: 120
+    height: 40
+  tint: {r: 1, g: 1, b: 1, a: 1}
+  useCustomTint: 0
+  itemId: 61
+  blockName: preFetch
+  description: Dialogue before you've talked to Morgan.
+  eventHandler: {fileID: 0}
+  commandList:
+  - {fileID: 246389253}
 --- !u!1 &282312667
 GameObject:
   m_ObjectHideFlags: 0

@@ -17,7 +17,7 @@ public class dialogueTrigger : MonoBehaviour
 
     public int questType, maxTimer, currentTimer, objectsNumber;
 
-    private bool hasPlayer, finishedTask; // is the player in a collider? yes or no
+    private bool hasPlayer, finishedTask, hasTalked; // is the player in a collider? yes or no
 
     private void Awake()
     {
@@ -89,15 +89,16 @@ public class dialogueTrigger : MonoBehaviour
             {
                 Debug.Log("NPC8");
                 flowchart.ExecuteBlock("fetchQuest");
+                hasTalked = true;
             }
 
             else if (this.gameObject.tag == "NPC9")
             {
                 Debug.Log("NPC9");
-                flowchart.ExecuteBlock("fetchSecondary");
+                flowchart.ExecuteBlock("preFetch");
             }
             
-            else if (!finishedTask) // checks to see if quest is in progress
+            else if (!finishedTask && hasTalked) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             {
                 if (this.gameObject.tag == "NPC6") //checks npc tag
                 {
@@ -115,10 +116,11 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("In progress NPC8");
                     flowchart.ExecuteBlock("IPfetch");
+                    hasTalked = true;
                 }
             }
 
-            else if (finishedTask) // checks if task is completed.
+            else if (finishedTask && hasTalked) // checks if task is COMPLETED!!!!!!
             {
                 if (this.gameObject.tag == "NPC6")
                 {
@@ -136,6 +138,12 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("Quest NPC8 is done.");
                     flowchart.ExecuteBlock("fFetch");
+                }
+
+                else if (this.gameObject.tag == "NPC9")
+                {
+                    Debug.Log("Quest NPC9 is done.");
+                    flowchart.ExecuteBlock("fetchSecondary");
                 }
             }
 
