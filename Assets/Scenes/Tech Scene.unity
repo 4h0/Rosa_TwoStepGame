@@ -1027,7 +1027,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 162259803}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0, y: 2.13, z: 0}
+  m_LocalPosition: {x: 0, y: 1.51, z: 0.59}
   m_LocalScale: {x: 0.48809, y: 0.48809, z: 0.48809}
   m_Children: []
   m_Father: {fileID: 446718929}
@@ -4677,8 +4677,8 @@ MonoBehaviour:
   timerText: {fileID: 1429087572}
   taskRelatedGameObjects: []
   flowchart: {fileID: 1869327833}
-  questType: 0
-  maxTimer: 0
+  questType: 2
+  maxTimer: 90
   currentTimer: 0
   objectsNumber: 0
 --- !u!54 &911476924
@@ -8823,8 +8823,10 @@ MonoBehaviour:
     y: -340
     width: 1114
     height: 859
-  selectedBlocks: []
-  selectedCommands: []
+  selectedBlocks:
+  - {fileID: 1869327849}
+  selectedCommands:
+  - {fileID: 1869327905}
   variables:
   - {fileID: 1869327835}
   - {fileID: 1869327834}
@@ -10876,7 +10878,7 @@ MonoBehaviour:
     booleanVal: 0
   integerData:
     integerRef: {fileID: 0}
-    integerVal: 1
+    integerVal: 2
   floatData:
     floatRef: {fileID: 0}
     floatVal: 0

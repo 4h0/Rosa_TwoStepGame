@@ -139,7 +139,7 @@ public class dialogueTrigger : MonoBehaviour
                     hasTalked = true;
                     Debug.Log("In progress NPC9");
                     flowchart.ExecuteBlock("fetchSecondary");
-                    Quest2Script.Delivered();
+                    // Quest2Script.Delivered();
                     
                 }
             }
