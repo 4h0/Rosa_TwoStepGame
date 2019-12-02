@@ -246,6 +246,7 @@ public class PlayerController_Khoa : MonoBehaviour
 
     IEnumerator JumpingLogic()
     {
+        //call animation here
         jumping = true;
         gliding = true;
         jumpCounter++;
@@ -351,6 +352,7 @@ public class PlayerController_Khoa : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
+            //call animation idle true + jumping false
             onGround = true;
             gravity = 0;
             jumpCounter = 0;

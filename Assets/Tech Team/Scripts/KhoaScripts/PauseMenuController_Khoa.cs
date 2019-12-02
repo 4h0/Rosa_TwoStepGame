@@ -406,6 +406,7 @@ public class PauseMenuController_Khoa : MonoBehaviour
 
     public void AddToOngoingList(int questType)
     {
+        Debug.Log("baka" + questType);
         alreadyHadThisTask[questType] = true;
         onGoingList.Add(questType);
 

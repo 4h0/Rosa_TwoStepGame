@@ -2400,6 +2400,26 @@ PrefabInstance:
       propertyPath: anim
       value: 
       objectReference: {fileID: 474351608}
+    - target: {fileID: 6995596867070928717, guid: 421fd87dc58024ce4883a24e6278d349,
+        type: 3}
+      propertyPath: elementalList.Array.data[1]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995596867070928717, guid: 421fd87dc58024ce4883a24e6278d349,
+        type: 3}
+      propertyPath: elementalList.Array.data[2]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995596867070928717, guid: 421fd87dc58024ce4883a24e6278d349,
+        type: 3}
+      propertyPath: elementalList.Array.data[3]
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6995596867070928717, guid: 421fd87dc58024ce4883a24e6278d349,
+        type: 3}
+      propertyPath: jumpForce
+      value: 120
+      objectReference: {fileID: 0}
     - target: {fileID: 1344781756917554806, guid: 421fd87dc58024ce4883a24e6278d349,
         type: 3}
       propertyPath: m_Enabled
@@ -7440,7 +7460,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1527645321}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -15.818304, y: -2.5615523, z: -2.9476914}
+  m_LocalPosition: {x: 17.17, y: -2.5615523, z: -2.9476914}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
   - {fileID: 911476922}
@@ -8812,11 +8832,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 367.6128, y: 35.68471}
+  scrollPos: {x: 530.4727, y: -162.24854}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.68206525
+  zoom: 0.6220653
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -8825,8 +8845,7 @@ MonoBehaviour:
     height: 859
   selectedBlocks:
   - {fileID: 1869327849}
-  selectedCommands:
-  - {fileID: 1869327905}
+  selectedCommands: []
   variables:
   - {fileID: 1869327835}
   - {fileID: 1869327834}
@@ -9023,7 +9042,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -97.29807
     y: 431.81525
-    width: 130.63745
+    width: 135.20006
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -9608,7 +9627,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 186.43544
     y: 236.34796
-    width: 126.23904
+    width: 130.37741
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -10647,7 +10666,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 177
     y: 91
-    width: 130.63745
+    width: 133.5925
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0

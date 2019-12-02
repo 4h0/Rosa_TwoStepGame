@@ -24,7 +24,7 @@ public class dialogueTrigger : MonoBehaviour
         Quest2Script = FindObjectOfType<Quest2>();
         hasTalked = false;
         timerText.enabled = false;
-        questType = flowchart.GetIntegerVariable("questType");
+        //questType = flowchart.GetIntegerVariable("questType");
 
         playerReference = FindObjectOfType<PlayerController_Alex>();
         pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
@@ -207,8 +207,9 @@ public class dialogueTrigger : MonoBehaviour
     }
     private void TaskAgree()
     {
+        questType = flowchart.GetIntegerVariable("questType");
         StartSideQuest();
-
+        Debug.Log(questType);
         pauseMenuReference.AddToOngoingList(questType);
     }
 
@@ -238,7 +239,11 @@ public class dialogueTrigger : MonoBehaviour
             else
             {
                 playerReference.maxElementCounter[questType] /= 2;
-                playerReference.elementalList[questType] = playerReference.maxElementCounter[questType];
+
+                if (playerReference.elementalList[questType] > playerReference.maxElementCounter[questType])
+                {
+                    playerReference.elementalList[questType] = playerReference.maxElementCounter[questType];
+                }
 
                 uiControllerReference.UpdateElement(questType);
                 StartCoroutine(StopSideQuest());
