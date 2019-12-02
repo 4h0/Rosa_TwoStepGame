@@ -7,13 +7,13 @@ public class StoneLogic : MonoBehaviour
     private Rigidbody stoneRigidBody;
 
     private void Awake()
-    {
+    {       
         stoneRigidBody = GetComponent<Rigidbody>();
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if(collision.gameObject.tag =="Player")
+        if(collision.gameObject.tag == "Player")
         {
             stoneRigidBody.constraints = RigidbodyConstraints.FreezeAll;
         }

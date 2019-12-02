@@ -46,7 +46,7 @@ public class UseFireElement : MonoBehaviour
     }
     void TakePlayerFire()
     {
-        PlayerElements.FireElement = false;
+       // PlayerElements.FireElement = false;
 
         MoveFireRingUp.startPlaying = true;
 

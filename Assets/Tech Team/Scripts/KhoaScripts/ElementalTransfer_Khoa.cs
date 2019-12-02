@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class ElementalTransfer_Khoa : MonoBehaviour
 {
-    public ParticleSystem playerParticle;
-    public ParticleSystem selfParticle;
+    public ParticleSystem[] particleList;
+    public AudioSource absorbSound;
 
     private PlayerController_Alex playerReference;
     private UIController_Khoa uiReference;
@@ -20,16 +20,29 @@ public class ElementalTransfer_Khoa : MonoBehaviour
     {
         playerReference = FindObjectOfType<PlayerController_Alex>();
         uiReference = FindObjectOfType<UIController_Khoa>();
+        absorbSound = GetComponent<AudioSource>();
 
         doOnce = false;
         stayInside = false;
+    }
+
+    private void Start()
+    {
+        if (isGiving)
+        {
+            TurnOnParticle();
+        }
+        else
+        {
+            TurnOffParticle();
+        }
     }
 
     private void Update()
     {
         if (!doOnce)
         {
-            if (stayInside && Input.GetKeyDown(KeyCode.Q))
+            if (stayInside && Input.GetButtonDown("Interact"))
             {
                 if (isGiving)
                 {
@@ -43,23 +56,46 @@ public class ElementalTransfer_Khoa : MonoBehaviour
         }
     }
 
+    private void TurnOnParticle()
+    {
+        foreach (ParticleSystem particleTemp in particleList)
+        {
+            particleTemp.Play();
+        }
+    }
+    private void TurnOffParticle()
+    {
+        foreach (ParticleSystem particleTemp in particleList)
+        {
+            particleTemp.Stop();
+        }
+    }
+
     IEnumerator GavePlayer()
     {
-        if(playerReference.elementalList[elementType] < playerReference.maxElementCounter)
+        if (!absorbSound.isPlaying)
         {
-            playerReference.elementalList[elementType] = playerReference.maxElementCounter;
-            uiReference.UpdateElement(elementType);
-
-            doOnce = true;
-            selfParticle.Stop();
-            playerParticle.Play();
-
-            yield return new WaitForSeconds(6f);
-
-            selfParticle.Play();
-            playerParticle.Stop();
-            doOnce = false;
+            absorbSound.Play();
         }
+        else
+        {
+            absorbSound.Pause();
+        }
+
+        playerReference.elementalList[elementType] = playerReference.maxElementCounter[elementType];
+        uiReference.UpdateElement(elementType);
+        transform.parent.GetComponent<dialogueTrigger>().QuestConditionCheck();
+
+        playerReference.GetComponent<PlayerController_Alex>().playerParticle.Play();
+        TurnOffParticle();
+
+        doOnce = true;
+
+        yield return new WaitForSeconds(1.5f);
+
+        playerReference.GetComponent<PlayerController_Alex>().playerParticle.Stop();
+
+        doOnce = false;
     }
     IEnumerator PlayerGave()
     {
@@ -68,11 +104,11 @@ public class ElementalTransfer_Khoa : MonoBehaviour
             playerReference.elementalList[elementType]--;
             uiReference.UpdateElement(elementType);
 
-            doOnce = true;
-            selfParticle.Play();
-            playerParticle.Stop();
+            TurnOnParticle();
 
-            yield return new WaitForSeconds(6f);
+            doOnce = true;
+
+            yield return new WaitForSeconds(.3f);
 
             doOnce = false;
         }
