@@ -7,38 +7,16 @@ using UnityTemplateProjects; // this is for the camera. Has to be included for t
 
 public class dialogueTrigger : MonoBehaviour
 {
-    public Text timerText;
-    private Quest2 Quest2Script;
-    public GameObject[] taskRelatedGameObjects;
     public Flowchart flowchart; // calls the flowchart.
     public ThirdPersonCamera thirdPersonCamera; // For the inspector and reference. Drag and drop.
 
-    private PlayerController_Alex playerReference;
-    private PauseMenuController_Khoa pauseMenuReference;
-    private UIController_Khoa uiControllerReference;
+    public bool taskDone;
 
-    public int questType, maxTimer, currentTimer, objectsNumber;
-
-    private bool hasPlayer, finishedTask, hasTalked; // is the player in a collider? yes or no
+    private bool hasPlayer, hasTalked; // is the player in a collider? yes or no
 
     private void Awake()
     {
-        Quest2Script = FindObjectOfType<Quest2>();
         hasTalked = false;
-        timerText.enabled = false;
-        //questType = flowchart.GetIntegerVariable("questType");
-
-        playerReference = FindObjectOfType<PlayerController_Alex>();
-        pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
-        uiControllerReference = FindObjectOfType<UIController_Khoa>();
-
-        foreach (GameObject tempGameObjects in taskRelatedGameObjects)
-        {
-            tempGameObjects.SetActive(false);
-            tempGameObjects.transform.SetParent(this.transform, true);
-        }
-
-        objectsNumber = taskRelatedGameObjects.Length;
     }
 
     private void Update()
@@ -96,11 +74,11 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("NPC6");
                     thirdPersonCamera.enabled = false;
-                    flowchart.ExecuteBlock("fireQuest"); // executing the fire quest chain.
+                    flowchart.ExecuteBlock("Quest1"); // executing the fire quest chain.
                     hasTalked = true;
                 }
             }
-            else if (!finishedTask && hasTalked) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            else if (!taskDone && hasTalked) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             {
                 if (this.gameObject.tag == "NPC6") //checks npc tag
                 {
@@ -109,7 +87,7 @@ public class dialogueTrigger : MonoBehaviour
                     flowchart.ExecuteBlock("IPfire"); // you know what this does by now :D
                 }
             }
-            else if (finishedTask && hasTalked) // checks if task is COMPLETED!!!!!!
+            else if (taskDone && hasTalked) // checks if task is COMPLETED!!!!!!
             {
                 if (this.gameObject.tag == "NPC6")
                 {
@@ -120,7 +98,7 @@ public class dialogueTrigger : MonoBehaviour
             }
         }
     }
-    void Quest2_Dialogue()
+    void Quest3_Dialogue()
     {
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {
@@ -130,7 +108,7 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("NPC8");
                     thirdPersonCamera.enabled = false;
-                    flowchart.ExecuteBlock("fetchQuest");
+                    flowchart.ExecuteBlock("Quest3");
                     hasTalked = true;
                 }
                 else if (this.gameObject.tag == "NPC9")
@@ -140,7 +118,7 @@ public class dialogueTrigger : MonoBehaviour
                     flowchart.ExecuteBlock("preFetch");
                 }
             }
-            else if (!finishedTask && hasTalked) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            else if (!taskDone && hasTalked) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             {
                 if (this.gameObject.tag == "NPC8")
                 {
@@ -158,7 +136,7 @@ public class dialogueTrigger : MonoBehaviour
                     
                 }
             }
-            else if (finishedTask && hasTalked) // checks if task is COMPLETED!!!!!!
+            else if (taskDone && hasTalked) // checks if task is COMPLETED!!!!!!
             {
                 if (this.gameObject.tag == "NPC8")
                 {
@@ -175,7 +153,7 @@ public class dialogueTrigger : MonoBehaviour
             }
         }
     }
-    void Quest3_Dialogue()
+    void Quest2_Dialogue()
     {
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {
@@ -185,22 +163,22 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("NPC7");
                     thirdPersonCamera.enabled = false;
-                    flowchart.ExecuteBlock("strengthQuest");
+                    flowchart.ExecuteBlock("Quest2");
                     hasTalked = true;
                 }
             }
-            else if (!finishedTask && hasTalked) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            else if (!taskDone && hasTalked) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             {
-                if (this.gameObject.tag == "NPC7")
+                if (this.gameObject.tag == "NPC7" || this.gameObject.tag == "NPC10")
                 {
                     Debug.Log("Strength Quest not done yet.");
                     thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("IPstrength");
                 }
             }
-            else if (finishedTask && hasTalked) // checks if task is COMPLETED!!!!!!
+            else if (taskDone && hasTalked) // checks if task is COMPLETED!!!!!!
             {
-                if (this.gameObject.tag == "NPC7")
+                if (this.gameObject.tag == "NPC10")
                 {
                     Debug.Log("Strength Quest Complete");
                     thirdPersonCamera.enabled = false;
@@ -218,98 +196,11 @@ public class dialogueTrigger : MonoBehaviour
             hasPlayer = true; // set hasPlayer to true!
         }
     }
-
     private void OnTriggerExit(Collider other) //when leaving the trigger
     {
         if (other.CompareTag("Player")) // checks for the player tag
         {
             hasPlayer = false; // sets hasPlayer to be false so dialogue won't play.
-        }
-    }
-    private void TaskAgree()
-    {
-        questType = flowchart.GetIntegerVariable("questType");
-        StartSideQuest();
-        Debug.Log(questType);
-        pauseMenuReference.AddToOngoingList(questType);
-    }
-
-    private void UpdateTimerText()
-    {
-        currentTimer--;
-        timerText.text = currentTimer / 60 + " : " + currentTimer % 60;
-        timerText.enabled = true;
-
-        StartCoroutine(TimerCountDown());
-    }
-
-    IEnumerator TimerCountDown()
-    {
-        yield return new WaitForSeconds(.1f);
-
-        if (finishedTask)
-        {
-            yield break;
-        }
-        else
-        {
-            if (currentTimer > 0)
-            {
-                UpdateTimerText();
-            }
-            else
-            {
-                playerReference.maxElementCounter[questType] /= 2;
-
-                if (playerReference.elementalList[questType] > playerReference.maxElementCounter[questType])
-                {
-                    playerReference.elementalList[questType] = playerReference.maxElementCounter[questType];
-                }
-
-                uiControllerReference.UpdateElement(questType);
-                StartCoroutine(StopSideQuest());
-            }
-        }
-    }
-
-    public void StartSideQuest()
-    {
-        currentTimer = maxTimer;
-
-        if (!pauseMenuReference.alreadyHadThisTask[questType])
-        {
-            foreach (GameObject tempGameObjects in taskRelatedGameObjects)
-            {
-                tempGameObjects.SetActive(true);
-            }
-
-            UpdateTimerText();
-        }
-    }
-    public void QuestConditionCheck()
-    {
-        objectsNumber--;
-
-        if (objectsNumber <= 0)
-        {
-            finishedTask = true;
-
-            pauseMenuReference.AddToCompletedList(questType);
-            StartCoroutine(StopSideQuest());
-        }
-    }
-
-    IEnumerator StopSideQuest()
-    {
-        timerText.enabled = false;
-
-        pauseMenuReference.RemoveFromOngoingList(questType);
-
-        yield return new WaitForSeconds(3f);
-
-        foreach (GameObject tempGameObjects in taskRelatedGameObjects)
-        {
-            tempGameObjects.SetActive(false);
         }
     }
 }

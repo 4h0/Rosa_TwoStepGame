@@ -15,7 +15,6 @@ public class PauseMenuController_Khoa : MonoBehaviour
     public GameObject pauseMenu;
 
     private PlayerController_Alex playerReference;
-    private PuzzleActivateCondition_Khoa puzzleActivateConditionRerference;
 
     public string[] taskDescription;
     public bool[] alreadyHadThisTask;
@@ -34,7 +33,6 @@ public class PauseMenuController_Khoa : MonoBehaviour
     private void Awake()
     {
         playerReference = FindObjectOfType<PlayerController_Alex>();
-        puzzleActivateConditionRerference = FindObjectOfType<PuzzleActivateCondition_Khoa>();
 
         onGoingList = new List<int>();
         completedList = new List<int>();
@@ -51,8 +49,8 @@ public class PauseMenuController_Khoa : MonoBehaviour
         upDownTimer = 0;
         leftRightTimer = 0;
 
-        alreadyHadThisTask = new bool[] { false, false, false, false, false, false, false };
-        completedCount = new int[] { 0, 0, 0, 0, 0, 0, 0 };
+        alreadyHadThisTask = new bool[] { false, false, false};
+        completedCount = new int[] { 0, 0, 0};
         currentVerticalUIScrolling = new int[] { 0, 0, 0 };
         maxVerticalUIScrolling = new int[] { 2, 0, 0 };
     }
@@ -79,6 +77,8 @@ public class PauseMenuController_Khoa : MonoBehaviour
         }
     }
 
+
+
     private void TurnOnPauseMenu()
     {
         pauseMenu.SetActive(true);
@@ -104,6 +104,8 @@ public class PauseMenuController_Khoa : MonoBehaviour
 
         ResetUI();
     }
+
+
 
     private void InputCheck()
     {
@@ -197,6 +199,8 @@ public class PauseMenuController_Khoa : MonoBehaviour
         }
     }
 
+
+
     private void ResetUI()
     {
         inputTaken = false;
@@ -282,6 +286,8 @@ public class PauseMenuController_Khoa : MonoBehaviour
             }
         }
     }
+
+
 
     private void OngoingListUIUpdate()
     {
@@ -404,9 +410,10 @@ public class PauseMenuController_Khoa : MonoBehaviour
         }
     }
 
+
+
     public void AddToOngoingList(int questType)
     {
-        Debug.Log("baka" + questType);
         alreadyHadThisTask[questType] = true;
         onGoingList.Add(questType);
 
@@ -437,7 +444,6 @@ public class PauseMenuController_Khoa : MonoBehaviour
     public void AddToCompletedList(int questType)
     {
         completedListCheck = false;
-        puzzleActivateConditionRerference.PuzzleActivationCheck();
 
         if (completedList.Count > 0)
         {

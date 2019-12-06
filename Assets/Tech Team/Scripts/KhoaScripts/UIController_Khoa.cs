@@ -5,9 +5,6 @@ using UnityEngine.UI;
 
 public class UIController_Khoa : MonoBehaviour
 {
-    public Text timerText;
-    public Image dashMultiplier;
-
     public Text[] elementalText;
     public Image[] element;
 
@@ -26,21 +23,6 @@ public class UIController_Khoa : MonoBehaviour
         }
 
         playerControllerReference = FindObjectOfType<PlayerController_Alex>();
-
-        timerText.enabled = false;
-    }
-
-    public void DashMultiplierOn()
-    {
-        dashMultiplier.fillAmount = playerControllerReference.dashMultiplier / playerControllerReference.maxDashMultiplier;
-
-        dashMultiplier.enabled = true;
-    }
-    public void DashMultiplierOff()
-    {
-        dashMultiplier.fillAmount = 0;
-
-        dashMultiplier.enabled = false;
     }
 
     public void UpdateElement(int whichElement)

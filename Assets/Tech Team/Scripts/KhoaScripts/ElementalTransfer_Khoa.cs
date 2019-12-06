@@ -4,17 +4,19 @@ using UnityEngine;
 
 public class ElementalTransfer_Khoa : MonoBehaviour
 {
-    public ParticleSystem[] particleList;
     public AudioSource absorbSound;
+
+    public ParticleSystem[] particleList;
 
     private PlayerController_Alex playerReference;
     private UIController_Khoa uiReference;
 
     public bool isGiving;
-    public bool stayInside;
+    public bool stayInside, doOnce, playerParticleOff;
     public int elementType;
 
-    private bool doOnce;
+    private bool alreadyGave;
+    private int storedQuestType;
 
     private void Awake()
     {
@@ -22,8 +24,8 @@ public class ElementalTransfer_Khoa : MonoBehaviour
         uiReference = FindObjectOfType<UIController_Khoa>();
         absorbSound = GetComponent<AudioSource>();
 
-        doOnce = false;
         stayInside = false;
+        doOnce = false;
     }
 
     private void Start()
@@ -40,21 +42,23 @@ public class ElementalTransfer_Khoa : MonoBehaviour
 
     private void Update()
     {
-        if (!doOnce)
+        if (!doOnce && stayInside && Input.GetButtonDown("Interact"))
         {
-            if (stayInside && Input.GetButtonDown("Interact"))
+            if (isGiving)
             {
-                if (isGiving)
+                GavePlayer();
+            }
+            else
+            {
+                if (!alreadyGave)
                 {
-                    StartCoroutine(GavePlayer());
-                }
-                else
-                {
-                    StartCoroutine(PlayerGave());
+                    PlayerGave();
                 }
             }
         }
     }
+
+
 
     private void TurnOnParticle()
     {
@@ -71,48 +75,61 @@ public class ElementalTransfer_Khoa : MonoBehaviour
         }
     }
 
-    IEnumerator GavePlayer()
+
+    public void ChangeQuestType(int questType)
     {
+        storedQuestType = questType;
+    }
+    private void GavePlayer()
+    {
+        doOnce = true;
+
         if (!absorbSound.isPlaying)
         {
             absorbSound.Play();
         }
         else
         {
-            absorbSound.Pause();
+            absorbSound.Stop();
+        }
+
+        if (storedQuestType == 0)
+        {
+            transform.parent.GetComponent<Quest1_Khoa>().Quest1ConditionCheck();
         }
 
         playerReference.elementalList[elementType] = playerReference.maxElementCounter[elementType];
         uiReference.UpdateElement(elementType);
-        transform.parent.GetComponent<dialogueTrigger>().QuestConditionCheck();
 
         playerReference.GetComponent<PlayerController_Alex>().playerParticle.Play();
         TurnOffParticle();
 
-        doOnce = true;
-
-        yield return new WaitForSeconds(1.5f);
-
-        playerReference.GetComponent<PlayerController_Alex>().playerParticle.Stop();
-
         doOnce = false;
     }
-    IEnumerator PlayerGave()
+    private void PlayerGave()
     {
+        doOnce = true;
+        alreadyGave = true;
+
+        this.GetComponent<MeshRenderer>().material.color = Color.white;
+
         if (playerReference.elementalList[elementType] > 0)
         {
             playerReference.elementalList[elementType]--;
             uiReference.UpdateElement(elementType);
 
             TurnOnParticle();
-
-            doOnce = true;
-
-            yield return new WaitForSeconds(.3f);
-
-            doOnce = false;
         }
+
+        if(storedQuestType == 2)
+        {
+            transform.parent.GetComponent<Quest3_Khoa>().Quest3ConditionCheck();
+        }
+
+        doOnce = false;
     }
+
+
 
     private void OnTriggerStay(Collider other)
     {

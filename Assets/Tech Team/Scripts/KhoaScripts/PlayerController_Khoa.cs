@@ -204,8 +204,6 @@ public class PlayerController_Khoa : MonoBehaviour
         {
             dashMultiplier += Time.deltaTime;
         }
-
-        uiControllerReference.DashMultiplierOn();
     }
 
     private void StrengthRayCast()
@@ -302,8 +300,6 @@ public class PlayerController_Khoa : MonoBehaviour
         dashHelperReference.GetComponent<DashHelper_Khoa>().StartChecking();
 
         yield return new WaitUntil(() => dashHelperReference.GetComponent<DashHelper_Khoa>().canStart);
-
-        uiControllerReference.DashMultiplierOff();
 
         for (int counter = 0; counter < dashMultiplier; counter++)
         {

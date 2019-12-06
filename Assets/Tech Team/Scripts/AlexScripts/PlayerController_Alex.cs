@@ -201,7 +201,6 @@ public class PlayerController_Alex : MonoBehaviour
             elementalList[0] -= Time.deltaTime;
         }
 
-        uiControllerReference.DashMultiplierOn();
         uiControllerReference.UpdateElement(0);
     }
 
@@ -254,7 +253,6 @@ public class PlayerController_Alex : MonoBehaviour
         yield return new WaitUntil(() => dashHelperReference.GetComponent<DashHelper_Khoa>().canStart);
         */
         canMove = false;
-        uiControllerReference.DashMultiplierOff();
 
         for (int counter = 0; counter < dashMultiplier; counter++)
         {

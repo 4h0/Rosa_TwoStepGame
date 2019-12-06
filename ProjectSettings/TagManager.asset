@@ -30,6 +30,7 @@ TagManager:
   - Fire2
   - Fire4
   - DeliverableItem
+  - NPC10
   layers:
   - Default
   - TransparentFX
