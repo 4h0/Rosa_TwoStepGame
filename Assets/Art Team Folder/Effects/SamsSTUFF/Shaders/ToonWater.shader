@@ -47,6 +47,7 @@
 			// Transparent "normal" blending.
 			Blend SrcAlpha OneMinusSrcAlpha
 			ZWrite Off
+			Cull Off
 
             CGPROGRAM
 			#define SMOOTHSTEP_AA 0.01
