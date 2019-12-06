@@ -300,7 +300,11 @@ public class PauseMenuController_Khoa : MonoBehaviour
 
         if (currentVerticalUIScrolling[0] == 1)
         {
-            maxVerticalUIScrolling[1] = onGoingList.Count - 1;
+            if (onGoingList.Count > 0)
+            {
+                maxVerticalUIScrolling[1] = onGoingList.Count - 1;
+            }
+                
 
             foreach (GameObject tempGameObject in taskList)
             {
