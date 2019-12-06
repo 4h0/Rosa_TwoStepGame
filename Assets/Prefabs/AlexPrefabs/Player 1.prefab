@@ -179,7 +179,9 @@ MonoBehaviour:
   - serializedVersion: 2
     m_Bits: 512
   playerParticle: {fileID: 7986354924907320109}
-  walkingSound: {fileID: 446718921}
+  audioSound:
+  - {fileID: 446718922}
+  - {fileID: 446718921}
   anim: {fileID: 3166231813788754513}
   canMove: 0
   onGround: 0
