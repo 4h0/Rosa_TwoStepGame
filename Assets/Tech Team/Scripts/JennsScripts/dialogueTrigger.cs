@@ -9,6 +9,7 @@ public class dialogueTrigger : MonoBehaviour
 {
     public Flowchart flowchart; // calls the flowchart.
     public ThirdPersonCamera thirdPersonCamera; // For the inspector and reference. Drag and drop.
+    public PlayerController_Alex playerController;
 
     public bool taskDone;
 
@@ -35,6 +36,7 @@ public class dialogueTrigger : MonoBehaviour
             {
                 Debug.Log("NPC1");
                 thirdPersonCamera.enabled = false;
+                playerController.enabled = false;
                 flowchart.ExecuteBlock("Quest Dialogue"); // we execute the named block within the flowchart.
        
             }
@@ -42,24 +44,28 @@ public class dialogueTrigger : MonoBehaviour
             {
                 Debug.Log("Npc2");
                 thirdPersonCamera.enabled = false;
+                playerController.enabled = false;
                 flowchart.ExecuteBlock("Testing1"); // we execute the named block within the flowchart.
             }
             else if (this.gameObject.tag == "NPC3")
             {
                 Debug.Log("Npc3");
                 thirdPersonCamera.enabled = false;
+                playerController.enabled = false;
                 flowchart.ExecuteBlock("FlavorHW"); // we execute the named block within the flowchart.
             }
             else if (this.gameObject.tag == "NPC4")
             {
                 Debug.Log("Npc4");
                 thirdPersonCamera.enabled = false;
+                playerController.enabled = false;
                 flowchart.ExecuteBlock("FlavorC"); // we execute the named block within the flowchart.
             }
             else if (this.gameObject.tag == "NPC5")
             {
                 Debug.Log("Npc5");
                 thirdPersonCamera.enabled = false;
+                playerController.enabled = false;
                 flowchart.ExecuteBlock("FlavorG"); // we execute the named block within the flowchart.
             }
         }
@@ -74,6 +80,7 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("NPC6");
                     thirdPersonCamera.enabled = false;
+                    playerController.enabled = false;
                     flowchart.ExecuteBlock("Quest1"); // executing the fire quest chain.
                     hasTalked = true;
                 }
@@ -84,6 +91,7 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("Quest not done yet.");
                     thirdPersonCamera.enabled = false;
+                    playerController.enabled = false;
                     flowchart.ExecuteBlock("IPfire"); // you know what this does by now :D
                 }
             }
@@ -93,6 +101,7 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("Quest complete.");
                     thirdPersonCamera.enabled = false;
+                    playerController.enabled = false;
                     flowchart.ExecuteBlock("fFire");
                 }
             }
@@ -108,6 +117,7 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("NPC8");
                     thirdPersonCamera.enabled = false;
+                    playerController.enabled = false;
                     flowchart.ExecuteBlock("Quest3");
                     hasTalked = true;
                 }
@@ -115,6 +125,7 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("NPC9");
                     thirdPersonCamera.enabled = false;
+                    playerController.enabled = false;
                     flowchart.ExecuteBlock("preFetch");
                 }
             }
@@ -124,6 +135,7 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("In progress NPC8");
                     thirdPersonCamera.enabled = false;
+                    playerController.enabled = false;
                     flowchart.ExecuteBlock("IPfetch");
                 }
                 else if (this.gameObject.tag == "NPC9")
@@ -131,6 +143,7 @@ public class dialogueTrigger : MonoBehaviour
                     hasTalked = true;
                     Debug.Log("In progress NPC9");
                     thirdPersonCamera.enabled = false;
+                    playerController.enabled = false;
                     flowchart.ExecuteBlock("fetchSecondary");
                     // Quest2Script.Delivered();
                     
@@ -142,12 +155,14 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("Quest NPC8 is done.");
                     thirdPersonCamera.enabled = false;
+                    playerController.enabled = false;
                     flowchart.ExecuteBlock("fFetch");
                 }
                 else if (this.gameObject.tag == "NPC9")
                 {
                     Debug.Log("Quest NPC9 is done.");
                     thirdPersonCamera.enabled = false;
+                    playerController.enabled = false;
                     flowchart.ExecuteBlock("fetchSecondary");
                 }
             }
@@ -163,6 +178,7 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("NPC7");
                     thirdPersonCamera.enabled = false;
+                    playerController.enabled = false;
                     flowchart.ExecuteBlock("Quest2");
                     hasTalked = true;
                 }
@@ -173,6 +189,7 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("Strength Quest not done yet.");
                     thirdPersonCamera.enabled = false;
+                    playerController.enabled = false;
                     flowchart.ExecuteBlock("IPstrength");
                 }
             }
@@ -182,6 +199,7 @@ public class dialogueTrigger : MonoBehaviour
                 {
                     Debug.Log("Strength Quest Complete");
                     thirdPersonCamera.enabled = false;
+                    playerController.enabled = false;
                     flowchart.ExecuteBlock("fStrength");
                 }
             }

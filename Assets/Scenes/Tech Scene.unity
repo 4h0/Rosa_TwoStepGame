@@ -396,6 +396,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1869327833}
   thirdPersonCamera: {fileID: 0}
+  playerController: {fileID: 0}
   taskDone: 0
 --- !u!54 &45358942
 Rigidbody:
@@ -633,6 +634,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1869327833}
   thirdPersonCamera: {fileID: 0}
+  playerController: {fileID: 0}
   taskDone: 0
 --- !u!54 &71721554
 Rigidbody:
@@ -817,6 +819,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1869327833}
   thirdPersonCamera: {fileID: 335284303}
+  playerController: {fileID: 0}
   taskDone: 0
 --- !u!135 &103576327
 SphereCollider:
@@ -1614,6 +1617,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1869327833}
   thirdPersonCamera: {fileID: 0}
+  playerController: {fileID: 0}
   taskDone: 0
 --- !u!54 &313703994
 Rigidbody:
@@ -2140,6 +2144,18 @@ GameObject:
     type: 3}
   m_PrefabInstance: {fileID: 446718918}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &446718921 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6995596867070928717, guid: 421fd87dc58024ce4883a24e6278d349,
+    type: 3}
+  m_PrefabInstance: {fileID: 446718918}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 446718920}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 539a8dd59744d46059d4a54f0a8aaae9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &488215688
 GameObject:
   m_ObjectHideFlags: 0
@@ -2783,6 +2799,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1869327833}
   thirdPersonCamera: {fileID: 335284303}
+  playerController: {fileID: 446718921}
   taskDone: 0
 --- !u!135 &874993352
 SphereCollider:
@@ -3116,6 +3133,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1869327833}
   thirdPersonCamera: {fileID: 0}
+  playerController: {fileID: 0}
   taskDone: 0
 --- !u!54 &911476924
 Rigidbody:
@@ -3465,6 +3483,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ad0a6f9fbc170344599c67db2c90a1d1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  min: 2
+  max: 3
 --- !u!23 &1042837679
 MeshRenderer:
   m_ObjectHideFlags: 0
@@ -4073,6 +4093,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1869327833}
   thirdPersonCamera: {fileID: 0}
+  playerController: {fileID: 0}
   taskDone: 0
 --- !u!54 &1258195160
 Rigidbody:
@@ -5544,6 +5565,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1869327833}
   thirdPersonCamera: {fileID: 335284303}
+  playerController: {fileID: 0}
   taskDone: 0
 --- !u!1 &1846090440
 GameObject:
@@ -5666,6 +5688,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   flowchart: {fileID: 1869327833}
   thirdPersonCamera: {fileID: 335284303}
+  playerController: {fileID: 0}
   taskDone: 0
 --- !u!1 &1869327832
 GameObject:
@@ -5787,11 +5810,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 415.402, y: 29.353813}
+  scrollPos: {x: 668.4432, y: -33.575848}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.7420652
+  zoom: 0.68206525
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -5799,8 +5822,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 1869327849}
-  selectedCommands: []
+  - {fileID: 1869327873}
+  selectedCommands:
+  - {fileID: 1869327908}
   variables:
   - {fileID: 1869327835}
   - {fileID: 1869327834}
@@ -5999,7 +6023,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -107.898254
     y: 433.00708
-    width: 133.55061
+    width: 140.90039
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -6079,8 +6103,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -232.91116
-    y: 430.77097
+    x: -238.77568
+    y: 435.16937
     width: 120
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
@@ -6106,7 +6130,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: -232.84521
+    x: -237.24364
     y: 367.3382
     width: 120
     height: 40
@@ -7064,7 +7088,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   nodeRect:
     serializedVersion: 2
-    x: 652.24384
+    x: 650.89624
     y: 192.13707
     width: 120
     height: 40
@@ -7638,7 +7662,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 177
     y: 91
-    width: 132.20302
+    width: 139.43427
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7816,6 +7840,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 446718921}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   booleanParameter:
@@ -7871,6 +7906,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 335284303}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 446718921}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -7946,6 +7992,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 446718921}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   booleanParameter:
@@ -8001,6 +8058,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 335284303}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 446718921}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -8076,6 +8144,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 446718921}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   booleanParameter:
@@ -8131,6 +8210,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 335284303}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 446718921}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -8206,6 +8296,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 446718921}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   booleanParameter:
@@ -8261,6 +8362,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 335284303}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 446718921}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -8336,6 +8448,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 446718921}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   booleanParameter:
@@ -8401,6 +8524,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 446718921}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   booleanParameter:
@@ -8456,6 +8590,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 335284303}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 446718921}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -8548,6 +8693,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 446718921}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   booleanParameter:
@@ -8603,6 +8759,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 335284303}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 446718921}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -8678,6 +8845,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 446718921}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   booleanParameter:
@@ -8733,6 +8911,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 335284303}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 446718921}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -8808,6 +8997,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 446718921}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   booleanParameter:
@@ -8863,6 +9063,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 335284303}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 446718921}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
@@ -8938,6 +9149,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 446718921}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   booleanParameter:
@@ -9003,6 +9225,17 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 1
         m_CallState: 2
+      - m_Target: {fileID: 446718921}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
     m_TypeName: UnityEngine.Events.UnityEvent, UnityEngine.CoreModule, Version=0.0.0.0,
       Culture=neutral, PublicKeyToken=null
   booleanParameter:
@@ -9058,6 +9291,17 @@ MonoBehaviour:
     m_PersistentCalls:
       m_Calls:
       - m_Target: {fileID: 335284303}
+        m_MethodName: set_enabled
+        m_Mode: 6
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 1
+        m_CallState: 2
+      - m_Target: {fileID: 446718921}
         m_MethodName: set_enabled
         m_Mode: 6
         m_Arguments:
