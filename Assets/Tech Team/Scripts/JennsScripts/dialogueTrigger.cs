@@ -7,16 +7,20 @@ using UnityTemplateProjects; // this is for the camera. Has to be included for t
 
 public class dialogueTrigger : MonoBehaviour
 {
+    private Quest1_Khoa Quest1Reference;
     public Flowchart flowchart; // calls the flowchart.
     public ThirdPersonCamera thirdPersonCamera; // For the inspector and reference. Drag and drop.
 
     public bool taskDone;
-    private bool hasTalkedQuest1, hasTalkedQuest2, hasTalkedQuest3; // has the player talked to the npc
+    private bool hasAcceptedQuest1, hasTalkedQuest2, hasTalkedQuest3; // has the player talked to the npc
     private bool hasPlayer; // is the player in a collider? yes or no
 
-    private void Awake()
+    private bool Quest1Pass;
+
+    void Awake()
     {
-        hasTalkedQuest1 = false;
+        Quest1Reference = FindObjectOfType<Quest1_Khoa>();
+        hasAcceptedQuest1 = false;
         hasTalkedQuest2 = false;
         hasTalkedQuest3 = false;
         taskDone = false;
@@ -28,11 +32,6 @@ public class dialogueTrigger : MonoBehaviour
         Quest1_Dialogue();
         Quest2_Dialogue();
         Quest3_Dialogue();
-
-
-Debug.Log(hasTalkedQuest2);
-
-
     }
     void Random_Dialogue()
     {
@@ -73,21 +72,22 @@ Debug.Log(hasTalkedQuest2);
     }
     void Quest1_Dialogue()
     {
-        hasTalkedQuest1 = flowchart.GetBooleanVariable("quest1Accepted");
+        hasAcceptedQuest1 = flowchart.GetBooleanVariable("quest1Accepted");
+        Quest1Pass = Quest1Reference.quest1Pass;
 
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {
-            if (!hasTalkedQuest1)
+            if ((!hasAcceptedQuest1 && !Quest1Pass))
             {
                 if (this.gameObject.tag == "NPC6")
                 {
                     Debug.Log("NPC6");
                     thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("Quest1"); // executing the fire quest chain.
-                    hasTalkedQuest1 = true;
+                    // hasAcceptedQuest1 = true;
                 }
             }
-            else if (!taskDone && hasTalkedQuest1) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            else if (hasAcceptedQuest1 && !Quest1Pass) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             {
                 if (this.gameObject.tag == "NPC6") //checks npc tag
                 {
@@ -96,7 +96,7 @@ Debug.Log(hasTalkedQuest2);
                     flowchart.ExecuteBlock("IPfire"); // you know what this does by now :D
                 }
             }
-            else if (taskDone && hasTalkedQuest1) // checks if task is COMPLETED!!!!!!
+            else if (Quest1Pass) // checks if task is COMPLETED!!!!!!
             {
                 if (this.gameObject.tag == "NPC6")
                 {
