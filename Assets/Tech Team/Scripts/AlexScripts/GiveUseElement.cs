@@ -49,7 +49,7 @@ public class GiveUseElement : MonoBehaviour
         }
         if (this.gameObject.tag == "EmptyFireSource")
         {
-            if (PlayerIsInRadiusCheck == true && Input.GetKeyDown(KeyCode.Q) && PlayerElements.FireElement == true)
+            if (PlayerIsInRadiusCheck == true && Input.GetKeyDown(KeyCode.Q) && PlayerElements.FireElement.fillAmount >= .5f)
             {  
                 TakePlayerFire();
             }
@@ -67,7 +67,7 @@ public class GiveUseElement : MonoBehaviour
         }
         if (this.gameObject.tag == "EmptyWaterSource")
         {
-            if (PlayerIsInRadiusCheck == true && Input.GetKeyDown(KeyCode.Q))
+            if (PlayerIsInRadiusCheck == true && Input.GetKeyDown(KeyCode.Q) && PlayerElements.WaterElement.fillAmount >= .5f)
             {  
                 TakePlayerWater();
             }
@@ -77,13 +77,13 @@ public class GiveUseElement : MonoBehaviour
     void GivePlayerFire()
     {
         // points to PlayerElement script and is changing the bool value //
-        PlayerElements.FireElement = true;
+        PlayerElements.FireElement.fillAmount =+ .5f;
         // Shoot particles at player - not using but may revisit//
         // ParticleEffect.transform.position = player.transform.position;
     }
     void TakePlayerFire()
     {
-        PlayerElements.FireElement = false;
+        PlayerElements.FireElement.fillAmount =- .5f;
 
         Debug.Log("Took fire from player");
 
@@ -95,13 +95,13 @@ public class GiveUseElement : MonoBehaviour
     void GivePlayerWater()
     {
         // points to PlayerElement script and is changing the bool value //
-        PlayerElements.WaterElement = true;
+        PlayerElements.WaterElement.fillAmount =+ .5f;
         // Shoot particles at player - not using but may revisit//
         // ParticleEffect.transform.position = player.transform.position;
     }
     void TakePlayerWater()
     {
-        PlayerElements.WaterElement = false;
+        PlayerElements.WaterElement.fillAmount =- .5f;
 
         Debug.Log("Took water from player");
 

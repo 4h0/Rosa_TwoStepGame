@@ -46,7 +46,7 @@ public class GiveFireElement : MonoBehaviour
     void GivePlayerFire()
     {
         // points to PlayerElement script and is changing the bool value //
-        PlayerElements.FireElement = true;
+        //PlayerElements.FireElement = true;
         // Shoot particles at player //
         ParticleEffect.transform.position = player.transform.position;
     }

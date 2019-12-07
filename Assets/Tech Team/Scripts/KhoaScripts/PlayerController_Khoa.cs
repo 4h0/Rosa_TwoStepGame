@@ -204,8 +204,6 @@ public class PlayerController_Khoa : MonoBehaviour
         {
             dashMultiplier += Time.deltaTime;
         }
-
-        uiControllerReference.DashMultiplierOn();
     }
 
     private void StrengthRayCast()
@@ -246,6 +244,7 @@ public class PlayerController_Khoa : MonoBehaviour
 
     IEnumerator JumpingLogic()
     {
+        //call animation here
         jumping = true;
         gliding = true;
         jumpCounter++;
@@ -302,8 +301,6 @@ public class PlayerController_Khoa : MonoBehaviour
 
         yield return new WaitUntil(() => dashHelperReference.GetComponent<DashHelper_Khoa>().canStart);
 
-        uiControllerReference.DashMultiplierOff();
-
         for (int counter = 0; counter < dashMultiplier; counter++)
         {
             playerRigidBody.AddForce(dashHelperReference.transform.forward * dashForce * 1 * counter, ForceMode.Force);
@@ -351,6 +348,7 @@ public class PlayerController_Khoa : MonoBehaviour
     {
         if (collision.gameObject.tag == "Ground")
         {
+            //call animation idle true + jumping false
             onGround = true;
             gravity = 0;
             jumpCounter = 0;
