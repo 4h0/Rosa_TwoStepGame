@@ -24,7 +24,7 @@ public class LookAtPlayer : MonoBehaviour
 
                if (Dist < 5)
                {
-                   Debug.Log("You're close");
+                //    Debug.Log("You're close");
                    LookAt();
                }
            }
