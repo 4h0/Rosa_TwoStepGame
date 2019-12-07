@@ -4,113 +4,135 @@ using UnityEngine;
 
 public class ElementalTransfer_Khoa : MonoBehaviour
 {
+    public AudioSource absorbSound;
+
+    public ParticleSystem[] particleList;
+
     private PlayerController_Alex playerReference;
+    private PauseMenuController_Khoa pauseMenuReference;
     private UIController_Khoa uiReference;
 
     public bool isGiving;
-    public bool stayInside;
+    public bool stayInside, doOnce, playerParticleOff;
     public int elementType;
 
-    private bool doOnce;
+    private bool alreadyGave;
+    private int storedQuestType;
 
     private void Awake()
     {
         playerReference = FindObjectOfType<PlayerController_Alex>();
         uiReference = FindObjectOfType<UIController_Khoa>();
+        pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
+        absorbSound = GetComponent<AudioSource>();
 
-        doOnce = false;
         stayInside = false;
+        doOnce = false;
     }
 
     private void Start()
     {
         if (isGiving)
         {
-            ChangeColor();
+            TurnOnParticle();
         }
         else
         {
-            this.GetComponent<MeshRenderer>().material.color = Color.white;
+            TurnOffParticle();
         }
     }
 
     private void Update()
     {
-        if (!doOnce)
+        if (!doOnce && stayInside && Input.GetButtonDown("Interact"))
         {
-            if (stayInside && Input.GetButtonDown("Interact"))
+            if (isGiving)
             {
-                if (isGiving)
+                GavePlayer();
+            }
+            else
+            {
+                if (!alreadyGave)
                 {
-                    StartCoroutine(GavePlayer());
-                }
-                else
-                {
-                    StartCoroutine(PlayerGave());
+                    PlayerGave();
                 }
             }
         }
     }
 
-    private void ChangeColor()
+
+
+    private void TurnOnParticle()
     {
-        switch (elementType)
+        foreach (ParticleSystem particleTemp in particleList)
         {
-            case 0:
-                {
-                    this.GetComponent<MeshRenderer>().material.color = Color.red;
-                    break;
-                }
-            case 1:
-                {
-                    this.GetComponent<MeshRenderer>().material.color = Color.yellow;
-                    break;
-                }
-            case 2:
-                {
-                    this.GetComponent<MeshRenderer>().material.color = Color.blue;
-                    break;
-                }
-            case 3:
-                {
-                    this.GetComponent<MeshRenderer>().material.color = Color.green;
-                    break;
-                }
+            particleTemp.Play();
+        }
+    }
+    private void TurnOffParticle()
+    {
+        foreach (ParticleSystem particleTemp in particleList)
+        {
+            particleTemp.Stop();
         }
     }
 
-    IEnumerator GavePlayer()
+
+    public void ChangeQuestType(int questType)
     {
+        storedQuestType = questType;
+    }
+    private void GavePlayer()
+    {
+        doOnce = true;
+
+        if (!absorbSound.isPlaying)
+        {
+            absorbSound.volume = pauseMenuReference.soundVolume;
+            absorbSound.Play();
+        }
+        else
+        {
+            absorbSound.Stop();
+        }
+
+        if (storedQuestType == 0)
+        {
+            transform.parent.GetComponent<Quest1_Khoa>().Quest1ConditionCheck();
+        }
+
         playerReference.elementalList[elementType] = playerReference.maxElementCounter[elementType];
         uiReference.UpdateElement(elementType);
 
-        this.GetComponent<MeshRenderer>().material.color = Color.white;
-        doOnce = true;
+        playerReference.GetComponent<PlayerController_Alex>().playerParticle.Play();
+        TurnOffParticle();
 
-        yield return new WaitForSeconds(6f);
-
-        ChangeColor();
         doOnce = false;
     }
-    IEnumerator PlayerGave()
+    private void PlayerGave()
     {
+        doOnce = true;
+        alreadyGave = true;
+
+        this.GetComponent<MeshRenderer>().material.color = Color.white;
+
         if (playerReference.elementalList[elementType] > 0)
         {
-            playerReference.canMove = false;
             playerReference.elementalList[elementType]--;
             uiReference.UpdateElement(elementType);
 
-            ChangeColor();
-            doOnce = true;
-
-            yield return new WaitForSeconds(.3f);
-
-            this.transform.parent.GetComponent<DialogueTrigger_Khoa>().TaskCompleted();
-            this.GetComponent<MeshRenderer>().material.color = Color.white;
-            playerReference.canMove = true;
-            doOnce = false;
+            TurnOnParticle();
         }
+
+        if(storedQuestType == 2)
+        {
+            transform.parent.GetComponent<Quest3_Khoa>().Quest3ConditionCheck();
+        }
+
+        doOnce = false;
     }
+
+
 
     private void OnTriggerStay(Collider other)
     {

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 public class PauseMenuController_Khoa : MonoBehaviour
 {
@@ -11,10 +12,12 @@ public class PauseMenuController_Khoa : MonoBehaviour
     public Image[] leftSide;
 
     public Image[] onGoingTasks, completedTasks;
+    public Image[] optionList, optionChoice;
 
     public GameObject pauseMenu;
 
     private PlayerController_Alex playerReference;
+    private Color verticalResetColor, verticalChosenColor;
 
     public string[] taskDescription;
     public bool[] alreadyHadThisTask;
@@ -23,9 +26,10 @@ public class PauseMenuController_Khoa : MonoBehaviour
     private int[] currentVerticalUIScrolling, maxVerticalUIScrolling;
 
     public bool pauseMenuOn;
+    public float soundVolume;
 
-    private bool inputTaken, completedListCheck;
-    private int pauseMenuOnandOff, currentHorizontalScrolling, maxHorizontalUIScrolling;
+    private bool inputTaken, soundChange, optionChoosing, completedListCheck;
+    private int pauseMenuOnandOff, soundOnandOff, currentHorizontalUIScrolling, maxHorizontalUIScrolling;
     private float upDownTimer, leftRightTimer;
 
     private List<int> onGoingList, completedList;
@@ -44,15 +48,24 @@ public class PauseMenuController_Khoa : MonoBehaviour
     {
         pauseMenuOn = false;
         inputTaken = false;
+        optionChoosing = false;
+        soundChange = false;
         pauseMenuOnandOff = 0;
-        currentHorizontalScrolling = 0;
+        soundOnandOff = 0;
+        currentHorizontalUIScrolling = 0;
         upDownTimer = 0;
         leftRightTimer = 0;
+        soundVolume = 1;
 
-        alreadyHadThisTask = new bool[] { false, false, false, false, false, false, false };
-        completedCount = new int[] { 0, 0, 0, 0, 0, 0, 0 };
-        currentVerticalUIScrolling = new int[] { 0, 0, 0 };
-        maxVerticalUIScrolling = new int[] { 2, 0, 0 };
+        alreadyHadThisTask = new bool[] { false, false, false};
+        completedCount = new int[] { 0, 0, 0};
+        currentVerticalUIScrolling = new int[] { 0, 0, 0};
+        maxVerticalUIScrolling = new int[] { 2, 0, 0};
+
+        verticalResetColor = Color.white;
+        verticalResetColor.a = .36f;
+        verticalChosenColor = Color.red;
+        verticalChosenColor.a = .36f;
     }
 
     private void Update()
@@ -77,6 +90,8 @@ public class PauseMenuController_Khoa : MonoBehaviour
         }
     }
 
+
+
     private void TurnOnPauseMenu()
     {
         pauseMenu.SetActive(true);
@@ -84,118 +99,193 @@ public class PauseMenuController_Khoa : MonoBehaviour
         playerReference.canMove = false;
         pauseMenuOn = true;
 
+        Time.timeScale = 0f;
+
         UpdateUI();
     }
     private void TurnOffPauseMenu()
     {
         pauseMenu.SetActive(false);
 
-        currentVerticalUIScrolling = new int[] { 0, 0, 0 };
-        currentHorizontalScrolling = 0;
+        currentVerticalUIScrolling = new int[] {0, 0, 0};
+        currentHorizontalUIScrolling = 0;
 
         playerReference.canMove = true;
         pauseMenuOn = false;
+        optionChoosing = false;
+        soundChange = false;
+
+        Time.timeScale = 1f;
+        soundOnandOff++;
 
         ResetUI();
+        SoundOff();
     }
+
+
 
     private void InputCheck()
     {
-        //horizontal input check
-        if (Input.GetKey(KeyCode.A))
+        if (!soundChange)
         {
-            leftRightTimer -= .03f;
+            //horizontal input check
+            if (Input.GetKey(KeyCode.A))
+            {
+                leftRightTimer -= .03f;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                leftRightTimer += .03f;
+            }
+
+            if (Input.GetKeyUp(KeyCode.A) || upDownTimer <= -1)
+            {
+                inputTaken = true;
+                currentVerticalUIScrolling[1] = 0;
+                leftRightTimer = 0;
+                currentHorizontalUIScrolling--;
+            }
+            if (Input.GetKeyUp(KeyCode.D) || upDownTimer >= 1)
+            {
+                inputTaken = true;
+                currentVerticalUIScrolling[1] = 0;
+                leftRightTimer = 0;
+                currentHorizontalUIScrolling++;
+            }
+
+            if (currentHorizontalUIScrolling < 0)
+            {
+                currentHorizontalUIScrolling = 0;
+            }
+            switch (currentVerticalUIScrolling[0])
+            {
+                case 0:
+                    {
+                        maxHorizontalUIScrolling = 0;
+                        break;
+                    }
+                case 1:
+                    {
+                        maxHorizontalUIScrolling = 2;
+                        break;
+                    }
+                case 2:
+                    {
+                        maxHorizontalUIScrolling = 1;
+                        break;
+                    }
+            }
+            if (currentHorizontalUIScrolling > maxHorizontalUIScrolling)
+            {
+                currentHorizontalUIScrolling = maxHorizontalUIScrolling;
+            }
+
+
+
+            //vertical input check
+            if (Input.GetKey(KeyCode.W))
+            {
+                upDownTimer -= .03f;
+            }
+            if (Input.GetKey(KeyCode.S))
+            {
+                upDownTimer += .03f;
+            }
+
+            if (Input.GetKeyUp(KeyCode.W) || upDownTimer <= -1)
+            {
+                inputTaken = true;
+                upDownTimer = 0;
+                currentVerticalUIScrolling[currentHorizontalUIScrolling]--;
+            }
+            if (Input.GetKeyUp(KeyCode.S) || upDownTimer >= 1)
+            {
+                inputTaken = true;
+                upDownTimer = 0;
+                currentVerticalUIScrolling[currentHorizontalUIScrolling]++;
+            }
+
+            if (currentVerticalUIScrolling[currentHorizontalUIScrolling] < 0)
+            {
+                currentVerticalUIScrolling[currentHorizontalUIScrolling] = 0;
+            }
+            if (currentVerticalUIScrolling[currentHorizontalUIScrolling] > maxVerticalUIScrolling[currentHorizontalUIScrolling])
+            {
+                currentVerticalUIScrolling[currentHorizontalUIScrolling] = maxVerticalUIScrolling[currentHorizontalUIScrolling];
+            }
+
+            if (inputTaken)
+            {
+                ResetUI();
+            }
         }
-        if (Input.GetKey(KeyCode.D))
+        else
         {
-            leftRightTimer += .03f;
+            if (Input.GetKey(KeyCode.A))
+            {
+                soundVolume -= .03f;
+            }
+            if (Input.GetKey(KeyCode.D))
+            {
+                soundVolume += .03f;
+            }
+
+            if (soundVolume < 0)
+            {
+                soundVolume = 0;
+            }
+            if (soundVolume > 1)
+            {
+                soundVolume = 1;
+            }
+
+            SoundOn();
         }
 
-        if (Input.GetKeyUp(KeyCode.A) || upDownTimer <= -1)
+        if (optionChoosing && Input.GetButtonDown("Interact"))
         {
-            inputTaken = true;
-            leftRightTimer = 0;
-            currentHorizontalScrolling--;
-        }
-        if (Input.GetKeyUp(KeyCode.D) || upDownTimer >= 1)
-        {
-            inputTaken = true;
-            leftRightTimer = 0;
-            currentHorizontalScrolling++;
-        }
-
-        if (currentHorizontalScrolling < 0)
-        {
-            currentHorizontalScrolling = 0;
-        }
-        switch (currentVerticalUIScrolling[0])
-        {
-            case 0:
-                {
-                    maxHorizontalUIScrolling = 0;
-                    break;
-                }
-            case 1:
-                {
-                    maxHorizontalUIScrolling = 2;
-                    break;
-                }
-            case 2:
-                {
-                    maxHorizontalUIScrolling = 0;
-                    break;
-                }
-        }
-        if (currentHorizontalScrolling > maxHorizontalUIScrolling)
-        {
-            currentHorizontalScrolling = maxHorizontalUIScrolling;
-        }
-
-
-
-        //vertical input check
-        if (Input.GetKey(KeyCode.W))
-        {
-            upDownTimer -= .03f;
-        }
-        if (Input.GetKey(KeyCode.S))
-        {
-            upDownTimer += .03f;
-        }
-
-        if (Input.GetKeyUp(KeyCode.W) || upDownTimer <= -1)
-        {
-            inputTaken = true;
-            upDownTimer = 0;
-            currentVerticalUIScrolling[currentHorizontalScrolling]--;
-        }
-        if (Input.GetKeyUp(KeyCode.S) || upDownTimer >= 1)
-        {
-            inputTaken = true;
-            upDownTimer = 0;
-            currentVerticalUIScrolling[currentHorizontalScrolling]++;
-        }
-
-        if (currentVerticalUIScrolling[currentHorizontalScrolling] < 0)
-        {
-            currentVerticalUIScrolling[currentHorizontalScrolling] = 0;
-        }
-        if (currentVerticalUIScrolling[currentHorizontalScrolling] > maxVerticalUIScrolling[currentHorizontalScrolling])
-        {
-            currentVerticalUIScrolling[currentHorizontalScrolling] = maxVerticalUIScrolling[currentHorizontalScrolling];
-        }
-
-        if (inputTaken)
-        {
-            ResetUI();
+            switch(currentVerticalUIScrolling[1])
+            {
+                case 0:
+                    {
+                        Resume();
+                        break;
+                    }
+                case 1:
+                    {
+                        Restart();
+                        break;
+                    }
+                case 2:
+                    {
+                        Quit();
+                        break;
+                    }
+                case 3:
+                    {
+                        soundOnandOff++;
+                        if (soundOnandOff % 2 == 0)
+                        {
+                            SoundOff();
+                        }
+                        else
+                        {
+                            SoundOn();
+                        }
+                        break;
+                    }
+            }
         }
     }
+
+
 
     private void ResetUI()
     {
         inputTaken = false;
+        optionChoosing = false;
 
-        if (currentHorizontalScrolling == 0)
+        if (currentHorizontalUIScrolling == 0)
         {
             foreach (GameObject gameObject in rightSide)
             {
@@ -210,14 +300,18 @@ public class PauseMenuController_Khoa : MonoBehaviour
 
         if (currentVerticalUIScrolling[0] == 1)
         {
+            if (onGoingList.Count > 0)
+            {
+                maxVerticalUIScrolling[1] = onGoingList.Count - 1;
+            }
+                
+
             foreach (GameObject tempGameObject in taskList)
             {
-                Color tempColor = Color.white;
-                tempColor.a = .36f;
-                tempGameObject.GetComponent<Image>().color = tempColor;
+                tempGameObject.GetComponent<Image>().color = verticalResetColor;
             }
 
-            if (currentHorizontalScrolling == 1)
+            if (currentHorizontalUIScrolling == 1)
             {
                 foreach (Image tempImage1 in onGoingTasks)
                 {
@@ -228,7 +322,7 @@ public class PauseMenuController_Khoa : MonoBehaviour
 
                 OngoingListUIUpdate();
             }
-            if(currentHorizontalScrolling == 2)
+            if(currentHorizontalUIScrolling == 2)
             {
                 foreach (Image tempImage2 in completedTasks)
                 {
@@ -239,44 +333,69 @@ public class PauseMenuController_Khoa : MonoBehaviour
 
                 CompletedListUIUpdate();
             }
+
+            for (int counter = 1; counter < taskList.Length; counter++)
+            {
+                taskList[counter].SetActive(false);
+            }
         }
 
-        for (int counter = 1; counter < taskList.Length; counter++)
+        if(currentVerticalUIScrolling[0] == 2)
         {
-            taskList[counter].SetActive(false);
+            maxVerticalUIScrolling[1] = 3;
+
+            foreach (Image tempImage3 in optionList)
+            {
+                tempImage3.color = verticalResetColor;
+            }
+
+            foreach (Image tempImage4 in optionChoice)
+            {
+                tempImage4.color = Color.white;
+            }
         }
 
         UpdateUI();
     }
-
     private void UpdateUI()
     {
-        if (currentHorizontalScrolling == 0)
+        if (currentHorizontalUIScrolling == 0)
         {
-            leftSide[currentVerticalUIScrolling[currentHorizontalScrolling]].color = Color.black;
-            rightSide[currentVerticalUIScrolling[currentHorizontalScrolling]].SetActive(true);
+            leftSide[currentVerticalUIScrolling[currentHorizontalUIScrolling]].color = Color.black;
+            rightSide[currentVerticalUIScrolling[currentHorizontalUIScrolling]].SetActive(true);
         }
 
         if (currentVerticalUIScrolling[0] == 1)
         {
             rightSide[1].SetActive(true);
 
-            Color tempColor = Color.red;
-            tempColor.a = .36f;
-            taskList[currentHorizontalScrolling].GetComponent<Image>().color = tempColor;
+            taskList[currentHorizontalUIScrolling].GetComponent<Image>().color = verticalChosenColor;
 
-            taskList[currentHorizontalScrolling].SetActive(true);
+            taskList[currentHorizontalUIScrolling].SetActive(true);
 
-            if(currentHorizontalScrolling == 1)
+            if(currentHorizontalUIScrolling == 1)
             {
                 OngoingListUIUpdate();
             }
-            if(currentHorizontalScrolling == 2)
+            if(currentHorizontalUIScrolling == 2)
             {
                 CompletedListUIUpdate();
             }
         }
+
+        if (currentVerticalUIScrolling[0] == 2)
+        {
+            optionList[currentHorizontalUIScrolling].GetComponent<Image>().color = verticalChosenColor;
+
+            if (currentHorizontalUIScrolling == 1)
+            {
+                UpdateOptionUI();
+            }
+
+        }
     }
+
+
 
     private void OngoingListUIUpdate()
     {
@@ -399,14 +518,25 @@ public class PauseMenuController_Khoa : MonoBehaviour
         }
     }
 
+
+
     public void AddToOngoingList(int questType)
     {
         alreadyHadThisTask[questType] = true;
         onGoingList.Add(questType);
+    }
+    public void RemoveFromOngoingList(int questType)
+    {
+        alreadyHadThisTask[questType] = false;
 
-        if (onGoingList.Count > 1)
+        for (int counter = 0; counter < onGoingList.Count; counter++)
         {
-            maxVerticalUIScrolling[1]++;
+            if (onGoingList[counter] == questType)
+            {
+                onGoingList.Remove(onGoingList[counter]);
+
+                break;
+            }
         }
     }
     public void AddToCompletedList(int questType)
@@ -434,20 +564,7 @@ public class PauseMenuController_Khoa : MonoBehaviour
             completedList.Add(questType);
         }
 
-        for(int counter = 0; counter < onGoingList.Count; counter++)
-        {
-            if(onGoingList[counter] == questType)
-            {
-                if (onGoingList.Count > 1)
-                {
-                    maxVerticalUIScrolling[1]--;
-                }
-
-                onGoingList.Remove(onGoingList[counter]);
-
-                break;
-            }
-        }
+        RemoveFromOngoingList(questType);
 
         if (completedCount[questType] < 4)
         {
@@ -455,10 +572,45 @@ public class PauseMenuController_Khoa : MonoBehaviour
         }
 
         alreadyHadThisTask[questType] = false;
+    }
 
-        Debug.Log("current ongoing list counter: " + onGoingList.Count);
-        Debug.Log("current ongoing max: " + maxVerticalUIScrolling[1]);
-        Debug.Log("current completed list counter: " + completedList.Count);
-        Debug.Log("current completed max: " + maxVerticalUIScrolling[2]);
+
+    private void UpdateOptionUI()
+    {
+        optionChoosing = true;
+
+        optionChoice[currentVerticalUIScrolling[currentHorizontalUIScrolling]].color = Color.black;
+    }
+    private void Resume()
+    {
+        pauseMenuOnandOff++;
+
+        TurnOffPauseMenu();
+    }
+    private void Restart()
+    {
+        SceneManager.LoadScene("TechScene");
+    }
+    private void Quit()
+    {
+        Application.Quit();
+    }
+
+    private void SoundOn()
+    {
+        soundChange = true;
+
+        optionChoice[3].GetComponent<Image>().enabled = false;
+        optionChoice[3].transform.GetChild(0).GetComponent<Image>().fillAmount = soundVolume / 1;
+        optionChoice[3].transform.GetChild(0).GetComponent<Image>().enabled = true;
+    }
+    private void SoundOff()
+    {
+        soundChange = false;
+
+        playerReference.VolumeChange();
+
+        optionChoice[3].GetComponent<Image>().enabled = true;
+        optionChoice[3].transform.GetChild(0).GetComponent<Image>().enabled = false;
     }
 }

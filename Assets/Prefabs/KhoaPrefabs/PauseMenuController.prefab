@@ -63,16 +63,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  completedCountPanel:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  onGoingTaskDescription:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   onGoingTasks:
   - {fileID: 0}
   - {fileID: 0}
@@ -83,17 +73,21 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
+  optionList:
+  - {fileID: 0}
+  - {fileID: 0}
+  optionChoice:
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
+  - {fileID: 0}
   pauseMenu: {fileID: 0}
   taskDescription:
-  - Fire Elemental Transfer Task
-  - Earth Elemental Transfer Task
-  - Water Elemental Transfer Task
-  - Wind Elemental Transfer Task
-  - Puzzle 1 Task
-  - Puzzle 2 Task
-  - Puzzle 3 Task
+  - Save House(s) on Fire
+  - Bring This Object to
+  - Bring Water To the Well
   - Already Took This Task
   alreadyHadThisTask: 
   completedCount: 
   pauseMenuOn: 0
-  inputTaken: 0
+  soundVolume: 1

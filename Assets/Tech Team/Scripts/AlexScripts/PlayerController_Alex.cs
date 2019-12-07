@@ -7,9 +7,12 @@ public class PlayerController_Alex : MonoBehaviour
     //public GameObject dashHelperReference, strengthHelperReference;
     public Transform strengthRayEndPoint;
     public LayerMask[] rayCastLayerMask;
+    public ParticleSystem playerParticle;
+    public AudioSource[] audioSound; //This is the sound for walking
+    public Animator anim;
 
     private UIController_Khoa uiControllerReference;
-    private Animator animator;
+    private PauseMenuController_Khoa pauseMenuReference;
     private Transform cameraT;
     private GameObject savedGameObject;
 
@@ -36,14 +39,19 @@ public class PlayerController_Alex : MonoBehaviour
 
     private void Awake()
     {
+        playerParticle.Stop();
+
         uiControllerReference = FindObjectOfType<UIController_Khoa>();
-        //animator = GetComponent<Animator>();
+        pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
         cameraT = Camera.main.transform;
 
         playerRigidBody = GetComponent<Rigidbody>();
         showPlayer = GetComponent<SpriteRenderer>();
         playerCollider = GetComponent<CapsuleCollider>();
+    }
 
+    private void Start()
+    {
         canMove = true;
         jumping = false;
         canGlide = false;
@@ -52,6 +60,9 @@ public class PlayerController_Alex : MonoBehaviour
         strengthEnd = false;
         jumpCounter = 1;
         dashMultiplier = 3;
+
+        VolumeChange();
+        audioSound[0].Play();
     }
 
     private void Update()
@@ -67,15 +78,22 @@ public class PlayerController_Alex : MonoBehaviour
                 transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
             }
 
-            bool running = Input.GetKey(KeyCode.LeftShift);
-            float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
+            //bool running = Input.GetKey(KeyCode.LeftShift);
+            float targetSpeed = walkSpeed * inputDir.magnitude;
             currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
 
-            transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
-
-            // float animationSpeedPercent = ((running)? 1:.5f) * inputDir.magnitude;
-            // animator.SetFloat("speedPercent", animationSpeedPercent, speedSmoothTime, Time.deltaTime);
-
+            if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
+            {
+                transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
+                if (!audioSound[1].isPlaying && onGround)
+                {
+                    audioSound[1].Play();
+                }
+            }
+            else
+            {
+                audioSound[1].Pause();
+            }
             InputCheck();
         }
     }
@@ -88,6 +106,18 @@ public class PlayerController_Alex : MonoBehaviour
         }
     }
     
+
+
+    public void VolumeChange()
+    {
+        foreach (AudioSource tempAudio in audioSound)
+        {
+            tempAudio.volume = pauseMenuReference.soundVolume;
+        }
+    }
+
+
+
     private void InputCheck()
     {
         if (!abilityCooling)
@@ -127,6 +157,8 @@ public class PlayerController_Alex : MonoBehaviour
         }
     }
 
+
+
     private void JumpingCheck()
     {
         if (!jumping)
@@ -164,7 +196,7 @@ public class PlayerController_Alex : MonoBehaviour
 
             if (Input.GetButtonDown("Jump") && jumpCounter < maxJumpCounter)
             {
-                StartCoroutine(JumpingLogic());
+                StartCoroutine(JumpingLogic());                
             }
 
             if (Input.GetButton("Jump") && canGlide && elementalList[3] > 0)
@@ -181,6 +213,58 @@ public class PlayerController_Alex : MonoBehaviour
         }
     }
 
+    IEnumerator JumpingLogic()
+    {
+        jumping = true;
+        canGlide = false;
+        jumpCounter++;
+        gravity = 0;
+
+        if (elementalList[3] > 0)
+        {
+            maxJumpCounter = 2;
+        }
+        else
+        {
+            maxJumpCounter = 1;
+        }
+
+        if (jumpCounter > 1)
+        {
+            elementalList[3] -= 1;
+        }
+
+        uiControllerReference.UpdateElement(3);
+
+        playerRigidBody.velocity = new Vector3(0, 0, 0);
+
+        for (int counter = 0; counter < 6; counter++)
+        {
+            playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter * counter, 0), ForceMode.Acceleration);
+
+            yield return new WaitForEndOfFrame();
+        }
+
+        jumping = false;
+
+        yield return new WaitForSeconds(.3f);
+
+        canGlide = true;
+    }
+
+    IEnumerator GlidingLogic()
+    {
+        Debug.Log("1");
+        playerRigidBody.velocity = new Vector3(0, 0, 0);
+        gliding = true;
+
+        yield return new WaitUntil(() => !canGlide);
+
+        gliding = false;
+    }
+
+
+
     private void DashMultiplierIncrease()
     {
         if (dashMultiplier < maxDashMultiplier)
@@ -189,9 +273,29 @@ public class PlayerController_Alex : MonoBehaviour
             elementalList[0] -= Time.deltaTime;
         }
 
-        uiControllerReference.DashMultiplierOn();
         uiControllerReference.UpdateElement(0);
     }
+    IEnumerator DashLogic()
+    {
+        /*
+        dashHelperReference.GetComponent<DashHelper_Khoa>().StartChecking();
+
+        yield return new WaitUntil(() => dashHelperReference.GetComponent<DashHelper_Khoa>().canStart);
+        */
+        canMove = false;
+
+        for (int counter = 0; counter < dashMultiplier; counter++)
+        {
+            playerRigidBody.AddForce(this.transform.forward * dashForce * counter, ForceMode.Force);
+            yield return new WaitForEndOfFrame();
+        }
+
+        canMove = true;
+        //dashHelperReference.GetComponent<DashHelper_Khoa>().canStart = false;
+        dashMultiplier = 3;
+    }
+
+
 
     private void StrengthRayCast()
     {
@@ -234,27 +338,6 @@ public class PlayerController_Alex : MonoBehaviour
         StartCoroutine(StrengthRayCooling());
     }
 
-    IEnumerator DashLogic()
-    {
-        /*
-        dashHelperReference.GetComponent<DashHelper_Khoa>().StartChecking();
-
-        yield return new WaitUntil(() => dashHelperReference.GetComponent<DashHelper_Khoa>().canStart);
-        */
-        canMove = false;
-        uiControllerReference.DashMultiplierOff();
-
-        for (int counter = 0; counter < dashMultiplier; counter++)
-        {
-            playerRigidBody.AddForce(this.transform.forward * dashForce * counter, ForceMode.Force);
-            yield return new WaitForEndOfFrame();
-        }
-
-        canMove = true;
-        //dashHelperReference.GetComponent<DashHelper_Khoa>().canStart = false;
-        dashMultiplier = 3;
-    }
-
     IEnumerator StrengthRayCooling()
     {
         yield return new WaitForSeconds(.1f);
@@ -262,54 +345,7 @@ public class PlayerController_Alex : MonoBehaviour
         strengthRayCastStart = false;
     }
 
-    IEnumerator JumpingLogic()
-    {
-        jumping = true;
-        canGlide = false;
-        jumpCounter++;
-        gravity = 0;
 
-        if (elementalList[3] > 0)
-        {
-            maxJumpCounter = 2;
-        }
-        else
-        {
-            maxJumpCounter = 1;
-        }
-
-        if (jumpCounter > 1)
-        {
-            elementalList[3] -= 1;
-        }
-
-        uiControllerReference.UpdateElement(3);
-
-        playerRigidBody.velocity = new Vector3(0, 0, 0);
-
-        for (int counter = 0; counter < 6; counter++)
-        {
-            playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter * counter, 0), ForceMode.Acceleration);
-            yield return new WaitForEndOfFrame();
-        }
-
-        jumping = false;
-
-        yield return new WaitForSeconds(.3f);
-
-        canGlide = true;
-    }
-
-    IEnumerator GlidingLogic()
-    {
-        Debug.Log("1");
-        playerRigidBody.velocity = new Vector3(0, 0, 0);
-        gliding = true;
-
-        yield return new WaitUntil(() => !canGlide);
-
-        gliding = false;
-    }
 
     IEnumerator AbilityEnd(int abilityType)
     {
@@ -343,6 +379,8 @@ public class PlayerController_Alex : MonoBehaviour
         strengthEnd = false;
         usingStrength = false;
     }
+
+
 
     private void OnCollisionEnter(Collision collision)
     {
