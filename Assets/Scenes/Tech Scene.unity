@@ -3688,6 +3688,7 @@ MonoBehaviour:
   taskReceiveNPC: {fileID: 1846090440}
   parentNPC: {fileID: 103576321}
   questType: 1
+  quest2Pass: 0
 --- !u!114 &1133301124 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 1133301124, guid: e59ad4fb02447be4aaf709664f202a18,
@@ -5797,11 +5798,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 349.25244, y: -47.99491}
+  scrollPos: {x: 459.78973, y: -75.1646}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
-  zoom: 0.65919
+  zoom: 0.7504501
   scrollViewRect:
     serializedVersion: 2
     x: -343
@@ -6011,7 +6012,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: -107.898254
     y: 433.00708
-    width: 130.4017
+    width: 129.95203
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7653,7 +7654,7 @@ MonoBehaviour:
     serializedVersion: 2
     x: 177
     y: 91
-    width: 131.16022
+    width: 130.61829
     height: 40
   tint: {r: 1, g: 1, b: 1, a: 1}
   useCustomTint: 0
@@ -7891,7 +7892,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 5d02d9822eec54c98afe95bb497211b3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  scope: 0
+  scope: 2
   key: quest3Accepted
   value: 0
 --- !u!114 &1869327907
