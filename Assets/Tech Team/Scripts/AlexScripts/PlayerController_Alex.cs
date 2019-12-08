@@ -8,11 +8,11 @@ public class PlayerController_Alex : MonoBehaviour
     public Transform strengthRayEndPoint;
     public LayerMask[] rayCastLayerMask;
     public ParticleSystem playerParticle;
-    public AudioSource walkingSound; //This is the sound for walking
+    public AudioSource[] audioSound; //This is the sound for walking
     public Animator anim;
 
     private UIController_Khoa uiControllerReference;
-    private Animator animator;
+    private PauseMenuController_Khoa pauseMenuReference;
     private Transform cameraT;
     private GameObject savedGameObject;
 
@@ -42,13 +42,16 @@ public class PlayerController_Alex : MonoBehaviour
         playerParticle.Stop();
 
         uiControllerReference = FindObjectOfType<UIController_Khoa>();
-        //animator = GetComponent<Animator>();
+        pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
         cameraT = Camera.main.transform;
 
         playerRigidBody = GetComponent<Rigidbody>();
         showPlayer = GetComponent<SpriteRenderer>();
         playerCollider = GetComponent<CapsuleCollider>();
+    }
 
+    private void Start()
+    {
         canMove = true;
         jumping = false;
         canGlide = false;
@@ -57,6 +60,9 @@ public class PlayerController_Alex : MonoBehaviour
         strengthEnd = false;
         jumpCounter = 1;
         dashMultiplier = 3;
+
+        VolumeChange();
+        audioSound[0].Play();
     }
 
     private void Update()
@@ -79,14 +85,14 @@ public class PlayerController_Alex : MonoBehaviour
             if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
             {
                 transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
-                if (!walkingSound.isPlaying && onGround)
+                if (!audioSound[1].isPlaying && onGround)
                 {
-                    walkingSound.Play();
+                    audioSound[1].Play();
                 }
             }
             else
             {
-                walkingSound.Pause();
+                audioSound[1].Pause();
             }
             InputCheck();
         }
@@ -100,6 +106,18 @@ public class PlayerController_Alex : MonoBehaviour
         }
     }
     
+
+
+    public void VolumeChange()
+    {
+        foreach (AudioSource tempAudio in audioSound)
+        {
+            tempAudio.volume = pauseMenuReference.soundVolume;
+        }
+    }
+
+
+
     private void InputCheck()
     {
         if (!abilityCooling)
@@ -138,6 +156,8 @@ public class PlayerController_Alex : MonoBehaviour
             }
         }
     }
+
+
 
     private void JumpingCheck()
     {
@@ -193,85 +213,6 @@ public class PlayerController_Alex : MonoBehaviour
         }
     }
 
-    private void DashMultiplierIncrease()
-    {
-        if (dashMultiplier < maxDashMultiplier)
-        {
-            dashMultiplier += Time.deltaTime;
-            elementalList[0] -= Time.deltaTime;
-        }
-
-        uiControllerReference.UpdateElement(0);
-    }
-
-    private void StrengthRayCast()
-    {
-        strengthRayCastStart = true;
-        float strengthRayDistance = Vector3.Distance(cameraT.transform.position, strengthRayEndPoint.position);
-        Ray strengthRayCast = new Ray(transform.position, transform.forward * strengthRayDistance);
-        RaycastHit strengthRayHit;
-
-        Debug.DrawLine(strengthRayCast.origin, strengthRayCast.origin + strengthRayCast.direction * strengthRayDistance, Color.green);
-
-        bool rayHit = Physics.Raycast(strengthRayCast, out strengthRayHit, strengthRayDistance, rayCastLayerMask[1]);
-
-        if (rayHit)
-        {
-            GameObject hitGameObject = strengthRayHit.transform.gameObject;
-
-            Debug.DrawLine(strengthRayCast.origin, strengthRayHit.point, Color.red, 3f);
-            Debug.Log("target: " + hitGameObject.name);
-
-            if (hitGameObject.tag == "PickUp")
-            {
-                if(hitGameObject != savedGameObject && savedGameObject != null)
-                {
-                    savedGameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                }
-
-                savedGameObject = hitGameObject;
-                hitGameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
-            }
-        }
-        else
-        {
-            if (savedGameObject != null)
-            {
-                savedGameObject.GetComponent<MeshRenderer>().material.color = Color.green;
-                savedGameObject = null;
-            }
-        }
-
-        StartCoroutine(StrengthRayCooling());
-    }
-
-    IEnumerator DashLogic()
-    {
-        /*
-        dashHelperReference.GetComponent<DashHelper_Khoa>().StartChecking();
-
-        yield return new WaitUntil(() => dashHelperReference.GetComponent<DashHelper_Khoa>().canStart);
-        */
-        canMove = false;
-
-        for (int counter = 0; counter < dashMultiplier; counter++)
-        {
-            playerRigidBody.AddForce(this.transform.forward * dashForce * counter, ForceMode.Force);
-            yield return new WaitForEndOfFrame();
-        }
-
-        canMove = true;
-        //dashHelperReference.GetComponent<DashHelper_Khoa>().canStart = false;
-        dashMultiplier = 3;
-    }
-
-    IEnumerator StrengthRayCooling()
-    {
-        yield return new WaitForSeconds(.1f);
-
-        strengthRayCastStart = false;
-    }
-
     IEnumerator JumpingLogic()
     {
         jumping = true;
@@ -322,6 +263,90 @@ public class PlayerController_Alex : MonoBehaviour
         gliding = false;
     }
 
+
+
+    private void DashMultiplierIncrease()
+    {
+        if (dashMultiplier < maxDashMultiplier)
+        {
+            dashMultiplier += Time.deltaTime;
+            elementalList[0] -= Time.deltaTime;
+        }
+
+        uiControllerReference.UpdateElement(0);
+    }
+    IEnumerator DashLogic()
+    {
+        /*
+        dashHelperReference.GetComponent<DashHelper_Khoa>().StartChecking();
+
+        yield return new WaitUntil(() => dashHelperReference.GetComponent<DashHelper_Khoa>().canStart);
+        */
+        canMove = false;
+
+        for (int counter = 0; counter < dashMultiplier; counter++)
+        {
+            playerRigidBody.AddForce(this.transform.forward * dashForce * counter, ForceMode.Force);
+            yield return new WaitForEndOfFrame();
+        }
+
+        canMove = true;
+        //dashHelperReference.GetComponent<DashHelper_Khoa>().canStart = false;
+        dashMultiplier = 3;
+    }
+
+
+
+    private void StrengthRayCast()
+    {
+        strengthRayCastStart = true;
+        float strengthRayDistance = Vector3.Distance(cameraT.transform.position, strengthRayEndPoint.position);
+        Ray strengthRayCast = new Ray(transform.position, transform.forward * strengthRayDistance);
+        RaycastHit strengthRayHit;
+
+        Debug.DrawLine(strengthRayCast.origin, strengthRayCast.origin + strengthRayCast.direction * strengthRayDistance, Color.green);
+
+        bool rayHit = Physics.Raycast(strengthRayCast, out strengthRayHit, strengthRayDistance, rayCastLayerMask[1]);
+
+        if (rayHit)
+        {
+            GameObject hitGameObject = strengthRayHit.transform.gameObject;
+
+            Debug.DrawLine(strengthRayCast.origin, strengthRayHit.point, Color.red, 3f);
+            Debug.Log("target: " + hitGameObject.name);
+
+            if (hitGameObject.tag == "PickUp")
+            {
+                if(hitGameObject != savedGameObject && savedGameObject != null)
+                {
+                    savedGameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                }
+
+                savedGameObject = hitGameObject;
+                hitGameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+            }
+        }
+        else
+        {
+            if (savedGameObject != null)
+            {
+                savedGameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                savedGameObject = null;
+            }
+        }
+
+        StartCoroutine(StrengthRayCooling());
+    }
+
+    IEnumerator StrengthRayCooling()
+    {
+        yield return new WaitForSeconds(.1f);
+
+        strengthRayCastStart = false;
+    }
+
+
+
     IEnumerator AbilityEnd(int abilityType)
     {
         abilityCooling = true;
@@ -354,6 +379,8 @@ public class PlayerController_Alex : MonoBehaviour
         strengthEnd = false;
         usingStrength = false;
     }
+
+
 
     private void OnCollisionEnter(Collision collision)
     {
