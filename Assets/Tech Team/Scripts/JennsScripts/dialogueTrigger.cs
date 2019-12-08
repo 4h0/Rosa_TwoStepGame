@@ -10,24 +10,29 @@ public class dialogueTrigger : MonoBehaviour
     private Quest1_Khoa Quest1Reference; // referencing Khoa's script
     private Quest2_Khoa Quest2Reference; // referencing Khoa's script
     private Quest3_Khoa Quest3Reference; // referencing Khoa's script
-    private PlayerController_Alex CanMoveReference; // Referencing Khoa/Alex Script
+    //private PlayerController_Khoa CanMoveReference; // Referencing Khoa's Script
 
     public Flowchart flowchart; // calls the flowchart.
+
     public bool taskDone;
     private bool hasAcceptedQuest1, hasAcceptedQuest2, hasAcceptedQuest3; // has the player talked to the npc
     private bool hasPlayer; // is the player in a collider? yes or no
-    private bool isTalking; // is the npc talking
+
     private bool Quest1Pass, Quest2Pass, Quest3Pass;
+   // private bool CanMove, controlledMovement;
 
     void Awake()
     {
         Quest1Reference = FindObjectOfType<Quest1_Khoa>();
         Quest2Reference = FindObjectOfType<Quest2_Khoa>();
         Quest3Reference = FindObjectOfType<Quest3_Khoa>();
-        CanMoveReference = FindObjectOfType<PlayerController_Alex>();
+        //CanMoveReference = FindObjectOfType<PlayerController_Khoa>();
         hasAcceptedQuest1 = false;
         hasAcceptedQuest2 = false;
         hasAcceptedQuest3 = false;
+        taskDone = false;
+        //CanMove = true;
+
     }
 
     private void Update()
@@ -37,20 +42,8 @@ public class dialogueTrigger : MonoBehaviour
         Quest2_Dialogue();
         Quest3_Dialogue();
     }
-
     void Random_Dialogue()
     {
-        isTalking = flowchart.GetBooleanVariable("talking"); // grab bool from Fungus
-
-        if (isTalking)
-        {
-            CanMoveReference.canMove = false; // Player can't move
-        }
-        else 
-        {
-            CanMoveReference.canMove = true; // Player can move
-        }
-
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {
             if (this.gameObject.tag == "NPC") // checks to see if the radius is tagged with the NPC tag.
@@ -91,21 +84,12 @@ public class dialogueTrigger : MonoBehaviour
     void Quest1_Dialogue()
     {
         hasAcceptedQuest1 = flowchart.GetBooleanVariable("quest1Accepted");
-        isTalking = flowchart.GetBooleanVariable("talking"); // Grab bool from Fungus
         Quest1Pass = Quest1Reference.quest1Pass;
+        //CanMove = flowchart.GetBooleanVariable("dialogueCamera");
+        //controlledMovement = CanMoveReference.canMove;
 
-        if (isTalking)
-        {
-            CanMoveReference.canMove = false; // Player can't move
-        }
-        else 
-        {
-            CanMoveReference.canMove = true; // Player can move
-        }
-    
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {
-            
             if ((!hasAcceptedQuest1 && !Quest1Pass))
             {
                 if (this.gameObject.tag == "NPC6")
@@ -130,27 +114,16 @@ public class dialogueTrigger : MonoBehaviour
                     Debug.Log("Quest complete.");
                     flowchart.ExecuteBlock("fFire");
                 }
-            } 
+            }
         }
     }
     void Quest3_Dialogue()
     {
         hasAcceptedQuest3 = flowchart.GetBooleanVariable("quest3Accepted");
         Quest3Pass = Quest3Reference.quest3Pass;
-        isTalking = flowchart.GetBooleanVariable("talking"); // grab bool from Fungus
-
-        if (isTalking)
-        {
-            CanMoveReference.canMove = false; // Player can't move
-        }
-        else 
-        {
-            CanMoveReference.canMove = true; // Player can move
-        }
 
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {
-
             if (!hasAcceptedQuest3)
             {
                 if (this.gameObject.tag == "NPC8")
@@ -206,16 +179,6 @@ public class dialogueTrigger : MonoBehaviour
     {
         hasAcceptedQuest2 = flowchart.GetBooleanVariable("quest2Accepted");
         Quest2Pass = Quest2Reference.quest2Pass;
-        isTalking = flowchart.GetBooleanVariable("talking"); // grab bool from Fungus
-
-        if (isTalking)
-        {
-            CanMoveReference.canMove = false; // Player can't move
-        }
-        else 
-        {
-            CanMoveReference.canMove = true; // Player can move
-        }
 
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {    
@@ -226,6 +189,7 @@ public class dialogueTrigger : MonoBehaviour
                     Debug.Log("NPC7");
 
                     flowchart.ExecuteBlock("Quest2");
+                    // hasTalkedQuest2 = true;
                 }
             }
             else if (!Quest2Pass && hasAcceptedQuest2) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
