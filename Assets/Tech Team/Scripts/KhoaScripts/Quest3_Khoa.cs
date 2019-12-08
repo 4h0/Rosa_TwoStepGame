@@ -6,8 +6,6 @@ public class Quest3_Khoa : MonoBehaviour
 {
     public GameObject[] receivedElement;
 
-    public GameObject giveElement;
-
     private PauseMenuController_Khoa pauseMenuReference;
 
     public int questType;
@@ -20,7 +18,6 @@ public class Quest3_Khoa : MonoBehaviour
     {
         pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
 
-        giveElement.SetActive(false);
         foreach (GameObject tempGameObjects in receivedElement)
         {
             tempGameObjects.SetActive(false);
@@ -35,7 +32,6 @@ public class Quest3_Khoa : MonoBehaviour
     {
         pauseMenuReference.AddToOngoingList(questType);
 
-        giveElement.SetActive(true);
         foreach (GameObject tempGameObjects in receivedElement)
         {
             tempGameObjects.SetActive(true);
@@ -55,7 +51,6 @@ public class Quest3_Khoa : MonoBehaviour
         pauseMenuReference.RemoveFromOngoingList(questType);
         pauseMenuReference.AddToCompletedList(questType);
 
-        giveElement.SetActive(false);
         foreach (GameObject tempGameObjects in receivedElement)
         {
             tempGameObjects.SetActive(false);

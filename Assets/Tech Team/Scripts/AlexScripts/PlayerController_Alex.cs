@@ -40,7 +40,10 @@ public class PlayerController_Alex : MonoBehaviour
     private void Awake()
     {
         playerParticle.Stop();
+    }
 
+    private void Start()
+    {
         uiControllerReference = FindObjectOfType<UIController_Khoa>();
         pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
         cameraT = Camera.main.transform;
@@ -48,10 +51,7 @@ public class PlayerController_Alex : MonoBehaviour
         playerRigidBody = GetComponent<Rigidbody>();
         showPlayer = GetComponent<SpriteRenderer>();
         playerCollider = GetComponent<CapsuleCollider>();
-    }
 
-    private void Start()
-    {
         canMove = true;
         jumping = false;
         canGlide = false;
