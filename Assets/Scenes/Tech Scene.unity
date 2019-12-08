@@ -2274,6 +2274,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: a7104ce1aef95dc47af0d6daad8536da, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  flowchart: {fileID: 0}
   timerText: {fileID: 1429087572}
   taskRelatedGameObjects:
   - {fileID: 1703199384}
@@ -2282,6 +2283,7 @@ MonoBehaviour:
   maxTimer: 120
   currentTimer: 0
   objectsNumber: 0
+  quest1Pass: 0
 --- !u!1 &711497889
 GameObject:
   m_ObjectHideFlags: 0
@@ -5795,7 +5797,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 291.60608, y: -10.06958}
+  scrollPos: {x: 349.25244, y: -47.99491}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
