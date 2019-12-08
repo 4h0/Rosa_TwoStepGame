@@ -48,6 +48,8 @@ public class PlayerController_Alex : MonoBehaviour
         playerRigidBody = GetComponent<Rigidbody>();
         showPlayer = GetComponent<SpriteRenderer>();
         playerCollider = GetComponent<CapsuleCollider>();
+
+        Cursor.visible = false;
     }
 
     private void Start()
