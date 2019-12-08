@@ -42,15 +42,6 @@ public class dialogueTrigger : MonoBehaviour
     {
         isTalking = flowchart.GetBooleanVariable("talking"); // grab bool from Fungus
 
-        if (isTalking)
-        {
-            CanMoveReference.canMove = false; // Player can't move
-        }
-        else 
-        {
-            CanMoveReference.canMove = true; // Player can move
-        }
-
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {
             if (this.gameObject.tag == "NPC") // checks to see if the radius is tagged with the NPC tag.
@@ -93,15 +84,6 @@ public class dialogueTrigger : MonoBehaviour
         hasAcceptedQuest1 = flowchart.GetBooleanVariable("quest1Accepted");
         isTalking = flowchart.GetBooleanVariable("talking"); // Grab bool from Fungus
         Quest1Pass = Quest1Reference.quest1Pass;
-
-        if (isTalking)
-        {
-            CanMoveReference.canMove = false; // Player can't move
-        }
-        else 
-        {
-            CanMoveReference.canMove = true; // Player can move
-        }
     
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {
@@ -138,15 +120,6 @@ public class dialogueTrigger : MonoBehaviour
         hasAcceptedQuest3 = flowchart.GetBooleanVariable("quest3Accepted");
         Quest3Pass = Quest3Reference.quest3Pass;
         isTalking = flowchart.GetBooleanVariable("talking"); // grab bool from Fungus
-
-        if (isTalking)
-        {
-            CanMoveReference.canMove = false; // Player can't move
-        }
-        else 
-        {
-            CanMoveReference.canMove = true; // Player can move
-        }
 
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {
@@ -208,15 +181,6 @@ public class dialogueTrigger : MonoBehaviour
         Quest2Pass = Quest2Reference.quest2Pass;
         isTalking = flowchart.GetBooleanVariable("talking"); // grab bool from Fungus
 
-        if (isTalking)
-        {
-            CanMoveReference.canMove = false; // Player can't move
-        }
-        else 
-        {
-            CanMoveReference.canMove = true; // Player can move
-        }
-
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {    
             if (!hasAcceptedQuest2)
@@ -249,6 +213,12 @@ public class dialogueTrigger : MonoBehaviour
         }
     }
 
+    public void UnfreezePlayer()
+    {
+        CanMoveReference.canMove = true;
+        Debug.Log("this worked");
+    }
+
     void OnTriggerEnter(Collider other) // collider stuff
     {
 
@@ -256,6 +226,13 @@ public class dialogueTrigger : MonoBehaviour
         if (other.CompareTag("Player")) //if the player is colliding with trigger
         {
             hasPlayer = true; // set hasPlayer to true!
+        }
+    }
+    void OnTriggerStay(Collider other)
+    {
+        if (other.CompareTag("Player") && isTalking) //if the player is colliding with trigger
+        {
+           CanMoveReference.canMove = false;
         }
     }
     private void OnTriggerExit(Collider other) //when leaving the trigger
