@@ -141,14 +141,12 @@ public class PauseMenuController_Khoa : MonoBehaviour
             if (Input.GetKeyUp(KeyCode.A) || upDownTimer <= -1)
             {
                 inputTaken = true;
-                currentVerticalUIScrolling[1] = 0;
                 leftRightTimer = 0;
                 currentHorizontalUIScrolling--;
             }
             if (Input.GetKeyUp(KeyCode.D) || upDownTimer >= 1)
             {
                 inputTaken = true;
-                currentVerticalUIScrolling[1] = 0;
                 leftRightTimer = 0;
                 currentHorizontalUIScrolling++;
             }
@@ -244,6 +242,7 @@ public class PauseMenuController_Khoa : MonoBehaviour
 
         if (optionChoosing && Input.GetButtonDown("Interact"))
         {
+            Debug.Log("soundChange: " + soundChange + " - soundOnandOff: " + soundOnandOff + " - soundVolume: " + soundVolume);
             switch(currentVerticalUIScrolling[1])
             {
                 case 0:
