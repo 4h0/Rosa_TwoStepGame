@@ -12,8 +12,6 @@ public class Quest2_Khoa : MonoBehaviour
 
     public int questType;
 
-    public bool quest2Pass;
-
     private void Awake()
     {
         pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
@@ -51,6 +49,5 @@ public class Quest2_Khoa : MonoBehaviour
         {
             tempGameObjects.SetActive(false);
         }
-        quest2Pass = true; //QUEST PASSED
     }
 }
