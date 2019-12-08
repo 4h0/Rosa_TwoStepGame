@@ -7,22 +7,27 @@ using UnityTemplateProjects; // this is for the camera. Has to be included for t
 
 public class dialogueTrigger : MonoBehaviour
 {
-    private Quest1_Khoa Quest1Reference;
+    private Quest1_Khoa Quest1Reference; // referencing Khoa's script
+    private Quest2_Khoa Quest2Reference; // referencing Khoa's script
+    private Quest3_Khoa Quest3Reference; // referencing Khoa's script
+
     public Flowchart flowchart; // calls the flowchart.
     public ThirdPersonCamera thirdPersonCamera; // For the inspector and reference. Drag and drop.
 
     public bool taskDone;
-    private bool hasAcceptedQuest1, hasTalkedQuest2, hasTalkedQuest3; // has the player talked to the npc
+    private bool hasAcceptedQuest1, hasAcceptedQuest2, hasAcceptedQuest3; // has the player talked to the npc
     private bool hasPlayer; // is the player in a collider? yes or no
 
-    private bool Quest1Pass;
+    private bool Quest1Pass, Quest2Pass, Quest3Pass;
 
     void Awake()
     {
         Quest1Reference = FindObjectOfType<Quest1_Khoa>();
+        Quest2Reference = FindObjectOfType<Quest2_Khoa>();
+        Quest3Reference = FindObjectOfType<Quest3_Khoa>();
         hasAcceptedQuest1 = false;
-        hasTalkedQuest2 = false;
-        hasTalkedQuest3 = false;
+        hasAcceptedQuest2 = false;
+        hasAcceptedQuest3 = false;
         taskDone = false;
     }
 
@@ -109,17 +114,19 @@ public class dialogueTrigger : MonoBehaviour
     }
     void Quest3_Dialogue()
     {
-        hasTalkedQuest3 = flowchart.GetBooleanVariable("quest3Accepted");
+        hasAcceptedQuest3 = flowchart.GetBooleanVariable("quest3Accepted");
+        Quest3Pass = Quest3Reference.quest3Pass;
+
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {
-            if (!hasTalkedQuest3)
+            if (!hasAcceptedQuest3)
             {
                 if (this.gameObject.tag == "NPC8")
                 {
                     Debug.Log("NPC8");
                     thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("Quest3");
-                    hasTalkedQuest3 = true;
+                    hasAcceptedQuest3 = true;
                 }
                 else if (this.gameObject.tag == "NPC9")
                 {
@@ -128,7 +135,7 @@ public class dialogueTrigger : MonoBehaviour
                     flowchart.ExecuteBlock("preFetch");
                 }
             }
-            else if (!taskDone && hasTalkedQuest3) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            else if (!Quest3Pass && hasAcceptedQuest3) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             {
                 if (this.gameObject.tag == "NPC8")
                 {
@@ -138,7 +145,7 @@ public class dialogueTrigger : MonoBehaviour
                 }
                 else if (this.gameObject.tag == "NPC9")
                 {
-                    hasTalkedQuest3 = true;
+                    hasAcceptedQuest3 = true;
                     Debug.Log("In progress NPC9");
                     thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("fetchSecondary");
@@ -146,7 +153,7 @@ public class dialogueTrigger : MonoBehaviour
                     
                 }
             }
-            else if (taskDone && hasTalkedQuest3) // checks if task is COMPLETED!!!!!!
+            else if (Quest3Pass) // checks if task is COMPLETED!!!!!!
             {
                 if (this.gameObject.tag == "NPC8")
                 {
@@ -165,11 +172,12 @@ public class dialogueTrigger : MonoBehaviour
     }
     void Quest2_Dialogue()
     {
-        hasTalkedQuest2 = flowchart.GetBooleanVariable("quest2Accepted");
+        hasAcceptedQuest2 = flowchart.GetBooleanVariable("quest2Accepted");
+        Quest2Pass = Quest2Reference.quest2Pass;
 
         if (hasPlayer && Input.GetKeyDown("k")) //is hasPlayer true or false? if it's true and key pressed then
         {    
-            if (!hasTalkedQuest2)
+            if (!hasAcceptedQuest2)
             {
                 if (this.gameObject.tag == "NPC7")
                 {
@@ -179,7 +187,7 @@ public class dialogueTrigger : MonoBehaviour
                     // hasTalkedQuest2 = true;
                 }
             }
-            else if (!taskDone && hasTalkedQuest2) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+            else if (!Quest2Pass && hasAcceptedQuest2) // QUEST IN PROGRESS CHECKER!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
             {
                 if (this.gameObject.tag == "NPC7" || this.gameObject.tag == "NPC10")
                 {
@@ -188,7 +196,7 @@ public class dialogueTrigger : MonoBehaviour
                     flowchart.ExecuteBlock("IPstrength");
                 }
             }
-            else if (taskDone && hasTalkedQuest2) // checks if task is COMPLETED!!!!!!
+            else if (Quest2Pass) // checks if task is COMPLETED!!!!!!
             {
                 if (this.gameObject.tag == "NPC10")
                 {
