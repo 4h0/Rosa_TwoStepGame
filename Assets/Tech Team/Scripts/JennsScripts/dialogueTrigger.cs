@@ -21,13 +21,14 @@ public class dialogueTrigger : MonoBehaviour
     private bool isTalking; // is the npc talking
     private bool Quest1Pass, Quest2Pass, Quest3Pass;
 
-    public ThirdPersonCamera thirdPersonCamera; // For the inspector and reference. Drag and drop.
+    // public ThirdPersonCamera thirdPersonCamera; // For the inspector and reference. Drag and drop.
 
     private bool hasTalked; // is the player in a collider? yes or no
 
     private void Awake()
     {
         hasTalked = false;
+        CanMoveReference = FindObjectOfType<PlayerController_Alex>();
     }
 
     private void Update()
@@ -45,32 +46,32 @@ public class dialogueTrigger : MonoBehaviour
             if (this.gameObject.tag == "NPC") // checks to see if the radius is tagged with the NPC tag.
             {
                 Debug.Log("NPC1");
-                thirdPersonCamera.enabled = false;
+                // thirdPersonCamera.enabled = false;
                 flowchart.ExecuteBlock("Quest Dialogue"); // we execute the named block within the flowchart.
 
             }
             else if (this.gameObject.tag == "NPC2") // checks tag.
             {
                 Debug.Log("Npc2");
-                thirdPersonCamera.enabled = false;
+                // thirdPersonCamera.enabled = false;
                 flowchart.ExecuteBlock("Testing1"); // we execute the named block within the flowchart.
             }
             else if (this.gameObject.tag == "NPC3")
             {
                 Debug.Log("Npc3");
-                thirdPersonCamera.enabled = false;
+                // thirdPersonCamera.enabled = false;
                 flowchart.ExecuteBlock("FlavorHW"); // we execute the named block within the flowchart.
             }
             else if (this.gameObject.tag == "NPC4")
             {
                 Debug.Log("Npc4");
-                thirdPersonCamera.enabled = false;
+                // thirdPersonCamera.enabled = false;
                 flowchart.ExecuteBlock("FlavorC"); // we execute the named block within the flowchart.
             }
             else if (this.gameObject.tag == "NPC5")
             {
                 Debug.Log("Npc5");
-                thirdPersonCamera.enabled = false;
+                // thirdPersonCamera.enabled = false;
                 flowchart.ExecuteBlock("FlavorG"); // we execute the named block within the flowchart.
             }
         }
@@ -84,7 +85,7 @@ public class dialogueTrigger : MonoBehaviour
                 if (this.gameObject.tag == "NPC6")
                 {
                     Debug.Log("NPC6");
-                    thirdPersonCamera.enabled = false;
+                    // thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("Quest1"); // executing the fire quest chain.
                     hasTalked = true;
                 }
@@ -94,7 +95,7 @@ public class dialogueTrigger : MonoBehaviour
                 if (this.gameObject.tag == "NPC6") //checks npc tag
                 {
                     Debug.Log("Quest not done yet.");
-                    thirdPersonCamera.enabled = false;
+                    // thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("IPfire"); // you know what this does by now :D
                 }
             }
@@ -103,7 +104,7 @@ public class dialogueTrigger : MonoBehaviour
                 if (this.gameObject.tag == "NPC6")
                 {
                     Debug.Log("Quest complete.");
-                    thirdPersonCamera.enabled = false;
+                    // thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("fFire");
                 }
             }
@@ -118,14 +119,14 @@ public class dialogueTrigger : MonoBehaviour
                 if (this.gameObject.tag == "NPC8")
                 {
                     Debug.Log("NPC8");
-                    thirdPersonCamera.enabled = false;
+                    // thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("Quest3");
                     hasTalked = true;
                 }
                 else if (this.gameObject.tag == "NPC9")
                 {
                     Debug.Log("NPC9");
-                    thirdPersonCamera.enabled = false;
+                    // thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("preFetch");
                 }
             }
@@ -134,14 +135,14 @@ public class dialogueTrigger : MonoBehaviour
                 if (this.gameObject.tag == "NPC8")
                 {
                     Debug.Log("In progress NPC8");
-                    thirdPersonCamera.enabled = false;
+                    // thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("IPfetch");
                 }
                 else if (this.gameObject.tag == "NPC9")
                 {
                     hasTalked = true;
                     Debug.Log("In progress NPC9");
-                    thirdPersonCamera.enabled = false;
+                    // thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("fetchSecondary");
                     // Quest2Script.Delivered();
 
@@ -152,13 +153,13 @@ public class dialogueTrigger : MonoBehaviour
                 if (this.gameObject.tag == "NPC8")
                 {
                     Debug.Log("Quest NPC8 is done.");
-                    thirdPersonCamera.enabled = false;
+                    // thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("fFetch");
                 }
                 else if (this.gameObject.tag == "NPC9")
                 {
                     Debug.Log("Quest NPC9 is done.");
-                    thirdPersonCamera.enabled = false;
+                    // thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("fetchSecondary");
                 }
             }
@@ -173,7 +174,7 @@ public class dialogueTrigger : MonoBehaviour
                 if (this.gameObject.tag == "NPC7")
                 {
                     Debug.Log("NPC7");
-                    thirdPersonCamera.enabled = false;
+                    // thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("Quest2");
                     hasTalked = true;
                 }
@@ -183,7 +184,7 @@ public class dialogueTrigger : MonoBehaviour
                 if (this.gameObject.tag == "NPC7" || this.gameObject.tag == "NPC10")
                 {
                     Debug.Log("Strength Quest not done yet.");
-                    thirdPersonCamera.enabled = false;
+                    // thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("IPstrength");
                 }
             }
@@ -192,7 +193,7 @@ public class dialogueTrigger : MonoBehaviour
                 if (this.gameObject.tag == "NPC10")
                 {
                     Debug.Log("Strength Quest Complete");
-                    thirdPersonCamera.enabled = false;
+                    // thirdPersonCamera.enabled = false;
                     flowchart.ExecuteBlock("fStrength");
                 }
             }
