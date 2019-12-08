@@ -88,7 +88,6 @@ public class ElementalTransfer_Khoa : MonoBehaviour
 
         if (!absorbSound.isPlaying)
         {
-            absorbSound.volume = pauseMenuReference.soundVolume;
             absorbSound.Play();
         }
         else

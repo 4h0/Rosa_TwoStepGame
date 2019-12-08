@@ -17,6 +17,7 @@ public class PauseMenuController_Khoa : MonoBehaviour
     public GameObject pauseMenu;
 
     private PlayerController_Alex playerReference;
+    private SoundVolumeUpdate_Khoa soundControllerReference;
     private Color verticalResetColor, verticalChosenColor;
 
     public string[] taskDescription;
@@ -37,6 +38,7 @@ public class PauseMenuController_Khoa : MonoBehaviour
     private void Awake()
     {
         playerReference = FindObjectOfType<PlayerController_Alex>();
+        soundControllerReference = FindObjectOfType<SoundVolumeUpdate_Khoa>();
 
         onGoingList = new List<int>();
         completedList = new List<int>();
@@ -608,7 +610,7 @@ public class PauseMenuController_Khoa : MonoBehaviour
     {
         soundChange = false;
 
-        playerReference.VolumeChange();
+        soundControllerReference.VolumeChange(soundVolume);
 
         optionChoice[3].GetComponent<Image>().enabled = true;
         optionChoice[3].transform.GetChild(0).GetComponent<Image>().enabled = false;

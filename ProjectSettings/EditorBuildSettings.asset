@@ -20,10 +20,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/Asset Gym.unity
     guid: f56a450910a78fe43b3883aaa448df56
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/TestMechanics.unity
     guid: 53779bbc06b4ddf41a2d0762caf43a2e
-  - enabled: 0
+  - enabled: 1
     path: Assets/Scenes/Tech Scene.unity
     guid: cad6142979441452c9b9ffd4d8062c8f
   m_configObjects: {}

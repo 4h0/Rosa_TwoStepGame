@@ -8,7 +8,7 @@ public class PlayerController_Alex : MonoBehaviour
     public Transform strengthRayEndPoint;
     public LayerMask[] rayCastLayerMask;
     public ParticleSystem playerParticle;
-    public AudioSource[] audioSound; //This is the sound for walking
+    public AudioSource walkSound; //This is the sound for walking
     public Animator anim;
 
     private UIController_Khoa uiControllerReference;
@@ -60,9 +60,6 @@ public class PlayerController_Alex : MonoBehaviour
         strengthEnd = false;
         jumpCounter = 1;
         dashMultiplier = 3;
-
-        VolumeChange();
-        audioSound[0].Play();
     }
 
     private void Update()
@@ -85,14 +82,14 @@ public class PlayerController_Alex : MonoBehaviour
             if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
             {
                 transform.Translate(transform.forward * currentSpeed * Time.deltaTime, Space.World);
-                if (!audioSound[1].isPlaying && onGround)
+                if (!walkSound.isPlaying && onGround)
                 {
-                    audioSound[1].Play();
+                    walkSound.Play();
                 }
             }
             else
             {
-                audioSound[1].Pause();
+                walkSound.Pause();
             }
             InputCheck();
         }
@@ -103,16 +100,6 @@ public class PlayerController_Alex : MonoBehaviour
         if (canMove)
         {
             JumpingCheck();
-        }
-    }
-    
-
-
-    public void VolumeChange()
-    {
-        foreach (AudioSource tempAudio in audioSound)
-        {
-            tempAudio.volume = pauseMenuReference.soundVolume;
         }
     }
 
