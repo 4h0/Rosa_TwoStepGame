@@ -57,25 +57,17 @@ public class Animations : MonoBehaviour
             anim.SetFloat("Speed", 0);
         }
     }
-    private void OnTriggerEnter(Collider other)
+    private void OnCollisionEnter(Collision collision)
     {
-        if (other.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground")
         {
             onGround = true;
             anim.SetBool("isGrounded", true);
         }
     }
-    private void OnTriggerStay(Collider other)
+    private void OnCollisionExit(Collision collision)
     {
-        if (other.gameObject.tag == "Ground")
-        {
-            onGround = true;
-            anim.SetBool("isGrounded", true);
-        }
-    }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.gameObject.tag == "Ground")
+        if (collision.gameObject.tag == "Ground")
         {
             onGround = false;
             anim.SetBool("isGrounded", false);
