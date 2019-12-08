@@ -4,16 +4,13 @@
 TagManager:
   serializedVersion: 2
   tags:
-  - box
-  - flowchart
-  - NPC
-  - FireSource
-  - EmptyFireSource
-  - WaterSource
-  - EmptyWaterSource
   - PickUp
+  - Fire2
+  - Fire4
+  - Fire3
+  - Fire1
   - Ground
-  - Wall
+  - PostProcessing
   layers:
   - Default
   - TransparentFX
@@ -23,8 +20,8 @@ TagManager:
   - UI
   - 
   - 
-  - StrengthObject
-  - PostProcessing
+  - Post Processing
+  - 
   - 
   - 
   - 

@@ -47708,10 +47708,10 @@ MonoBehaviour:
   volumeTrigger: {fileID: 939784324}
   volumeLayer:
     serializedVersion: 2
-    m_Bits: 512
+    m_Bits: 256
   stopNaNPropagation: 1
   finalBlitToCameraTarget: 1
-  antialiasingMode: 0
+  antialiasingMode: 2
   temporalAntialiasing:
     jitterSpread: 0.75
     sharpness: 0.25
@@ -68536,9 +68536,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1482114829}
   - component: {fileID: 1482114828}
-  m_Layer: 9
+  m_Layer: 8
   m_Name: PostProcessing
-  m_TagString: Untagged
+  m_TagString: PostProcessing
   m_Icon: {fileID: 5132851093641282708, guid: 0000000000000000d000000000000000, type: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -68555,8 +68555,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b9a305e18de0c04dbd257a21cd47087, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sharedProfile: {fileID: 11400000, guid: dac5e13409625ee408c2266ff808c339, type: 2}
-  isGlobal: 0
+  sharedProfile: {fileID: 11400000, guid: 63dd251ba5daeb041946b4b4232fa93f, type: 2}
+  isGlobal: 1
   blendDistance: 0
   weight: 1
   priority: 0
