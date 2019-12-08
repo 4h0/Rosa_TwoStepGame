@@ -44668,7 +44668,7 @@ MonoBehaviour:
   itemId: 53
   indentLevel: 0
   storyText: "\u201CAh! Thank you so much. I really truly appreciate this. You\u2019ll
-    find 3 orbs where you can gather water from. It should be easy enough for you
+    find 4 orbs where you can gather water from. It should be easy enough for you
     to reach. Hurry back now!\u201D"
   description: 
   character: {fileID: 0}
@@ -46391,9 +46391,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 910459506}
+  - {fileID: 910459490}
   selectedCommands:
-  - {fileID: 910459505}
+  - {fileID: 910459488}
   variables:
   - {fileID: 910459516}
   - {fileID: 910459513}
