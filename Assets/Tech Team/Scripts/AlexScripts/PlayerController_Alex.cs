@@ -78,8 +78,8 @@ public class PlayerController_Alex : MonoBehaviour
                 transform.eulerAngles = Vector3.up * Mathf.SmoothDampAngle(transform.eulerAngles.y, targetRotation, ref turnSmoothVelocity, turnSmoothTime);
             }
 
-            //bool running = Input.GetKey(KeyCode.LeftShift);
-            float targetSpeed = walkSpeed * inputDir.magnitude;
+            bool running = Input.GetKey(KeyCode.LeftShift);
+            float targetSpeed = ((running) ? runSpeed : walkSpeed) * inputDir.magnitude;
             currentSpeed = Mathf.SmoothDamp(currentSpeed, targetSpeed, ref speedSmoothVelocity, speedSmoothTime);
 
             if (Input.GetButton("Horizontal") || Input.GetButton("Vertical"))
