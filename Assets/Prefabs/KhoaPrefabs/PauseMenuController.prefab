@@ -73,14 +73,6 @@ MonoBehaviour:
   - {fileID: 0}
   - {fileID: 0}
   - {fileID: 0}
-  optionList:
-  - {fileID: 0}
-  - {fileID: 0}
-  optionChoice:
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
-  - {fileID: 0}
   pauseMenu: {fileID: 0}
   taskDescription:
   - Save House(s) on Fire
@@ -90,4 +82,3 @@ MonoBehaviour:
   alreadyHadThisTask: 
   completedCount: 
   pauseMenuOn: 0
-  soundVolume: 1
