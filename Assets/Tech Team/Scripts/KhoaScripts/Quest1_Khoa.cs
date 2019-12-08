@@ -2,11 +2,9 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-using Fungus; // must be used. This allows the script to access the fungus scripts.
 
 public class Quest1_Khoa : MonoBehaviour
 {
-    public Flowchart flowchart; // calls the flowchart.
     public Text timerText;
     public GameObject[] taskRelatedGameObjects;
 
@@ -18,12 +16,10 @@ public class Quest1_Khoa : MonoBehaviour
 
     private bool finishedTask;
 
-    public bool quest1Pass;
-
     private void Awake()
     {
         timerText.enabled = false;
-        flowchart = FindObjectOfType<Flowchart>();
+
         playerReference = FindObjectOfType<PlayerController_Alex>();
         pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
         uiControllerReference = FindObjectOfType<UIController_Khoa>();
@@ -73,8 +69,6 @@ public class Quest1_Khoa : MonoBehaviour
 
                 uiControllerReference.UpdateElement(questType);
                 StartCoroutine(StopSideQuest1());
-                quest1Pass = false; // QUEST FAILED
-                flowchart.SetBooleanVariable("quest1Accepted", false);
             }
         }
     }
@@ -136,9 +130,5 @@ public class Quest1_Khoa : MonoBehaviour
         }
 
         playerReference.GetComponent<PlayerController_Alex>().playerParticle.Stop();
-
-        quest1Pass = true; //QUEST PASSED
-
-        Debug.Log("passed");
     }
 }
