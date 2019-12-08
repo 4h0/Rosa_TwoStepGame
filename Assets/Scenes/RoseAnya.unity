@@ -40761,6 +40761,8 @@ GameObject:
   - component: {fileID: 910459558}
   - component: {fileID: 910459557}
   - component: {fileID: 910459556}
+  - component: {fileID: 910459573}
+  - component: {fileID: 910459574}
   m_Layer: 0
   m_Name: Flowchart
   m_TagString: Untagged
@@ -44812,8 +44814,7 @@ MonoBehaviour:
   indentLevel: 0
   storyText: "\u201CExcuse me miss? Would you collecting some water from the ocean?
     I\u2019ve just been so terribly busy that I can\u2019t find the time to do it
-    at all! You\u2019re always going around town and helping people...One more thing
-    couldn\u2019t hurt?\u201D"
+    at all! "
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -44854,6 +44855,7 @@ MonoBehaviour:
   - {fileID: 910459553}
   - {fileID: 910459427}
   - {fileID: 910459493}
+  - {fileID: 910459574}
   - {fileID: 910459492}
   - {fileID: 910459491}
 --- !u!114 &910459495
@@ -45782,9 +45784,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   itemId: 20
   indentLevel: 0
-  storyText: '"Someone! Someone {b}please{/b} help! There''s a building on fire! ...You!
-    You there! I''ve heard of how you''ve helped others before. Please, is there nothing
-    you can do?"'
+  storyText: '"Someone! Someone {b}please{/b} help! There''s a building on fire!'
   description: 
   character: {fileID: 0}
   portrait: {fileID: 0}
@@ -45826,6 +45826,7 @@ MonoBehaviour:
   - {fileID: 910459458}
   - {fileID: 910459466}
   - {fileID: 910459523}
+  - {fileID: 910459573}
   - {fileID: 910459522}
   - {fileID: 910459521}
 --- !u!114 &910459525
@@ -46379,7 +46380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   version: 1
-  scrollPos: {x: 480.215, y: -48.722523}
+  scrollPos: {x: 654.07465, y: -57.203495}
   variablesScrollPos: {x: 0, y: 0}
   variablesExpanded: 1
   blockViewHeight: 400
@@ -46391,9 +46392,9 @@ MonoBehaviour:
     width: 1114
     height: 859
   selectedBlocks:
-  - {fileID: 910459490}
+  - {fileID: 910459486}
   selectedCommands:
-  - {fileID: 910459488}
+  - {fileID: 910459484}
   variables:
   - {fileID: 910459516}
   - {fileID: 910459513}
@@ -46889,6 +46890,62 @@ MonoBehaviour:
   targetObject: {fileID: 1607747028}
   methodName: FreezePlayer
   delay: 0
+--- !u!114 &910459573
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910459413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 176
+  indentLevel: 0
+  storyText: '...You! You there! I''ve heard of how you''ve helped others before.
+    Please, is there nothing you can do?"'
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
+--- !u!114 &910459574
+MonoBehaviour:
+  m_ObjectHideFlags: 2
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 910459413}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ec422cd568a9c4a31ad7c36d0572b9da, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  itemId: 177
+  indentLevel: 0
+  storyText: "You\x19re always going around town and helping people...One more thing
+    couldn\x19t hurt?\x1D"
+  description: 
+  character: {fileID: 0}
+  portrait: {fileID: 0}
+  voiceOverClip: {fileID: 0}
+  showAlways: 1
+  showCount: 1
+  extendPrevious: 0
+  fadeWhenDone: 1
+  waitForClick: 1
+  stopVoiceover: 1
+  waitForVO: 0
+  setSayDialog: {fileID: 0}
 --- !u!1001 &910825719
 PrefabInstance:
   m_ObjectHideFlags: 0
