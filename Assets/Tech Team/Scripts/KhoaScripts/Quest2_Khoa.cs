@@ -6,13 +6,20 @@ public class Quest2_Khoa : MonoBehaviour
 {
     public GameObject[] taskRelatedGameObjects;
 
+
+
     public GameObject taskReceiveNPC, parentNPC;
+
+
 
     private PauseMenuController_Khoa pauseMenuReference;
 
-    public int questType;
 
+
+    public int questType;
     public bool quest2Pass;
+
+
 
     private void Awake()
     {

@@ -83,9 +83,9 @@ MonoBehaviour:
   - {fileID: 0}
   pauseMenu: {fileID: 0}
   taskDescription:
-  - Save House(s) on Fire
-  - Bring This Object to
-  - Bring Water To the Well
+  - Save Houses on Fire
+  - Bring This Barrel to Zara
+  - Use Water to Speed Up Trees Growth
   - Already Took This Task
   alreadyHadThisTask: 
   completedCount: 

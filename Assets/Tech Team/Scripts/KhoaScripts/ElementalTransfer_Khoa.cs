@@ -6,17 +6,26 @@ public class ElementalTransfer_Khoa : MonoBehaviour
 {
     public AudioSource absorbSound;
 
+
+
     public ParticleSystem[] particleList;
+
+
 
     private PlayerController_Alex playerReference;
     private UIController_Khoa uiReference;
+
+
 
     public bool isGiving;
     public bool stayInside, doOnce, playerParticleOff;
     public int elementType;
 
-    private bool alreadyGave;
-    private int storedQuestType;
+
+
+    private bool alreadyGave, finishedGrowing;
+
+
 
     private void Awake()
     {
@@ -36,17 +45,7 @@ public class ElementalTransfer_Khoa : MonoBehaviour
         doOnce = false;
     }
 
-    private void Start()
-    {
-        if (isGiving)
-        {
-            TurnOnParticle();
-        }
-        else
-        {
-            TurnOffParticle();
-        }
-    }
+
 
     private void Update()
     {
@@ -54,13 +53,51 @@ public class ElementalTransfer_Khoa : MonoBehaviour
         {
             if (isGiving)
             {
-                GavePlayer();
+                switch(elementType)
+                {
+                    case 0:
+                        {
+                            GavePlayerFire();
+                            break;
+                        }
+                    case 1:
+                        {
+                            break;
+                        }
+                    case 2:
+                        {
+                            break;
+                        }
+                    case 3:
+                        {
+                            break;
+                        }
+                }
             }
             else
             {
                 if (!alreadyGave)
                 {
-                    PlayerGave();
+                    switch (elementType)
+                    {
+                        case 0:
+                            {
+                                break;
+                            }
+                        case 1:
+                            {
+                                break;
+                            }
+                        case 2:
+                            {
+                                GetPlayerWater();
+                                break;
+                            }
+                        case 3:
+                            {
+                                break;
+                            }
+                    }
                 }
             }
         }
@@ -84,11 +121,8 @@ public class ElementalTransfer_Khoa : MonoBehaviour
     }
 
 
-    public void ChangeQuestType(int questType)
-    {
-        storedQuestType = questType;
-    }
-    private void GavePlayer()
+
+    private void GavePlayerFire()
     {
         doOnce = true;
 
@@ -101,11 +135,7 @@ public class ElementalTransfer_Khoa : MonoBehaviour
             absorbSound.Stop();
         }
 
-        if (storedQuestType == 0)
-        {
-            transform.parent.GetComponent<Quest1_Khoa>().Quest1ConditionCheck();
-        }
-
+        transform.parent.GetComponent<Quest1_Khoa>().Quest1ConditionCheck();
         playerReference.elementalList[elementType] = playerReference.maxElementCounter[elementType];
         uiReference.UpdateElement(elementType);
 
@@ -114,27 +144,45 @@ public class ElementalTransfer_Khoa : MonoBehaviour
 
         doOnce = false;
     }
-    private void PlayerGave()
+
+
+
+    private void GetPlayerWater()
     {
         doOnce = true;
         alreadyGave = true;
 
-        this.GetComponent<MeshRenderer>().material.color = Color.white;
+        TurnOnParticle();
 
         if (playerReference.elementalList[elementType] > 0)
         {
             playerReference.elementalList[elementType]--;
             uiReference.UpdateElement(elementType);
 
-            TurnOnParticle();
+            StartCoroutine(GrowingTree());
         }
+    }
 
-        if(storedQuestType == 2)
+    IEnumerator GrowingTree()
+    {
+        yield return new WaitForSeconds(.1f);
+
+        if(this.transform.GetChild(0).transform.localScale.x < 1f)
         {
-            transform.parent.GetComponent<Quest3_Khoa>().Quest3ConditionCheck();
-        }
+            this.transform.GetChild(0).transform.localScale += new Vector3(Time.deltaTime, Time.deltaTime, Time.deltaTime);
 
-        doOnce = false;
+            StartCoroutine(GrowingTree());
+        }
+        else
+        {
+            TurnOffParticle();
+
+            transform.parent.GetComponent<Quest3_Khoa>().Quest3ConditionCheck();
+
+            doOnce = false;
+
+            yield break;
+        }
     }
 
 

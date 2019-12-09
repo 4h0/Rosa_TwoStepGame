@@ -8,7 +8,11 @@ public class StrengthLogic_Khoa : MonoBehaviour
     private Rigidbody pickUpRigidbody;
     private MeshRenderer changeMaterial;
 
+
+
     public float timerBeforeDestroy;
+
+
 
     private void Awake()
     {
@@ -21,6 +25,8 @@ public class StrengthLogic_Khoa : MonoBehaviour
         changeMaterial = GetComponent<MeshRenderer>();
     }
 
+
+
     private void Start()
     {
         changeMaterial.material = playerReference.savedMaterial[0];
@@ -28,6 +34,8 @@ public class StrengthLogic_Khoa : MonoBehaviour
         pickUpRigidbody.useGravity = false;
         pickUpRigidbody.freezeRotation = true;
     }
+
+
 
     private void Update()
     {
@@ -46,6 +54,8 @@ public class StrengthLogic_Khoa : MonoBehaviour
             Destroy(this);
         }
     }
+
+
 
     private void OnCollisionEnter(Collision collision)
     {

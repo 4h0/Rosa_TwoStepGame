@@ -6,13 +6,20 @@ public class Quest3_Khoa : MonoBehaviour
 {
     public GameObject[] receivedElement;
 
+
+
     private PauseMenuController_Khoa pauseMenuReference;
 
+
+
+    public bool quest3Pass;
     public int questType;
+
+
 
     private int totalNumberOfQuestObjects;
 
-    public bool quest3Pass;
+
 
     private void Awake()
     {
@@ -25,11 +32,12 @@ public class Quest3_Khoa : MonoBehaviour
         {
             tempGameObjects.SetActive(false);
             tempGameObjects.transform.SetParent(this.transform, true);
-            tempGameObjects.GetComponent<ElementalTransfer_Khoa>().ChangeQuestType(questType);
         }
 
         totalNumberOfQuestObjects = receivedElement.Length;
     }
+
+
 
     public void StartSideQuest3()
     {
@@ -46,10 +54,10 @@ public class Quest3_Khoa : MonoBehaviour
 
         if(totalNumberOfQuestObjects <= 0)
         {
-            StopSideQuest2();
+            StartCoroutine(JuicingKindOf());
         }
     }
-    public void StopSideQuest2()
+    public void StopSideQuest3()
     {
         pauseMenuReference.RemoveFromOngoingList(questType);
         pauseMenuReference.AddToCompletedList(questType);
@@ -59,5 +67,12 @@ public class Quest3_Khoa : MonoBehaviour
             tempGameObjects.SetActive(false);
         }
         quest3Pass = true; //QUEST PASSED
+    }
+
+    IEnumerator JuicingKindOf()
+    {
+        yield return new WaitForSeconds(3f);
+
+        StopSideQuest3();
     }
 }

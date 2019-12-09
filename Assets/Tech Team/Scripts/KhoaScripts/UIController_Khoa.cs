@@ -8,7 +8,11 @@ public class UIController_Khoa : MonoBehaviour
     public Text[] elementalText;
     public Image[] element;
 
+
+
     private PlayerController_Alex playerControllerReference;
+
+
 
     private void Awake()
     {

@@ -14,26 +14,42 @@ public class PauseMenuController_Khoa : MonoBehaviour
     public Image[] onGoingTasks, completedTasks;
     public Image[] optionList, optionChoice;
 
+
+
     public GameObject pauseMenu;
+
+
 
     private PlayerController_Alex playerReference;
     private SoundVolumeUpdate_Khoa soundControllerReference;
     private Color verticalResetColor, verticalChosenColor;
 
+
+
     public string[] taskDescription;
     public bool[] alreadyHadThisTask;
     public int[] completedCount;
 
+
+
     private int[] currentVerticalUIScrolling, maxVerticalUIScrolling;
+
+
 
     public bool pauseMenuOn;
     public float soundVolume;
+
+
 
     private bool inputTaken, soundChange, optionChoosing, completedListCheck;
     private int pauseMenuOnandOff, soundOnandOff, currentHorizontalUIScrolling, maxHorizontalUIScrolling;
     private float upDownTimer, leftRightTimer;
 
+
+
     private List<int> onGoingList, completedList;
+
+
 
     private void Awake()
     {
@@ -52,6 +68,8 @@ public class PauseMenuController_Khoa : MonoBehaviour
 
         TurnOffPauseMenu();
     }
+
+
 
     private void Start()
     {
@@ -76,6 +94,8 @@ public class PauseMenuController_Khoa : MonoBehaviour
         verticalChosenColor = Color.red;
         verticalChosenColor.a = .36f;
     }
+
+
 
     private void Update()
     {
@@ -584,12 +604,14 @@ public class PauseMenuController_Khoa : MonoBehaviour
     }
 
 
+
     private void UpdateOptionUI()
     {
         optionChoosing = true;
 
         optionChoice[currentVerticalUIScrolling[currentHorizontalUIScrolling]].color = Color.black;
     }
+
     private void Resume()
     {
         pauseMenuOnandOff++;

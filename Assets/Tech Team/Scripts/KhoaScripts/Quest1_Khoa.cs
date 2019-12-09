@@ -10,15 +10,22 @@ public class Quest1_Khoa : MonoBehaviour
     public Text timerText;
     public GameObject[] taskRelatedGameObjects;
 
+
+
     private PlayerController_Alex playerReference;
     private PauseMenuController_Khoa pauseMenuReference;
     private UIController_Khoa uiControllerReference;
 
+
+
+    public bool quest1Pass;
     public int questType, maxTimer, currentTimer, objectsNumber;
+
+
 
     private bool finishedTask;
 
-    public bool quest1Pass;
+
 
     private void Awake()
     {
@@ -44,7 +51,6 @@ public class Quest1_Khoa : MonoBehaviour
         {
             tempGameObjects.SetActive(false);
             tempGameObjects.transform.SetParent(this.transform, true);
-            tempGameObjects.GetComponent<ElementalTransfer_Khoa>().ChangeQuestType(questType);
         }
 
         objectsNumber = taskRelatedGameObjects.Length;
