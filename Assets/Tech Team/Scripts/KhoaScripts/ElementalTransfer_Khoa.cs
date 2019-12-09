@@ -9,7 +9,6 @@ public class ElementalTransfer_Khoa : MonoBehaviour
     public ParticleSystem[] particleList;
 
     private PlayerController_Alex playerReference;
-    private PauseMenuController_Khoa pauseMenuReference;
     private UIController_Khoa uiReference;
 
     public bool isGiving;
@@ -21,9 +20,16 @@ public class ElementalTransfer_Khoa : MonoBehaviour
 
     private void Awake()
     {
-        playerReference = FindObjectOfType<PlayerController_Alex>();
-        uiReference = FindObjectOfType<UIController_Khoa>();
-        pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
+        while (playerReference == null)
+        {
+            playerReference = FindObjectOfType<PlayerController_Alex>();
+        }
+
+        while (uiReference == null)
+        {
+            uiReference = FindObjectOfType<UIController_Khoa>();
+        }
+
         absorbSound = GetComponent<AudioSource>();
 
         stayInside = false;
@@ -103,7 +109,7 @@ public class ElementalTransfer_Khoa : MonoBehaviour
         playerReference.elementalList[elementType] = playerReference.maxElementCounter[elementType];
         uiReference.UpdateElement(elementType);
 
-        playerReference.GetComponent<PlayerController_Alex>().playerParticle.Play();
+        playerReference.GetComponent<PlayerController_Alex>().TurnOnPlayerParticle();
         TurnOffParticle();
 
         doOnce = false;

@@ -22,8 +22,23 @@ public class UIController_Khoa : MonoBehaviour
             text.enabled = false;
         }
 
-        playerControllerReference = FindObjectOfType<PlayerController_Alex>();
+        while (playerControllerReference == null)
+        {
+            playerControllerReference = FindObjectOfType<PlayerController_Alex>();
+        }
     }
+
+
+
+    private void Start()
+    {
+        for (int counter = 0; counter < 4; counter++)
+        {
+            UpdateElement(counter);
+        }
+    }
+
+
 
     public void UpdateElement(int whichElement)
     {

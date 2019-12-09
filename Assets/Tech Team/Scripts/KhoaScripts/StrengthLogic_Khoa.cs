@@ -6,22 +6,27 @@ public class StrengthLogic_Khoa : MonoBehaviour
 {
     private PlayerController_Alex playerReference;
     private Rigidbody pickUpRigidbody;
-    private MeshRenderer changeCubeColor;
+    private MeshRenderer changeMaterial;
 
     public float timerBeforeDestroy;
 
     private void Awake()
     {
-        playerReference = FindObjectOfType<PlayerController_Alex>();
+        while (playerReference == null)
+        {
+            playerReference = FindObjectOfType<PlayerController_Alex>();
+        }
+
         pickUpRigidbody = GetComponent<Rigidbody>();
-        changeCubeColor = GetComponent<MeshRenderer>();
+        changeMaterial = GetComponent<MeshRenderer>();
     }
 
     private void Start()
     {
+        changeMaterial.material = playerReference.savedMaterial[0];
+
         pickUpRigidbody.useGravity = false;
         pickUpRigidbody.freezeRotation = true;
-        changeCubeColor.material.color = Color.white;
     }
 
     private void Update()
@@ -35,7 +40,6 @@ public class StrengthLogic_Khoa : MonoBehaviour
         {
             playerReference.strengthEnd = true;
 
-            changeCubeColor.material.color = Color.green;
             pickUpRigidbody.useGravity = true;
             pickUpRigidbody.freezeRotation = false;
 

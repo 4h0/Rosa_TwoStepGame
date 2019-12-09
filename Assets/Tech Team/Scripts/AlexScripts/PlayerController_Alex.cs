@@ -4,23 +4,25 @@ using UnityEngine;
 
 public class PlayerController_Alex : MonoBehaviour
 {
-    //public GameObject dashHelperReference, strengthHelperReference;
-    public Transform strengthRayEndPoint;
     public LayerMask[] rayCastLayerMask;
-    public ParticleSystem playerParticle;
+    public Material[] savedMaterial;
+
+    //public GameObject dashHelperReference, strengthHelperReference;
+    public GameObject playerParticle;
+    public Transform strengthRayEndPoint;
     public AudioSource walkSound; //This is the sound for walking
     public Animator anim;
 
     private UIController_Khoa uiControllerReference;
-    private PauseMenuController_Khoa pauseMenuReference;
     private Transform cameraT;
     private GameObject savedGameObject;
 
     private Rigidbody playerRigidBody;
+    private LineRenderer strengthRayCastRenderer;
     private SpriteRenderer showPlayer;
     private CapsuleCollider playerCollider;
 
-    public bool canMove, onGround, jumping, strengthEnd;
+    public bool canMove, onGround, jumping, strengthEnd, dashing;
     public int jumpCounter, maxJumpCounter;
     public float walkSpeed, runSpeed, dashMultiplier, maxDashMultiplier;
     public float jumpForce, turnSmoothTime, speedSmoothTime;
@@ -39,17 +41,21 @@ public class PlayerController_Alex : MonoBehaviour
 
     private void Awake()
     {
-        playerParticle.Stop();
-
-        uiControllerReference = FindObjectOfType<UIController_Khoa>();
-        pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
+        while (uiControllerReference == null)
+        {
+            uiControllerReference = FindObjectOfType<UIController_Khoa>();
+        }
+        
         cameraT = Camera.main.transform;
 
         playerRigidBody = GetComponent<Rigidbody>();
+        strengthRayCastRenderer = GetComponent<LineRenderer>();
         showPlayer = GetComponent<SpriteRenderer>();
         playerCollider = GetComponent<CapsuleCollider>();
 
         Cursor.visible = false;
+
+        TurnOffPlayerParticle();
     }
 
     private void Start()
@@ -60,8 +66,15 @@ public class PlayerController_Alex : MonoBehaviour
         abilityCooling = false;
         strengthRayCastStart = false;
         strengthEnd = false;
+        dashing = false;
         jumpCounter = 1;
         dashMultiplier = 3;
+
+        strengthRayCastRenderer.useWorldSpace = true;
+        strengthRayCastRenderer.startColor = Color.white;
+        strengthRayCastRenderer.endColor = Color.red;
+        strengthRayCastRenderer.startWidth = 0;
+        strengthRayCastRenderer.endWidth = 0;
     }
 
     private void Update()
@@ -107,14 +120,27 @@ public class PlayerController_Alex : MonoBehaviour
 
 
 
+    public void TurnOnPlayerParticle()
+    {
+        playerParticle.SetActive(true);
+    }
+    public void TurnOffPlayerParticle()
+    {
+        playerParticle.SetActive(false);
+    }
+
+
+
     private void InputCheck()
     {
         if (!abilityCooling)
         {
-            if (elementalList[0] > 0)
+            if (elementalList[0] > 0 && !dashing)
             {
                 if (Input.GetButtonUp("Dash"))
                 {
+                    dashMultiplier = Mathf.RoundToInt(dashMultiplier);
+
                     StartCoroutine(DashLogic());
                     StartCoroutine(AbilityEnd(0));
                 }
@@ -163,7 +189,7 @@ public class PlayerController_Alex : MonoBehaviour
 
                     if (rayHit)
                     {
-                        gravity = (-98.1f) * jumpCounter * jumpCounter / (Vector3.Distance(this.transform.position, gravityRayHit.point));
+                        gravity = (-65.4f) * jumpCounter * jumpCounter / (Vector3.Distance(this.transform.position, gravityRayHit.point));
                     }
                     else
                     {
@@ -243,7 +269,6 @@ public class PlayerController_Alex : MonoBehaviour
 
     IEnumerator GlidingLogic()
     {
-        Debug.Log("1");
         playerRigidBody.velocity = new Vector3(0, 0, 0);
         gliding = true;
 
@@ -266,22 +291,27 @@ public class PlayerController_Alex : MonoBehaviour
     }
     IEnumerator DashLogic()
     {
-        /*
-        dashHelperReference.GetComponent<DashHelper_Khoa>().StartChecking();
+        abilityCooling = true;
+        dashing = true;
 
-        yield return new WaitUntil(() => dashHelperReference.GetComponent<DashHelper_Khoa>().canStart);
-        */
-        canMove = false;
+        yield return new WaitForSeconds(.1f);
 
-        for (int counter = 0; counter < dashMultiplier; counter++)
+        if (dashMultiplier > 0)
         {
-            playerRigidBody.AddForce(this.transform.forward * dashForce * counter, ForceMode.Force);
-            yield return new WaitForEndOfFrame();
-        }
+            playerRigidBody.AddForce(this.transform.forward * dashForce, ForceMode.Impulse);
 
-        canMove = true;
-        //dashHelperReference.GetComponent<DashHelper_Khoa>().canStart = false;
-        dashMultiplier = 3;
+            dashMultiplier--;
+
+            StartCoroutine(DashLogic());
+        }
+        else
+        {
+            playerRigidBody.velocity = new Vector3(0, 0, 0);
+
+            abilityCooling = false;
+            dashing = false;
+            dashMultiplier = 3;
+        }
     }
 
 
@@ -289,11 +319,17 @@ public class PlayerController_Alex : MonoBehaviour
     private void StrengthRayCast()
     {
         strengthRayCastStart = true;
+
         float strengthRayDistance = Vector3.Distance(cameraT.transform.position, strengthRayEndPoint.position);
         Ray strengthRayCast = new Ray(transform.position, transform.forward * strengthRayDistance);
         RaycastHit strengthRayHit;
 
-        Debug.DrawLine(strengthRayCast.origin, strengthRayCast.origin + strengthRayCast.direction * strengthRayDistance, Color.green);
+        strengthRayCastRenderer.SetPosition(0, strengthRayCast.origin);
+        strengthRayCastRenderer.SetPosition(1, strengthRayCast.origin + strengthRayCast.direction * strengthRayDistance);        
+        strengthRayCastRenderer.startWidth = .1f;
+        strengthRayCastRenderer.endWidth = .6f;
+
+        Debug.DrawLine(strengthRayCast.origin, strengthRayCast.direction * strengthRayDistance);
 
         bool rayHit = Physics.Raycast(strengthRayCast, out strengthRayHit, strengthRayDistance, rayCastLayerMask[1]);
 
@@ -301,25 +337,26 @@ public class PlayerController_Alex : MonoBehaviour
         {
             GameObject hitGameObject = strengthRayHit.transform.gameObject;
 
-            Debug.DrawLine(strengthRayCast.origin, strengthRayHit.point, Color.red, 3f);
+            strengthRayCastRenderer.SetPosition(0, strengthRayCast.origin);
+            strengthRayCastRenderer.SetPosition(1, strengthRayHit.point);
             Debug.Log("target: " + hitGameObject.name);
 
             if (hitGameObject.tag == "PickUp")
             {
                 if(hitGameObject != savedGameObject && savedGameObject != null)
                 {
-                    savedGameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                    hitGameObject.GetComponent<MeshRenderer>().material = savedMaterial[0];
                 }
 
                 savedGameObject = hitGameObject;
-                hitGameObject.GetComponent<MeshRenderer>().material.color = Color.blue;
+                hitGameObject.GetComponent<MeshRenderer>().material = savedMaterial[1];
             }
         }
         else
         {
             if (savedGameObject != null)
             {
-                savedGameObject.GetComponent<MeshRenderer>().material.color = Color.green;
+                savedGameObject.GetComponent<MeshRenderer>().material = savedMaterial[0];
                 savedGameObject = null;
             }
         }
@@ -331,6 +368,8 @@ public class PlayerController_Alex : MonoBehaviour
     {
         yield return new WaitForSeconds(.1f);
 
+        strengthRayCastRenderer.startWidth = 0;
+        strengthRayCastRenderer.endWidth = 0;
         strengthRayCastStart = false;
     }
 

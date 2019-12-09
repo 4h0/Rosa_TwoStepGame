@@ -8,7 +8,10 @@ public class StrengthDetection_Khoa : MonoBehaviour
 
     private void Awake()
     {
-        playerReference = FindObjectOfType<PlayerController_Alex>();
+        while (playerReference == null)
+        {
+            playerReference = FindObjectOfType<PlayerController_Alex>();
+        }
     }
 
     private void OnTriggerEnter(Collider other)

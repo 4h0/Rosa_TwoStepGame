@@ -37,8 +37,15 @@ public class PauseMenuController_Khoa : MonoBehaviour
 
     private void Awake()
     {
-        playerReference = FindObjectOfType<PlayerController_Alex>();
-        soundControllerReference = FindObjectOfType<SoundVolumeUpdate_Khoa>();
+        while (playerReference == null)
+        {
+            playerReference = FindObjectOfType<PlayerController_Alex>();
+        }
+
+        while (soundControllerReference == null)
+        {
+            soundControllerReference = FindObjectOfType<SoundVolumeUpdate_Khoa>();
+        }
 
         onGoingList = new List<int>();
         completedList = new List<int>();
@@ -591,7 +598,7 @@ public class PauseMenuController_Khoa : MonoBehaviour
     }
     private void Restart()
     {
-        SceneManager.LoadScene("TechScene");
+        SceneManager.LoadScene("RoseAnya");
     }
     private void Quit()
     {

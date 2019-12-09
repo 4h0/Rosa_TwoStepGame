@@ -16,7 +16,10 @@ public class Quest3_Khoa : MonoBehaviour
 
     private void Awake()
     {
-        pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
+        while (pauseMenuReference == null)
+        {
+            pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
+        }
 
         foreach (GameObject tempGameObjects in receivedElement)
         {

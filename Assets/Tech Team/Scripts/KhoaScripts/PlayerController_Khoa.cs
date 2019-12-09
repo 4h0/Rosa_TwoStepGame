@@ -8,7 +8,6 @@ public class PlayerController_Khoa : MonoBehaviour
     public Transform strengthPosition;
     public LayerMask strengthLayerMask;
 
-    private CameraController_Khoa cameraReference;
     private UIController_Khoa uiControllerReference;
     private GameObject savedGameObject;
 
@@ -34,7 +33,6 @@ public class PlayerController_Khoa : MonoBehaviour
 
     private void Awake()
     {
-        cameraReference = FindObjectOfType<CameraController_Khoa>();
         uiControllerReference = FindObjectOfType<UIController_Khoa>();
 
         playerRigidBody = GetComponent<Rigidbody>();

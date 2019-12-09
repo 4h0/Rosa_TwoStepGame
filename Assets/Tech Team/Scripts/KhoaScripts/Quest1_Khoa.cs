@@ -24,9 +24,21 @@ public class Quest1_Khoa : MonoBehaviour
     {
         timerText.enabled = false;
         flowchart = FindObjectOfType<Flowchart>();
-        playerReference = FindObjectOfType<PlayerController_Alex>();
-        pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
-        uiControllerReference = FindObjectOfType<UIController_Khoa>();
+
+        while (playerReference == null)
+        {
+            playerReference = FindObjectOfType<PlayerController_Alex>();
+        }
+
+        while (pauseMenuReference == null)
+        {
+            pauseMenuReference = FindObjectOfType<PauseMenuController_Khoa>();
+        }
+        
+        while (uiControllerReference == null)
+        {
+            uiControllerReference = FindObjectOfType<UIController_Khoa>();
+        }
 
         foreach (GameObject tempGameObjects in taskRelatedGameObjects)
         {
@@ -110,7 +122,7 @@ public class Quest1_Khoa : MonoBehaviour
         }
         else
         {
-            playerReference.GetComponent<PlayerController_Alex>().playerParticle.Stop();
+            StartCoroutine(StopPlayerParticle());
         }
 
         this.transform.parent.GetComponent<dialogueTrigger>().taskDone = finishedTask;
@@ -120,7 +132,7 @@ public class Quest1_Khoa : MonoBehaviour
     {
         yield return new WaitForSeconds(2.4f);
 
-        playerReference.GetComponent<PlayerController_Alex>().playerParticle.Stop();
+        playerReference.GetComponent<PlayerController_Alex>().TurnOffPlayerParticle();
     }
     IEnumerator StopSideQuest1()
     {
@@ -135,10 +147,8 @@ public class Quest1_Khoa : MonoBehaviour
             tempGameObjects.SetActive(false);
         }
 
-        playerReference.GetComponent<PlayerController_Alex>().playerParticle.Stop();
+        playerReference.GetComponent<PlayerController_Alex>().TurnOffPlayerParticle();
 
         quest1Pass = true; //QUEST PASSED
-
-        Debug.Log("passed");
     }
 }
