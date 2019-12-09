@@ -193,7 +193,7 @@ public class PlayerController_Alex : MonoBehaviour
                     }
                     else
                     {
-                        gravity -= 9.81f;
+                        gravity = -65.4f;
                     }
                 }
                 else
@@ -253,9 +253,11 @@ public class PlayerController_Alex : MonoBehaviour
 
         playerRigidBody.velocity = new Vector3(0, 0, 0);
 
-        for (int counter = 0; counter < 4; counter++)
+        playerRigidBody.AddForce(new Vector3(0, jumpForce /15, 0), ForceMode.Impulse);
+
+        for (int counter = 0; counter < 6; counter++)
         {
-            playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter * counter, 0), ForceMode.Impulse);
+            playerRigidBody.AddForce(new Vector3(0, jumpForce * jumpCounter * counter, 0), ForceMode.Acceleration);
 
             yield return new WaitForSeconds(.03f);
         }

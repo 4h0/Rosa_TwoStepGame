@@ -14711,7 +14711,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rayCastLayerMask:
   - serializedVersion: 2
-    m_Bits: 256
+    m_Bits: 1
   - serializedVersion: 2
     m_Bits: 512
   savedMaterial:
@@ -14732,7 +14732,7 @@ MonoBehaviour:
   runSpeed: 6
   dashMultiplier: 3
   maxDashMultiplier: 6
-  jumpForce: 27
+  jumpForce: 30
   turnSmoothTime: 0.2
   speedSmoothTime: 0.1
   dashForce: 4
